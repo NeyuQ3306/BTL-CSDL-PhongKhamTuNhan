@@ -2,7 +2,7 @@
 
 A relational hospital-management application built with MySQL, Python, and Flask. The project connects a normalized healthcare database to a browser-based interface for managing patients, employees, consultations, shifts, inpatient rooms, diagnoses, and surgeries.
 
-> Academic group project for CS 631: Data Management and System Design. Built by Steven Meyer and Richard Tashjian, with approximately equal overall project contributions. Steven contributed substantially across database design, SQL development, application functionality, interface development, validation, and documentation. Richard had a larger role in data cleaning and function testing.
+> Academic group project for CS 631: Data Management and System Design. Built by me and Richard Tashjian. I contributed to database design, SQL development, application functionality, interface development, validation, and documentation. Richard had a larger role in data cleaning and function testing.
 
 ## Project highlights
 
