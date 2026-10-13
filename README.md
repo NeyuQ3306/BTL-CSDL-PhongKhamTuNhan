@@ -1,102 +1,51 @@
-# Hospital Database Management System
+# Bài tập lớn CSDL — Quản lý phòng khám tư nhân
 
-A relational hospital-management application built with MySQL, Python, and Flask. The project connects a normalized healthcare database to a browser-based interface for managing patients, employees, consultations, shifts, inpatient rooms, diagnoses, and surgeries.
+Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**, múi giờ Việt Nam.
 
-> Academic group project for CS 631: Data Management and System Design. Built by me and Richard Tashjian. I contributed to database design, SQL development, application functionality, interface development, validation, and documentation. Richard had a larger role in data cleaning and function testing.
+## Trạng thái ban đầu
 
-## Project highlights
+- Yêu cầu 1: đã chốt thiết kế ER và lược đồ 11 bảng, kèm ràng buộc. Xem [tài liệu thiết kế](docs/design/).
+- Yêu cầu 2: **chưa triển khai** SQL theo thiết kế nhóm; là đầu việc tuần 1 và tuần 2.
+- Yêu cầu 3: đã nhập source tham khảo Flask + MySQL; **chưa chuyển đổi nghiệp vụ và chưa nghiệm thu ứng dụng**.
+- `app.py`, `hospital_db.sql`, `templates/`, `static/` hiện là source bệnh viện gốc. `hospital_db.sql` KHÔNG phải lược đồ 11 bảng và KHÔNG phải file SQL để nộp.
 
-- Designed a relational schema with primary keys, foreign keys, composite keys, and relationship tables.
-- Built Flask workflows for patient and employee records, medical operations, and inpatient management.
-- Added consultation, staff-shift, and surgery scheduling with conflict checks.
-- Implemented room and bed availability tracking.
-- Used parameterized SQL queries for user-provided values.
-- Presented consultation and staffing schedules through calendar views.
+## Bắt đầu từ đây
 
-## Core functionality
+1. Đọc [phân công 3 tuần](docs/PHAN_CONG_3_TUAN.md) hoặc [bản PDF](docs/Phan_cong_Project1_3_tuan.pdf).
+2. Đọc [RULES.md](RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.
+3. Xem [cài đặt môi trường](docs/SETUP.md), [hợp đồng tích hợp](docs/INTEGRATION.md) và [kiểm thử nghiệm thu](docs/ACCEPTANCE.md).
 
-| Area | Examples |
-|---|---|
-| Patient management | Add, update, search, assign physicians, record diagnoses |
-| Staff management | Add, update, remove, search, assign roles and clinics |
-| Scheduling | Book consultations, staff shifts, and surgeries; detect conflicts |
-| Inpatient management | View availability and assign or release rooms and beds |
-| Database integrity | Primary keys, foreign keys, composite keys, and uniqueness constraints |
+## Mốc chốt
 
-## Technology
+| Tuần | Khoảng làm việc | Chốt thứ Ba lúc 20:00 | Sản phẩm |
+|---|---|---|---|
+| 1 | 13/10 đến trước mốc 20/10 | 20/10/2026 | 11 bảng, dữ liệu mẫu, khung backend và giao diện |
+| 2 | Sau mốc 20/10 đến 27/10 | 27/10/2026 | Bốn báo cáo bắt buộc chạy xuyên suốt từ UI tới MySQL |
+| 3 | Sau mốc 27/10 đến 03/11 | 03/11/2026 | Sửa lỗi, kiểm thử máy sạch, demo và bộ nộp cuối |
 
-- Python
-- Flask
-- MySQL
-- PyMySQL
-- HTML and CSS
-- FullCalendar
+Đẩy PR trước **20:00 thứ Hai** để có 24 giờ review. 20:00 là giờ làm việc nhóm đề xuất, không phải hạn do giảng viên công bố.
 
-## Repository structure
+## Công nghệ và phạm vi
 
-```text
-.
-├── app.py                 # Flask routes and database operations
-├── hospital_db.sql        # MySQL schema
-├── requirements.txt       # Python dependencies
-├── .env.example           # Local configuration template
-├── static/
-│   └── styles.css
-└── templates/             # Flask/Jinja interface templates
-```
+Python 3.11; Flask 3; PyMySQL; MySQL 8.4; HTML/CSS/Jinja. Giữ MySQL làm nguồn dữ liệu duy nhất; không chuyển sang SQLite/MongoDB. Dữ liệu demo hoàn toàn giả lập.
 
-## Run locally
+Ứng dụng phải cung cấp: thống kê bệnh theo đợt/tháng; lương bác sĩ và y tá; lịch sử và tình trạng bệnh nhân; doanh thu khám và thuốc. CRUD bệnh nhân, bác sĩ/y tá, lượt khám, thuốc và đơn thuốc phục vụ luồng demo. Phòng nội trú, phẫu thuật và quản lý giường của upstream nằm ngoài phạm vi.
 
-### 1. Create and activate a virtual environment
+## Cấu trúc
 
-```bash
-python -m venv .venv
-```
+- `docs/design/`: hai PDF thiết kế đã chốt.
+- `docs/`: phân công, setup, hợp đồng tích hợp, test và nguồn tham khảo.
+- `database/`: nơi nhóm sẽ viết schema, seed, query, kiểm tra ràng buộc và script nộp.
+- `app.py`, `templates/`, `static/`: nền source cần chuyển đổi.
+- `tests/`: bộ kiểm thử sẽ triển khai tuần 1–3.
+- `.github/`: mẫu issue/PR, CODEOWNERS và CI kiểm tra cú pháp cơ bản.
 
-On Windows PowerShell:
+## Làm việc nhóm
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
+Nhánh đã chuẩn bị: `quyen/week-1`, `trung/week-1`, `vuong/week-1`. Mở PR về `main`. Tuần sau tạo nhánh mới từ `origin/main`, không tái sử dụng nhánh đã squash merge. Quyền điều phối merge; PR của Quyền phải có Trung hoặc Vương review.
 
-On macOS or Linux:
+Tài khoản GitHub của Trung và Vương chưa được cung cấp nên **chưa mời cộng tác viên**. CODEOWNERS không thay thế bảo vệ nhánh; xem trạng thái cấu hình trong RULES.md.
 
-```bash
-source .venv/bin/activate
-```
+## Nguồn tham khảo
 
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Create the database
-
-Run `hospital_db.sql` in MySQL Workbench or from the command line:
-
-```bash
-mysql -u root -p < hospital_db.sql
-```
-
-The script creates the `hospital_db` database and its table structure. It does not include real patient data.
-
-### 4. Configure local credentials
-
-Copy `.env.example` to `.env` and replace the placeholder values. The application loads this local file automatically. Never commit `.env`.
-
-### 5. Start the application
-
-```bash
-python app.py
-```
-
-Open `http://127.0.0.1:5000` in a browser.
-
-## Design notes
-
-The data model separates people, clinical activity, staffing, facilities, and medical reference data. Junction tables represent many-to-many relationships such as patient allergies, diagnosed illnesses, medication interactions, and employee skills. Scheduling and inpatient workflows apply application-level checks before database updates.
-
-## Scope and limitations
-
-This is an academic prototype, not a production clinical system. It has no authentication or authorization layer and must only be used with fictional demonstration data. A production healthcare application would additionally require role-based access, encryption, audit logging, stronger transaction handling, automated tests, and regulatory review.
+Dựa trên [scmeyer41/hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system), commit `711d7b1bdff824901a75e086525d0a9f5ca14701`. Giữ lịch sử upstream và [README gốc](docs/UPSTREAM_README.md). Xem [ghi nhận nguồn](docs/ATTRIBUTION.md). Nhóm tự chịu trách nhiệm giải thích và kiểm thử phần chuyển đổi; không coi tính năng của upstream là phần nhóm đã hoàn thành.
