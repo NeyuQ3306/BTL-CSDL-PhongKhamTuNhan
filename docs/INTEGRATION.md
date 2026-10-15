@@ -1,6 +1,6 @@
 # Hợp đồng tích hợp ban đầu
 
-Đây là quy ước phát triển cần Trung và Vương hoàn thiện trước 15/10, chưa phải API đã triển khai.
+Phần đầu là mục tiêu tích hợp toàn dự án. Các route đã triển khai và hợp đồng form tuần 1 được ghi rõ ở phần cuối; cần Vương xác nhận trước khi thay UI.
 
 ## Tên vật lý
 

@@ -15,7 +15,7 @@ Tài liệu CSDL và hai slide SQL người dùng cung cấp được dùng đ�
 | Khảo sát source gốc và môi trường | Log bên dưới, requirements, Compose MySQL8.4 | Đã khảo sát; giới hạn chạy cục bộ được ghi rõ |
 | Tách DB / cấu hình / app | clinic_app/config.py, db.py, factory và app.py | Đã triển khai |
 | Chuẩn hóa định danh | Adapter seed, công cụ normalize và audit | Đã làm; chờ Quyền review schema |
-| CRUD bệnh nhân, bác sĩ, y tá | Route/service, validation, form và thông báo lỗi | Đã triển khai; kiểm thử tích hợp qua CI |
+| CRUD bệnh nhân, bác sĩ, y tá | Route/service, validation, form và thông báo lỗi | Đã qua kiểm thử tích hợp MySQL8.4 |
 | Nền lượt/đợt/lần khám | Màn hình tra cứu và lịch sử sơ bộ | Đã triển khai đọc; ghi nghiệp vụ thuộc tuần 2 |
 | Route/form/template thống nhất | docs/INTEGRATION.md, entities.py | Đã bàn giao hợp đồng; chưa có xác nhận Vương |
 | Tài liệu chạy và tích hợp | docs/SETUP.md, README, test | Đã viết |
@@ -35,7 +35,7 @@ Tài liệu CSDL và hai slide SQL người dùng cung cấp được dùng đ�
 3. Đọc source thấy truy vấn `Patient`, `Physician`, `Illness` trong khi SQL gốc tạo bảng chữ thường, và mô hình bệnh viện không trùng 11 bảng nhóm. Đây là phát hiện khi đọc mã; chưa tuyên bố đã chạy UI upstream với database gốc.
 4. Môi trường cục bộ là Python3.12. Đã cài Flask, PyMySQL, python-dotenv, pytest, cryptography. Unit tests: 9 passed; 9 integration tests skipped khi chưa bật DB. Compileall và parse Jinja đã qua.
 5. Thử MySQL8.0.46 trong vùng tạm: tải gói lần đầu bị thiếu, tải lại và initialize thành công. Server dừng với `Can't start server: UNIX Socket: Operation not permitted`. Vì vậy không dùng môi trường cục bộ này làm bằng chứng MySQL đã chạy.
-6. CI cấu hình môi trường mục tiêu Python3.11/MySQL8.4, import seed, chạy đủ unit/integration và in báo cáo audit. Kết quả thực chạy và link được bổ sung sau khi workflow hoàn tất.
+6. CI cấu hình môi trường mục tiêu Python3.11/MySQL8.4, import seed, chạy đủ unit/integration và in báo cáo audit. Run [38764280374](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/38764280374) đã thành công: **18/18 test passed**, MySQL8.4.11, Python3.11.17; nhập đủ 11 bảng/1.144 dòng. Các truy vấn audit đã chạy không có phát hiện. Chi tiết lưu tại [bằng chứng kiểm thử](evidence/trung_week1_results.txt).
 
 ## Kiểm thử đã chuẩn bị
 
