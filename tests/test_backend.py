@@ -115,3 +115,20 @@ def test_read_foundation_and_seed_counts(client, app):
         with pytest.raises(RuntimeError, match='not empty'):
             import_seed(get_db())
         assert audit()['counts'] == report['counts']
+
+
+@pytest.mark.parametrize('invalid_token', ['không hợp lệ', '😀'])
+def test_unicode_csrf_is_bad_request(invalid_token):
+    app = create_app({'TESTING': True, 'SECRET_KEY': 'unit-test'})
+    client = app.test_client()
+    client.get('/patients/new')
+    assert client.post('/patients/new', data={'csrf_token': invalid_token}).status_code == 400
+
+
+@pytest.mark.parametrize('slug', ['patients', 'doctors', 'nurses'])
+def test_reserved_record_id(client, token, slug):
+    for key in ['new', 'NEW']:
+        data = payload(slug, key)
+        data['csrf_token'] = token
+        assert client.post(f'/{slug}/new', data=data).status_code == 422
+    assert client.get(f'/{slug}/new').status_code == 200

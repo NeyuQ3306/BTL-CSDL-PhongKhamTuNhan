@@ -15,5 +15,6 @@ def check_csrf():
         return
     supplied = request.form.get('csrf_token', '')
     expected = session.get('_csrf', '')
-    if not supplied or not expected or not secrets.compare_digest(supplied, expected):
+    if (not supplied or not expected or not supplied.isascii()
+            or not secrets.compare_digest(supplied, expected)):
         raise BadRequest('Phiên biểu mẫu không hợp lệ. Tải lại trang rồi thử lại.')

@@ -43,6 +43,8 @@ def validate(entity, form, fixed_id=None):
                 values[field.name] = int(value)
         elif any(ord(c) < 32 for c in value):
             errors[field.name] = 'Không nhập ký tự điều khiển.'
+    if fixed_id is None and values[entity.pk].lower() == 'new':
+        errors[entity.pk] = 'Mã new dành cho đường dẫn thêm mới. Vui lòng chọn mã khác.'
     if fixed_id is not None and values[entity.pk] != fixed_id:
         errors[entity.pk] = 'Không được thay đổi mã hồ sơ khi sửa.'
     return values, errors
