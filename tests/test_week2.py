@@ -89,7 +89,7 @@ def test_atomic_visit_rollback(app,clinical_data,changes,status):
     with app.app_context():
         expect_error(status,w.create_visit,visit(**changes))
         for table,key in [('luot_den_kham','ma_luot'),('dot_dieu_tri','ma_dot'),('lan_kham_benh','ma_lan_kham')]:
-            assert fetch_one(f"SELECT COUNT(*) n FROM {table} WHERE {key} LIKE 'W2%'")['n'] == 0
+            assert fetch_one(f"SELECT COUNT(*) n FROM {table} WHERE {key} LIKE %s", ('W2%',))['n'] == 0
 
 
 def test_clinical_constraints(app,clinical_data):

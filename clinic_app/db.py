@@ -50,7 +50,7 @@ def transaction():
 def fetch_all(sql, params=()):
     with get_db().cursor() as cur:
         cur.execute(sql, params)
-        return cur.fetchall()
+        return list(cur.fetchall())
 
 
 def fetch_one(sql, params=()):

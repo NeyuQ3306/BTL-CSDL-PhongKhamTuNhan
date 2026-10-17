@@ -23,3 +23,6 @@ Thumbs.db
 htmlcov/
 instance/
 backups/
+
+# Generated CI browser evidence
+test-artifacts/
