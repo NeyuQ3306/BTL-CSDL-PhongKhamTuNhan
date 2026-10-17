@@ -8,13 +8,13 @@ Bản bàn giao 17/10/2026. Giữ 11 bảng và tên cột tương thích adapte
 |---|---|---|---|
 | ma_bac_si | VARCHAR(12) | Không | PK |
 | cmt | VARCHAR(20) | Không | UQ |
-| ho_ten | VARCHAR(100) | Không | ho ten |
-| ngay_sinh | DATE | Không | ngay sinh |
-| dia_chi | VARCHAR(255) | Không | dia chi |
-| bac_nghe | VARCHAR(40) | Không | bac nghe |
-| tham_nien | INT | Không | tham nien |
-| chuyen_mon | VARCHAR(100) | Không | chuyen mon |
-| trinh_do_dao_tao | VARCHAR(100) | Không | trinh do dao tao |
+| ho_ten | VARCHAR(100) | Không | Họ tên |
+| ngay_sinh | DATE | Không | Ngày sinh |
+| dia_chi | VARCHAR(255) | Không | Địa chỉ |
+| bac_nghe | VARCHAR(40) | Không | Bậc nghề |
+| tham_nien | INT | Không | Thâm niên (năm, không âm) |
+| chuyen_mon | VARCHAR(100) | Không | Chuyên môn |
+| trinh_do_dao_tao | VARCHAR(100) | Không | Trình độ đào tạo |
 
 Khóa và CHECK trong SQL:
 ```sql
@@ -27,12 +27,12 @@ tham_nien INT NOT NULL CHECK (tham_nien >= 0), chuyen_mon VARCHAR(100) NOT NULL,
 |---|---|---|---|
 | ma_y_ta | VARCHAR(12) | Không | PK |
 | cmt | VARCHAR(20) | Không | UQ |
-| ho_ten | VARCHAR(100) | Không | ho ten |
-| ngay_sinh | DATE | Không | ngay sinh |
-| dia_chi | VARCHAR(255) | Không | dia chi |
-| so_dien_thoai | VARCHAR(20) | Không | so dien thoai |
-| trinh_do | VARCHAR(100) | Không | trinh do |
-| tham_nien | INT | Không | tham nien |
+| ho_ten | VARCHAR(100) | Không | Họ tên |
+| ngay_sinh | DATE | Không | Ngày sinh |
+| dia_chi | VARCHAR(255) | Không | Địa chỉ |
+| so_dien_thoai | VARCHAR(20) | Không | Số điện thoại |
+| trinh_do | VARCHAR(100) | Không | Trình độ |
+| tham_nien | INT | Không | Thâm niên (năm, không âm) |
 
 Khóa và CHECK trong SQL:
 ```sql
@@ -45,14 +45,12 @@ trinh_do VARCHAR(100) NOT NULL, tham_nien INT NOT NULL CHECK (tham_nien >= 0)
 |---|---|---|---|
 | ma_benh_nhan | VARCHAR(12) | Không | PK |
 | cmt | VARCHAR(20) | Không | UQ |
-| ho_ten | VARCHAR(100) | Không | ho ten |
-| ngay_sinh | DATE | Không | ngay sinh |
-| dia_chi | VARCHAR(255) | Không | dia chi |
-| so_dien_thoai | VARCHAR(20) | Không | so dien thoai |
+| ho_ten | VARCHAR(100) | Không | Họ tên |
+| ngay_sinh | DATE | Không | Ngày sinh |
+| dia_chi | VARCHAR(255) | Không | Địa chỉ |
+| so_dien_thoai | VARCHAR(20) | Không | Số điện thoại |
 
-Khóa và CHECK trong SQL:
-```sql
-```
+Khóa chính/duy nhất đã ghi ở bảng trên.
 
 ## benh
 
@@ -61,18 +59,16 @@ Khóa và CHECK trong SQL:
 | ma_benh | VARCHAR(12) | Không | PK |
 | ten_benh | VARCHAR(150) | Không | UQ |
 
-Khóa và CHECK trong SQL:
-```sql
-```
+Khóa chính/duy nhất đã ghi ở bảng trên.
 
 ## thuoc
 
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_thuoc | VARCHAR(12) | Không | PK |
-| ten_thuoc | VARCHAR(150) | Không | ten thuoc |
-| don_vi_tinh | VARCHAR(30) | Không | don vi tinh |
-| gia_hien_tai | DECIMAL(12,0) | Không | gia hien tai |
+| ten_thuoc | VARCHAR(150) | Không | Tên thuốc |
+| don_vi_tinh | VARCHAR(30) | Không | Đơn vị tính |
+| gia_hien_tai | DECIMAL(12,0) | Không | Giá danh mục hiện tại, không âm |
 
 Khóa và CHECK trong SQL:
 ```sql
@@ -84,9 +80,9 @@ gia_hien_tai DECIMAL(12,0) NOT NULL CHECK (gia_hien_tai >= 0)
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_dot | VARCHAR(12) | Không | PK |
-| ngay_bat_dau | DATE | Không | ngay bat dau |
+| ngay_bat_dau | DATE | Không | Ngày bắt đầu đợt |
 | ngay_khoi | DATE | Có | NULL = chưa kết thúc |
-| trang_thai | VARCHAR(30) | Không | trang thai |
+| trang_thai | VARCHAR(30) | Không | Đang điều trị / Đã khỏi |
 | ma_benh_nhan | VARCHAR(12) | Không | FK → benh_nhan.ma_benh_nhan |
 | ma_benh | VARCHAR(12) | Không | FK → benh.ma_benh |
 | ma_bac_si | VARCHAR(12) | Không | FK → bac_si.ma_bac_si |
@@ -106,7 +102,7 @@ CONSTRAINT chk_dot_khoi CHECK ((trang_thai='Đã khỏi' AND ngay_khoi IS NOT NU
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_luot | VARCHAR(12) | Không | PK |
-| ngay_vao_vien | DATE | Không | ngay vao vien |
+| ngay_vao_vien | DATE | Không | Ngày bắt đầu lượt |
 | ngay_ra_vien | DATE | Có | NULL = chưa kết thúc |
 | ma_benh_nhan | VARCHAR(12) | Không | FK → benh_nhan.ma_benh_nhan |
 
@@ -120,10 +116,10 @@ CHECK (ngay_ra_vien IS NULL OR ngay_ra_vien >= ngay_vao_vien)
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_lan_kham | VARCHAR(12) | Không | PK |
-| so_thu_tu_trong_dot | INT | Không | so thu tu trong dot |
-| ngay_kham | DATE | Không | ngay kham |
+| so_thu_tu_trong_dot | INT | Không | Thứ tự khám từ 1, liên tiếp trong đợt |
+| ngay_kham | DATE | Không | Ngày khám |
 | tien_kham_chua | DECIMAL(12,0) | Không | Không gồm tiền thuốc |
-| ket_luan | VARCHAR(255) | Không | ket luan |
+| ket_luan | VARCHAR(255) | Không | Kết luận |
 | ma_dot | VARCHAR(12) | Không | FK → dot_dieu_tri.ma_dot |
 | ma_luot | VARCHAR(12) | Không | FK → luot_den_kham.ma_luot |
 
@@ -142,12 +138,10 @@ CONSTRAINT uq_dot_stt UNIQUE (ma_dot,so_thu_tu_trong_dot)
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_don | VARCHAR(12) | Không | PK |
-| ngay_lap_don | DATE | Không | ngay lap don |
+| ngay_lap_don | DATE | Không | Ngày lập đơn |
 | ma_lan_kham | VARCHAR(12) | Không | UQ; FK → lan_kham_benh.ma_lan_kham |
 
-Khóa và CHECK trong SQL:
-```sql
-```
+Khóa chính/duy nhất đã ghi ở bảng trên.
 
 ## chi_tiet_don_thuoc
 
@@ -155,8 +149,8 @@ Khóa và CHECK trong SQL:
 |---|---|---|---|
 | ma_don | VARCHAR(12) | Không | FK → don_thuoc.ma_don |
 | ma_thuoc | VARCHAR(12) | Không | FK → thuoc.ma_thuoc |
-| so_luong | INT | Không | so luong |
-| lieu_dung | VARCHAR(255) | Không | lieu dung |
+| so_luong | INT | Không | Số lượng, nguyên dương |
+| lieu_dung | VARCHAR(255) | Không | Liều dùng |
 | don_gia_ban | DECIMAL(12,0) | Không | Giá lịch sử, không lấy lại giá danh mục khi báo cáo |
 
 Khóa và CHECK trong SQL:
@@ -172,7 +166,7 @@ PRIMARY KEY (ma_don,ma_thuoc), FOREIGN KEY (ma_don) REFERENCES don_thuoc(ma_don)
 |---|---|---|---|
 | ma_luot | VARCHAR(12) | Không | FK → luot_den_kham.ma_luot |
 | ma_y_ta | VARCHAR(12) | Không | FK → y_ta.ma_y_ta |
-| noi_dung_ho_tro | VARCHAR(255) | Không | noi dung ho tro |
+| noi_dung_ho_tro | VARCHAR(255) | Không | Nội dung hỗ trợ |
 | ngay_ho_tro | DATE | Không | Ngày bắt đầu hỗ trợ; không đổi khi thêm công việc |
 
 Khóa và CHECK trong SQL:

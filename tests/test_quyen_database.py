@@ -81,7 +81,8 @@ def test_reports_python_oracle(db,month):
  "DELETE FROM benh_nhan WHERE ma_benh_nhan='BN001'",
 ])
 def test_invalid_write(clinical,sql):
-    with clinical.cursor() as c,pytest.raises(pymysql.MySQLError):c.execute(sql)
+    with clinical.cursor() as c,pytest.raises(pymysql.MySQLError) as error:c.execute(sql)
+    assert error.value.args[0] in (1644,1062,3819,1451)
 
 def test_valid_workflow_and_rollback(clinical):
     with clinical.cursor() as c:
@@ -109,3 +110,15 @@ def test_empty_completed_visit(db):
     with db.cursor() as c:
         c.execute("INSERT INTO luot_den_kham VALUES ('QL0','2001-01-01',NULL,'BN001')")
         with pytest.raises(pymysql.MySQLError):c.execute("UPDATE luot_den_kham SET ngay_ra_vien='2001-01-01' WHERE ma_luot='QL0'")
+
+def test_seed_covers_required_scenarios():
+    rows=seed_rows();exams=rows['lan_kham_benh'];episodes=rows['dot_dieu_tri']
+    months=defaultdict(set);visits=Counter();repeat=Counter();drugs=Counter()
+    for x in exams:months[x['ma_dot']].add(x['ngay_kham'][:7]);visits[x['ma_luot']]+=1
+    for x in episodes:repeat[(x['ma_benh_nhan'],x['ma_benh'])]+=1
+    for x in rows['chi_tiet_don_thuoc']:drugs[x['ma_don']]+=1
+    assert any(len(x)>1 for x in months.values()),'No episode across months'
+    assert max(visits.values())>1,'No multiple diseases in one visit'
+    assert max(repeat.values())>1,'No recurrence'
+    assert max(drugs.values())>1,'No multiline prescription'
+    assert len(exams)>len(rows['don_thuoc']),'No examination without prescription'

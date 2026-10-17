@@ -26,3 +26,7 @@ Hai PDF đã chốt trong `docs/design` giữ nguyên. Từ điển và ma trậ
 ## Học và giải thích phần của Quyền
 
 Đọc schema theo thứ tự bảng cha → bảng con; giải thích vì sao MaBacSi ở đợt, vì sao không dùng COUNT(lần khám) cho Q1, vì sao thưởng theo ngày khỏi/ngày hỗ trợ, vì sao phải cộng tiền khám và tiền thuốc riêng. Thử thay tháng ở queries.sql, đối chiếu expected_results; chỉ thử câu SQL sai trong DB thử và rollback.
+
+## Kết quả kiểm chứng
+
+Đã qua 25 test SQL và 58 test backend tương thích trên MySQL 8.4.11; có log CI trong `docs/evidence/quyen_week1_validation.md`. Test coverage seed bổ sung đã qua local; xem Checks của PR để lấy lần chạy cuối. Không có MySQL server cục bộ trong môi trường làm việc, nên bằng chứng chạy DB là GitHub Actions, không phải giả lập SQLite.

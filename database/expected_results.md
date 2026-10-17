@@ -105,4 +105,4 @@ Bộ test tạo QD1 với phí khám 100 VND, một đơn có 2 × 1.000 + 3 × 
 | chi_tiet_don_thuoc | 267 |
 | ho_tro | 180 |
 
-Tổng: 1.144 dòng. Ca qua tháng, nhiều bệnh cùng lượt, tái khám/tái mắc, lần khám không kê đơn và đơn nhiều thuốc được audit; thêm bằng chứng coverage vào kiểm thử trước nghiệm thu.
+Tổng: 1.144 dòng. Ca qua tháng, nhiều bệnh cùng lượt, tái khám/tái mắc, lần khám không kê đơn và đơn nhiều thuốc được audit; được kiểm tra bởi test_seed_covers_required_scenarios. Seed gốc chưa có chênh lệch giá danh mục/giá bán; ca đổi giá được kiểm tra riêng trong test_valid_workflow_and_rollback, không sửa dữ liệu Vương.
