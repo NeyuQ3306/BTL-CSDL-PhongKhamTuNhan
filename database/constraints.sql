@@ -18,7 +18,7 @@ BEGIN
   IF NEW.trang_thai<>'Đang điều trị' OR NEW.ngay_khoi IS NOT NULL THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='New episode must be active'; END IF;
   SELECT ma_dot INTO overlap_id FROM dot_dieu_tri
   WHERE ma_benh_nhan=NEW.ma_benh_nhan AND ma_benh=NEW.ma_benh
-    AND (ngay_khoi IS NULL OR ngay_khoi>=NEW.ngay_bat_dau) LIMIT 1 FOR UPDATE;
+    AND (ngay_khoi IS NULL OR ngay_khoi>=NEW.ngay_bat_dau) LIMIT 1;
   IF overlap_id IS NOT NULL THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Overlapping episode'; END IF;
 
 END$$
@@ -64,10 +64,10 @@ BEGIN
   IF end_l IS NOT NULL THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Cannot add examination to closed visit'; END IF;
   IF NEW.ngay_kham<begin_d OR NEW.ngay_kham<begin_l THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Examination outside episode or visit'; END IF;
   SELECT COUNT(*),COALESCE(MAX(so_thu_tu_trong_dot),0),MAX(ngay_kham) INTO n,seq,last_day
-    FROM lan_kham_benh WHERE ma_dot=NEW.ma_dot FOR UPDATE;
+    FROM lan_kham_benh WHERE ma_dot=NEW.ma_dot;
   IF n<>seq OR NEW.so_thu_tu_trong_dot<>seq+1 OR NEW.ngay_kham<last_day THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Examination sequence or date is invalid'; END IF;
   SELECT k.ma_lan_kham INTO duplicate_id FROM lan_kham_benh k JOIN dot_dieu_tri d ON d.ma_dot=k.ma_dot
-    WHERE k.ma_luot=NEW.ma_luot AND d.ma_benh=disease_id LIMIT 1 FOR UPDATE;
+    WHERE k.ma_luot=NEW.ma_luot AND d.ma_benh=disease_id LIMIT 1;
   IF duplicate_id IS NOT NULL THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='One disease per visit'; END IF;
 
 END$$
