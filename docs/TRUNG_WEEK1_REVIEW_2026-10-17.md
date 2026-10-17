@@ -19,6 +19,16 @@
 
 ## Kiểm thử
 
-CI ở commit trước sửa đã thành công, run 38764675833. Local sau sửa: **11 passed, 12 skipped** (không có DB local). Compileall và diff check đạt. Workflow sẽ chạy đầy đủ **23 ca** trên MySQL8.4 khi đẩy bản sửa; kết quả thực tế xem Actions của commit, không suy ra thành công từ unit test.
+CI ở commit trước sửa đã thành công, run 38764675833. Local sau sửa: **11 passed, 12 skipped** (không có DB local). Compileall và diff check đạt. Sau đó commit c442384 đã được xác minh **23/23 test đạt** trên MySQL 8.4.11: https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39008536160.
 
 Không thay schema hoặc giá trị dữ liệu, không thay UI của Vương, không merge main. Theo RULES.md còn cần người khác review trước merge. Tại thời điểm rà soát PR #4 mở, chưa có review; main vẫn ở phiên bản khởi tạo.
+
+## Bổ sung tối 17/10: mã chuẩn và giao diện
+
+Phát hiện URL có mã khác hoa/thường với mã DB làm form sửa báo 422 dù không đổi mã. Đã sửa route edit/delete lấy mã chuẩn từ bản ghi; giữ chặn thay PK và xác nhận xóa. Thêm 6 ca MySQL cho ba loại hồ sơ, mã uppercase/mixed-case, URL lower/upper, cập nhật, từ chối đổi PK, xác nhận xóa sai/đúng. Thêm 3 ca Chromium thêm/xem/sửa/xóa qua UI với MySQL thật.
+
+Hướng dẫn Vương: [VUONG_WEEK1_UI_HANDOFF.md](VUONG_WEEK1_UI_HANDOFF.md). Kết quả CI mới được cập nhật ở đầu file bằng chứng; 23 test là mốc trước bản sửa tối nay, không phải tổng bộ test mới.
+
+## Kết quả bản sửa tối 17/10
+
+**32/32 test đạt** trên Python 3.11 / MySQL 8.4.11 / Chromium, commit `ca1b178`. [CI](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39035269920). Bộ test gồm 6 ca mã hồ sơ và 3 luồng CRUD browser mới; 9 ảnh tại `docs/evidence/week1/`. Sau dọn dữ liệu thử vẫn đủ 1.144 dòng. Tuần 2 đồng bộ cùng bản sửa và đạt 68/68 test. Không thay xác nhận review/merge hoặc việc chạy trên máy nhóm.

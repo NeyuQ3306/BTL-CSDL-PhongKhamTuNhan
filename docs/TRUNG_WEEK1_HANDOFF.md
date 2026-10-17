@@ -8,6 +8,10 @@ Căn cứ yêu cầu bài tập, hai PDF thiết kế bản chốt trong `docs/d
 
 Tài liệu CSDL và hai slide SQL người dùng cung cấp được dùng để đối chiếu khóa, liên kết bảng, JOIN/tổng hợp, transaction. File SQL_Cheat_Sheet chưa nhận được nội dung nên không được ghi là nguồn đã đọc.
 
+## Cập nhật tối 17/10/2026
+
+Đã sửa edit/delete khi URL khác hoa/thường, dùng mã chuẩn DB và thêm test hồi quy + Chromium. Kết quả mới xem đầu [bằng chứng](evidence/trung_week1_results.txt). Các số 18/23 trong nhật ký bên dưới là các mốc cũ. [Phần giao diện Vương cần tích hợp](VUONG_WEEK1_UI_HANDOFF.md).
+
 ## Kết quả theo đầu việc
 
 | Đầu việc | Sản phẩm | Trạng thái |
@@ -50,3 +54,7 @@ Chưa có các luồng ghi lượt/đợt/lần khám/đơn đa bước, trigger
 ## Hướng dẫn demo
 
 Theo SETUP.md, import seed và chạy app. Mở Bệnh nhân, tìm BN001, xem hồ sơ/lịch sử. Thêm hồ sơ mã DEMO001 với CMT mới hợp lệ, sửa họ tên, rồi xóa hồ sơ vừa thêm. Thử thêm trùng CMT và xóa BN001 có lịch sử để thấy thông báo409. Mở Bác sĩ/Y tá để thực hiện cùng luồng; mở Lượt khám/Đợt điều trị để xem dữ liệu liên kết. Khi kết thúc, không để hồ sơ DEMO còn lại nếu đối chiếu số lượng seed.
+
+## Kết quả bản sửa tối 17/10
+
+**32/32 test đạt** trên Python 3.11 / MySQL 8.4.11 / Chromium, commit `ca1b178`. [CI](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39035269920). Bộ test gồm 6 ca mã hồ sơ và 3 luồng CRUD browser mới; 9 ảnh tại `docs/evidence/week1/`. Sau dọn dữ liệu thử vẫn đủ 1.144 dòng. Tuần 2 đồng bộ cùng bản sửa và đạt 68/68 test. Không thay xác nhận review/merge hoặc việc chạy trên máy nhóm.

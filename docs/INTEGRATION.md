@@ -65,3 +65,7 @@ Các template chạy thử nằm ở `clinic_app/templates/week1`, CSS ở `clin
 ### Điểm cần Quyền/Vương review
 
 Tên vật lý đã theo snake_case; adapter không thay giá trị nguồn. Những quy tắc liên bảng trong mục trước mới được audit, **chưa có trigger bảo vệ toàn bộ nghiệp vụ**. Các route tạo lượt/đợt/lần khám chưa mở POST, cần triển khai giao dịch và ràng buộc trong tuần 2. Không đánh dấu bốn báo cáo nghiệp vụ hoàn tất từ các màn hình tra cứu nền.
+
+## Bổ sung 17/10: mã hồ sơ và bàn giao UI
+
+Edit/delete sử dụng mã chuẩn lấy từ DB khi URL khác hoa/thường. Form vẫn gửi mã chuẩn, giữ readonly và không đổi PK. Xác nhận xóa so với mã chuẩn. File UI đang được Flask dùng và checklist cho Vương: [VUONG_WEEK1_UI_HANDOFF.md](VUONG_WEEK1_UI_HANDOFF.md).
