@@ -65,3 +65,7 @@ Các template chạy thử nằm ở `clinic_app/templates/week1`, CSS ở `clin
 ### Điểm cần Quyền/Vương review
 
 Tên vật lý đã theo snake_case; adapter không thay giá trị nguồn. Những quy tắc liên bảng trong mục trước mới được audit, **chưa có trigger bảo vệ toàn bộ nghiệp vụ**. Các route tạo lượt/đợt/lần khám chưa mở POST, cần triển khai giao dịch và ràng buộc trong tuần 2. Không đánh dấu bốn báo cáo nghiệp vụ hoàn tất từ các màn hình tra cứu nền.
+
+## Bản triển khai tuần 2
+
+Các mô tả “chưa triển khai” phía trên là mốc tuần 1. Trên nhánh trung/week-2, xem [WEEK2_INTEGRATION.md](WEEK2_INTEGRATION.md) cho route ghi nghiệp vụ, báo cáo và context hiện tại; [TRUNG_WEEK2_HANDOFF.md](TRUNG_WEEK2_HANDOFF.md) cho phạm vi và giới hạn. Chờ nhóm xác nhận hợp đồng.

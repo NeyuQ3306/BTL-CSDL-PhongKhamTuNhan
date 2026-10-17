@@ -1,9 +1,9 @@
 name: Backend and MySQL
 on:
   push:
-    branches: [main, trung/week-1]
+    branches: [main, trung/week-1, trung/week-2]
   pull_request:
-    branches: [main]
+    branches: [main, trung/week-1]
 permissions:
   contents: read
 jobs:

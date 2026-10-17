@@ -130,7 +130,5 @@ def treatments():
 
 @bp.get('/patients/<record_id>/history')
 def history(record_id):
-    entity = ENTITIES['patients']
-    return render_template('week1/history.html', patient=services.get_record(entity, record_id),
-                           visits=services.visits(record_id), treatments=services.treatments(record_id),
-                           examinations=services.examinations(record_id))
+    from .reports import history as full_history
+    return render_template('week1/history.html', **full_history(record_id))

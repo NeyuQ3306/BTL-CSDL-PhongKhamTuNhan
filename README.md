@@ -51,3 +51,7 @@ Tài khoản GitHub của Trung và Vương chưa được cung cấp nên **ch�
 ## Nguồn tham khảo
 
 Dựa trên [scmeyer41/hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system), commit `711d7b1bdff824901a75e086525d0a9f5ca14701`. Giữ lịch sử upstream và [README gốc](docs/UPSTREAM_README.md). Xem [ghi nhận nguồn](docs/ATTRIBUTION.md). Nhóm tự chịu trách nhiệm giải thích và kiểm thử phần chuyển đổi; không coi tính năng của upstream là phần nhóm đã hoàn thành.
+
+## Backend tuần 2 — nhánh Trung
+
+Luồng tiếp nhận/khám/kê đơn và bốn báo cáo: [bàn giao](docs/TRUNG_WEEK2_HANDOFF.md), [hợp đồng tích hợp](docs/WEEK2_INTEGRATION.md). Chạy theo SETUP.md với seed chuẩn hóa. PR tuần 2 phụ thuộc PR #4; chưa tự merge hoặc đánh dấu nghiệm thu.
