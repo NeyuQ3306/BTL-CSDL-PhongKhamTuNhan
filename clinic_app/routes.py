@@ -85,6 +85,8 @@ def detail(slug, record_id):
 def edit(slug, record_id):
     entity = entity_for(slug)
     record = services.get_record(entity, record_id)
+    # The DB may match an alias with different letter case. Keep the stored PK.
+    record_id = record[entity.pk]
     values, errors, form_error, status = record, {}, '', 200
     if request.method == 'POST':
         values, errors = validate(entity, request.form, fixed_id=record_id)
@@ -104,9 +106,10 @@ def edit(slug, record_id):
 @bp.post('/<slug>/<record_id>/delete')
 def delete(slug, record_id):
     entity = entity_for(slug)
+    record = services.get_record(entity, record_id)
+    record_id = record[entity.pk]
     if request.form.get('confirm_delete') != record_id:
         raise BadRequest('Bạn chưa xác nhận đúng mã hồ sơ cần xóa.')
-    record = services.get_record(entity, record_id)
     try:
         services.delete_record(entity, record_id)
     except pymysql.IntegrityError as exc:

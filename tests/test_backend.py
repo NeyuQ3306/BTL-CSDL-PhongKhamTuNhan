@@ -132,3 +132,35 @@ def test_reserved_record_id(client, token, slug):
         data['csrf_token'] = token
         assert client.post(f'/{slug}/new', data=data).status_code == 422
     assert client.get(f'/{slug}/new').status_code == 200
+
+
+@pytest.mark.parametrize('slug', ['patients', 'doctors', 'nurses'])
+@pytest.mark.parametrize('stored_id', ['CASETEST', 'CaseTest'])
+def test_case_variant_url_keeps_stored_primary_key(client, token, app, slug, stored_id):
+    entity = ENTITIES[slug]
+    data = payload(slug, stored_id)
+    data['csrf_token'] = token
+    assert client.post(f'/{slug}/new', data=data).status_code == 303
+    try:
+        for alias in {stored_id.lower(), stored_id.upper()}:
+            form = client.get(f'/{slug}/{alias}/edit')
+            assert form.status_code == 200
+            assert f'value="{stored_id}"' in form.get_data(as_text=True)
+            data['ho_ten'] = 'Đã cập nhật qua URL khác hoa thường'
+            response = client.post(f'/{slug}/{alias}/edit', data=data)
+            assert response.status_code == 303
+            assert response.headers['Location'].endswith(f'/{slug}/{stored_id}')
+            assert 'Đã cập nhật' in client.get(response.headers['Location']).get_data(as_text=True)
+            # Accepting the URL alias must not permit a primary-key change in the form.
+            assert client.post(f'/{slug}/{alias}/edit', data={**data, entity.pk:'OTHERID'}).status_code == 422
+        with app.app_context():
+            row = fetch_one(f'SELECT {entity.pk} FROM {entity.table} WHERE {entity.pk}=%s', (stored_id,))
+            assert row[entity.pk] == stored_id
+        alias = stored_id.lower()
+        assert client.post(f'/{slug}/{alias}/delete', data={'csrf_token':token,'confirm_delete':'OTHERID'}).status_code == 400
+        assert client.post(f'/{slug}/{alias}/delete', data={'csrf_token':token,'confirm_delete':stored_id}).status_code == 303
+        assert client.get(f'/{slug}/{stored_id}').status_code == 404
+    finally:
+        with app.app_context():
+            with transaction() as db, db.cursor() as cur:
+                cur.execute(f'DELETE FROM {entity.table} WHERE {entity.pk}=%s', (stored_id,))
