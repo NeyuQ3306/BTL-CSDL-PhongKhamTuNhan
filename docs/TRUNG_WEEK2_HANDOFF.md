@@ -45,7 +45,19 @@ Làm theo SETUP.md (DB trống, seed snake_case). `python app.py`. Vào `/visits
 
 `python -m pytest -v` với `RUN_MYSQL_TESTS=1`, `DB_NAME` kết thúc `_test` trên DB thử nghiệm. Bộ tuần 1 giữ nguyên; bộ tuần 2 dùng dữ liệu riêng tiền tố W2 và dọn sau test, không thay seed. Có test đồng thời, rollback giữa ghi đơn, đầu vào sai, JSON/HTML và đáp án tính tay.
 
-Kết quả tại thời điểm chuẩn bị PR: local 36 passed, 22 skipped (không có DB local). Chưa đánh dấu MySQL tuần 2 đạt trước khi có kết quả CI. Xem Actions đúng commit và bản kết quả được cập nhật sau chạy.
+Đáp án chi tiết: [WEEK2_EXPECTED_RESULTS.md](WEEK2_EXPECTED_RESULTS.md). CI còn chạy Chromium qua form thật và lưu ảnh vào artifact 30 ngày. Muốn chạy browser local: `python -m pip install playwright`, `python -m playwright install chromium`, đặt thêm `RUN_BROWSER_TESTS=1` trước pytest.
+
+Kết quả xác minh: **59/59 test đạt**, không bỏ qua, trên Python 3.11 / MySQL 8.4.11 / Chromium ở commit `26bc627`. [CI thành công](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39009890037). Sau test, seed giữ nguyên 11 bảng / 1.144 dòng, chín truy vấn audit không có phát hiện. Local chỉ chạy 36 ca không cần DB, 23 ca bỏ qua.
+
+[Bằng chứng chạy](evidence/trung_week2_results.txt). Ảnh thật đã kiểm tra và lưu lâu dài trong repo:
+
+- [Lượt khám](evidence/week2/01-visit.png)
+- [Đơn thuốc](evidence/week2/02-prescription.png)
+- [Doanh thu](evidence/week2/03-revenue.png)
+- [Lịch sử](evidence/week2/04-history.png)
+- [Validation ngày](evidence/week2/05-validation.png)
+
+Bản commit tài liệu sau kết quả này không thay code đã kiểm thử.
 
 ## Còn cần nhóm nghiệm thu
 
