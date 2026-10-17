@@ -60,7 +60,19 @@ Với `slug` thuộc `patients`, `doctors`, `nurses`:
 
 Ngày nhập `YYYY-MM-DD`; CMT/điện thoại là chuỗi giữ số 0 đầu. Tiền đọc từ DB là Decimal, hiển thị `{{ value|money }}`; không dùng float. Lỗi validation trả HTTP422, giữ values và errors[field]. Trùng PK/CMT hoặc xóa hồ sơ có tham chiếu trả409. Thành công POST redirect303. Hồ sơ không tồn tại404, token thiếu/sai400. Không có JSON CRUD API trong tuần 1.
 
+UI hồ sơ của Vương hiển thị ngày ở danh sách/chi tiết theo `dd/mm/yyyy`; giá trị gửi từ input date vẫn là `YYYY-MM-DD`. Lỗi xóa tham chiếu xử lý cả mã MySQL 1217 và 1451 để cùng trả 409, giữ nguyên quy tắc FK. Form sửa dùng mã trên route cho điều hướng hủy và input readonly; backend vẫn kiểm tra chống sửa mã trong POST.
+
 Các template chạy thử nằm ở `clinic_app/templates/week1`, CSS ở `clinic_app/static/week1.css`, để Vương có bản có thể chạy ngay. Các file `templates/`, `static/` upstream chưa bị sửa. Khi thay UI, giữ hợp đồng và CSRF, kiểm thử lại POST và hiển thị lỗi.
+
+### Bổ sung điều hướng UI tuần 1 của Vương
+
+- GET `/reports`: trang tổng hợp bốn nhóm báo cáo.
+- GET `/reports/diseases`, `/reports/salaries`, `/reports/revenue` nhận `month=YYYY-MM`, mặc định tháng hiện tại theo giờ Việt Nam. Bộ lọc chỉ ghi nhận lựa chọn và dựng khung kết quả, không truy vấn SQL báo cáo. Tháng không hợp lệ trả 400 ngay trên trang, có lỗi ở trường tháng. Khóa báo cáo khác trả 404.
+- GET `/reports/history` có bộ lọc `patient_id` và liên kết tìm bệnh nhân. Mã hợp lệ được redirect 302 tới `/patients/<record_id>/history`, tái sử dụng toàn bộ service/query hiện có; mã sai định dạng trả 400 trên form chọn. Hồ sơ không tồn tại do route lịch sử hiện có xử lý 404.
+- Trang lịch sử trình bày lại bệnh đang điều trị, các lần khám và lượt đến khám, có bộ lọc đổi bệnh nhân; không thêm service, SQL hoặc nghiệp vụ mới.
+- Ba báo cáo thống kê ghi rõ chưa tích hợp dữ liệu, dùng dấu “—” thay cho kết quả chưa có; không hiển thị giá trị 0 hoặc số mẫu như kết quả thật.
+- Chỉ bổ sung route GET hiển thị; hợp đồng CRUD, field, template context hiện có, CSRF và nghiệp vụ dữ liệu giữ nguyên.
+- Layout sử dụng `clinic_app/templates/week1/base.html`, CSS ở `clinic_app/static/week1.css`; các template upstream ở root không nằm trong luồng ứng dụng mới.
 
 ### Điểm cần Quyền/Vương review
 
@@ -69,3 +81,5 @@ Tên vật lý đã theo snake_case; adapter không thay giá trị nguồn. Nh�
 ## Bổ sung 17/10: mã hồ sơ và bàn giao UI
 
 Edit/delete sử dụng mã chuẩn lấy từ DB khi URL khác hoa/thường. Form vẫn gửi mã chuẩn, giữ readonly và không đổi PK. Xác nhận xóa so với mã chuẩn. File UI đang được Flask dùng và checklist cho Vương: [VUONG_WEEK1_UI_HANDOFF.md](VUONG_WEEK1_UI_HANDOFF.md).
+
+Form sửa của Vương nhận thêm context `record_id` là mã chuẩn vừa đọc từ DB, dùng cho input readonly và liên kết hủy cả khi POST mã sai. Không lấy chữ hoa/thường từ URL làm giá trị input. Kiểm tra bổ sung cho URL alias ở [bằng chứng cuối](evidence/vuong_week1_final/README.md).

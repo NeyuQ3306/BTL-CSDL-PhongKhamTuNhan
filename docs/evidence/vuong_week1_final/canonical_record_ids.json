@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "patients",
+    "status": "PASS",
+    "expected": "Case-variant URL uses stored PK for edit and delete"
+  },
+  {
+    "slug": "doctors",
+    "status": "PASS",
+    "expected": "Case-variant URL uses stored PK for edit and delete"
+  },
+  {
+    "slug": "nurses",
+    "status": "PASS",
+    "expected": "Case-variant URL uses stored PK for edit and delete"
+  }
+]

@@ -12,6 +12,8 @@ Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**
 
 ## Bắt đầu từ đây
 
+Phần UI tuần 1 của Vương: [bàn giao](docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](docs/VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](docs/VUONG_WEEK1_CHECKLIST.md). Bốn báo cáo hiện gồm ba khung thống kê chờ SQL và một luồng lịch sử dùng dữ liệu đã lưu; chưa nghiệm thu nghiệp vụ tuần 2.
+
 1. Đọc [phân công 3 tuần](docs/PHAN_CONG_3_TUAN.md) hoặc [bản PDF](docs/Phan_cong_Project1_3_tuan.pdf).
 2. Đọc [RULES.md](RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.
 3. Xem [cài đặt môi trường](docs/SETUP.md), [hợp đồng tích hợp](docs/INTEGRATION.md) và [kiểm thử nghiệm thu](docs/ACCEPTANCE.md).

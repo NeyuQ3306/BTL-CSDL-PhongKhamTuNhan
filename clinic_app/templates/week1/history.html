@@ -1,4 +1,32 @@
-{% extends 'week1/base.html' %}{% block content %}<a href="{{ url_for('clinic.detail', slug='patients', record_id=patient.ma_benh_nhan) }}">← Hồ sơ bệnh nhân</a><h1>Lịch sử khám: {{ patient.ho_ten }}</h1><p>{{ patient.ma_benh_nhan }} · {{ patient.so_dien_thoai }}</p>
-<h2>Bệnh đang điều trị</h2><ul>{% for row in treatments if row.trang_thai=='Đang điều trị' %}<li>{{ row.ten_benh }} — đợt {{ row.ma_dot }} — bác sĩ {{ row.ten_bac_si }} — lần khám {{ row.lan_kham_hien_tai }}</li>{% else %}<li>Không có đợt đang điều trị.</li>{% endfor %}</ul>
-<h2>Các lần khám</h2><div class="table-wrap"><table><thead><tr><th>Ngày khám</th><th>Lượt / Đợt</th><th>Bệnh</th><th>STT</th><th>Bác sĩ</th><th>Kết luận</th><th>Tiền khám</th><th>Đơn thuốc</th><th>Tiền thuốc</th></tr></thead><tbody>{% for row in examinations %}<tr><td>{{ row.ngay_kham }}</td><td>{{ row.ma_luot }} / {{ row.ma_dot }}</td><td>{{ row.ten_benh }}</td><td>{{ row.so_thu_tu_trong_dot }}</td><td>{{ row.ten_bac_si }}</td><td>{{ row.ket_luan }}</td><td>{{ row.tien_kham_chua|money }}</td><td>{{ row.ma_don or 'Không kê' }}</td><td>{{ row.tien_thuoc|money }}</td></tr>{% else %}<tr><td colspan="9">Chưa có lần khám.</td></tr>{% endfor %}</tbody></table></div>
-<h2>Lượt đến khám</h2><ul>{% for row in visits %}<li>{{ row.ma_luot }} · {{ row.ngay_vao_vien }} → {{ row.ngay_ra_vien or 'Chưa kết thúc' }} · {{ row.tong_tien_kham|money }}</li>{% else %}<li>Chưa có lượt đến khám.</li>{% endfor %}</ul>{% endblock %}
+{% extends 'week1/base.html' %}
+{% from 'week1/record_macros.html' import display_value %}
+{% block title %}Lịch sử {{ patient.ho_ten }} · Phòng khám{% endblock %}
+{% block content %}
+<div class="history-links"><a class="back-link" href="{{ url_for('clinic.reports', report='history') }}">← Chọn bệnh nhân khác</a><a class="back-link" href="{{ url_for('clinic.detail', slug='patients', record_id=patient.ma_benh_nhan) }}">Hồ sơ bệnh nhân</a></div>
+<p class="eyebrow">LỊCH SỬ VÀ TÌNH TRẠNG BỆNH NHÂN</p>
+<h1>{{ patient.ho_ten }}</h1><p class="report-intro">Mã bệnh nhân: <strong>{{ patient.ma_benh_nhan }}</strong> · Điện thoại: {{ display_value(patient.so_dien_thoai) }}</p>
+<form class="report-filters" action="{{ url_for('clinic.reports', report='history') }}" method="get" aria-label="Đổi bệnh nhân xem lịch sử">
+  <div class="filter-field"><label for="patient_id">Mã bệnh nhân</label><input id="patient_id" name="patient_id" value="{{ patient.ma_benh_nhan }}" required maxlength="12" spellcheck="false" autocapitalize="off" aria-describedby="patient-hint"><small id="patient-hint" class="field-hint">Nhập mã để xem lịch sử của bệnh nhân khác.</small></div>
+  <button type="submit">Xem lịch sử</button><a href="{{ url_for('clinic.listing', slug='patients') }}">Tìm bệnh nhân</a>
+</form>
+<p class="notice">Thông tin bên dưới lấy từ hồ sơ khám đã lưu của bệnh nhân này.</p>
+<h2>Bệnh đang điều trị</h2>
+<div class="treatment-cards">
+{% for row in treatments if row.trang_thai == 'Đang điều trị' %}
+  <section class="treatment-card"><span class="status-label status-available">Đang điều trị</span><h3>{{ row.ten_benh }}</h3><dl><div><dt>Mã đợt</dt><dd>{{ row.ma_dot }}</dd></div><div><dt>Bác sĩ phụ trách</dt><dd>{{ row.ten_bac_si }}</dd></div><div><dt>Lần khám hiện tại</dt><dd>{{ row.lan_kham_hien_tai }}</dd></div><div><dt>Ngày bắt đầu</dt><dd>{{ display_value(row.ngay_bat_dau, 'date') }}</dd></div></dl></section>
+{% else %}
+  <p class="empty-inline">Không có đợt đang điều trị trong dữ liệu hiện có.</p>
+{% endfor %}
+</div>
+<h2>Các lần khám</h2>
+<p id="exams-hint" class="table-hint">Các lần khám được xếp từ mới đến cũ. Cuộn ngang trên màn hình hẹp để xem đầy đủ.</p>
+<div class="table-wrap" role="region" aria-label="Các lần khám của bệnh nhân" aria-describedby="exams-hint" tabindex="0"><table><caption class="visually-hidden">Các lần khám của {{ patient.ho_ten }}</caption><thead><tr>{% for label in ['Ngày khám', 'Lượt / Đợt', 'Bệnh', 'STT trong đợt', 'Bác sĩ', 'Kết luận', 'Tiền khám', 'Đơn thuốc', 'Tiền thuốc'] %}<th scope="col">{{ label }}</th>{% endfor %}</tr></thead><tbody>
+{% for row in examinations %}<tr><td class="identifier">{{ display_value(row.ngay_kham, 'date') }}</td><td>{{ row.ma_luot }} / {{ row.ma_dot }}</td><td>{{ row.ten_benh }}</td><td>{{ row.so_thu_tu_trong_dot }}</td><td>{{ row.ten_bac_si }}</td><td>{{ display_value(row.ket_luan) }}</td><td class="money-cell">{{ row.tien_kham_chua|money }}</td><td>{{ row.ma_don or 'Không kê đơn' }}</td><td class="money-cell">{{ row.tien_thuoc|money }}</td></tr>
+{% else %}<tr><td colspan="9" class="pending-cell">Bệnh nhân chưa có lần khám được ghi nhận.</td></tr>{% endfor %}
+</tbody></table></div>
+<h2>Lượt đến khám</h2>
+<div class="table-wrap" role="region" aria-label="Lượt đến khám của bệnh nhân" tabindex="0"><table><caption class="visually-hidden">Lượt đến khám của {{ patient.ho_ten }}</caption><thead><tr>{% for label in ['Mã lượt', 'Ngày vào', 'Ngày ra', 'Tiền khám / chữa'] %}<th scope="col">{{ label }}</th>{% endfor %}</tr></thead><tbody>
+{% for row in visits %}<tr><td>{{ row.ma_luot }}</td><td>{{ display_value(row.ngay_vao_vien, 'date') }}</td><td>{{ display_value(row.ngay_ra_vien, 'date') if row.ngay_ra_vien else 'Chưa kết thúc' }}</td><td class="money-cell">{{ row.tong_tien_kham|money }}</td></tr>
+{% else %}<tr><td colspan="4" class="pending-cell">Bệnh nhân chưa có lượt đến khám được ghi nhận.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}
