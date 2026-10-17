@@ -60,3 +60,11 @@ jobs:
           path: test-artifacts/week2/
           if-no-files-found: warn
           retention-days: 30
+      - name: Week 1 browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week1-browser-${{ github.run_id }}
+          path: test-artifacts/week1/
+          if-no-files-found: warn
+          retention-days: 30
