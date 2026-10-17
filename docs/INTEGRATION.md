@@ -69,3 +69,7 @@ Tên vật lý đã theo snake_case; adapter không thay giá trị nguồn. Nh�
 ## Bản triển khai tuần 2
 
 Các mô tả “chưa triển khai” phía trên là mốc tuần 1. Trên nhánh trung/week-2, xem [WEEK2_INTEGRATION.md](WEEK2_INTEGRATION.md) cho route ghi nghiệp vụ, báo cáo và context hiện tại; [TRUNG_WEEK2_HANDOFF.md](TRUNG_WEEK2_HANDOFF.md) cho phạm vi và giới hạn. Chờ nhóm xác nhận hợp đồng.
+
+## Bổ sung 17/10: mã hồ sơ và bàn giao UI
+
+Edit/delete dùng mã chuẩn DB khi URL khác hoa/thường. Form vẫn giữ readonly, không đổi PK. Xác nhận xóa so với mã chuẩn. Hướng dẫn Vương: [VUONG_WEEK1_UI_HANDOFF.md](VUONG_WEEK1_UI_HANDOFF.md).

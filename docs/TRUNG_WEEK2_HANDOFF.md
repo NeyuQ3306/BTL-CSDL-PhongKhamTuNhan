@@ -62,3 +62,7 @@ Bản commit tài liệu sau kết quả này không thay code đã kiểm thử
 ## Còn cần nhóm nghiệm thu
 
 Quyền đối chiếu truy vấn/constraints; Vương xác nhận hợp đồng và tích hợp giao diện; chạy cùng hướng dẫn trên máy nhóm; review rồi merge theo RULES.md. Đây không phải tuyên bố hoàn thành nghiệm thu toàn nhóm.
+
+## Đồng bộ bản sửa tuần 1 tối 17/10
+
+Bản code `6b0786f` đồng bộ sửa mã chuẩn edit/delete, sáu ca hồi quy và ba luồng CRUD Chromium tuần 1. **68/68 test đạt**, [CI](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39035295523). Mốc 59 test phía trên là trước bản bổ sung này; không có test bị bỏ.

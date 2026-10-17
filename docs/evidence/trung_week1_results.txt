@@ -1,3 +1,33 @@
+TRUNG WEEK 1 — LATEST VERIFIED RESULT, 2026-10-17 EVENING
+Code commit: ca1b178b581532e95c6975e72caf510a0ed2aa03
+CI: https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39035269920
+Job 117403696880: success. Python 3.11 / MySQL 8.4.11 / Chromium.
+32 passed in 10.06s, no skipped tests in CI.
+23 existing cases + 6 canonical-ID MySQL regressions + 3 browser CRUD flows.
+Edit/delete use stored primary key even when URL letter case differs.
+Changing the submitted primary key remains rejected; delete confirmation
+must still match the stored key. All three entity types verified.
+Browser actually created, viewed, edited through lower-case URL and deleted
+patients/doctors/nurses. Nine screenshots: docs/evidence/week1/.
+Artifact: week1-browser-39035269920, ID 12101494496, retention 30 days;
+permanent copies are checked into the repository.
+After cleanup: 11 tables, 1144 source rows, matches_expected_counts=true.
+All inherited audit queries reported no findings.
+Local: 11 passed, 21 skipped (no local DB/browser execution claimed).
+
+Same fix synchronized to week 2, code commit 6b0786f967b982aa231dbafd9cd06cee1b600470:
+https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39035295523
+68 passed in 15.90s, including both week-1 and week-2 browser tests.
+
+Source-upstream full UI with original hospital DB still has no execution
+proof. Vương still needs to confirm UI integration on their own machine;
+Quyền/another member must review before merge. No team acceptance claimed.
+
+INTERMEDIATE VERIFIED MILESTONE: c442384, 23/23 passed:
+https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39008536160
+
+HISTORICAL INITIAL LOG BELOW (18 tests; not the latest result)
+====================================================================
 TRUNG WEEK 1 — VERIFIED EXECUTION, 2026-10-15
 Commit tested: 5e971b796cac298761b2abadc41aa06326907d77
 GitHub Actions run: https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/38764280374
