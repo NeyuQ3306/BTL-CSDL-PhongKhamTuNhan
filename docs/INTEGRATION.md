@@ -1,6 +1,6 @@
 # Hợp đồng tích hợp ban đầu
 
-Đây là quy ước phát triển cần Trung và Vương hoàn thiện trước 15/10, chưa phải API đã triển khai.
+Phần đầu là mục tiêu tích hợp toàn dự án. Các route đã triển khai và hợp đồng form tuần 1 được ghi rõ ở phần cuối; cần Vương xác nhận trước khi thay UI.
 
 ## Tên vật lý
 
@@ -31,3 +31,41 @@ Không JOIN thẳng lần khám với nhiều dòng thuốc rồi SUM tiền kh�
 ## Ràng buộc bắt buộc
 
 Một bác sĩ/đợt; một lần khám tối đa một đơn; một y tá/lượt có một khoản thưởng; cùng bệnh nhân giữa lượt và đợt; không trùng đợt đang điều trị cho một bệnh; UNIQUE(lượt,đợt), UNIQUE(đợt,STT). Ngày hợp lệ, số lượng dương, tiền không âm. Không cho xóa danh mục đang được lịch sử tham chiếu. Tạo các bản ghi phụ thuộc trong cùng giao dịch; chỉ nghiệm thu trạng thái hoàn tất đủ bản ghi con theo PDF.
+
+## Hợp đồng backend được triển khai trên nhánh Trung tuần 1
+
+Đây là giao diện bàn giao để Vương tích hợp; chưa có xác nhận đồng thuận của Vương trong PR. Các route mục tiêu thuốc/đơn/báo cáo ở trên chưa được triển khai trong tuần 1.
+
+Với `slug` thuộc `patients`, `doctors`, `nurses`:
+
+| Route | Method | Kết quả / template context |
+|---|---|---|
+| `/<slug>?q=...&page=1` | GET | `week1/list.html`: entity, rows, total, q, page, pages; 20 dòng/trang |
+| `/<slug>/new` | GET, POST | `week1/form.html`: entity, values, errors, form_error, editing=False |
+| `/<slug>/<record_id>` | GET | `week1/detail.html`: entity, record, form_error |
+| `/<slug>/<record_id>/edit` | GET, POST | form như trên; editing=True; mã không đổi |
+| `/<slug>/<record_id>/delete` | POST | phải có confirm_delete bằng mã hồ sơ |
+| `/visits` | GET | `week1/visits.html`: rows; chỉ tra cứu |
+| `/treatments` | GET | `week1/treatments.html`: rows; chỉ tra cứu |
+| `/patients/<record_id>/history` | GET | patient, visits, treatments, examinations; lịch sử nền, chưa có chi tiết từng thuốc/hỗ trợ |
+| `/health`, `/health/db` | GET | JSON status; DB lỗi trả 503 |
+
+### Form field
+
+- Chung: `cmt`, `ho_ten`, `ngay_sinh`, `dia_chi`.
+- Bệnh nhân: `ma_benh_nhan`, `so_dien_thoai`.
+- Bác sĩ: `ma_bac_si`, `bac_nghe`, `tham_nien`, `chuyen_mon`, `trinh_do_dao_tao`.
+- Y tá: `ma_y_ta`, `so_dien_thoai`, `trinh_do`, `tham_nien`.
+- Mọi POST: hidden `csrf_token` bằng `{{ csrf_token() }}`. Dùng url_for endpoint trong `clinic_app/routes.py`; không đổi tên field riêng ở HTML.
+
+Ngày nhập `YYYY-MM-DD`; CMT/điện thoại là chuỗi giữ số 0 đầu. Tiền đọc từ DB là Decimal, hiển thị `{{ value|money }}`; không dùng float. Lỗi validation trả HTTP422, giữ values và errors[field]. Trùng PK/CMT hoặc xóa hồ sơ có tham chiếu trả409. Thành công POST redirect303. Hồ sơ không tồn tại404, token thiếu/sai400. Không có JSON CRUD API trong tuần 1.
+
+Các template chạy thử nằm ở `clinic_app/templates/week1`, CSS ở `clinic_app/static/week1.css`, để Vương có bản có thể chạy ngay. Các file `templates/`, `static/` upstream chưa bị sửa. Khi thay UI, giữ hợp đồng và CSRF, kiểm thử lại POST và hiển thị lỗi.
+
+### Điểm cần Quyền/Vương review
+
+Tên vật lý đã theo snake_case; adapter không thay giá trị nguồn. Những quy tắc liên bảng trong mục trước mới được audit, **chưa có trigger bảo vệ toàn bộ nghiệp vụ**. Các route tạo lượt/đợt/lần khám chưa mở POST, cần triển khai giao dịch và ràng buộc trong tuần 2. Không đánh dấu bốn báo cáo nghiệp vụ hoàn tất từ các màn hình tra cứu nền.
+
+## Bổ sung 17/10: mã hồ sơ và bàn giao UI
+
+Edit/delete sử dụng mã chuẩn lấy từ DB khi URL khác hoa/thường. Form vẫn gửi mã chuẩn, giữ readonly và không đổi PK. Xác nhận xóa so với mã chuẩn. File UI đang được Flask dùng và checklist cho Vương: [VUONG_WEEK1_UI_HANDOFF.md](VUONG_WEEK1_UI_HANDOFF.md).
