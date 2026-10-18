@@ -1,0 +1,35 @@
+{% extends 'week1/base.html' %}
+{% from 'week1/record_macros.html' import field_hint %}
+{% block title %}{{ 'Sửa' if editing else 'Thêm' }} {{ entity.title|lower }} · Phòng khám{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ url_for('clinic.detail', slug=entity.slug, record_id=record_id) if editing else url_for('clinic.listing', slug=entity.slug) }}">← {{ 'Chi tiết hồ sơ' if editing else 'Danh sách ' ~ entity.title|lower }}</a>
+<p class="eyebrow">QUẢN LÝ HỒ SƠ</p>
+<h1>{{ 'Sửa' if editing else 'Thêm' }} {{ entity.title|lower }}</h1>
+<p class="page-description">{{ 'Cập nhật thông tin bên dưới rồi chọn “Lưu thay đổi”. Mã hồ sơ được giữ nguyên.' if editing else 'Điền thông tin bên dưới để tạo hồ sơ mới.' }} Các trường có dấu <span class="required-mark">*</span> đều bắt buộc.</p>
+{% if form_error %}<div class="notice error" role="alert"><strong>Chưa lưu được hồ sơ</strong><p>{{ form_error }}</p><p>Thông tin bạn đã nhập vẫn được giữ trong biểu mẫu. Kiểm tra lại trước khi lưu.</p></div>{% endif %}
+{% if errors %}
+<div class="notice error error-summary" role="alert" aria-labelledby="error-title">
+  <strong id="error-title">Chưa lưu hồ sơ: có {{ errors|length }} trường cần kiểm tra</strong>
+  <ul>{% for field in entity.fields if field.name in errors %}<li><a href="#{{ field.name }}">{{ field.label }}: {{ errors[field.name] }}</a></li>{% endfor %}</ul>
+</div>
+{% endif %}
+<form method="post" class="record-form" aria-label="{{ 'Sửa' if editing else 'Thêm' }} {{ entity.title|lower }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="fields">
+  {% for field in entity.fields %}
+    <div>
+      <label for="{{ field.name }}">{{ field.label }} <span class="required-mark" aria-hidden="true">*</span>{% if editing and field.name == entity.pk %}<span class="field-tag">Không thay đổi</span>{% endif %}</label>
+      <input id="{{ field.name }}" name="{{ field.name }}" value="{{ record_id if editing and field.name == entity.pk else values.get(field.name, '') }}"
+        type="{{ 'date' if field.kind == 'date' else 'number' if field.kind == 'integer' else 'tel' if field.kind == 'phone' else 'text' }}"
+        {% if field.kind == 'integer' %}min="0" max="100" step="1"{% elif field.kind == 'date' %}min="1900-01-01"{% else %}maxlength="{{ field.max_length }}"{% endif %}
+        {% if field.kind == 'cmt' %}inputmode="numeric" spellcheck="false"{% elif field.kind == 'code' %}spellcheck="false" autocapitalize="off"{% endif %}
+        {% if editing and field.name == entity.pk %}readonly{% endif %}
+        required aria-describedby="{{ field.name }}-hint{% if field.name in errors %} {{ field.name }}-error{% endif %}"{% if field.name in errors %} aria-invalid="true"{% endif %}>
+      <small class="field-hint" id="{{ field.name }}-hint">{{ field_hint(field, editing) }}</small>
+      {% if field.name in errors %}<small class="error-text" id="{{ field.name }}-error">{{ errors[field.name] }}</small>{% endif %}
+    </div>
+  {% endfor %}
+  </div>
+  <div class="actions"><button type="submit">{{ 'Lưu thay đổi' if editing else 'Thêm hồ sơ' }}</button><a href="{{ url_for('clinic.detail', slug=entity.slug, record_id=record_id) if editing else url_for('clinic.listing', slug=entity.slug) }}">Hủy</a></div>
+</form>
+{% endblock %}

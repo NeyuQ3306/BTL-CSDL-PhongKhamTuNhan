@@ -1,0 +1,56 @@
+{% extends 'week1/base.html' %}
+{% from 'week1/record_macros.html' import display_value %}
+{% block title %}{{ entity.title }} · Phòng khám{% endblock %}
+{% block content %}
+<div class="heading">
+  <div><p class="eyebrow">QUẢN LÝ HỒ SƠ</p><h1>{{ entity.title }}</h1>
+    <p>{{ total }} hồ sơ{% if q %} phù hợp với “{{ q }}”{% endif %}</p>
+  </div>
+  <a class="button" href="{{ url_for('clinic.create', slug=entity.slug) }}">+ Thêm {{ entity.title|lower }}</a>
+</div>
+<form class="search" method="get" role="search" aria-label="Tìm {{ entity.title|lower }}">
+  <label for="q">Tìm theo mã hoặc họ tên</label>
+  <input id="q" name="q" maxlength="100" value="{{ q }}" placeholder="Nhập mã hoặc tên" aria-describedby="search-hint">
+  <button type="submit">Tìm kiếm</button>
+  {% if q %}<a href="{{ url_for('clinic.listing', slug=entity.slug) }}">Xóa bộ lọc</a>{% endif %}
+  <small id="search-hint" class="search-hint">Có thể nhập một phần mã hoặc họ tên. Mỗi trang hiển thị tối đa 20 hồ sơ.</small>
+</form>
+{% if rows %}
+<p class="table-hint" id="table-hint">Trên màn hình hẹp, vuốt hoặc cuộn ngang bảng để xem đầy đủ các cột.</p>
+<div class="table-wrap" role="region" aria-label="Danh sách {{ entity.title|lower }}" aria-describedby="table-hint" tabindex="0">
+  <table>
+    <caption class="visually-hidden">Danh sách {{ entity.title|lower }}, trang {{ page }}</caption>
+    <thead><tr><th scope="col">Mã hồ sơ</th><th scope="col">Họ tên</th><th scope="col">CMT / CCCD</th><th scope="col">Ngày sinh</th>
+      <th scope="col">{{ 'Chuyên môn' if entity.slug == 'doctors' else 'Trình độ' if entity.slug == 'nurses' else 'Số điện thoại' }}</th>
+      <th scope="col">Thao tác</th></tr></thead>
+    <tbody>
+    {% for row in rows %}
+      <tr><th scope="row" class="record-code">{{ row[entity.pk] }}</th><td>{{ row.ho_ten }}</td><td class="identifier">{{ row.cmt }}</td><td class="identifier">{{ display_value(row.ngay_sinh, 'date') }}</td>
+        <td>{{ display_value(row.chuyen_mon if entity.slug == 'doctors' else row.trinh_do if entity.slug == 'nurses' else row.so_dien_thoai) }}</td>
+        <td><div class="row-actions"><a href="{{ url_for('clinic.detail', slug=entity.slug, record_id=row[entity.pk]) }}" aria-label="Xem hồ sơ {{ row.ho_ten }} ({{ row[entity.pk] }})">Xem hồ sơ</a><a href="{{ url_for('clinic.edit', slug=entity.slug, record_id=row[entity.pk]) }}" aria-label="Sửa hồ sơ {{ row.ho_ten }} ({{ row[entity.pk] }})">Sửa</a></div></td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<section class="empty-state" aria-labelledby="empty-title">
+  {% if total > 0 %}
+  <h2 id="empty-title">Trang này không có hồ sơ</h2><p>Danh sách hiện có {{ pages }} trang. Hãy quay về trang đầu để tiếp tục tra cứu.</p>
+  <a class="button button-secondary" href="{{ url_for('clinic.listing', slug=entity.slug, q=q) }}">Về trang đầu</a>
+  {% elif q %}
+  <h2 id="empty-title">Không tìm thấy hồ sơ phù hợp</h2><p>Không có kết quả với “{{ q }}”. Thử từ khóa ngắn hơn hoặc xóa bộ lọc để xem toàn bộ danh sách.</p>
+  <a class="button button-secondary" href="{{ url_for('clinic.listing', slug=entity.slug) }}">Xem tất cả {{ entity.title|lower }}</a>
+  {% else %}
+  <h2 id="empty-title">Chưa có hồ sơ {{ entity.title|lower }}</h2><p>Thêm hồ sơ đầu tiên để bắt đầu quản lý thông tin.</p>
+  <a class="button" href="{{ url_for('clinic.create', slug=entity.slug) }}">+ Thêm {{ entity.title|lower }}</a>
+  {% endif %}
+</section>
+{% endif %}
+{% if total > 0 and page <= pages %}
+<nav class="pagination" aria-label="Phân trang {{ entity.title|lower }}">
+  {% if page > 1 %}<a href="{{ url_for('clinic.listing', slug=entity.slug, q=q, page=page-1) }}">← Trang trước</a>{% endif %}
+  <span>Trang {{ page }} / {{ pages }} · {{ rows|length }} hồ sơ trên trang này</span>
+  {% if page < pages %}<a href="{{ url_for('clinic.listing', slug=entity.slug, q=q, page=page+1) }}">Trang sau →</a>{% endif %}
+</nav>
+{% endif %}
+{% endblock %}

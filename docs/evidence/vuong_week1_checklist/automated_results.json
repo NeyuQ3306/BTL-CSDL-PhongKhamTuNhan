@@ -1,0 +1,279 @@
+{
+  "run_at": "2026-10-17T20:11:37.852706+07:00",
+  "branch": "vuong/week-1",
+  "base_commit": "c44238498d11971fd101a02982b2e98054b2e225",
+  "source_state": "Working tree contains uncommitted week-1 UI changes",
+  "database": "clinic_vuong_week1",
+  "python": "3.14.6",
+  "temporary_codes": {
+    "patients": "VW97bbc1d2a",
+    "doctors": "VW92f87c633",
+    "nurses": "VWab3183926"
+  },
+  "results": [
+    {
+      "id": "ENV01",
+      "title": "Ứng dụng và dữ liệu nền",
+      "steps": "GET /health, /health/db; audit read-only",
+      "expected": "200, đúng seed",
+      "actual": "Flask/MySQL 200; 11 bảng/1.144 dòng; audit không có phát hiện",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT01",
+      "title": "Thêm bệnh nhân và lưu MySQL",
+      "steps": "POST /patients/new; GET chi tiết; SELECT theo mã",
+      "expected": "303, thông báo thành công, lưu đúng dữ liệu",
+      "actual": "POST 303; thông báo thành công; MySQL lưu đúng mã VW97bbc1d2a, họ tên và số 0 đầu CMT",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT02",
+      "title": "Tải lại trang và xem trong danh sách",
+      "steps": "Client mới GET chi tiết hai lần; tìm mã trong danh sách",
+      "expected": "Hồ sơ còn sau tải lại",
+      "actual": "Hai GET bằng client mới và tìm theo mã đều thấy hồ sơ từ MySQL",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT03",
+      "title": "Sửa hồ sơ",
+      "steps": "POST sửa tên; GET lại; SELECT MySQL",
+      "expected": "303, thông báo cập nhật, dữ liệu mới được lưu",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT04",
+      "title": "Lỗi nhập liệu và giữ giá trị",
+      "steps": "Thử thiếu tên, sai CCCD/ngày/điện thoại/thâm niên tùy nhóm",
+      "expected": "422, lỗi từng trường, giữ dữ liệu",
+      "actual": "5 đầu vào sai: 422, lỗi đúng trường, giữ dữ liệu hợp lệ",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT05",
+      "title": "Trùng mã và trùng CCCD",
+      "steps": "Gửi lại mã đã tạo; gửi mã mới cùng CCCD",
+      "expected": "409, thông báo dễ hiểu, không tạo thêm",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT06",
+      "title": "CSRF và mã hồ sơ không đổi",
+      "steps": "POST thiếu/sai token; giả sửa mã trong POST",
+      "expected": "400/422, giữ mã và liên kết gốc",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT07",
+      "title": "Ba trạng thái danh sách rỗng",
+      "steps": "Tìm mã không có; page=999; render danh sách trống",
+      "expected": "Thông báo và đường quay lại phù hợp",
+      "actual": "Tìm không có kết quả/trang vượt: dữ liệu thật; danh sách trống: render context giả lập, không xóa seed",
+      "status": "PASS"
+    },
+    {
+      "id": "PAT08",
+      "title": "Chặn xóa hồ sơ đã có lịch sử",
+      "steps": "POST xóa hồ sơ seed có tham chiếu",
+      "expected": "409, hồ sơ vẫn tồn tại",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC01",
+      "title": "Thêm bác sĩ và lưu MySQL",
+      "steps": "POST /doctors/new; GET chi tiết; SELECT theo mã",
+      "expected": "303, thông báo thành công, lưu đúng dữ liệu",
+      "actual": "POST 303; thông báo thành công; MySQL lưu đúng mã VW92f87c633, họ tên và số 0 đầu CMT",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC02",
+      "title": "Tải lại trang và xem trong danh sách",
+      "steps": "Client mới GET chi tiết hai lần; tìm mã trong danh sách",
+      "expected": "Hồ sơ còn sau tải lại",
+      "actual": "Hai GET bằng client mới và tìm theo mã đều thấy hồ sơ từ MySQL",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC03",
+      "title": "Sửa hồ sơ",
+      "steps": "POST sửa tên; GET lại; SELECT MySQL",
+      "expected": "303, thông báo cập nhật, dữ liệu mới được lưu",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC04",
+      "title": "Lỗi nhập liệu và giữ giá trị",
+      "steps": "Thử thiếu tên, sai CCCD/ngày/điện thoại/thâm niên tùy nhóm",
+      "expected": "422, lỗi từng trường, giữ dữ liệu",
+      "actual": "6 đầu vào sai: 422, lỗi đúng trường, giữ dữ liệu hợp lệ",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC05",
+      "title": "Trùng mã và trùng CCCD",
+      "steps": "Gửi lại mã đã tạo; gửi mã mới cùng CCCD",
+      "expected": "409, thông báo dễ hiểu, không tạo thêm",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC06",
+      "title": "CSRF và mã hồ sơ không đổi",
+      "steps": "POST thiếu/sai token; giả sửa mã trong POST",
+      "expected": "400/422, giữ mã và liên kết gốc",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC07",
+      "title": "Ba trạng thái danh sách rỗng",
+      "steps": "Tìm mã không có; page=999; render danh sách trống",
+      "expected": "Thông báo và đường quay lại phù hợp",
+      "actual": "Tìm không có kết quả/trang vượt: dữ liệu thật; danh sách trống: render context giả lập, không xóa seed",
+      "status": "PASS"
+    },
+    {
+      "id": "DOC08",
+      "title": "Chặn xóa hồ sơ đã có lịch sử",
+      "steps": "POST xóa hồ sơ seed có tham chiếu",
+      "expected": "409, hồ sơ vẫn tồn tại",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR01",
+      "title": "Thêm y tá và lưu MySQL",
+      "steps": "POST /nurses/new; GET chi tiết; SELECT theo mã",
+      "expected": "303, thông báo thành công, lưu đúng dữ liệu",
+      "actual": "POST 303; thông báo thành công; MySQL lưu đúng mã VWab3183926, họ tên và số 0 đầu CMT",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR02",
+      "title": "Tải lại trang và xem trong danh sách",
+      "steps": "Client mới GET chi tiết hai lần; tìm mã trong danh sách",
+      "expected": "Hồ sơ còn sau tải lại",
+      "actual": "Hai GET bằng client mới và tìm theo mã đều thấy hồ sơ từ MySQL",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR03",
+      "title": "Sửa hồ sơ",
+      "steps": "POST sửa tên; GET lại; SELECT MySQL",
+      "expected": "303, thông báo cập nhật, dữ liệu mới được lưu",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR04",
+      "title": "Lỗi nhập liệu và giữ giá trị",
+      "steps": "Thử thiếu tên, sai CCCD/ngày/điện thoại/thâm niên tùy nhóm",
+      "expected": "422, lỗi từng trường, giữ dữ liệu",
+      "actual": "7 đầu vào sai: 422, lỗi đúng trường, giữ dữ liệu hợp lệ",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR05",
+      "title": "Trùng mã và trùng CCCD",
+      "steps": "Gửi lại mã đã tạo; gửi mã mới cùng CCCD",
+      "expected": "409, thông báo dễ hiểu, không tạo thêm",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR06",
+      "title": "CSRF và mã hồ sơ không đổi",
+      "steps": "POST thiếu/sai token; giả sửa mã trong POST",
+      "expected": "400/422, giữ mã và liên kết gốc",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR07",
+      "title": "Ba trạng thái danh sách rỗng",
+      "steps": "Tìm mã không có; page=999; render danh sách trống",
+      "expected": "Thông báo và đường quay lại phù hợp",
+      "actual": "Tìm không có kết quả/trang vượt: dữ liệu thật; danh sách trống: render context giả lập, không xóa seed",
+      "status": "PASS"
+    },
+    {
+      "id": "NUR08",
+      "title": "Chặn xóa hồ sơ đã có lịch sử",
+      "steps": "POST xóa hồ sơ seed có tham chiếu",
+      "expected": "409, hồ sơ vẫn tồn tại",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "NAV01",
+      "title": "Điều hướng và menu đang chọn",
+      "steps": "Mở bảy đường dẫn chính",
+      "expected": "200, đúng menu, không có nội trú/phẫu thuật",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "REP01",
+      "title": "Ba khung thống kê không giả kết quả",
+      "steps": "Chọn tháng; chặn kết nối DB; thử tháng sai",
+      "expected": "200/400, không SQL, không tiền giả",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "REP02",
+      "title": "Lịch sử đã lưu và lịch sử rỗng",
+      "steps": "Chọn BN001; mở hồ sơ tạm chưa khám",
+      "expected": "Dữ liệu thật/ba trạng thái rỗng đúng",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "NAV02",
+      "title": "Đường dẫn và tham số không hợp lệ",
+      "steps": "Hồ sơ không có, page=0, báo cáo không có",
+      "expected": "404/400 với thông báo",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "CLEAN_PATIENTS",
+      "title": "Dọn hồ sơ thử patients",
+      "steps": "Xóa duy nhất mã tự sinh VW97bbc1d2a",
+      "expected": "303/404, seed không bị xóa",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "CLEAN_DOCTORS",
+      "title": "Dọn hồ sơ thử doctors",
+      "steps": "Xóa duy nhất mã tự sinh VW92f87c633",
+      "expected": "303/404, seed không bị xóa",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "CLEAN_NURSES",
+      "title": "Dọn hồ sơ thử nurses",
+      "steps": "Xóa duy nhất mã tự sinh VWab3183926",
+      "expected": "303/404, seed không bị xóa",
+      "actual": "Đúng kết quả mong đợi",
+      "status": "PASS"
+    },
+    {
+      "id": "DATA01",
+      "title": "Bảo toàn dữ liệu và cấu hình",
+      "steps": "So hash tất cả bản ghi 11 bảng; audit; hash .env",
+      "expected": "Không đổi dữ liệu nền hoặc cấu hình",
+      "actual": "Hash toàn bộ 11 bảng khớp trước chạy; 1.144 dòng; .env không đổi",
+      "status": "PASS"
+    }
+  ]
+}

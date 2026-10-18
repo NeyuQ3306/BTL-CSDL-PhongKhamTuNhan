@@ -2,14 +2,17 @@
 
 Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**, múi giờ Việt Nam.
 
-## Trạng thái ban đầu
+## Trạng thái backend tuần 1 — nhánh Trung
 
-- Yêu cầu 1: đã chốt thiết kế ER và lược đồ 11 bảng, kèm ràng buộc. Xem [tài liệu thiết kế](docs/design/).
-- Yêu cầu 2: **chưa triển khai** SQL theo thiết kế nhóm; là đầu việc tuần 1 và tuần 2.
-- Yêu cầu 3: đã nhập source tham khảo Flask + MySQL; **chưa chuyển đổi nghiệp vụ và chưa nghiệm thu ứng dụng**.
-- `app.py`, `hospital_db.sql`, `templates/`, `static/` hiện là source bệnh viện gốc. `hospital_db.sql` KHÔNG phải lược đồ 11 bảng và KHÔNG phải file SQL để nộp.
+- Đã chuyển backend sang lược đồ 11 bảng: CRUD bệnh nhân/bác sĩ/y tá, validation, kết nối theo request, transaction và cấu hình `.env`.
+- Có màn hình tra cứu lượt/đợt/lần khám làm nền tuần 2; chưa triển khai ghi nghiệp vụ và bốn báo cáo hoàn chỉnh.
+- `database/week1/clinic_seed.sql` là adapter định danh từ dữ liệu giả lập Vũ Đại Vương bàn giao; cần Quyền review. `hospital_db.sql` vẫn là schema tham khảo, không nhập cho app mới.
+- Xem [bàn giao tuần 1](docs/TRUNG_WEEK1_HANDOFF.md), [cách chạy](docs/SETUP.md), và [hợp đồng route/form](docs/INTEGRATION.md).
+- Chưa coi nghiệm thu hoàn tất trước khi nhóm review và merge PR theo RULES.md.
 
 ## Bắt đầu từ đây
+
+Phần UI tuần 1 của Vương: [bàn giao](docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](docs/VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](docs/VUONG_WEEK1_CHECKLIST.md). Bốn báo cáo hiện gồm ba khung thống kê chờ SQL và một luồng lịch sử dùng dữ liệu đã lưu; chưa nghiệm thu nghiệp vụ tuần 2.
 
 1. Đọc [phân công 3 tuần](docs/PHAN_CONG_3_TUAN.md) hoặc [bản PDF](docs/Phan_cong_Project1_3_tuan.pdf).
 2. Đọc [RULES.md](RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.
@@ -36,9 +39,10 @@ Python 3.11; Flask 3; PyMySQL; MySQL 8.4; HTML/CSS/Jinja. Giữ MySQL làm ngu�
 - `docs/design/`: hai PDF thiết kế đã chốt.
 - `docs/`: phân công, setup, hợp đồng tích hợp, test và nguồn tham khảo.
 - `database/`: nơi nhóm sẽ viết schema, seed, query, kiểm tra ràng buộc và script nộp.
-- `app.py`, `templates/`, `static/`: nền source cần chuyển đổi.
-- `tests/`: bộ kiểm thử sẽ triển khai tuần 1–3.
-- `.github/`: mẫu issue/PR, CODEOWNERS và CI kiểm tra cú pháp cơ bản.
+- `app.py`: entry point; `clinic_app/`: backend module và UI kiểm thử tuần 1.
+- `templates/`, `static/`: UI upstream giữ nguyên để tránh xung đột phần Vương.
+- `tests/`: unit test và integration test MySQL cho tuần 1.
+- `.github/`: mẫu issue/PR, CODEOWNERS và CI Python 3.11 + MySQL 8.4.
 
 ## Làm việc nhóm
 

@@ -1,0 +1,46 @@
+{
+  "scope": "Final branch diff from origin/main including staged files and final evidence",
+  "files_scanned": 103,
+  "unresolved_findings": [],
+  "reviewed_numeric_example_overlaps": [
+    {
+      "path": "clinic_app/templates/week1/record_macros.html",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    },
+    {
+      "path": "docs/evidence/vuong_week1_checklist/03-mysql-confirmation.json",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    },
+    {
+      "path": "tests/test_backend.py",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    },
+    {
+      "path": "tests/test_browser_week1.py",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    },
+    {
+      "path": "tests/test_record_ui.py",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    },
+    {
+      "path": "tests/test_record_ui.py",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    },
+    {
+      "path": "tests/test_report_shells.py",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    },
+    {
+      "path": "tools/check_vuong_week1.py",
+      "classification": "Incidental substring inside a longer synthetic numeric example"
+    }
+  ],
+  "env_and_venv_not_staged": true,
+  "screenshots_provenance": "Session-created synthetic records and group-declared fake seed; inherited Trung demo images",
+  "notes": [
+    "Configured credentials compared in memory; no credential values in this report",
+    "Numeric overlaps are incidental sample strings, not credential assignments",
+    "Disposable test keys and example configuration remain test/example values"
+  ]
+}
