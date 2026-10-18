@@ -1,6 +1,6 @@
 # Bàn giao Minh Quyền — tuần 1
 
-Ngày 17/10/2026, trước mốc nhóm 20/10. Nhánh `quyen/week-1`, PR về `main`; chờ Trung hoặc Vương review, không tự merge.
+Bàn giao ban đầu 17/10/2026; cập nhật 19/10/2026. Nhánh `quyen/week-1`, PR #6. Vuong-it đã review CHANGES_REQUESTED về import và bằng chứng; đã cập nhật tài liệu, còn chờ xác nhận lại trước merge.
 
 ## Phần đã triển khai
 
@@ -16,7 +16,7 @@ Ngày 17/10/2026, trước mốc nhóm 20/10. Nhánh `quyen/week-1`, PR về `ma
 1. Trung review constraints/schema và đường import. CI tương thích dùng snapshot tuần 2 `26bc627b5bd8943f275d369a0d86f2d640aaf06f`, không merge hay thay code Trung. Nếu nhánh Trung đổi sau snapshot, cần chạy lại trên phiên bản mới trước merge.
 2. Vương xác nhận field từ điển và route/form của Trung; chạy luồng thêm/xem bệnh nhân trên máy nhóm. Không thay dữ liệu mẫu bằng dữ liệu thật.
 3. Cả nhóm import DB mới theo README database, kiểm tra audit rỗng và kết quả báo cáo; ghi bằng chứng demo vào issue #1. SQL test không thay thế thao tác UI thực tế.
-4. PR #4 hiện chờ review; PR #5 dựa trên nhánh tuần 1 của Trung. Các file SQL mới của Quyền tách riêng để hạn chế conflict. `database/README.md` có thể cần gộp hướng dẫn khi merge; giữ attribution.
+4. Backend #4 và UI #7 đã squash merge; main e174f626. Nhánh SQL đã đồng bộ main, giữ nguyên code backend/UI. Hướng dẫn duy nhất là docs/SETUP.md: schema → seed → audit → constraints → audit → queries. PR #5 tuần 2 ngoài phạm vi.
 5. Mốc từ điển 15/10 đã qua: bản này bàn giao 17/10, vì vậy không ghi hoàn thành đúng hạn ban đầu. Ưu tiên xác nhận ngay tên/kiểu trước 19/10.
 
 ## YC1 và bộ nộp
@@ -29,4 +29,8 @@ Hai PDF đã chốt trong `docs/design` giữ nguyên. Từ điển và ma trậ
 
 ## Kết quả kiểm chứng
 
-Đã qua 25 test SQL và 58 test backend tương thích trên MySQL 8.4.11; có log CI trong `docs/evidence/quyen_week1_validation.md`. Test coverage seed bổ sung đã qua local; xem Checks của PR để lấy lần chạy cuối. Không có MySQL server cục bộ trong môi trường làm việc, nên bằng chứng chạy DB là GitHub Actions, không phải giả lập SQLite.
+SQL 08e4427 đã qua 26 test SQL + 58 test backend snapshot; tích hợp với UI 33d45a0 đã qua 72/72 test. Giữ run 25 test trước đó là lịch sử, xem docs/evidence/quyen_week1_validation.md.
+
+Vương đã có bằng chứng local 72/72 và rà 4/4 trang PDF. Quyền đã chạy trên Windows/Python 3.11.9/MySQL 8.4.11: audit 11 bảng/1.144 dòng sạch, xác nhận 9 trigger và thêm/tìm/sửa/tải lại bệnh nhân. Chưa coi đó là toàn bộ checklist hoặc nghiệm thu máy Trung.
+
+Sau đồng bộ main, CI e46978d phát hiện thiếu Flask ở job SQL và job backend dùng seed adapter thiếu trigger (11 failed/61 passed). Đã sửa workflow dùng requirements-dev và bộ schema/seed/constraints chuẩn trong DB CI trống; xem Checks theo head mới để biết kết quả. Đây là sửa cấu hình CI, không đổi SQL/ứng dụng hoặc bỏ test.
