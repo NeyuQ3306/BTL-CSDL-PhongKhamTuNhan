@@ -1,13 +1,48 @@
 from math import ceil
+from datetime import date
+import re
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from werkzeug.exceptions import BadRequest, NotFound
 import pymysql
 from . import services
 from .db import fetch_one
 from .entities import ENTITIES
-from .validation import validate
+from .validation import validate, today_vn
 
 bp = Blueprint('clinic', __name__)
+
+# Navigation shells only; reporting queries and filters are integrated separately.
+REPORT_PAGES = {
+    'diseases': {'title': 'Thống kê bệnh', 'description': 'Thống kê các đợt điều trị có lần khám trong tháng.'},
+    'salaries': {'title': 'Lương bác sĩ và y tá', 'description': 'Tra cứu lương cơ bản, tiền thưởng và tổng lương theo tháng.'},
+    'history': {'title': 'Lịch sử và tình trạng bệnh nhân', 'description': 'Theo dõi lịch sử khám và các bệnh đang điều trị của từng bệnh nhân.'},
+    'revenue': {'title': 'Doanh thu', 'description': 'Tổng hợp tiền khám và tiền thuốc theo tháng.'},
+}
+
+
+@bp.get('/reports')
+@bp.get('/reports/<report>')
+def reports(report=None):
+    if report is not None and report not in REPORT_PAGES:
+        raise NotFound()
+    month = request.args.get('month', today_vn().strftime('%Y-%m'))
+    patient_id = request.args.get('patient_id', '').strip()
+    filter_error = ''
+    if report in ('diseases', 'salaries', 'revenue'):
+        try:
+            if not re.fullmatch(r'[0-9]{4}-[0-9]{2}', month):
+                raise ValueError
+            date(int(month[:4]), int(month[5:]), 1)
+        except ValueError:
+            filter_error = 'Vui lòng chọn tháng hợp lệ, dạng YYYY-MM (ví dụ: 2026-10).'
+    elif report == 'history' and 'patient_id' in request.args:
+        if not re.fullmatch(r'[A-Za-z0-9_-]{1,12}', patient_id):
+            filter_error = 'Nhập mã bệnh nhân gồm 1–12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới.'
+        else:
+            return redirect(url_for('clinic.history', record_id=patient_id))
+    return render_template('week1/reports.html', report_pages=REPORT_PAGES,
+                           report=REPORT_PAGES.get(report), report_key=report,
+                           month=month, patient_id=patient_id, filter_error=filter_error), 400 if filter_error else 200
 
 
 def entity_for(slug):
@@ -100,7 +135,7 @@ def edit(slug, record_id):
             except pymysql.IntegrityError as exc:
                 form_error, status = database_form_error(exc), 409
     return render_template('week1/form.html', entity=entity, values=values, errors=errors,
-                           form_error=form_error, editing=True), status
+                           form_error=form_error, editing=True, record_id=record_id), status
 
 
 @bp.post('/<slug>/<record_id>/delete')
@@ -113,7 +148,7 @@ def delete(slug, record_id):
     try:
         services.delete_record(entity, record_id)
     except pymysql.IntegrityError as exc:
-        if exc.args[0] != 1451:
+        if exc.args[0] not in (1217, 1451):
             raise
         return render_template('week1/detail.html', entity=entity, record=record,
                                form_error='Không thể xóa: hồ sơ đang được lịch sử khám hoặc hỗ trợ tham chiếu.'), 409

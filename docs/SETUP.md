@@ -1,6 +1,6 @@
 # Hướng dẫn thống nhất: import và chạy thử tuần 1 trên Windows
 
-Cập nhật 18/10/2026. Đây là hướng dẫn tích hợp thử SQL PR #6 và UI/backend PR #7; hai PR chưa merge. Không dùng riêng main để nghiệm thu đầy đủ ở thời điểm này. Tài liệu trong PR #8 chờ Trung/Vương review theo RULES.md.
+Cập nhật 18/10/2026. Đây là hướng dẫn tích hợp thử SQL PR #6 và UI/backend PR #7. PR #7 đã squash merge tại e174f626; #6 còn chờ xác nhận lại review. Không dùng riêng main để nghiệm thu đầy đủ ở thời điểm này. Tài liệu trong PR #8 chờ Trung/Vương review theo RULES.md.
 
 ## 1. Chuẩn bị và lấy đúng source
 
@@ -154,7 +154,7 @@ Trong lúc giữ hồ sơ thử, total khác 1144 là bình thường; không im
 
 Mỗi thành viên ghi: tên, ngày giờ, phiên bản Python/MySQL, hai SHA ở bước 1, tên DB (không mật khẩu), kết quả từng bước, lỗi và ảnh. Chụp audit trước/sau, trang bệnh nhân mới, kết quả SELECT và thông báo chặn xóa. Cập nhật issue tuần 1.
 
-Cập nhật 18/10/2026, 19:51 (Asia/Ho_Chi_Minh): PR #7 đã hết Draft; Vương đã cập nhật bàn giao, rà 4/4 trang PDF và chạy tích hợp local. Quyền đã chạy Windows/Python 3.11.9/MySQL 8.4.11 trên DB clinic_week1_demo2: đủ 9 trigger, audit 1.144 dòng đúng và 9 nhóm findings rỗng; web và thêm/tìm/sửa/tải lại bệnh nhân được xác nhận. Chưa xác minh đầy đủ checklist/queries.sql trên máy Quyền hoặc nghiệm thu máy Trung. #6/#8 đã được Vuong-it review nhưng còn CHANGES_REQUESTED cần xác nhận lại sau cập nhật. Xem WEEK1_REVIEW_2026-10-18.md và bằng chứng Vương trong PR #7; không coi CI hoặc một máy là nghiệm thu cả ba máy.
+Cập nhật 18/10/2026, 19:51 (Asia/Ho_Chi_Minh): PR #7 đã hết Draft; Vương đã cập nhật bàn giao, rà 4/4 trang PDF và chạy tích hợp local. Quyền đã chạy Windows/Python 3.11.9/MySQL 8.4.11 trên DB clinic_week1_demo2: đủ 9 trigger, audit 1.144 dòng đúng và 9 nhóm findings rỗng; web và thêm/tìm/sửa/tải lại bệnh nhân được xác nhận. Chưa xác minh đầy đủ checklist/queries.sql trên máy Quyền hoặc nghiệm thu máy Trung. #7 đã merge; #6/#8 đã được Vuong-it review nhưng còn CHANGES_REQUESTED cần xác nhận lại sau cập nhật. Xem WEEK1_REVIEW_2026-10-18.md và bằng chứng Vương trong PR #7; không coi CI hoặc một máy là nghiệm thu cả ba máy.
 
 ## 8. Lỗi đã gặp khi chạy trên máy Quyền
 

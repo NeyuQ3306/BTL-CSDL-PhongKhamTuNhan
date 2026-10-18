@@ -1,0 +1,39 @@
+{
+  "ui_sha": "8c5be9469976333195eb67c9d2689638d02c045f",
+  "sql_sha": "08e4427f6ac8e9ba55eaba859ddab4067330ec04",
+  "ui_equivalent_to_current_code": true,
+  "canonical_files": {
+    "database/schema.sql": {
+      "git_blob": "e44fe00198d2f6ce5a37eeab04b0be36b41c3305",
+      "sha256": "2d0d50620431659a67e73afcd99f735778394b527e9e5ed75beaa51669fae780"
+    },
+    "database/seed.sql": {
+      "git_blob": "e40572a0028696ce0e3d26511ea7a81337cc8b15",
+      "sha256": "e51a8548787abc1dcd71c22fb224517d39f37da5ddb09daf109ea8ab6fd03147"
+    },
+    "database/audit.sql": {
+      "git_blob": "278e01dbad8ca7a980f0f54770053d943ad6c569",
+      "sha256": "523d425cca7d8088657743a984d82d4a9722f808664fecc9016e54654bb06286"
+    },
+    "database/constraints.sql": {
+      "git_blob": "708e0ce33881f60d0e9602c9e74a6ee8139d0552",
+      "sha256": "dab5d7ff129e344aa16e5e075a5204fac81ef0f1ab1d7d5367556901b907ff5a"
+    },
+    "database/queries.sql": {
+      "git_blob": "f2c51bd7bce32e3cf796e19193f0c5b746e77ab3",
+      "sha256": "5bca565bf348be34c2c06022a6ca439abddae2a0a7d979ed34eb538990e68f96"
+    },
+    "database/expected_results.md": {
+      "git_blob": "32dbf56c0b60eda3227e112ee3e30a4b44c9c4db",
+      "sha256": "fdfc45db5ab13e20f613ad63b79f1b13eb35176047a6c2d271bd2cad80315df9"
+    },
+    "tools/quyen_db.py": {
+      "git_blob": "f018b136c70fd842056328103a392190298070b3",
+      "sha256": "53cf7591626e7f88e3ae2ac36b35c79480e347ee661a6000e9d817802b33e2fb"
+    },
+    "tests/test_quyen_database.py": {
+      "git_blob": "f675cd9b8a9e4198844f287b190c7d701b2e44cf",
+      "sha256": "2b5bd943ff0d42db705409bdf7a0c41181338d8f21d09c5a3f6854e72f833a78"
+    }
+  }
+}

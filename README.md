@@ -4,7 +4,7 @@ Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**
 
 ## Chạy thử tích hợp tuần 1
 
-Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md): clone riêng snapshot UI/backend, lấy sáu file SQL Quyền, import **schema → seed → audit → constraints → audit → queries**, cấu hình `.env` và chạy `app.py`. Hướng dẫn có checklist máy thật và cách xử lý lỗi. PR #6/#7 chưa merge; không dùng riêng main để nghiệm thu đầy đủ. Không import adapter cũ hoặc hospital_db.sql cho đường chạy này.
+Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md). Backend #4 và UI #7 đã merge; SQL #6 còn chờ xác nhận review. Khi #6 chưa merge, dùng snapshot theo SETUP; không coi main đã có trigger chuẩn. Import schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
 
 ## Trạng thái backend tuần 1
 
@@ -15,6 +15,8 @@ Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md): clone riêng snaps
 - Chưa coi nghiệm thu hoàn tất trước khi nhóm review và merge PR theo RULES.md.
 
 ## Bắt đầu từ đây
+
+Phần UI tuần 1 của Vương: [bàn giao](docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](docs/VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](docs/VUONG_WEEK1_CHECKLIST.md). Bốn báo cáo hiện gồm ba khung thống kê chờ SQL và một luồng lịch sử dùng dữ liệu đã lưu; chưa nghiệm thu nghiệp vụ tuần 2.
 
 1. Đọc [phân công 3 tuần](docs/PHAN_CONG_3_TUAN.md) hoặc [bản PDF](docs/Phan_cong_Project1_3_tuan.pdf).
 2. Đọc [RULES.md](RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.

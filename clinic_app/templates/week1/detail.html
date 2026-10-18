@@ -1,4 +1,20 @@
-{% extends 'week1/base.html' %}{% block content %}<a href="{{ url_for('clinic.listing', slug=entity.slug) }}">← Danh sách</a><h1>{{ record.ho_ten }}</h1><p>{{ entity.title }} · {{ record[entity.pk] }}</p>{% if form_error %}<p class="notice error" role="alert">{{ form_error }}</p>{% endif %}
-<dl class="details">{% for field in entity.fields %}<div><dt>{{ field.label }}</dt><dd>{{ record[field.name] }}</dd></div>{% endfor %}</dl>
-<div class="actions"><a class="button" href="{{ url_for('clinic.edit', slug=entity.slug, record_id=record[entity.pk]) }}">Sửa hồ sơ</a>{% if entity.slug=='patients' %}<a href="{{ url_for('clinic.history', record_id=record[entity.pk]) }}">Xem lịch sử khám</a>{% endif %}</div>
-<details class="delete"><summary>Xóa hồ sơ chưa phát sinh nghiệp vụ</summary><p>Hồ sơ đã được lịch sử khám hoặc hỗ trợ tham chiếu sẽ không được xóa.</p><form method="post" action="{{ url_for('clinic.delete', slug=entity.slug, record_id=record[entity.pk]) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label for="confirm_delete">Nhập mã {{ record[entity.pk] }} để xác nhận</label><input id="confirm_delete" name="confirm_delete" required autocomplete="off"><button class="danger">Xác nhận xóa</button></form></details>{% endblock %}
+{% extends 'week1/base.html' %}
+{% from 'week1/record_macros.html' import display_value %}
+{% block title %}{{ record.ho_ten }} · {{ entity.title }} · Phòng khám{% endblock %}
+{% block content %}
+<a class="back-link" href="{{ url_for('clinic.listing', slug=entity.slug) }}">← Danh sách {{ entity.title|lower }}</a>
+<div class="heading"><div><p class="eyebrow">HỒ SƠ {{ entity.title|upper }}</p><h1>{{ record.ho_ten }}</h1><p>Mã hồ sơ: <strong>{{ record[entity.pk] }}</strong></p></div><a class="button" href="{{ url_for('clinic.edit', slug=entity.slug, record_id=record[entity.pk]) }}">Sửa hồ sơ</a></div>
+{% if form_error %}<div class="notice error" role="alert"><strong>Chưa xóa được hồ sơ</strong><p>{{ form_error }}</p><p>Hồ sơ và dữ liệu liên quan vẫn được giữ nguyên.</p></div>{% endif %}
+<h2>Thông tin {{ entity.title|lower }}</h2>
+<dl class="details">{% for field in entity.fields %}<div><dt>{{ field.label }}</dt><dd{% if field.kind in ['code', 'cmt', 'phone'] %} class="identifier"{% endif %}>{{ display_value(record[field.name], field.kind) }}</dd></div>{% endfor %}</dl>
+{% if entity.slug == 'patients' %}<div class="actions"><a class="button button-secondary" href="{{ url_for('clinic.history', record_id=record[entity.pk]) }}">Xem lịch sử khám</a></div>{% endif %}
+<details class="delete">
+  <summary>Xóa hồ sơ chưa phát sinh nghiệp vụ</summary>
+  <p>Chỉ xóa được hồ sơ chưa được dữ liệu khám hoặc hỗ trợ tham chiếu. Thao tác xóa thành công không thể hoàn tác trên giao diện.</p>
+  <form method="post" action="{{ url_for('clinic.delete', slug=entity.slug, record_id=record[entity.pk]) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div><label for="confirm_delete">Nhập đúng mã hồ sơ để xác nhận</label><small class="field-hint" id="delete-hint">Mã cần nhập: {{ record[entity.pk] }}</small><input id="confirm_delete" name="confirm_delete" required autocomplete="off" spellcheck="false" aria-describedby="delete-hint"></div>
+    <button type="submit" class="danger">Xác nhận xóa</button>
+  </form>
+</details>
+{% endblock %}

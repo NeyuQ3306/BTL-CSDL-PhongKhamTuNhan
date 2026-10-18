@@ -1,0 +1,22 @@
+{% macro display_value(value, kind='text') -%}
+  {%- if value is none or value == '' -%}Chưa có thông tin
+  {%- elif kind == 'date' and value.strftime is defined -%}{{ value.strftime('%d/%m/%Y') }}
+  {%- else -%}{{ value }}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro field_hint(field, editing) -%}
+  {%- if field.kind == 'code' -%}
+    {% if editing %}Mã hồ sơ được giữ nguyên khi sửa.{% else %}Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng mã “new”.{% endif %}
+  {%- elif field.kind == 'cmt' -%}Nhập 9–20 chữ số, giữ cả số 0 ở đầu.
+  {%- elif field.kind == 'phone' -%}Nhập 9–15 chữ số; có thể bắt đầu bằng dấu +. Ví dụ: 0901234567.
+  {%- elif field.kind == 'date' -%}Chọn ngày sinh từ năm 1900 đến hôm nay. Nếu nhập bằng bàn phím, dùng định dạng hiển thị trên ô.
+  {%- elif field.kind == 'integer' -%}Nhập số năm tròn từ 0 đến 100; nhập 0 nếu chưa có thâm niên.
+  {%- elif field.name == 'ho_ten' -%}Nhập đầy đủ họ tên có dấu, tối đa {{ field.max_length }} ký tự.
+  {%- elif field.name == 'dia_chi' -%}Nhập địa chỉ liên hệ, tối đa {{ field.max_length }} ký tự.
+  {%- elif field.name == 'bac_nghe' -%}Nhập bậc nghề theo hồ sơ bác sĩ, tối đa {{ field.max_length }} ký tự.
+  {%- elif field.name == 'chuyen_mon' -%}Ví dụ: Nội tổng quát. Tối đa {{ field.max_length }} ký tự.
+  {%- elif field.name in ['trinh_do', 'trinh_do_dao_tao'] -%}Nhập trình độ theo hồ sơ nhân viên, tối đa {{ field.max_length }} ký tự.
+  {%- else -%}Tối đa {{ field.max_length }} ký tự.
+  {%- endif -%}
+{%- endmacro %}
