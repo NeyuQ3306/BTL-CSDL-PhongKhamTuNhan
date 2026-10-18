@@ -4,31 +4,11 @@ Bộ SQL kế thừa schema/1.144 dòng dữ liệu giả Vũ Đại Vương qua
 
 ## Import trên MySQL 8.4
 
-Tạo **database mới, trống** (ví dụ `clinic_quyen_week1`) với utf8mb4/utf8mb4_0900_ai_ci. Trong MySQL Workbench mở và chạy lần lượt:
+Hướng dẫn hiện hành duy nhất: [docs/SETUP.md](../docs/SETUP.md).
 
-1. Chọn database vừa tạo bằng `USE clinic_quyen_week1;`.
-2. `schema.sql`: 11 bảng, PK/FK/UQ/CHECK.
-3. `seed.sql`: dữ liệu mẫu lịch sử, gồm cả đợt đã khỏi/lượt đã đóng.
-4. `audit.sql`: tất cả truy vấn phải trả **0 dòng**; có phát hiện thì dừng.
-5. `constraints.sql`: chỉ mục bổ sung và trigger cho nghiệp vụ mới.
-6. `queries.sql`: đặt `@thang`, `@ma_benh_nhan` rồi chạy báo cáo; đối chiếu `expected_results.md`.
+Thứ tự chuẩn cho DB mới trống: **schema.sql → seed.sql → audit.sql → constraints.sql → audit.sql → queries.sql**. Mọi truy vấn audit phải trả 0 dòng; đối chiếu queries.sql với expected_results.md. Seed phải nhập trước trigger.
 
-Không import thêm `hospital_db.sql` hoặc `database/week1/clinic_seed.sql` vào cùng DB. Không chạy seed sau trigger: seed có lịch sử đã hoàn tất còn trigger yêu cầu tạo đợt đang điều trị trước, đóng sau. Không chạy lại schema/constraints trên DB có sẵn. DDL implicit commit nên import lỗi có thể còn bảng; tạo DB thử mới để chạy lại, không tự xóa dữ liệu.
-
-Python CLI trên PowerShell (dùng mật khẩu DB thử của bạn, không commit):
-
-```powershell
-python -m pip install PyMySQL cryptography pytest
-$env:DB_HOST = '127.0.0.1'
-$env:DB_PORT = '3306'
-$env:DB_USER = 'root'
-$env:DB_PASSWORD = '<mat-khau-local>'
-$env:DB_NAME = 'clinic_quyen_week1'
-python -m tools.quyen_db
-python -m pytest tests/test_quyen_database.py -v
-```
-
-CLI này dùng biến môi trường, không tự đọc `.env`. Importer từ chối DB có bảng, không DROP/tắt FK. Sau khi ghép PR Trung, đặt DB_NAME trong `.env` backend trỏ đến DB mới; hướng dẫn `tools.import_seed` của Trung vẫn dùng adapter cũ, chưa cài trigger Quyền. Cần thống nhất một đường import khi tích hợp.
+Không dùng tools.import_seed, database/week1/clinic_seed.sql hoặc hospital_db.sql cho quy trình này. tools.quyen_db là tiện ích kiểm thử cũ, không đọc .env và chưa audit trước constraints; không dùng làm đường cài chuẩn. Không import chồng hoặc tự DROP dữ liệu. Xem SETUP về Windows, cổng 3306/3307 và cấu hình DB_NAME.
 
 ## Phạm vi ràng buộc
 
