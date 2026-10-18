@@ -1,5 +1,17 @@
 # Bằng chứng kiểm thử Quyền tuần 1
 
+## Cập nhật 18/10/2026
+
+- SQL head 08e4427: [run 39034485323](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39034485323) đạt 26 SQL test và 58 backend compatibility test (backend pin 26bc627).
+- Tích hợp SQL 08e4427 + UI/backend 33d45a0: [run 39092264670](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39092264670) đạt 72/72 (26 SQL + 46 backend/UI), không skipped. UI sau đồng bộ 8c5be94 giữ nguyên tree.
+- Vương chạy lại Windows/Python 3.12.14/MySQL 8.0.46: 72/72 test, 33 ca hồ sơ và 4/4 trang PDF. [Bằng chứng](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/fe9dd4959f4871f1bfcb8eb4c346746f6f20a9a2/docs/evidence/vuong_week1_acceptance_2026-10-18/README.md).
+- Quyền ngày 18/10 chạy Windows/Python 3.11.9/MySQL 8.4.11, DB clinic_week1_demo2 với UI 8c5be94 + SQL 08e4427. Output người dùng cung cấp: 11 bảng/1.144 dòng, matches_expected_counts=true, 9 nhóm findings rỗng; xác nhận đủ 9 trigger và thêm/tìm/sửa/tải lại bệnh nhân trên web. Đây là thử thủ công, không phải chạy 72 test hoặc toàn bộ checklist trên máy Quyền.
+- Hướng dẫn chuẩn duy nhất: docs/SETUP.md; schema → seed → audit → constraints → audit → queries. tools.quyen_db và tools.import_seed không phải đường cài chuẩn.
+- Vuong-it đã review CHANGES_REQUESTED về hướng dẫn/bàn giao. Cập nhật tài liệu này xử lý nội dung phản hồi; còn chờ reviewer xác nhận lại. Chưa xác minh máy Trung hoặc bản main tích hợp. Không tự chốt tuần 1.
+
+## Bằng chứng lịch sử ngày 17/10 (giữ theo snapshot)
+
+
 Ngày 17/10/2026. CI MySQL 8.4.11 / Python 3.11.
 
 Run: https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39034289909
