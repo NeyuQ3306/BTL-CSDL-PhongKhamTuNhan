@@ -1,0 +1,68 @@
+name: Week 1 integration review
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/week1-review.yml'
+      - 'docs/WEEK1_REVIEW_2026-10-18.md'
+permissions:
+  contents: read
+jobs:
+  integrated-snapshots:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: disposable-ci-password
+          MYSQL_DATABASE: clinic_review_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=12
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: '3306'
+      DB_USER: root
+      DB_PASSWORD: disposable-ci-password
+      DB_NAME: clinic_review_test
+      FLASK_SECRET_KEY: disposable-ci-session-key
+      RUN_MYSQL_TESTS: '1'
+      RUN_BROWSER_TESTS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: 33d45a06eb7e237796d3d240fd6d419fabd00bd1
+          path: integration
+      - uses: actions/checkout@v4
+        with:
+          ref: 08e4427f6ac8e9ba55eaba859ddab4067330ec04
+          path: database-source
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compose pinned week-1 database and latest UI without week 2
+        run: |
+          cp -R database-source/database/. integration/database/
+          cp database-source/tools/quyen_db.py integration/tools/
+          cp database-source/tests/test_quyen_database.py integration/tests/
+      - run: python -m pip install -r integration/requirements-dev.txt
+      - run: python -m pip install "playwright>=1.50,<2"
+      - run: python -m playwright install --with-deps chromium
+      - name: Install canonical database with triggers
+        working-directory: integration
+        run: python -m tools.quyen_db
+      - name: SQL, backend and UI tests on the same database
+        working-directory: integration
+        run: python -m pytest -v
+      - name: Audit after integration tests
+        working-directory: integration
+        run: python -m tools.audit_seed
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: week1-integrated-browser
+          path: integration/test-artifacts/week1/
+          if-no-files-found: warn
+          retention-days: 30
