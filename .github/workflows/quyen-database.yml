@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m pip install 'PyMySQL>=1.1,<2' 'cryptography>=44' 'pytest>=8,<9'
+      - run: python -m pip install -r requirements-dev.txt
       - run: python -m tools.quyen_db
       - run: python -m pytest tests/test_quyen_database.py -v
   backend-compatibility:
