@@ -36,20 +36,31 @@ Phần Vương giữ nguyên schema, SQL, `app.py`, field và CSRF. Thay đổi 
 | Backend/UI sau đồng bộ main | `8c5be9469976333195eb67c9d2689638d02c045f`; [run 39092326435](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39092326435), job `117571499620` | **46 passed**, không skipped; compile/Jinja đạt; seed adapter, audit 11 bảng/1.144 dòng, findings rỗng |
 | SQL/trigger Quyền + backend/UI Vương cùng DB | SQL `08e4427f6ac8e9ba55eaba859ddab4067330ec04` + UI `33d45a06eb7e237796d3d240fd6d419fabd00bd1`; [run 39092264670](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39092264670), job `117571317667` | **72 passed** = 26 SQL + 46 backend/UI, không skipped; audit 11 bảng/1.144 dòng, findings rỗng |
 
-Cả hai job dùng Ubuntu/Python 3.11.17/MySQL 8.4.11/Chromium. Run tích hợp thuộc PR #8 tại workflow commit `89539428d4b522a44938bc21115114c595cc207b`, checkout riêng hai snapshot trên; không phải test 72 ca trên head PR #7 hoặc xác nhận #6/#7 đã merge. Đợt cập nhật tài liệu này chỉ đọc lại log đã chạy, không chạy lại MySQL/browser local. [Chi tiết và trích log](evidence/vuong_week1_final/README.md#doi-chieu-ci-18102026).
+Cả hai job dùng Ubuntu/Python 3.11.17/MySQL 8.4.11/Chromium. Run tích hợp thuộc PR #8 tại workflow commit `89539428d4b522a44938bc21115114c595cc207b`, checkout riêng hai snapshot trên; không phải test 72 ca trên head PR #7 hoặc xác nhận #6/#7 đã merge. Đợt cập nhật tài liệu tại `ea556ca` chỉ đọc lại log đã chạy; lần chạy local tiếp theo được ghi riêng bên dưới. [Chi tiết và trích log](evidence/vuong_week1_final/README.md#doi-chieu-ci-18102026).
+
+### Nghiệm thu local bổ sung ngày 18/10
+
+Sau đợt cập nhật tài liệu `ea556ca`, đã thực sự chạy lại bộ tích hợp trên **instance MySQL mới cách ly**, theo thứ tự schema → seed → audit → constraints → audit → queries của SETUP PR #8. Snapshot UI `8c5be94` + SQL `08e4427`; code UI không đổi so với `ea556ca`. Môi trường Windows/Python **3.12.14**/MySQL **8.0.46**/Chromium **156.0.8078.4**; đây là môi trường local bổ sung, khác CI mục tiêu.
+
+- **72/72 pytest đạt, không skipped**, gồm 26 SQL + 46 backend/UI. Đã chạy 10 truy vấn audit trước/sau cài 9 trigger; Q1/Q2/Q4 được đối chiếu oracle.
+- **33 ca hồ sơ** qua browser/SELECT độc lập đạt (11 × bệnh nhân/bác sĩ/y tá): thêm, SELECT, reload, tìm danh sách, sửa, trùng mã/CMT, validation, chặn xóa có lịch sử và dọn hồ sơ tự tạo. Health và lịch sử cũng đạt; 37 ảnh browser được lưu.
+- **Rà trực quan 4/4 trang PDF đạt**; lưu 4 ảnh render và SHA-256; không sửa PDF hoặc thiết kế. Chưa kiểm tra in thực tế.
+- Hash dữ liệu 11 bảng trước/sau khớp, audit 1.144 dòng sạch; `.env` không đổi, server thử đã dừng. Không ghi database đang làm việc.
+
+[Báo cáo expected/actual, phiên bản, ảnh/log và script chạy lại](evidence/vuong_week1_acceptance_2026-10-18/README.md). Không phát hiện lỗi UI cần sửa trong các ca đã chạy; [phản hồi tài liệu/setup cho Quyền/Trung](evidence/vuong_week1_acceptance_2026-10-18/SETUP_FINDINGS.md) được chuẩn bị riêng.
 
 ## Phụ thuộc review
 
 - **Trung:** review các route GET báo cáo, context `record_id` lấy mã chuẩn DB, CSRF/field, xử lý FK và cập nhật nhãn nút trong test browser. Hợp đồng đã chạy trên máy Vương; chưa đăng lời xác nhận lên PR của Trung.
 - **Quyền:** review adapter/schema/seed và tính nhất quán thiết kế; duyệt UI/phạm vi; điều phối merge theo RULES.md.
 - Backend Trung [PR #4](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/4) đã merge; main được đối chiếu tại `b51b0af`. PR #7 đã đồng bộ main, đang mở và hết Draft. Review COMMENT của Quyền trên #7 không thay cho approval cuối; cần review hợp lệ và xử lý nhận xét trước merge theo RULES.md.
-- Bộ SQL [PR #6](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/6) và hướng dẫn trong [PR #8](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/8) vẫn cần hoàn tất review. Hướng dẫn thử tích hợp hiện được đề xuất tại [SETUP của PR #8](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/3b59effd4bb86fca1f8d239af8349e73ac09e9e6/docs/SETUP.md): DB mới, schema → seed → audit → constraints → audit → queries. Không chạy chồng importer adapter cũ. Hướng dẫn này chưa được xác nhận chạy trên cả ba máy.
+- Bộ SQL [PR #6](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/6) và hướng dẫn trong [PR #8](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/8) vẫn cần hoàn tất review. [SETUP của PR #8](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/3b59effd4bb86fca1f8d239af8349e73ac09e9e6/docs/SETUP.md) đã được kiểm tra phần thứ tự SQL/web trên instance local riêng bằng PyMySQL; chưa xác minh thao tác Workbench/clone mạng mới và chưa nghiệm thu cả ba máy. Không chạy chồng importer adapter cũ.
 
 ## Phần chưa hoàn thành
 
-- Chưa rà trực quan hai PDF YC1 trong `docs/design/`.
+- Đã rà trực quan hai PDF YC1 (4 trang); chưa kiểm tra bản in hoặc phê duyệt đầy đủ thiết kế/nghiệp vụ ER–SQL.
 - Chưa xác nhận chạy cùng bộ tích hợp theo hướng dẫn mới trên máy cả ba thành viên; chưa thử điện thoại thật. CI môi trường mục tiêu đã đạt như bảng trên, không thay cho nghiệm thu máy thật.
-- 21 test tùy chọn chưa chạy trong phiên local 17/10; đã có job CI chạy đủ 46 ca trên snapshot nêu trên. Commit cập nhật tài liệu tiếp theo phải xem Checks theo SHA mới, không gán run cũ cho commit mới.
+- 21 test tùy chọn chưa chạy trong phiên local 17/10; phiên tích hợp local 18/10 đã chạy đủ 72 ca, không skipped. Không thay log phiên cũ. Commit bằng chứng mới phải xem Checks theo SHA mới, không gán run cũ cho commit mới.
 - Chưa đăng xác nhận hợp đồng lên PR #4; chưa hoàn tất review/merge PR #7 và nghiệm thu chung SQL/UI của nhóm. Ba UI thống kê còn là khung; tích hợp báo cáo/luồng khám/đơn đa bước thuộc tuần 2.
 
 ## Rà nội dung trước commit

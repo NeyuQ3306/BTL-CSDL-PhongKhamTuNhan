@@ -1,5 +1,7 @@
 # Kiểm tra cuối trước commit tuần 1 của Vương
 
+Đây là bằng chứng local 17/10 và lần đối chiếu CI đầu ngày 18/10. **Cập nhật tiếp theo:** [nghiệm thu PDF và tích hợp local 18/10](../vuong_week1_acceptance_2026-10-18/README.md) đã rà đủ 4 trang PDF, chạy 72 pytest và 33 ca hồ sơ browser/SELECT đạt trên instance riêng. Giữ nguyên log/JSON của các phiên cũ để đối chiếu lịch sử.
+
 Ngày: 17/10/2026. Nền đã đồng bộ: `origin/trung/week-1` tại `5a25395699905cc5f79af4904bd73d95073963a0`. Thay đổi UI nằm trên nhánh `vuong/week-1`; ảnh/log các bước trước vẫn giữ nguyên để đối chiếu lịch sử phiên kiểm tra.
 
 ## Kết quả sau đồng bộ

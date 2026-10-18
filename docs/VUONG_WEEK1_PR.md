@@ -34,12 +34,20 @@ Backend Trung `5a25395699905cc5f79af4904bd73d95073963a0` đã squash merge qua #
 - Sau dọn: dữ liệu nền 11 bảng/1.144 dòng và hash không đổi; `.env` giữ nguyên. Parse Python/Jinja và diff check đạt.
 - [Bàn giao](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/vuong/week-1/docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/vuong/week-1/docs/VUONG_WEEK1_USER_GUIDE.md), [checklist/ảnh](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/vuong/week-1/docs/VUONG_WEEK1_CHECKLIST.md), [kiểm tra cuối và đối chiếu CI](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/vuong/week-1/docs/evidence/vuong_week1_final/README.md).
 
-Đợt cập nhật 18/10 chỉ sửa tài liệu bàn giao/PR/hợp đồng và đọc lại log CI; không chạy lại MySQL/browser local. Các run trên gắn với SHA đã ghi; xem Checks theo head mới cho commit tài liệu tiếp theo, không gán run cũ cho SHA mới.
+Đợt cập nhật tài liệu tại `ea556ca` chỉ đọc lại log CI; lần nghiệm thu local tiếp theo được ghi riêng bên dưới. Các run trên gắn với SHA đã ghi; xem Checks theo head mới, không gán run cũ cho SHA mới.
+
+**Nghiệm thu local bổ sung sau commit tài liệu `ea556ca`:** [báo cáo và ảnh/log](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/vuong/week-1/docs/evidence/vuong_week1_acceptance_2026-10-18/README.md).
+
+- Rà trực quan **4/4 trang của hai PDF** đạt; lưu ảnh render/SHA-256, giữ nguyên thiết kế và PDF gốc.
+- Instance MySQL cách ly, UI `8c5be94` + SQL `08e4427`, import đúng thứ tự SETUP #8 với audit trước/sau constraints. **72/72 pytest đạt, không skipped**; 33 ca hồ sơ browser/SELECT độc lập cho ba nhóm và health/lịch sử đạt; có 37 ảnh browser.
+- Local: Windows/Python **3.12.14**/MySQL **8.0.46**/Chromium **156.0.8078.4**. Dọn hồ sơ tự tạo, hash toàn bộ seed khớp, audit sạch 11 bảng/1.144 dòng; `.env` không đổi, server thử đã dừng. Không ghi DB đang làm việc.
+- Chỉ thêm bằng chứng/script kiểm thử và cập nhật bàn giao; không phát hiện lỗi UI cần sửa. Có [phản hồi setup ngoài phạm vi Vương](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/vuong/week-1/docs/evidence/vuong_week1_acceptance_2026-10-18/SETUP_FINDINGS.md) để Quyền/Trung review.
 
 ## Cần review và phần chưa hoàn thành
 
 - Trung review routes/context mã chuẩn, CSRF/field, xử lý FK và test browser; Quyền điều phối merge. Review COMMENT hiện có trên #7 chưa phải approval cuối. Chưa gửi bình luận xác nhận hợp đồng lên #4.
-- Hai PDF YC1 chưa rà trong đợt cập nhật này; chưa xác minh cả ba thành viên chạy cùng bộ tích hợp hoặc thử điện thoại thật. 21 ca skipped chỉ thuộc lần chạy local đã ghi; CI môi trường mục tiêu đã chạy đủ 46 test trên snapshot nêu trên.
+- Hai PDF đã rà hiển thị; chưa kiểm tra in thực tế hoặc phê duyệt đầy đủ thiết kế/nghiệp vụ. Chưa xác minh máy Trung/Quyền hoặc thử điện thoại thật. 21 ca skipped thuộc phiên local 17/10; phiên tích hợp local 18/10 đạt đủ 72 test, không skipped.
+- Chưa chạy lại local Python 3.11/MySQL 8.4, clone mạng mới hoặc thao tác Workbench. Phiên bổ sung dùng snapshot git archive và thực thi SQL bằng PyMySQL theo cùng thứ tự SETUP; không nhận đây là bằng chứng mọi thao tác/môi trường hướng dẫn đã được thử.
 - Nhóm cần review SQL #6 và [hướng dẫn setup #8](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/3b59effd4bb86fca1f8d239af8349e73ac09e9e6/docs/SETUP.md): DB mới, schema → seed → audit → constraints → audit → queries; không chạy chồng importer adapter. Không nhập bộ SQL đó vào nhánh UI trong đợt sửa tài liệu.
 - Ba trang thống kê còn là khung; tích hợp SQL báo cáo và nghiệp vụ khám/đơn nhiều bước thuộc tuần 2. Chưa đánh dấu toàn bộ tuần 1 của nhóm hoàn tất.
 
