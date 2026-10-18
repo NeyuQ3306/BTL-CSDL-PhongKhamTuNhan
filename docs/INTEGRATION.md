@@ -1,6 +1,6 @@
 # Hợp đồng tích hợp ban đầu
 
-Phần đầu là mục tiêu tích hợp toàn dự án. Các route đã triển khai và hợp đồng form tuần 1 được ghi rõ ở phần cuối; cần Vương xác nhận trước khi thay UI.
+Phần đầu là mục tiêu tích hợp toàn dự án. Các route đã triển khai và hợp đồng form tuần 1 được ghi rõ ở phần cuối. Cập nhật trạng thái ngày 18/10/2026: backend #4 đã merge, UI #7 đã đồng bộ main và có CI; xác nhận bằng bình luận của Vương trên PR #4 vẫn còn thiếu.
 
 ## Tên vật lý
 
@@ -34,7 +34,7 @@ Một bác sĩ/đợt; một lần khám tối đa một đơn; một y tá/lư�
 
 ## Hợp đồng backend được triển khai trên nhánh Trung tuần 1
 
-Đây là giao diện bàn giao để Vương tích hợp; chưa có xác nhận đồng thuận của Vương trong PR. Các route mục tiêu thuốc/đơn/báo cáo ở trên chưa được triển khai trong tuần 1.
+Đây là hợp đồng backend tuần 1 đã được UI Vương sử dụng và kiểm thử theo bằng chứng bàn giao; chưa đăng xác nhận của Vương trên PR #4. Thuốc/đơn và SQL của ba trang thống kê trên UI chưa được triển khai trong tuần 1; phần khung báo cáo được ghi riêng bên dưới.
 
 Với `slug` thuộc `patients`, `doctors`, `nurses`:
 
@@ -76,10 +76,18 @@ Các template chạy thử nằm ở `clinic_app/templates/week1`, CSS ở `clin
 
 ### Điểm cần Quyền/Vương review
 
-Tên vật lý đã theo snake_case; adapter không thay giá trị nguồn. Những quy tắc liên bảng trong mục trước mới được audit, **chưa có trigger bảo vệ toàn bộ nghiệp vụ**. Các route tạo lượt/đợt/lần khám chưa mở POST, cần triển khai giao dịch và ràng buộc trong tuần 2. Không đánh dấu bốn báo cáo nghiệp vụ hoàn tất từ các màn hình tra cứu nền.
+Tên vật lý đã theo snake_case; adapter không thay giá trị nguồn. Importer adapter trên nhánh UI không cài trigger Quyền. Bộ SQL/trigger PR #6 đã được kiểm thử cùng UI bằng CI tích hợp bên dưới, nhưng chưa được nhập vào nhánh UI và không bảo vệ toàn bộ nghiệp vụ tại COMMIT; phải giữ các giới hạn trong tài liệu SQL. Các route tạo lượt/đợt/lần khám chưa mở POST, cần triển khai giao dịch và ràng buộc trong tuần 2. Không đánh dấu bốn báo cáo nghiệp vụ hoàn tất từ các màn hình tra cứu nền.
 
 ## Bổ sung 17/10: mã hồ sơ và bàn giao UI
 
 Edit/delete sử dụng mã chuẩn lấy từ DB khi URL khác hoa/thường. Form vẫn gửi mã chuẩn, giữ readonly và không đổi PK. Xác nhận xóa so với mã chuẩn. File UI đang được Flask dùng và checklist cho Vương: [VUONG_WEEK1_UI_HANDOFF.md](VUONG_WEEK1_UI_HANDOFF.md).
 
 Form sửa của Vương nhận thêm context `record_id` là mã chuẩn vừa đọc từ DB, dùng cho input readonly và liên kết hủy cả khi POST mã sai. Không lấy chữ hoa/thường từ URL làm giá trị input. Kiểm tra bổ sung cho URL alias ở [bằng chứng cuối](evidence/vuong_week1_final/README.md).
+
+## Trạng thái tích hợp và bằng chứng ngày 18/10
+
+- Backend Trung `5a25395` đã squash merge qua [#4](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/4) thành main `b51b0afb3b0d03f6fa30a255b1efc614b89a9bbd`. Nhánh UI đã đồng bộ bằng `8c5be9469976333195eb67c9d2689638d02c045f`, giữ tree UI `33d45a0`. [PR #7](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/7) đang mở, hết Draft, chưa merge.
+- [CI 39092326435](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39092326435), head `8c5be94`: **46 passed**, không skipped, Python 3.11.17/MySQL 8.4.11/Chromium; dùng seed adapter. [CI tích hợp 39092264670](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39092264670): **72 passed**, không skipped, SQL `08e4427` + UI/backend `33d45a0` cùng DB có trigger. Cả hai audit sạch 11 bảng/1.144 dòng. [SHA đầy đủ, job và phạm vi log](evidence/vuong_week1_final/README.md#doi-chieu-ci-18102026).
+- Kết quả local Vương 17/10 vẫn là **25 passed, 21 skipped** cùng checklist MySQL riêng 33/33; không dùng kết quả CI để đổi trạng thái các test chưa bật trong phiên local.
+- [Hướng dẫn setup đề xuất tại PR #8](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/3b59effd4bb86fca1f8d239af8349e73ac09e9e6/docs/SETUP.md) quy định DB mới, schema → seed → audit → constraints → audit → queries. Không chạy chồng `tools.import_seed`/seed adapter với bộ SQL này. Bản SETUP trên nhánh UI/main cũ chưa phản ánh hướng dẫn tích hợp đó; cần nhóm review, thống nhất tài liệu khi merge và thử trên cả ba máy.
+- Còn cần: xác nhận hợp đồng trên PR #4, review route/context/FK của UI, hoàn tất review SQL/setup, rà hai PDF và nghiệm thu máy thành viên. Lần cập nhật này chỉ sửa tài liệu và đối chiếu log CI; không đăng xác nhận thay Vương, không chạy lại DB/browser và không thay route, field, CSRF hay nghiệp vụ.
