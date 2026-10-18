@@ -35,7 +35,7 @@ Từ thư mục clinic-week1-demo:
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-Copy-Item .env.example .env
+if (!(Test-Path .env)) { Copy-Item .env.example .env }
 .\.venv\Scripts\python.exe -c "import secrets; print(secrets.token_hex(32))"
 notepad .env
 ```
@@ -95,7 +95,7 @@ USE clinic_week1_demo;
 SHOW TABLES;
 SHOW TRIGGERS;
 ```
-Phải có 11 bảng và danh sách trigger không rỗng.
+Phải có 11 bảng và đúng 9 trigger.
 
 ## 4. Đối chiếu dữ liệu rồi chạy web
 
@@ -138,6 +138,7 @@ Trong lúc giữ hồ sơ thử, total khác 1144 là bình thường; không im
 | Lỗi | Xử lý |
 |---|---|
 | Không tìm thấy python/pip | Kiểm tra đúng Python Windows; dùng đường dẫn đầy đủ rồi tạo lại venv trong thư mục demo mới |
+| CREATE DATABASE bị từ chối / 1044 | Nhờ quản trị viên tạo DB thử trống và cấp quyền đúng DB; không nới quyền DB đang làm việc |
 | Access denied / 1045 | Kiểm tra user, mật khẩu, cổng và quyền DB; không gửi mật khẩu |
 | Can't connect / 2003 | Kiểm tra dịch vụ MySQL đang chạy và đúng 3306/3307 |
 | Unknown database / 1049 | Tạo đúng DB và sửa DB_NAME |
@@ -153,4 +154,12 @@ Trong lúc giữ hồ sơ thử, total khác 1144 là bình thường; không im
 
 Mỗi thành viên ghi: tên, ngày giờ, phiên bản Python/MySQL, hai SHA ở bước 1, tên DB (không mật khẩu), kết quả từng bước, lỗi và ảnh. Chụp audit trước/sau, trang bệnh nhân mới, kết quả SELECT và thông báo chặn xóa. Cập nhật issue tuần 1.
 
-Hướng dẫn đã được đối chiếu với code và snapshot trên; phiên này chưa chạy trên máy Windows của thành viên. CI tích hợp trước đó không thay thế xác nhận chạy máy thật. PR #6 vẫn cần Trung/Vương review; PR #7 còn draft. Không tự coi tuần 1 đã chốt.
+Cập nhật 18/10/2026, 19:51 (Asia/Ho_Chi_Minh): PR #7 đã hết Draft; Vương đã cập nhật bàn giao, rà 4/4 trang PDF và chạy tích hợp local. Quyền đã chạy Windows/Python 3.11.9/MySQL 8.4.11 trên DB clinic_week1_demo2: đủ 9 trigger, audit 1.144 dòng đúng và 9 nhóm findings rỗng; web và thêm/tìm/sửa/tải lại bệnh nhân được xác nhận. Chưa xác minh đầy đủ checklist/queries.sql trên máy Quyền hoặc nghiệm thu máy Trung. #6/#8 đã được Vuong-it review nhưng còn CHANGES_REQUESTED cần xác nhận lại sau cập nhật. Xem WEEK1_REVIEW_2026-10-18.md và bằng chứng Vương trong PR #7; không coi CI hoặc một máy là nghiệm thu cả ba máy.
+
+## 8. Lỗi đã gặp khi chạy trên máy Quyền
+
+- Workbench có thể mở file SQL qua VS Code: copy toàn bộ nội dung vào SQL tab, chọn đúng USE, Ctrl+A rồi Run. Kiểm tra đủ 11 bảng sau schema trước khi nhập seed.
+- constraints.sql đã tạo chỉ mục nhưng lỗi 1064 và chưa có trigger: không chạy lại cả file. Kiểm tra information_schema.TRIGGERS, rồi chạy riêng từng CREATE TRIGGER nguyên khối bằng PyMySQL (không gửi DELIMITER hoặc dấu $$ cho server). Phiên Quyền xác nhận đủ 9 trigger sau cách này. Không coi nguyên nhân parser là đã được chứng minh chỉ từ lỗi 1064.
+- MySQL trực tiếp dùng 3306 nhưng .env.example có 3307 cho Docker: sửa DB_PORT=3306. Test-NetConnection 127.0.0.1 -Port 3306 kiểm tra cổng, không kiểm tra tài khoản.
+- Lỗi 1045 với user clinic_app: cấu hình DB_USER và DB_PASSWORD đúng tài khoản local. Biến DB_* trong PowerShell có thể ghi đè .env; dùng terminal mới sau khi lưu file. Không gửi mật khẩu/ảnh .env.
+- Nếu chọn clinic_week1_demo2, phải dùng cùng tên trong USE và DB_NAME. Không tạo/import thêm DB chỉ vì cấu hình ứng dụng sai.
