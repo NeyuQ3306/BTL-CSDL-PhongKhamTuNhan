@@ -1,5 +1,28 @@
 # Báo cáo review tuần 1 — 18/10/2026
 
+## Cập nhật hiện trạng — 18/10/2026, 19:51 (Asia/Ho_Chi_Minh)
+
+Phần bên dưới mục “Lịch sử review đầu ngày” là ghi nhận theo thời điểm cũ, không dùng làm trạng thái hiện tại.
+
+- #4 đã merge. Vương đã xác nhận hợp đồng trên [#4](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/4#issuecomment-6246625492).
+- #6 head 08e4427 đã được Vuong-it review; còn CHANGES_REQUESTED về hướng dẫn import và bằng chứng bàn giao. Không tự approve hoặc bỏ yêu cầu sửa.
+- #7 đã hết Draft, head fe9dd4959f4871f1bfcb8eb4c346746f6f20a9a2. Bàn giao đã cập nhật; CI Backend and MySQL [39104330959](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39104330959) thành công trên head này. Chưa merge tại thời điểm ghi.
+- Vương đã rà 4/4 trang hai PDF và chạy local 72/72 test tích hợp, 33 ca hồ sơ; xem [bằng chứng](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/blob/fe9dd4959f4871f1bfcb8eb4c346746f6f20a9a2/docs/evidence/vuong_week1_acceptance_2026-10-18/README.md). Đây là Windows/Python 3.12.14/MySQL 8.0.46, không phải CI MySQL 8.4 hoặc nghiệm thu máy khác.
+- Quyền chạy Windows/Python 3.11.9/MySQL 8.4.11, UI/backend 8c5be94 + SQL 08e4427, DB clinic_week1_demo2. Output audit do Quyền cung cấp xác nhận 11 bảng/1.144 dòng, matches_expected_counts=true, 9 nhóm findings rỗng. Quyền xác nhận đủ 9 trigger sau khi chạy riêng phần trigger qua PyMySQL; Workbench trước đó báo 1064. Ảnh web hiển thị 40 bệnh nhân trước thử; Quyền xác nhận thêm/tìm/sửa/tải lại bệnh nhân mẫu thành công. Không coi đây là 72 test chạy trên máy Quyền, cũng chưa xác minh xóa/ca lỗi/SQL SELECT độc lập trên máy này.
+- Hồ sơ thử BNTESTQ1 có thể còn trong DB Quyền; số lượng audit sau thử có thể khác nền. Không import lại seed để xử lý.
+- #8 đang có CHANGES_REQUESTED về trạng thái tài liệu. Cập nhật này xử lý thông tin cũ; cần reviewer xác nhận lại.
+- Chưa có bằng chứng nghiệm thu máy Trung trong phiên này. Chưa chốt toàn bộ tuần 1; không nhập PR #5 tuần 2.
+
+### Việc còn lại
+
+1. Hoàn thiện hướng dẫn chuẩn và bằng chứng #6/#8; Trung/Vương xác nhận lại các yêu cầu sửa.
+2. Review kết luận #7, squash các PR đủ điều kiện theo RULES; giữ nhánh thành viên.
+3. Kiểm thử bản main sau tích hợp, ghi đúng SHA và kết quả; không gán CI snapshot cũ cho main mới.
+4. Bổ sung nghiệm thu máy Trung và các mục còn thiếu trong ACCEPTANCE trước chốt toàn nhóm.
+
+## Lịch sử review đầu ngày
+
+
 ## Kết luận
 
 Backend Trung đã được review và squash merge qua PR #4. Chưa chốt toàn bộ tuần 1: PR #6 cần Trung/Vương review, PR #7 còn draft (đã đồng bộ main bằng merge commit giữ nguyên nội dung UI), chưa có bằng chứng cả ba thành viên chạy cùng bộ tích hợp từ hướng dẫn thống nhất. Không chấm phần trăm từ số commit hoặc CI.
