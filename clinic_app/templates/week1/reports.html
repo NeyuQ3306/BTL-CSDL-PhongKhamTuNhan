@@ -1,0 +1,69 @@
+{% extends 'week1/base.html' %}
+{% block title %}{{ report.title if report else 'Báo cáo' }} · Phòng khám{% endblock %}
+{% block content %}
+{% if report %}
+<a class="back-link" href="{{ url_for('clinic.reports') }}">← Tất cả báo cáo</a>
+<p class="eyebrow">BÁO CÁO PHÒNG KHÁM</p>
+<h1>{{ report.title }}</h1>
+<p class="report-intro">{{ report.description }}</p>
+{% if report_key == 'history' %}
+<form class="report-filters" method="get" aria-label="Chọn bệnh nhân xem lịch sử">
+  <div class="filter-field"><label for="patient_id">Mã bệnh nhân <span class="required-mark" aria-hidden="true">*</span></label>
+    <input id="patient_id" name="patient_id" value="{{ patient_id }}" maxlength="12" required spellcheck="false" autocapitalize="off" placeholder="Ví dụ: BN001" aria-describedby="patient-hint{% if filter_error %} patient-error{% endif %}"{% if filter_error %} aria-invalid="true"{% endif %}>
+    <small id="patient-hint" class="field-hint">Nhập mã chính xác. Nếu chưa biết mã, tìm theo tên trong danh sách bệnh nhân.</small>
+    {% if filter_error %}<small id="patient-error" class="error-text" role="alert">{{ filter_error }}</small>{% endif %}
+  </div>
+  <button type="submit">Xem lịch sử</button><a href="{{ url_for('clinic.listing', slug='patients') }}">Tìm bệnh nhân</a>
+</form>
+<section class="empty-state" aria-labelledby="history-empty">
+  <h2 id="history-empty">Chọn bệnh nhân để xem hồ sơ</h2>
+  <p>Lịch sử khám, các đợt đang điều trị và lượt đến khám sẽ hiển thị từ dữ liệu đã lưu của bệnh nhân được chọn.</p>
+  <p>Chưa có bệnh nhân nào được chọn.</p>
+</section>
+{% else %}
+<form class="report-filters" method="get" aria-label="Chọn tháng báo cáo">
+  <div class="filter-field"><label for="month">Tháng báo cáo <span class="required-mark" aria-hidden="true">*</span></label>
+    <input id="month" name="month" type="month" required value="{{ month }}" aria-describedby="month-hint{% if filter_error %} month-error{% endif %}"{% if filter_error %} aria-invalid="true"{% endif %}>
+    <small id="month-hint" class="field-hint">Chọn tháng và năm cần tra cứu.</small>
+    {% if filter_error %}<small id="month-error" class="error-text" role="alert">{{ filter_error }}</small>{% endif %}
+  </div>
+  <button type="submit">Chọn tháng</button>
+</form>
+<div class="notice report-pending" role="status"><strong>Chưa tích hợp dữ liệu báo cáo</strong><p>{% if not filter_error %}Đã chọn tháng {{ month }}. {% endif %}Bộ lọc hiện chỉ ghi nhận lựa chọn; chưa thực hiện thống kê. Dấu “—” biểu thị chưa có kết quả, không phải giá trị 0.</p></div>
+{% if report_key == 'salaries' %}
+<div class="report-summary" aria-label="Vùng tổng hợp lương chưa có kết quả">
+  {% for label in ['Lương cơ bản', 'Tiền thưởng', 'Tổng lương'] %}<section><h2>{{ label }}</h2><p class="pending-value" aria-label="Chưa có kết quả">—</p><small>Chưa có kết quả</small></section>{% endfor %}
+</div>
+{% elif report_key == 'revenue' %}
+<div class="report-summary" aria-label="Vùng tổng hợp doanh thu chưa có kết quả">
+  {% for label in ['Tiền khám', 'Tiền thuốc', 'Tổng doanh thu'] %}<section><h2>{{ label }}</h2><p class="pending-value" aria-label="Chưa có kết quả">—</p><small>Chưa có kết quả</small></section>{% endfor %}
+</div>
+{% endif %}
+<h2>Kết quả {{ report.title|lower }}</h2>
+<p id="report-table-hint" class="table-hint">Bảng đang chờ tích hợp dữ liệu. Trên màn hình hẹp, cuộn ngang để xem các cột.</p>
+{% set columns = ['Mã bệnh', 'Tên bệnh', 'Số đợt có lần khám trong tháng'] if report_key == 'diseases' else ['Mã nhân viên', 'Họ tên', 'Vai trò', 'Lương cơ bản', 'Tiền thưởng', 'Tổng lương'] if report_key == 'salaries' else ['Khoản doanh thu', 'Số tiền'] %}
+<div class="table-wrap" role="region" aria-label="Khung kết quả {{ report.title|lower }}" aria-describedby="report-table-hint" tabindex="0">
+  <table><caption class="visually-hidden">Khung kết quả, chưa có dữ liệu báo cáo</caption>
+    <thead><tr>{% for column in columns %}<th scope="col">{{ column }}</th>{% endfor %}</tr></thead>
+    <tbody><tr><td class="pending-cell" colspan="{{ columns|length }}">Chưa có kết quả thống kê. Báo cáo sẽ hiển thị sau khi được tích hợp dữ liệu.</td></tr></tbody>
+  </table>
+</div>
+<p class="report-note">{% if report_key == 'diseases' %}Thống kê theo đợt điều trị có lần khám trong tháng, mỗi đợt tính một lần trong tháng đó.{% elif report_key == 'salaries' %}Vùng kết quả dành cho bác sĩ và y tá, gồm lương cơ bản, thưởng và tổng lương theo tháng.{% else %}Doanh thu gồm tiền khám và tiền thuốc ghi nhận theo tháng.{% endif %}</p>
+{% endif %}
+{% else %}
+<p class="eyebrow">TRA CỨU VÀ THỐNG KÊ</p>
+<h1>Báo cáo phòng khám</h1>
+<p class="report-intro">Xem lịch sử bệnh nhân từ dữ liệu đã lưu. Các báo cáo thống kê bệnh, lương và doanh thu hiện có khung bộ lọc và kết quả, đang chờ tích hợp dữ liệu.</p>
+<div class="report-grid">
+  {% for key, item in report_pages.items() %}
+  <section class="report-card">
+    <span class="report-number">BÁO CÁO {{ '%02d'|format(loop.index) }}</span>
+    <h2>{{ item.title }}</h2>
+    <span class="status-label{% if key == 'history' %} status-available{% endif %}">{{ 'Tra cứu hồ sơ đã lưu' if key == 'history' else 'Chờ tích hợp dữ liệu' }}</span>
+    <p>{{ item.description }}</p>
+    <a class="button button-secondary" href="{{ url_for('clinic.reports', report=key) }}">Mở {{ item.title|lower }}</a>
+  </section>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

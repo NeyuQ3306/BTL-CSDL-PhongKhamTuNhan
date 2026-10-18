@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-17T20:12:31.320221+07:00",
+  "status": "PASS",
+  "query": "SELECT fields FROM benh_nhan WHERE ma_benh_nhan = %s",
+  "database": "clinic_vuong_week1",
+  "temporary_demo_record": {
+    "ma_benh_nhan": "VP242715504",
+    "ho_ten": "Bệnh nhân demo tuần một Vương",
+    "cmt": "000880242715504",
+    "ngay_sinh": "2000-02-29",
+    "so_dien_thoai": "0901234567"
+  }
+}

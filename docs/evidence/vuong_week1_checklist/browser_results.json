@@ -1,0 +1,272 @@
+{
+  "patientCode": "VP242715504",
+  "patientCreated": true,
+  "mysqlEvidence": "03-mysql-confirmation.json",
+  "reloadPersisted": true,
+  "foundInList": true,
+  "duplicateRejected": true,
+  "doctorCccdError": true,
+  "nursePhoneError": true,
+  "emptySearch": true,
+  "emptyHistory": true,
+  "errorFocusAfterFix": {
+    "focus": "so_dien_thoai",
+    "hash": "#so_dien_thoai",
+    "pageOverflow": false
+  },
+  "temporaryPatientDeleted": true,
+  "responsive": [
+    {
+      "activeLinks": 1,
+      "heading": "Bệnh nhân",
+      "overflow": false,
+      "path": "/patients",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bệnh nhân",
+      "overflow": false,
+      "path": "/patients/new",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bác sĩ",
+      "overflow": false,
+      "path": "/doctors/new",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm y tá",
+      "overflow": false,
+      "path": "/nurses/new",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Báo cáo phòng khám",
+      "overflow": false,
+      "path": "/reports",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lịch sử và tình trạng bệnh nhân",
+      "overflow": false,
+      "path": "/reports/history",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lượt đến khám",
+      "overflow": false,
+      "path": "/visits",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đợt điều trị",
+      "overflow": false,
+      "path": "/treatments",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đỗ Ngọc Phương",
+      "overflow": false,
+      "path": "/patients/BN001/history",
+      "width": 320
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Bệnh nhân",
+      "overflow": false,
+      "path": "/patients",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bệnh nhân",
+      "overflow": false,
+      "path": "/patients/new",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bác sĩ",
+      "overflow": false,
+      "path": "/doctors/new",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm y tá",
+      "overflow": false,
+      "path": "/nurses/new",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Báo cáo phòng khám",
+      "overflow": false,
+      "path": "/reports",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lịch sử và tình trạng bệnh nhân",
+      "overflow": false,
+      "path": "/reports/history",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lượt đến khám",
+      "overflow": false,
+      "path": "/visits",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đợt điều trị",
+      "overflow": false,
+      "path": "/treatments",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đỗ Ngọc Phương",
+      "overflow": false,
+      "path": "/patients/BN001/history",
+      "width": 390
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Bệnh nhân",
+      "overflow": false,
+      "path": "/patients",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bệnh nhân",
+      "overflow": false,
+      "path": "/patients/new",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bác sĩ",
+      "overflow": false,
+      "path": "/doctors/new",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm y tá",
+      "overflow": false,
+      "path": "/nurses/new",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Báo cáo phòng khám",
+      "overflow": false,
+      "path": "/reports",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lịch sử và tình trạng bệnh nhân",
+      "overflow": false,
+      "path": "/reports/history",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lượt đến khám",
+      "overflow": false,
+      "path": "/visits",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đợt điều trị",
+      "overflow": false,
+      "path": "/treatments",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đỗ Ngọc Phương",
+      "overflow": false,
+      "path": "/patients/BN001/history",
+      "width": 768
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Bệnh nhân",
+      "overflow": false,
+      "path": "/patients",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bệnh nhân",
+      "overflow": false,
+      "path": "/patients/new",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm bác sĩ",
+      "overflow": false,
+      "path": "/doctors/new",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Thêm y tá",
+      "overflow": false,
+      "path": "/nurses/new",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Báo cáo phòng khám",
+      "overflow": false,
+      "path": "/reports",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lịch sử và tình trạng bệnh nhân",
+      "overflow": false,
+      "path": "/reports/history",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Lượt đến khám",
+      "overflow": false,
+      "path": "/visits",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đợt điều trị",
+      "overflow": false,
+      "path": "/treatments",
+      "width": 1440
+    },
+    {
+      "activeLinks": 1,
+      "heading": "Đỗ Ngọc Phương",
+      "overflow": false,
+      "path": "/patients/BN001/history",
+      "width": 1440
+    }
+  ]
+}
