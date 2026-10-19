@@ -1,6 +1,6 @@
 # Hướng dẫn thống nhất: import và chạy thử tuần 1 trên Windows
 
-Cập nhật 18/10/2026. Đây là hướng dẫn tích hợp thử SQL PR #6 và UI/backend PR #7. PR #7 đã squash merge tại e174f626; #6 còn chờ xác nhận lại review. Không dùng riêng main để nghiệm thu đầy đủ ở thời điểm này. Tài liệu trong PR #8 chờ Trung/Vương review theo RULES.md.
+Cập nhật 19/10/2026: #4/#6/#7/#8 đã merge. Bản tích hợp tuần 1 là main `a813ac76ed925c3a127f2989c8195605ff80f1eb`, CI 72/72 test đạt. Dùng bản này để chạy thử; không ghép các nhánh riêng.
 
 ## 1. Chuẩn bị và lấy đúng source
 
@@ -21,12 +21,11 @@ cd $env:USERPROFILE
 git clone https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-week1-demo
 cd clinic-week1-demo
 git fetch origin
-git switch -c local/week1-demo 8c5be9469976333195eb67c9d2689638d02c045f
-git restore --source=08e4427f6ac8e9ba55eaba859ddab4067330ec04 -- database/schema.sql database/seed.sql database/audit.sql database/constraints.sql database/queries.sql database/expected_results.md
+git switch -c local/week1-demo a813ac76ed925c3a127f2989c8195605ff80f1eb
 git status --short
 ```
 
-Đây là snapshot UI/backend Vương đã đồng bộ main, ghép riêng sáu file SQL Quyền. Các file SQL hiện chưa commit trên nhánh local là bình thường; không push nhánh thử này và không merge thủ công vào main. Không lấy cả nhánh tuần 2. Hai SHA được cố định để cả nhóm thử cùng phiên bản. Sau khi #6/#7 được review và merge, clone mới từ main và kiểm tra có đủ sáu file trên; bỏ bước ghép snapshot.
+Đây là bản main đã tích hợp SQL/backend/UI và được cố định để cả nhóm thử cùng phiên bản. `git status --short` phải trống ở clone mới. Không cần ghép file SQL từ nhánh khác. Nếu thư mục demo cũ đang chạy tốt, không import lại hoặc ghi đè .env; dùng clone/DB thử riêng khi cần nghiệm thu lại.
 
 ## 2. Cài môi trường Python
 
@@ -152,9 +151,9 @@ Trong lúc giữ hồ sơ thử, total khác 1144 là bình thường; không im
 
 ## 7. Bằng chứng chốt tuần 1
 
-Mỗi thành viên ghi: tên, ngày giờ, phiên bản Python/MySQL, hai SHA ở bước 1, tên DB (không mật khẩu), kết quả từng bước, lỗi và ảnh. Chụp audit trước/sau, trang bệnh nhân mới, kết quả SELECT và thông báo chặn xóa. Cập nhật issue tuần 1.
+Mỗi thành viên ghi: tên, ngày giờ, phiên bản Python/MySQL, SHA ở bước 1, tên DB (không mật khẩu), kết quả từng bước, lỗi và ảnh. Chụp audit trước/sau, trang bệnh nhân mới, kết quả SELECT và thông báo chặn xóa. Cập nhật issue tuần 1.
 
-Cập nhật 18/10/2026, 19:51 (Asia/Ho_Chi_Minh): PR #7 đã hết Draft; Vương đã cập nhật bàn giao, rà 4/4 trang PDF và chạy tích hợp local. Quyền đã chạy Windows/Python 3.11.9/MySQL 8.4.11 trên DB clinic_week1_demo2: đủ 9 trigger, audit 1.144 dòng đúng và 9 nhóm findings rỗng; web và thêm/tìm/sửa/tải lại bệnh nhân được xác nhận. Chưa xác minh đầy đủ checklist/queries.sql trên máy Quyền hoặc nghiệm thu máy Trung. #7 đã merge; #6/#8 đã được Vuong-it review nhưng còn CHANGES_REQUESTED cần xác nhận lại sau cập nhật. Xem WEEK1_REVIEW_2026-10-18.md và bằng chứng Vương trong PR #7; không coi CI hoặc một máy là nghiệm thu cả ba máy.
+Ghi nhận lịch sử 18/10/2026, 19:51 (Asia/Ho_Chi_Minh): PR #7 đã hết Draft; Vương đã cập nhật bàn giao, rà 4/4 trang PDF và chạy tích hợp local. Quyền đã chạy Windows/Python 3.11.9/MySQL 8.4.11 trên DB clinic_week1_demo2: đủ 9 trigger, audit 1.144 dòng đúng và 9 nhóm findings rỗng; web và thêm/tìm/sửa/tải lại bệnh nhân được xác nhận. Chưa xác minh đầy đủ checklist/queries.sql trên máy Quyền hoặc nghiệm thu máy Trung. #7 đã merge; #6/#8 đã được Vuong-it review nhưng còn CHANGES_REQUESTED cần xác nhận lại sau cập nhật. Xem WEEK1_REVIEW_2026-10-18.md và bằng chứng Vương trong PR #7; không coi CI hoặc một máy là nghiệm thu cả ba máy.
 
 ## 8. Lỗi đã gặp khi chạy trên máy Quyền
 
@@ -163,3 +162,7 @@ Cập nhật 18/10/2026, 19:51 (Asia/Ho_Chi_Minh): PR #7 đã hết Draft; Vươ
 - MySQL trực tiếp dùng 3306 nhưng .env.example có 3307 cho Docker: sửa DB_PORT=3306. Test-NetConnection 127.0.0.1 -Port 3306 kiểm tra cổng, không kiểm tra tài khoản.
 - Lỗi 1045 với user clinic_app: cấu hình DB_USER và DB_PASSWORD đúng tài khoản local. Biến DB_* trong PowerShell có thể ghi đè .env; dùng terminal mới sau khi lưu file. Không gửi mật khẩu/ảnh .env.
 - Nếu chọn clinic_week1_demo2, phải dùng cùng tên trong USE và DB_NAME. Không tạo/import thêm DB chỉ vì cấu hình ứng dụng sai.
+
+## 9. Trạng thái sau tích hợp 19/10/2026
+
+#6/#8 đã được Vương approve và merge; các trạng thái chờ review phía trên là lịch sử. Main a813ac7 đã qua [CI 72 test và audit sạch](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39202562894). [Trung xác nhận chạy cùng hướng dẫn trên main](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/9#issuecomment-6260786763), gồm import/CRUD/ca sai/chặn xóa/dọn dữ liệu; ảnh gốc chưa đính kèm GitHub. Quyền và Vương có bằng chứng theo snapshot đã ghi; không nhận đó là chạy lại trên main. PR #9 bổ sung bằng chứng tự động, chờ approval cuối. Xem QUYEN_WEEK1_ACCEPTANCE.md để phân biệt head PR và SHA merge thử thực chạy.
