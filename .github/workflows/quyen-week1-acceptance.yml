@@ -1,0 +1,54 @@
+name: Quyen week 1 acceptance
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/quyen_week1_evidence.py'
+      - '.github/workflows/quyen-week1-acceptance.yml'
+      - 'docs/QUYEN_WEEK1_ACCEPTANCE.md'
+permissions:
+  contents: read
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: disposable-ci-password
+          MYSQL_DATABASE: clinic_quyen_acceptance_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=12
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: '3306'
+      DB_USER: root
+      DB_PASSWORD: disposable-ci-password
+      DB_NAME: clinic_quyen_acceptance_test
+      FLASK_SECRET_KEY: disposable-ci-session-key
+      RUN_MYSQL_TESTS: '1'
+      RUN_BROWSER_TESTS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m pip install "playwright>=1.50,<2"
+      - run: python -m playwright install --with-deps chromium
+      - name: Canonical SETUP order with enforced audits
+        run: python -m tools.quyen_week1_evidence --install
+      - name: SQL oracle, invalid forms, duplicate records, FK delete, and browser CRUD
+        run: python -m pytest -v --junitxml=test-artifacts/quyen-week1/pytest.xml
+      - name: Final full SQL audit and actual report result sets
+        run: python -m tools.quyen_week1_evidence
+      - name: Seed counts
+        run: python -m tools.audit_seed
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quyen-week1-acceptance-${{ github.run_id }}
+          path: test-artifacts/
+          retention-days: 30

@@ -1,7 +1,41 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}Phòng khám tư nhân{% endblock %}</title><link rel="stylesheet" href="{{ url_for('static', filename='week1.css') }}"></head>
-<body><header><a class="brand" href="{{ url_for('clinic.home') }}">PHÒNG KHÁM <span>Quản lý hồ sơ</span></a><nav aria-label="Điều hướng chính">
-{% for slug, label in [('patients','Bệnh nhân'),('doctors','Bác sĩ'),('nurses','Y tá')] %}<a href="{{ url_for('clinic.listing', slug=slug) }}">{{ label }}</a>{% endfor %}
-<a href="{{ url_for('clinic.visits') }}">Lượt khám</a><a href="{{ url_for('clinic.treatments') }}">Đợt điều trị</a><a href="{{ url_for('clinical.new_visit') }}">Tiếp nhận khám</a>
-{% for kind,label in [('diseases','Thống kê bệnh'),('salaries','Lương'),('history','Lịch sử'),('revenue','Doanh thu')] %}<a href="{{ url_for('clinical.report',kind=kind) }}">{{ label }}</a>{% endfor %}</nav></header>
-<main>{% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<p role="status" class="notice {{ category }}">{{ message }}</p>{% endfor %}{% endwith %}{% block content %}{% endblock %}</main>
-<footer>Dữ liệu giả lập phục vụ bài tập lớn. Quản lý hồ sơ, khám chữa bệnh và báo cáo.</footer></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>{% block title %}Phòng khám tư nhân{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='week1.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Chuyển đến nội dung</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{{ url_for('clinic.home') }}">
+        <span class="brand-mark" aria-hidden="true">+</span>
+        <span class="brand-copy">PHÒNG KHÁM<span>Quản lý phòng khám tư nhân</span></span>
+      </a>
+      <span class="demo-badge"><span aria-hidden="true"></span>Dữ liệu giả lập</span>
+    </div>
+    {% set active_slug = request.view_args.get('slug', '') if request.view_args else '' %}
+    <nav class="main-nav" aria-label="Điều hướng chính">
+      {% for slug, label in [('patients', 'Bệnh nhân'), ('doctors', 'Bác sĩ'), ('nurses', 'Y tá')] %}
+      <a href="{{ url_for('clinic.listing', slug=slug) }}" {% if active_slug == slug or (slug == 'patients' and request.endpoint == 'clinic.history') %}aria-current="page"{% endif %}>{{ label }}</a>
+      {% endfor %}
+      <a href="{{ url_for('clinical.new_visit') }}">Tiếp nhận / khám</a>
+      <a href="{{ url_for('clinic.visits') }}" {% if request.endpoint == 'clinic.visits' %}aria-current="page"{% endif %}>Lượt khám</a>
+      <a href="{{ url_for('clinic.treatments') }}" {% if request.endpoint == 'clinic.treatments' %}aria-current="page"{% endif %}>Đợt điều trị</a>
+      <a href="{{ url_for('clinic.reports') }}" {% if request.endpoint == 'clinic.reports' %}aria-current="page"{% endif %}>Báo cáo</a>
+    </nav>
+  </header>
+  <main id="main-content" tabindex="-1">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+      <p role="{{ 'alert' if category in ['error', 'danger'] else 'status' }}" class="notice {{ category }}">{{ message }}</p>
+      {% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer"><span>Phòng khám tư nhân · Project 1</span><span>Dữ liệu giả lập phục vụ học tập</span></footer>
+</body>
+</html>

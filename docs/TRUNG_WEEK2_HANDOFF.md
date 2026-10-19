@@ -66,3 +66,15 @@ Quyền đối chiếu truy vấn/constraints; Vương xác nhận hợp đồng
 ## Đồng bộ bản sửa tuần 1 tối 17/10
 
 Bản code `6b0786f` đồng bộ sửa mã chuẩn edit/delete, sáu ca hồi quy và ba luồng CRUD Chromium tuần 1. **68/68 test đạt**, [CI](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39035295523). Mốc 59 test phía trên là trước bản bổ sung này; không có test bị bỏ.
+
+## Cập nhật tích hợp 19/10/2026
+
+Nền main 20cd47a (đã merge #9); giữ SQL/seed/9 trigger và UI tuần 1. Route báo cáo dùng duy nhất clinic.reports để gọi bộ báo cáo tuần 2; JSON và HTML cùng dữ liệu. Bổ sung điều hướng tiếp nhận, chi tiết lượt và xác nhận khỏi. Lịch sử giữ layout tuần 1 và thêm thuốc/y tá.
+
+CI chuyển sang import canonical có audit trước/sau constraints; chạy toàn bộ test SQL/backend/browser và audit sau dọn. Log 59/68 test phía trên là lịch sử, không phải kết quả bản mới.
+
+Kiểm tra local Linux/Python 3.12: 49 passed, 32 skipped khi bỏ riêng module SQL bắt buộc MySQL (test_quyen_database.py); compile đạt. Môi trường này chưa có MySQL/Chromium, phải đọc CI mới để xác nhận tích hợp. Lần gọi toàn bộ suite local ban đầu có 25 lỗi cấu hình DB_PASSWORD ở module SQL bắt buộc; không coi skipped hoặc thiếu DB là đạt.
+
+Đính chính review sơ bộ: visit_lock đã trả bản ghi với mã bệnh nhân chuẩn, nên chưa đủ căn cứ nói URL viết thường gây sai so sánh chủ hồ sơ. Bản mới chuẩn hóa thêm mã đợt lấy từ DB; cần ca hồi quy tích hợp kiểm tra URL/mã khác hoa thường.
+
+Cần Quyền review công thức báo cáo, khóa/transaction với trigger và oracle độc lập. Cần Vương xác nhận hợp đồng field/CSRF/JSON, hoàn thiện trình bày/responsive form tuần 2 và chạy browser nghiệm thu. Trung chạy nghiệm thu Windows tuần 2 sau CI. Không tự approve hoặc merge #5.

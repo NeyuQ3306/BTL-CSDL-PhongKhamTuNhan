@@ -23,6 +23,13 @@ def choices():
 def form_response(action, title, execute, success_endpoint, success_args=None, extra=None):
     values = request.form if request.method == 'POST' else request.args
     error, status = '', 200
+    if action == 'prescription' and request.method == 'GET':
+        from werkzeug.datastructures import MultiDict
+        values = MultiDict(values)
+        exam = fetch_one('SELECT ngay_kham FROM lan_kham_benh WHERE ma_lan_kham=%s', (request.view_args['exam_id'],))
+        if not exam:
+            raise NotFound('Không tìm thấy lần khám.')
+        values.setdefault('ngay_lap_don', exam['ngay_kham'].isoformat())
     if request.method == 'POST':
         try:
             result = execute()
@@ -119,13 +126,14 @@ def json_values(obj):
     return obj
 
 
-@bp.get('/reports/<kind>')
 def report(kind):
     builders = dict(diseases=reports.diseases, salaries=reports.salaries, revenue=reports.revenue)
     if kind == 'history':
         patient_id = request.args.get('patient_id', '').strip()
         if not patient_id:
             return render_template('week2/history_search.html', patients=choices()['patients'])
+        from .workflow_validation import code
+        patient_id = code(patient_id, 'Mã bệnh nhân')
         data = reports.history(patient_id)
     elif kind in builders:
         data = builders[kind](request.args.get('month'))

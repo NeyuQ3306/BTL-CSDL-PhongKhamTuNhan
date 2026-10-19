@@ -64,6 +64,7 @@ def revenue(month=None):
 
 def history(patient_id):
     patient = get_record(ENTITIES['patients'], patient_id)
+    patient_id = patient['ma_benh_nhan']
     episode_rows = treatments(patient_id)
     drug_rows = fetch_all('''SELECT c.*,t.ten_thuoc,t.don_vi_tinh,c.so_luong*c.don_gia_ban AS thanh_tien,
         p.ma_lan_kham,p.ngay_lap_don FROM chi_tiet_don_thuoc c

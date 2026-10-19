@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, trung/week-1, trung/week-2]
   pull_request:
-    branches: [main, trung/week-1]
+    branches: [main]
 permissions:
   contents: read
 jobs:
@@ -25,7 +25,7 @@ jobs:
     env:
       DB_HOST: 127.0.0.1
       DB_PORT: '3306'
-      DB_USER: clinic_test
+      DB_USER: root
       DB_PASSWORD: disposable-ci-password
       DB_NAME: clinic_week1_test
       FLASK_SECRET_KEY: disposable-ci-session-key
@@ -49,17 +49,10 @@ jobs:
           PY
       - run: python -m pip install "playwright>=1.50,<2"
       - run: python -m playwright install --with-deps chromium
-      - run: python -m tools.import_seed
-      - run: python -m pytest -v
+      - run: python -m tools.quyen_week1_evidence --install
+      - run: python -m pytest -v --junitxml=test-artifacts/week2/pytest.xml
+      - run: python -m tools.quyen_week1_evidence
       - run: python -m tools.audit_seed
-      - name: Browser evidence
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: week2-browser-${{ github.run_id }}
-          path: test-artifacts/week2/
-          if-no-files-found: warn
-          retention-days: 30
       - name: Week 1 browser evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -67,4 +60,11 @@ jobs:
           name: week1-browser-${{ github.run_id }}
           path: test-artifacts/week1/
           if-no-files-found: warn
+          retention-days: 30
+      - name: Week 2 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week2-integration-${{ github.run_id }}
+          path: test-artifacts/
           retention-days: 30

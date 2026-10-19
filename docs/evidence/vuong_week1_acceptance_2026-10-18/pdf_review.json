@@ -1,0 +1,78 @@
+{
+  "renderer": "Poppler pdftoppm -scale-to 2600 -png",
+  "review_scope": "Screen rendering only; design semantics unchanged; physical print not tested",
+  "files": [
+    {
+      "file": "docs/design/ER_Phong_kham_Ban_chot.pdf",
+      "sha256": "180caaf0ea8552878a381c9ef6b7b216e1a6f3e206300d2b9c45683065684f84",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            3000.0,
+            2200.0
+          ],
+          "image": "pdf/er-1.png",
+          "image_pixels": [
+            2600,
+            1907
+          ],
+          "text_characters": 1070,
+          "status": "PASS",
+          "actual": "Full page visually inspected: readable Vietnamese text, labels, keys/cardinalities and footnotes; no clipping, overlap or broken glyphs observed."
+        },
+        {
+          "page": 2,
+          "size_points": [
+            595.2756,
+            841.8898
+          ],
+          "image": "pdf/er-2.png",
+          "image_pixels": [
+            1839,
+            2600
+          ],
+          "text_characters": 2715,
+          "status": "PASS",
+          "actual": "Full page visually inspected: readable Vietnamese text, labels, keys/cardinalities and footnotes; no clipping, overlap or broken glyphs observed."
+        }
+      ]
+    },
+    {
+      "file": "docs/design/Luoc_do_quan_he_Phong_kham_Ban_chot.pdf",
+      "sha256": "ba4affb18db141ebb7302468376e76fce8a9e47cdf66700a4c04ce7a4405f911",
+      "pages": [
+        {
+          "page": 1,
+          "size_points": [
+            1760.0,
+            1320.0
+          ],
+          "image": "pdf/relational-1.png",
+          "image_pixels": [
+            2600,
+            1950
+          ],
+          "text_characters": 1232,
+          "status": "PASS",
+          "actual": "Full page visually inspected: readable Vietnamese text, labels, keys/cardinalities and footnotes; no clipping, overlap or broken glyphs observed."
+        },
+        {
+          "page": 2,
+          "size_points": [
+            595.2756,
+            841.8898
+          ],
+          "image": "pdf/relational-2.png",
+          "image_pixels": [
+            1839,
+            2600
+          ],
+          "text_characters": 2715,
+          "status": "PASS",
+          "actual": "Full page visually inspected: readable Vietnamese text, labels, keys/cardinalities and footnotes; no clipping, overlap or broken glyphs observed."
+        }
+      ]
+    }
+  ]
+}

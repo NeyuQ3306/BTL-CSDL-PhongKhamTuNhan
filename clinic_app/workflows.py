@@ -66,6 +66,7 @@ def examination(cur, visit, data):
     elif mode != 'existing':
         v.invalid('Chọn đợt mới hoặc tái khám.')
     episode = one(cur, 'SELECT * FROM dot_dieu_tri WHERE ma_dot=%s FOR UPDATE', (episode_id,))
+    episode_id = episode['ma_dot']
     if episode['ma_benh_nhan'] != visit['ma_benh_nhan']:
         v.invalid('Lượt và đợt phải thuộc cùng bệnh nhân.')
     if episode['trang_thai'] != 'Đang điều trị':
