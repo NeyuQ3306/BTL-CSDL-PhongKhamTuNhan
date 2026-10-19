@@ -23,4 +23,6 @@ Thư mục phiên chính giữ đầy đủ ảnh khảo sát, luồng nghiệp 
 
 ## Đóng gói và commit
 
+Source commit **fa699a6874452d273cc1e88d689dea1146ffd2f5** được chạy lại ở `20261019_222841`: 168 passed/0 skipped, 47,68 giây. [JUnit](vuong_week2_prepare_20261019_222841/junit.xml), [test log](vuong_week2_prepare_20261019_222841/pytest.txt), [results/audit](vuong_week2_prepare_20261019_222841/results.json), [manifest](vuong_week2_prepare_20261019_222841/source_sha256.json), [cases T01–T15](vuong_week2_prepare_20261019_222841/browser-tests/vuong-acceptance/cases.json). Có ảnh các ca nghiệm thu và JSON đối chiếu; các ảnh khảo sát/CRUD/báo cáo lặp của lần này được giữ trong archive local, bộ ảnh đầy đủ đã có tại 221718. Tên ảnh khảo sát trong results là tên lúc thu thập, không cam kết mọi ảnh lặp đều nằm trong PR.
+
 `vuong_week2_delivery_checks.json` ghi kết quả kiểm tra secrets/file tạm, template, Python, link tài liệu và đồng nhất source với snapshot kiểm thử. Nếu có phiên chạy lại sau commit, đó là kiểm chứng bổ sung được trỏ riêng trong tài liệu bàn giao/PR; không sửa số liệu lịch sử để gán cho commit mới.

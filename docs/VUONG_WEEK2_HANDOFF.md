@@ -1,5 +1,7 @@
 # Bàn giao tuần 2 của Vương
 
+**Bản source bàn giao:** commit `fa699a6874452d273cc1e88d689dea1146ffd2f5`, đã chạy lại **168 passed / 0 skipped** sau commit (47,68 giây), [JUnit](evidence/vuong_week2_prepare_20261019_222841/junit.xml), [log](evidence/vuong_week2_prepare_20261019_222841/pytest.txt), [audit](evidence/vuong_week2_prepare_20261019_222841/results.json). Commit ghi nhận sau đó chỉ bổ sung bằng chứng/tài liệu; không sửa code đã chạy.
+
 ## Kết quả và phụ thuộc
 
 UI nghiệp vụ và bốn báo cáo dùng MySQL thật đã hoàn thiện trên `vuong/week-2`. Source bổ sung read-only context/đường quay lại và thông báo lỗi báo cáo; không đổi schema, seed, trigger, công thức hoặc transaction ghi của Trung/Quyền.

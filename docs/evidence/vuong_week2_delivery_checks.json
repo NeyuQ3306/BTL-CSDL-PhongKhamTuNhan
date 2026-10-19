@@ -12,5 +12,23 @@
   ],
   "reason": "Authored EOL normalization and portable Windows runner options; application/test semantics unchanged since 168-test run. A committed-source rerun will be recorded separately.",
   "cache_env_not_in_delivery": true,
-  "publication_log_normalization": "Historical failing pytest logs: trailing whitespace removed only; raw local copies retained in ignored archive."
+  "publication_log_normalization": "Historical failing pytest logs: trailing whitespace removed only; raw local copies retained in ignored archive.",
+  "implementation_commit": "fa699a6874452d273cc1e88d689dea1146ffd2f5",
+  "staged_diff_check": "passed after trimming only historical failure-log whitespace",
+  "git_index_excludes_env_cache": true,
+  "post_commit_test": {
+    "source_sha": "fa699a6874452d273cc1e88d689dea1146ffd2f5",
+    "run": "20261019_222841",
+    "pytest": {
+      "tests": 168,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "audit_total": 1144,
+    "triggers": 9,
+    "audit_sets": 10,
+    "seed_unchanged": true,
+    "env_unchanged": true
+  }
 }
