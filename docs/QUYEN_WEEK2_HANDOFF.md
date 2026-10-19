@@ -44,3 +44,11 @@ Không coi CI tuần 1 thay nghiệm thu tuần 2.
 - Đối chiếu ràng buộc trực tiếp SQL với transaction backend, nhất là các cận dưới không thể bảo vệ ở COMMIT bằng CHECK/FK.
 - Chốt expected_results và queries sau review; tài liệu hiện vẫn là bản tuần 1 có số đã kiểm chứng.
 - PR của Quyền cần Trung/Vương review; mốc tuần 2: PR trước 20:00 26/10, chốt 20:00 27/10.
+
+## Bổ sung ca biên 19/10, phiên tiếp theo
+
+Đã đọc log run 39261798558: 71 SQL test và 45 backend parity test đạt ở head 686d08c (merge thử 05beaebc). Đây là kết quả trước bổ sung mới.
+Bổ sung 6 ca kỳ tính bằng dữ liệu mới trong transaction: ngày hiện tại, ngày mai bị loại, năm nhuận 29/02, chuyển sang 01/03, tháng rỗng, tái mắc và thưởng đúng ngày khỏi. Thêm ca Q3 dữ liệu mới/không có lịch sử/mã không tồn tại; kiểm tra giá thuốc lịch sử khi giá danh mục đổi và nhiều y tá không nhân tiền khám.
+Đáp án tính tay nằm trong database/expected_results.md; queries.sql được bổ sung hướng dẫn kỳ [đầu, cuối), cấu trúc 11 tập kết quả và hành vi Q3. Không đổi công thức/schema/seed.
+Các test mới rollback và chỉ cho chạy trên DB *_test. Workflow hiện có chạy cả SQL và candidate Trung pin 10c8082; kết quả head mới phải xem Checks, không dùng số test cũ thay thế.
+Phần còn lại để chốt: Trung/Vương review PR #10, review UI và nghiệm thu tuần 2 trên máy thành viên, kiểm tra sau tích hợp. Giới hạn cận dưới/SQL quản trị trong database/README.md vẫn áp dụng; bộ test không biến trigger thành bảo vệ mọi thao tác quản trị.

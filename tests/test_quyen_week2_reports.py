@@ -132,3 +132,113 @@ def test_monthly_seed_oracle_and_backend(month):
             assert {x['ma_nhan_vien']:x['tong_luong'] for x in salaries[kind]} == {
                 x[pk]:base+bonus*counts[x[pk]] for x in data[source]}
         assert salaries['total'] == sum(x['tong_luong'] for x in salaries['doctors']+salaries['nurses'])
+
+
+@pytest.fixture
+def boundary_db():
+    """New clinical history in one transaction; always rollback, never commit."""
+    if not os.getenv('DB_NAME', '').endswith('_test'):
+        pytest.fail('Boundary tests require an isolated *_test database')
+    db = connect()
+    try:
+        with db.cursor() as c:
+            c.execute("INSERT INTO benh_nhan VALUES ('QW2P','998877665544','Quyen boundary','1980-01-01','Test','0900000000')")
+            c.execute("INSERT INTO benh_nhan VALUES ('QW2EMPTY','998877665545','Empty history','1980-01-01','Test','0900000001')")
+            c.execute("INSERT INTO benh VALUES ('QW2B','Quyen boundary disease')")
+            c.execute("INSERT INTO dot_dieu_tri VALUES ('QW2D1','2004-02-28',NULL,'Đang điều trị','QW2P','QW2B','BS001')")
+            for i, day in [(1,'2004-02-28'),(2,'2004-02-29'),(3,'2004-03-01')]:
+                c.execute("INSERT INTO luot_den_kham VALUES (%s,%s,NULL,'QW2P')", (f'QW2L{i}',day))
+                c.execute("INSERT INTO lan_kham_benh VALUES (%s,%s,%s,%s,'Follow-up','QW2D1',%s)",
+                          (f'QW2K{i}',i,day,i*100,f'QW2L{i}'))
+                c.execute("INSERT INTO ho_tro VALUES (%s,'YT001','Support',%s)",(f'QW2L{i}',day))
+            c.execute("INSERT INTO ho_tro VALUES ('QW2L2','YT002','Second nurse','2004-02-29')")
+            c.execute("INSERT INTO don_thuoc VALUES ('QW2RX','2004-02-29','QW2K2')")
+            c.execute("INSERT INTO chi_tiet_don_thuoc VALUES ('QW2RX','T001',2,'Morning',1000),('QW2RX','T002',3,'Evening',2000)")
+            c.execute("UPDATE thuoc SET gia_hien_tai=9999 WHERE ma_thuoc='T001'")
+            c.execute("UPDATE dot_dieu_tri SET ngay_khoi='2004-03-01',trang_thai='Đã khỏi' WHERE ma_dot='QW2D1'")
+            c.execute("INSERT INTO dot_dieu_tri VALUES ('QW2D2','2004-03-02',NULL,'Đang điều trị','QW2P','QW2B','BS001')")
+            c.execute("INSERT INTO luot_den_kham VALUES ('QW2L4','2004-03-02',NULL,'QW2P')")
+            c.execute("INSERT INTO lan_kham_benh VALUES ('QW2K4',1,'2004-03-02',400,'Recurrence','QW2D2','QW2L4')")
+            c.execute("INSERT INTO ho_tro VALUES ('QW2L4','YT001','Support','2004-03-02')")
+        yield db
+    finally:
+        db.rollback()
+        db.close()
+
+def boundary_results(db, month, as_of, patient='QW2P'):
+    output = []
+    with db.cursor() as c:
+        c.execute("SET time_zone='+07:00'")
+        # Session-only MySQL clock; exercise the actual CURRENT_DATE expression.
+        c.execute("SET timestamp=UNIX_TIMESTAMP(%s)", (as_of+' 12:00:00',))
+        for sql in statements((ROOT/'database/queries.sql').read_text(encoding='utf-8')):
+            if sql.startswith('SET @thang'):
+                c.execute('SET @thang=%s',(month+'-01',))
+            elif sql.startswith('SET @ma_benh_nhan'):
+                c.execute('SET @ma_benh_nhan=%s',(patient,))
+            else:
+                c.execute(sql)
+            if c.description:
+                output.append(c.fetchall())
+    return output
+
+@pytest.mark.parametrize('month,as_of,episodes,fees,medicines,cures,supports', [
+    ('2004-02','2004-02-28',1,100,0,0,(1,0)),
+    ('2004-02','2004-02-29',1,300,8000,0,(2,1)),
+    ('2004-02','2004-03-02',1,300,8000,0,(2,1)),
+    ('2004-03','2004-03-01',1,300,0,1,(1,0)),
+    ('2004-03','2004-03-02',2,700,0,1,(2,0)),
+    ('2004-01','2004-03-02',0,0,0,0,(0,0)),
+])
+def test_period_boundaries(boundary_db, monkeypatch, month, as_of, episodes, fees, medicines, cures, supports):
+    result = boundary_results(boundary_db, month, as_of)
+    assert {x['ma_benh']:x['so_dot_mac'] for x in result[0]} == ({'QW2B':episodes} if episodes else {})
+    assert result[-1][0] == dict(tien_kham=fees,tien_thuoc=medicines,doanh_thu=fees+medicines)
+    doctors = {x['ma_bac_si']:x for x in result[1]}
+    nurses = {x['ma_y_ta']:x for x in result[2]}
+    assert doctors['BS001']['tong_luong'] == 7000000 + cures*1000000
+    for nurse, count in zip(('YT001','YT002'),supports):
+        assert nurses[nurse]['tong_luong'] == 5000000 + count*200000
+    reports = backend()
+    if reports is not None:
+        from clinic_app import create_app
+        monkeypatch.setattr('clinic_app.db.get_db', lambda: boundary_db)
+        monkeypatch.setattr(reports,'today_vn',lambda:date.fromisoformat(as_of))
+        with create_app({'TESTING':True,'SECRET_KEY':'boundary-test'}).app_context():
+            assert reports.revenue(month)['total'] == fees+medicines
+            assert {x['ma_benh']:x['so_dot_mac'] for x in reports.diseases(month)['rows']} == ({'QW2B':episodes} if episodes else {})
+            salary = reports.salaries(month)
+            assert next(x['tong_luong'] for x in salary['doctors'] if x['ma_nhan_vien']=='BS001') == 7000000+cures*1000000
+            for nurse, count in zip(('YT001','YT002'),supports):
+                assert next(x['tong_luong'] for x in salary['nurses'] if x['ma_nhan_vien']==nurse) == 5000000+count*200000
+
+def test_new_history_and_empty_patient(boundary_db, monkeypatch):
+    result = boundary_results(boundary_db,'2004-03','2004-03-02')
+    assert result[3][0]['ma_benh_nhan'] == 'QW2P'
+    assert len(result[4]) == 4
+    assert {x['ma_dot']:x['lan_kham_hien_tai'] for x in result[5]} == {'QW2D1':3,'QW2D2':1}
+    assert [(x['ma_dot'],x['lan_kham_hien_tai']) for x in result[6]] == [('QW2D2',1)]
+    assert {x['ma_lan_kham']:int(x['tien_kham_chua']) for x in result[7]} == {'QW2K1':100,'QW2K2':200,'QW2K3':300,'QW2K4':400}
+    assert {x['ma_thuoc']:int(x['thanh_tien']) for x in result[8]} == {'T001':2000,'T002':6000}
+    assert len(result[9]) == 5
+    empty = boundary_results(boundary_db,'2004-03','2004-03-02','QW2EMPTY')
+    assert len(empty[3]) == 1 and all(not rows for rows in empty[4:10])
+    missing = boundary_results(boundary_db,'2004-03','2004-03-02','QW2MISSING')
+    assert all(not rows for rows in missing[3:10])
+    reports = backend()
+    if reports is not None:
+        from clinic_app import create_app
+        from werkzeug.exceptions import NotFound
+        monkeypatch.setattr('clinic_app.db.get_db',lambda:boundary_db)
+        with create_app({'TESTING':True,'SECRET_KEY':'boundary-test'}).app_context():
+            history = reports.history('QW2P')
+            assert {x['ma_dot']:x['lan_kham_hien_tai'] for x in history['treatments']} == {'QW2D1':3,'QW2D2':1}
+            assert [x['ma_dot'] for x in history['current']] == ['QW2D2']
+            assert len(history['visits']) == 4 and len(history['examinations']) == 4
+            assert sum(x['thanh_tien'] for x in history['medicines']) == 8000
+            assert len(history['support']) == 5
+            empty = reports.history('QW2EMPTY')
+            assert empty['patient']['ma_benh_nhan']=='QW2EMPTY'
+            assert all(not empty[key] for key in ('visits','treatments','current','examinations','medicines','support'))
+            with pytest.raises(NotFound):
+                reports.history('QW2MISSING')
