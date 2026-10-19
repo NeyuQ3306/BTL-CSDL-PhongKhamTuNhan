@@ -25,4 +25,11 @@ Công cụ đọc biến môi trường, không tự đọc .env. Hướng dẫn
 
 ## Giới hạn
 
-Đây là bằng chứng tự động trên máy CI, không đánh dấu chạy trên máy Windows của Quyền hoặc Trung. Những xác nhận máy Quyền ngày 18/10 vẫn giữ nguyên giá trị theo snapshot. Nghiệm thu cùng hướng dẫn trên máy Trung còn cần thành viên cung cấp. PR bổ sung này cần Trung/Vương review theo RULES trước merge; không tự approve.
+Đây là bằng chứng tự động trên máy CI, không đánh dấu chạy trên máy Windows của Quyền hoặc Trung. Những xác nhận máy Quyền ngày 18/10 vẫn giữ nguyên giá trị theo snapshot. Trung đã xác nhận nghiệm thu cá nhân ngày 19/10/2026 trên main a813ac7, Windows/Python 3.11.9/MySQL 8.4.11: import chuẩn, 11 bảng/9 trigger, CRUD ba nhóm, trùng/sai/chặn xóa và audit sau dọn sạch 1.144 dòng. [Xác nhận và giới hạn bằng chứng](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/9#issuecomment-6260786763). Đây là xác nhận thao tác trực tiếp do Trung cung cấp qua trợ lý; ảnh gốc chưa đính kèm GitHub, không phải local 72 pytest. PR bổ sung này cần Trung/Vương review theo RULES trước merge; không tự approve.
+
+## Kết quả đã xác minh và SHA thực chạy
+
+- Main tích hợp `a813ac76ed925c3a127f2989c8195605ff80f1eb`: [run 39202562894](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39202562894), job 117898447330: 72 passed, audit 1.144 dòng, matches_expected_counts=true, findings rỗng.
+- Head PR #9 là `538a451dde20cc8541ab883c7a95dfedb4ee8df1`; **SHA thực được checkout và chạy** trong [acceptance run 39203057488](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39203057488) là merge thử `607253ce1f0961c61dbb6cb04111909df787a5e8` (head trên + main a813ac7), không phải trực tiếp head PR. JSON source_sha và log checkout xác nhận điều này.
+- Job 117899939130: 72 passed, không skipped; 10 truy vấn audit sạch, 11 bảng/9 trigger; audit_seed 1.144 dòng đúng. Artifact 12164836512 chứa JSON/JUnit/ảnh. Các kết quả này thuộc snapshot trên; commit cập nhật tài liệu sau đó phải xem Checks riêng.
+- Phản hồi review Trung ngày 19/10 đã được cập nhật vào tài liệu; vẫn chờ approval cuối, không tự đánh dấu PR đã duyệt.
