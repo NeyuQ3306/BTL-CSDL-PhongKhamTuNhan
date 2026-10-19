@@ -2,7 +2,11 @@
 
 Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**, múi giờ Việt Nam.
 
-## Trạng thái backend tuần 1 — nhánh Trung
+## Chạy thử tích hợp tuần 1
+
+Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md). Backend #4 và UI #7 đã merge; SQL #6 còn chờ xác nhận review. Khi #6 chưa merge, dùng snapshot theo SETUP; không coi main đã có trigger chuẩn. Import schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
+
+## Trạng thái backend tuần 1
 
 - Đã chuyển backend sang lược đồ 11 bảng: CRUD bệnh nhân/bác sĩ/y tá, validation, kết nối theo request, transaction và cấu hình `.env`.
 - Có màn hình tra cứu lượt/đợt/lần khám làm nền tuần 2; chưa triển khai ghi nghiệp vụ và bốn báo cáo hoàn chỉnh.
@@ -48,7 +52,7 @@ Python 3.11; Flask 3; PyMySQL; MySQL 8.4; HTML/CSS/Jinja. Giữ MySQL làm ngu�
 
 Nhánh đã chuẩn bị: `quyen/week-1`, `trung/week-1`, `vuong/week-1`. Mở PR về `main`. Tuần sau tạo nhánh mới từ `origin/main`, không tái sử dụng nhánh đã squash merge. Quyền điều phối merge; PR của Quyền phải có Trung hoặc Vương review.
 
-Tài khoản GitHub của Trung và Vương chưa được cung cấp nên **chưa mời cộng tác viên**. CODEOWNERS không thay thế bảo vệ nhánh; xem trạng thái cấu hình trong RULES.md.
+CODEOWNERS không thay thế bảo vệ nhánh; xem trạng thái cấu hình trong RULES.md.
 
 ## Nguồn tham khảo
 
