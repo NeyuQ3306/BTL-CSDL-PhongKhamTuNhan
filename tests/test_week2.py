@@ -197,3 +197,15 @@ def test_month_boundaries(monkeypatch):
     assert r.month_range()==('2026-10',date(2026,10,1),date(2026,10,18))
     assert r.month_range('2025-12')[2]==date(2026,1,1)
     assert r.month_range('2024-02')[2]==date(2024,3,1)
+
+
+def test_existing_episode_case_alias_uses_canonical_owner(app, clinical_data):
+    """MySQL's case-insensitive codes still retain the stored patient/episode IDs."""
+    with app.app_context():
+        w.create_visit(visit(ma_benh_nhan='w2bn1'))
+        w.create_visit(visit(2, '2001-01-31', ma_benh_nhan='w2bn1', ma_dot='w2d1', che_do_dot='existing'))
+        w.add_examination('w2l2', visit(3, '2001-01-31', ma_dot='W2D2', ma_benh='W2B2'))
+        hist = r.history('w2bn1')
+        assert hist['patient']['ma_benh_nhan'] == 'W2BN1'
+        assert len(hist['examinations']) == 3
+        assert fetch_one("SELECT ma_dot FROM lan_kham_benh WHERE ma_lan_kham='W2K2'")['ma_dot'] == 'W2D1'
