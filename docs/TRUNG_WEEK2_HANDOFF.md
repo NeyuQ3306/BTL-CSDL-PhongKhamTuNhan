@@ -1,5 +1,9 @@
 # Bàn giao backend tuần 2 — Trung
 
+## Trạng thái sau review ngày 19/10/2026
+
+PR #5 hiện đặt base main. Trung đã xác nhận nghiệm thu Windows trên 10c8082, bao gồm audit sau dọn; không còn chờ nghiệm thu cá nhân hoặc yêu cầu thêm ảnh. Đã đọc review Vương #11 và oracle Quyền #10, sửa JSON lỗi/title/responsive tối thiểu và thêm test hồi quy. Nguồn, phạm vi, kết quả local và việc tích hợp còn lại: [TRUNG_WEEK2_REVIEW_FIXES.md](TRUNG_WEEK2_REVIEW_FIXES.md). Các đoạn dưới là lịch sử bàn giao, không thay trạng thái cập nhật này; kết quả CI cũ không chứng minh commit sửa mới.
+
 Phạm vi: luồng lượt/đợt/lần khám, hỗ trợ y tá, xác nhận khỏi, kê đơn và bốn báo cáo. Theo PDF phân công mốc 27/10/2026; PR trước 20:00 ngày 26/10.
 
 ## Quan hệ với tuần 1

@@ -1,5 +1,7 @@
 # Hợp đồng backend tuần 2
 
+Sau review Vương #11: lỗi validation/tra cứu báo cáo có `format=json` trả JSON `{"error": "thông báo"}` với mã HTTP 400/404/422; payload thành công giữ nguyên. Lỗi hạ tầng 500/503 vẫn qua handler chung. Thiếu `patient_id` vẫn mở màn hình chọn bệnh nhân. Xem [bản sửa và nguồn đối chiếu](TRUNG_WEEK2_REVIEW_FIXES.md).
+
 Các route dưới đây đã triển khai. GET mở form/tra cứu; POST thay đổi DB và yêu cầu `csrf_token`. Chưa có JSON mutation API. GET báo cáo hỗ trợ `format=json` để UI khác dùng. Mọi tên bảng/cột là snake_case như seed chuẩn hóa tuần 1.
 
 ## Route và form

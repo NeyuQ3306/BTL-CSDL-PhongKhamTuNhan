@@ -3,7 +3,7 @@
 {% macro select(name,label,items,key,caption,required=True) %}<label>{{ label }}<select name="{{ name }}" {% if required %}required{% endif %}><option value="">— Chọn —</option>{% for item in items %}<option value="{{ item[key] }}" {% if values.get(name)==item[key] %}selected{% endif %}>{{ item[key] }} · {{ item[caption] }}</option>{% endfor %}</select></label>{% endmacro %}
 {% block content %}<a href="{{ url_for('clinic.visits') }}">← Danh sách lượt khám</a><h1>{{ title }}</h1>
 {% if error %}<p class="notice error" role="alert">{{ error }}</p>{% endif %}
-<form method="post" class="record-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<form method="post" class="record-form clinical-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 {% if action=='visit' %}<h2>1. Lượt đến khám</h2><div class="fields">
 {{ field('ma_luot','Mã lượt mới') }}{{ select('ma_benh_nhan','Bệnh nhân',choices.patients,'ma_benh_nhan','ho_ten') }}
 {{ field('ngay_vao_vien','Ngày vào viện','date',today) }}</div>{% endif %}

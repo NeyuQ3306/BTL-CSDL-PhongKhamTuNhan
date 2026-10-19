@@ -1,8 +1,6 @@
 {% extends 'week1/base.html' %}
 {% from 'week1/record_macros.html' import display_value %}
-{% block title %}Lịch sử {{ patient.ho_ten }} · Phòng khám<h2>Thuốc đã kê</h2><div class="table-wrap"><table><tr><th>Ngày</th><th>Thuốc</th><th>Số lượng</th><th>Liều dùng</th><th>Thành tiền</th></tr>{% for row in medicines %}<tr><td>{{ row.ngay_lap_don }}</td><td>{{ row.ten_thuoc }}</td><td>{{ row.so_luong }}</td><td>{{ row.lieu_dung }}</td><td>{{ row.thanh_tien|money }}</td></tr>{% else %}<tr><td colspan="5">Chưa có thuốc.</td></tr>{% endfor %}</table></div>
-<h2>Y tá hỗ trợ</h2><div class="table-wrap"><table><tr><th>Lượt</th><th>Y tá</th><th>Ngày</th><th>Công việc</th></tr>{% for row in support %}<tr><td>{{ row.ma_luot }}</td><td>{{ row.ho_ten }}</td><td>{{ row.ngay_ho_tro }}</td><td>{{ row.noi_dung_ho_tro }}</td></tr>{% else %}<tr><td colspan="4">Chưa có hỗ trợ.</td></tr>{% endfor %}</table></div>
-{% endblock %}
+{% block title %}Lịch sử {{ patient.ho_ten }} · Phòng khám{% endblock %}
 {% block content %}
 <div class="history-links"><a class="back-link" href="{{ url_for('clinic.reports', report='history') }}">← Chọn bệnh nhân khác</a><a class="back-link" href="{{ url_for('clinic.detail', slug='patients', record_id=patient.ma_benh_nhan) }}">Hồ sơ bệnh nhân</a></div>
 <p class="eyebrow">LỊCH SỬ VÀ TÌNH TRẠNG BỆNH NHÂN</p>

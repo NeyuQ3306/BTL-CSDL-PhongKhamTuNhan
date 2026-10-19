@@ -128,17 +128,22 @@ def json_values(obj):
 
 def report(kind):
     builders = dict(diseases=reports.diseases, salaries=reports.salaries, revenue=reports.revenue)
-    if kind == 'history':
-        patient_id = request.args.get('patient_id', '').strip()
-        if not patient_id:
-            return render_template('week2/history_search.html', patients=choices()['patients'])
-        from .workflow_validation import code
-        patient_id = code(patient_id, 'Mã bệnh nhân')
-        data = reports.history(patient_id)
-    elif kind in builders:
-        data = builders[kind](request.args.get('month'))
-    else:
-        raise NotFound()
+    try:
+        if kind == 'history':
+            patient_id = request.args.get('patient_id', '').strip()
+            if not patient_id:
+                return render_template('week2/history_search.html', patients=choices()['patients'])
+            from .workflow_validation import code
+            patient_id = code(patient_id, 'Mã bệnh nhân')
+            data = reports.history(patient_id)
+        elif kind in builders:
+            data = builders[kind](request.args.get('month'))
+        else:
+            raise NotFound()
+    except HTTPException as exc:
+        if request.args.get('format') == 'json':
+            return jsonify(error=exc.description), exc.code
+        raise
     if request.args.get('format') == 'json':
         return jsonify(json_values(data))
     if kind == 'history':
