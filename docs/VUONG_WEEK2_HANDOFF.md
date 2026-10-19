@@ -1,6 +1,8 @@
 # Bàn giao tuần 2 của Vương
 
-**Bản source bàn giao:** commit `fa699a6874452d273cc1e88d689dea1146ffd2f5`, đã chạy lại **168 passed / 0 skipped** sau commit (47,68 giây), [JUnit](evidence/vuong_week2_prepare_20261019_222841/junit.xml), [log](evidence/vuong_week2_prepare_20261019_222841/pytest.txt), [audit](evidence/vuong_week2_prepare_20261019_222841/results.json). Commit ghi nhận sau đó chỉ bổ sung bằng chứng/tài liệu; không sửa code đã chạy.
+**Bản source kiểm tra mới nhất:** commit `33901998df480d753985127ed7f7e9a791cbc5fd`, đã chạy lại **168 passed / 0 skipped** khi review phụ thuộc, [JUnit](evidence/vuong_week2_prepare_20261019_224053/junit.xml), [log](evidence/vuong_week2_prepare_20261019_224053/pytest.txt), [audit](evidence/vuong_week2_prepare_20261019_224053/results.json). Code thực thi/test/workflow giữ nguyên từ `fa699a6`; commit sau phiên này chỉ bổ sung bằng chứng/tài liệu.
+
+**Review phụ thuộc đã đăng:** #5 COMMENT tại `10c8082`, chưa approve UI gốc vì select tràn 320px/title lịch sử; #10 APPROVE tại `1bf9f8b` trong phạm vi SQL/oracle/tích hợp. Những lỗi UI/JSON đã sửa trong #11, không sửa nhánh Trung. [Biên bản review và bảng SHA/CI](VUONG_WEEK2_PR_REVIEW.md). #5/#10 vẫn chưa merge tại lần kiểm tra; #11 chưa có reviewer khác và CI chưa xác nhận đạt.
 
 ## Kết quả và phụ thuộc
 

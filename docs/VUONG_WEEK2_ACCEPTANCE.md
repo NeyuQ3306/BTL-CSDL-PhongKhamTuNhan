@@ -2,6 +2,8 @@
 
 > Mốc kiểm thử lịch sử. Trạng thái bàn giao hiện tại: [VUONG_WEEK2_HANDOFF.md](VUONG_WEEK2_HANDOFF.md).
 
+Chạy lại sau review #5/#10 tại source `33901998df480d753985127ed7f7e9a791cbc5fd`: **168 passed / 0 skipped, 47,12 giây**; [JUnit](evidence/vuong_week2_prepare_20261019_224053/junit.xml), [input/expected/actual mới](evidence/vuong_week2_prepare_20261019_224053/browser-tests/vuong-acceptance/cases.json), [biên bản review phụ thuộc](VUONG_WEEK2_PR_REVIEW.md). Các số liệu dưới đây giữ nguyên phiên lịch sử, không gán cho head mới.
+
 ## Kết quả và phạm vi
 
 **168 test đạt, 0 failure, 0 error, 0 skipped**, 48,88 giây. Đã chạy T01–T15 trên bản tích hợp hiện tại; không thấy lỗi chặn mới trong các ca đã kiểm tra. Không cần thay code ứng dụng trong bước này. Chỉ bổ sung test độc lập, cải tiến runner thu JUnit và biên bản.

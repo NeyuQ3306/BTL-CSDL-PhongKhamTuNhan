@@ -1,5 +1,9 @@
 # Chỉ mục bằng chứng tuần 2 — Vương
 
+## Review phụ thuộc và chạy lại tích hợp
+
+[Biên bản review](../VUONG_WEEK2_PR_REVIEW.md): PR5 source gốc `10c8082` chạy 108 test/0 skip, PR10 source gốc `1bf9f8b` chạy 78 SQL test/0 skip; Vương `3390199` chạy lại 168 test/0 skip trong phiên `20261019_224053`. Mỗi kết quả có JUnit/log/manifest/audit riêng; không dùng source đã sửa của Vương làm bằng chứng UI gốc Trung. [CI log trích theo SHA và review ID](vuong_pr_review_ci.json); [harness](vuong_pr_review_harness/README.md). Thư mục 224053 giữ ảnh browser và khảo sát của chính phiên mới.
+
 ## Phiên nghiệm thu chính
 
 [Biên bản T01–T15](../VUONG_WEEK2_ACCEPTANCE.md), phiên `20261019_221718`: 168 passed, 0 skipped. [JUnit](vuong_week2_prepare_20261019_221718/junit.xml), [test log](vuong_week2_prepare_20261019_221718/pytest.txt), [cases JSON](vuong_week2_prepare_20261019_221718/browser-tests/vuong-acceptance/cases.json), [ma trận CSV](vuong_week2_prepare_20261019_221718/acceptance-matrix.csv), [audit/môi trường](vuong_week2_prepare_20261019_221718/results.json), [manifest](vuong_week2_prepare_20261019_221718/source_sha256.json).
