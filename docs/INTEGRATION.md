@@ -1,5 +1,7 @@
 # Hợp đồng tích hợp ban đầu
 
+**Hiện trạng tuần 2 (19/10/2026):** nhánh Vương đã tích hợp backend Trung #5 và oracle Quyền #10 để hoàn thiện UI nghiệp vụ/báo cáo; hai PR phụ thuộc chưa merge. Dùng [hợp đồng tuần 2](WEEK2_INTEGRATION.md) và [bàn giao Vương](VUONG_WEEK2_HANDOFF.md) cho bản này. Các trạng thái chờ tích hợp/PR tuần 1 phía dưới là lịch sử, không mô tả hành vi hiện tại.
+
 Phần đầu là mục tiêu tích hợp toàn dự án. Các route đã triển khai và hợp đồng form tuần 1 được ghi rõ ở phần cuối. Cập nhật trạng thái ngày 18/10/2026: backend #4 đã merge, UI #7 đã đồng bộ main và có CI; xác nhận bằng bình luận của Vương trên PR #4 vẫn còn thiếu.
 
 ## Tên vật lý

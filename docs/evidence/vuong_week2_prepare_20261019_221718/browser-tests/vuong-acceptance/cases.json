@@ -1,0 +1,382 @@
+{
+  "T01": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:17:59.551136+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "AD1 khám 28/29/30-09-2001",
+    "expected": "Q1=1, STT=[1,2,3]",
+    "actual": {
+      "episodes": 1,
+      "sequence": [
+        1,
+        2,
+        3
+      ]
+    },
+    "mode": "Browser + SQL",
+    "images": [
+      "T01-three-visits.png"
+    ]
+  },
+  "T03": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:00.087765+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "AD1 khám cả 09/2001 và 10/2001",
+    "expected": "Mỗi tháng tính 1 đợt",
+    "actual": {
+      "2001-09": 1,
+      "2001-10": 1
+    },
+    "mode": "Browser + JSON",
+    "images": [
+      "T03-cross-month.png"
+    ]
+  },
+  "T08": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:00.566165+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "Tái khám 09/2001, khỏi 01/10/2001",
+    "expected": "Thưởng BS tháng 9=0, tháng 10=1.000.000",
+    "actual": {
+      "2001-09": 0,
+      "2001-10": 1000000
+    },
+    "mode": "Browser + SQL",
+    "images": [
+      "T08-cure-month.png"
+    ]
+  },
+  "T02": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:01.129965+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "AD1 khỏi 01/10, AD2 tái mắc 02/10/2001",
+    "expected": "Hai mã đợt, Q1 tháng 10=2",
+    "actual": {
+      "episodes": [
+        "AD1",
+        "AD2"
+      ],
+      "q1": 2
+    },
+    "mode": "Browser + SQL",
+    "images": [
+      "T02-recurrence.png"
+    ]
+  },
+  "T04": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:01.572189+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "AC5 thêm bệnh W2B2, đợt AD3",
+    "expected": "Hai bệnh/đợt, cùng bệnh nhân",
+    "actual": [
+      {
+        "ma_dot": "AD2",
+        "ma_benh_nhan": "W2BN1"
+      },
+      {
+        "ma_dot": "AD3",
+        "ma_benh_nhan": "W2BN1"
+      }
+    ],
+    "mode": "Browser + SQL",
+    "images": [
+      "T04-two-diseases.png"
+    ]
+  },
+  "T09": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:02.271784+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "YT1 nhiều việc AC5, thêm YT2; YT1 còn hỗ trợ AC4",
+    "expected": "AC5 mỗi y tá 1 khoản 200.000",
+    "actual": {
+      "pairs_ac5": 2,
+      "yt1_oct_bonus": 400000,
+      "yt2_oct_bonus": 200000
+    },
+    "mode": "Browser + SQL",
+    "images": [
+      "T09-nurse-bonuses.png"
+    ]
+  },
+  "T10": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:02.343811+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "AK1 không kê đơn",
+    "expected": "Hợp lệ, tiền thuốc 0",
+    "actual": {
+      "order": null,
+      "medicine": "0"
+    },
+    "mode": "Browser JSON + SQL",
+    "images": []
+  },
+  "T11": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:03.207413+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "AR1: 2×1.000+3×2.000; giá W2T1 đổi 9.999; AC5 có 2 y tá",
+    "expected": "Thuốc=8.000, khám=250.000, doanh thu=258.000",
+    "actual": {
+      "medicine": 8000,
+      "fees": 250000,
+      "total": 258000
+    },
+    "mode": "Browser + SQL",
+    "images": [
+      "T11-historical-prices.png"
+    ]
+  },
+  "T12": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:03.729741+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "Số lượng 0/-1; tiền khám -1; ngày ra 01/10 trước ngày vào 02/10",
+    "expected": "422, giữ dữ liệu nhập, không ghi một phần",
+    "actual": {
+      "quantity": [
+        {
+          "input": "0",
+          "status": 422,
+          "header_count": 0
+        },
+        {
+          "input": "-1",
+          "status": 422,
+          "header_count": 0
+        }
+      ],
+      "negative_fee": 422,
+      "visit_ac6": 0,
+      "invalid_close": 422,
+      "end_date": null
+    },
+    "mode": "Browser + tampered HTTP + SQL",
+    "images": [
+      "T12-invalid-close.png"
+    ]
+  },
+  "T14": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:04.212585+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "Tháng 12/2000 không có dữ liệu khám",
+    "expected": "Q1 rỗng, doanh thu 0, lương cơ bản",
+    "actual": {
+      "diseases": {
+        "month": "2000-12",
+        "rows": [],
+        "total": 0
+      },
+      "total_revenue": 0,
+      "doctor": 7000000,
+      "nurse": 5000000
+    },
+    "mode": "Browser + JSON",
+    "images": [
+      "T14-empty-month.png"
+    ]
+  },
+  "T15": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:04.684386+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "W2BN1, thêm month rỗng để kiểm tra toàn lịch sử",
+    "expected": "5 lượt/3 đợt/6 lần/2 thuốc/6 hỗ trợ/2 đang điều trị, STT AD1=4",
+    "actual": {
+      "counts": {
+        "visits": 5,
+        "treatments": 3,
+        "examinations": 6,
+        "medicines": 2,
+        "support": 6,
+        "current": 2
+      },
+      "sequence_ad1": 4,
+      "fees": 550000,
+      "medicines": 8000
+    },
+    "mode": "Browser + JSON + SQL",
+    "images": [
+      "T15-history-1440.png",
+      "T15-history-390.png",
+      "T15-history-320.png"
+    ]
+  },
+  "T05": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:05.557699+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "AC2 của W2BN2 tham chiếu AD1 của W2BN1",
+    "expected": "422; không có AC2/AK2, AD1 giữ nguyên",
+    "actual": {
+      "luot_den_kham": 0,
+      "lan_kham_benh": 0,
+      "dot_dieu_tri": 1
+    },
+    "mode": "Browser HTTP + SQL",
+    "images": []
+  },
+  "CSRF": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:05.671765+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "POST thiếu token hoặc token sai",
+    "expected": "400, không ghi AC2",
+    "actual": {
+      "statuses": [
+        400,
+        400
+      ],
+      "visit": 0
+    },
+    "mode": "Browser HTTP + SQL",
+    "images": []
+  },
+  "T06": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:07.779487+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "Trùng (AC2,AD1), trùng (AD1,STT=1)",
+    "expected": "SQL từ chối, vẫn chỉ có 2 lần khám",
+    "actual": {
+      "attempts": [
+        {
+          "kind": "duplicate_visit_episode",
+          "visit": "AC2",
+          "sequence": 3,
+          "date": "2001-09-29",
+          "mysql_code": 1644
+        },
+        {
+          "kind": "duplicate_episode_sequence",
+          "visit": "AC3",
+          "sequence": 1,
+          "date": "2001-09-30",
+          "mysql_code": 1644
+        }
+      ],
+      "exam_count": 2,
+      "rejected_row": 0
+    },
+    "mode": "Browser setup + direct SQL",
+    "images": []
+  },
+  "T07": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:09.076085+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "Hai session CSRF độc lập cùng tạo đợt bệnh W2B1 cho W2BN1, bắt đầu bằng barrier",
+    "expected": "1×303, 1×409; một lượt/đợt/lần khám; không dữ liệu thừa",
+    "actual": {
+      "requests": [
+        {
+          "status": 303,
+          "started": 22525.812,
+          "finished": 22525.843,
+          "visit": "AC1"
+        },
+        {
+          "status": 409,
+          "started": 22525.812,
+          "finished": 22525.843,
+          "visit": "AC2"
+        }
+      ],
+      "counts": {
+        "luot_den_kham": 1,
+        "dot_dieu_tri": 1,
+        "lan_kham_benh": 1
+      }
+    },
+    "mode": "Concurrent real HTTP + SQL",
+    "images": []
+  },
+  "T13": {
+    "status": "PASS",
+    "run_at": "2026-10-19T22:18:10.744772+07:00",
+    "run_id": "20261019_221718",
+    "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+    "working_tree": true,
+    "python": "3.12.14",
+    "db_name": "clinic_vuong_week2_prepare_test",
+    "inputs": "ARFAIL: W2T1 hợp lệ được ghi trước ZZMissing không tồn tại",
+    "expected": "404; header và detail đều rollback",
+    "actual": {
+      "http_status": 404,
+      "counts": {
+        "don_thuoc": 0,
+        "chi_tiet_don_thuoc": 0
+      }
+    },
+    "mode": "Browser HTTP + SQL",
+    "images": [
+      "T13-no-partial-prescription.png"
+    ]
+  }
+}

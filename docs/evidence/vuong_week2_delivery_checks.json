@@ -1,0 +1,16 @@
+{
+  "files_reviewed": 213,
+  "secret_findings": [],
+  "missing_document_links": [],
+  "templates_parsed": 16,
+  "historical_raw_hash_differences": [
+    "clinic_app/templates/week1/history.html",
+    "clinic_app/templates/week1/reports.html",
+    "clinic_app/templates/week2/history_search.html",
+    "clinic_app/templates/week2/report.html",
+    "tools/vuong_week2_prepare.py"
+  ],
+  "reason": "Authored EOL normalization and portable Windows runner options; application/test semantics unchanged since 168-test run. A committed-source rerun will be recorded separately.",
+  "cache_env_not_in_delivery": true,
+  "publication_log_normalization": "Historical failing pytest logs: trailing whitespace removed only; raw local copies retained in ignored archive."
+}
