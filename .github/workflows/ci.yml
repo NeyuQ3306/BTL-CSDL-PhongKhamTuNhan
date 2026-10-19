@@ -25,7 +25,7 @@ jobs:
     env:
       DB_HOST: 127.0.0.1
       DB_PORT: '3306'
-      DB_USER: clinic_test
+      DB_USER: root
       DB_PASSWORD: disposable-ci-password
       DB_NAME: clinic_week1_test
       FLASK_SECRET_KEY: disposable-ci-session-key
@@ -49,7 +49,7 @@ jobs:
           PY
       - run: python -m pip install "playwright>=1.50,<2"
       - run: python -m playwright install --with-deps chromium
-      - run: python -m tools.import_seed
+      - run: python -m tools.quyen_db
       - run: python -m pytest -v
       - run: python -m tools.audit_seed
       - name: Week 1 browser evidence
