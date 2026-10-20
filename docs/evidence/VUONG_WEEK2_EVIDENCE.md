@@ -1,5 +1,9 @@
 # Chỉ mục bằng chứng tuần 2 — Vương
 
+## Xác nhận cuối 20/10/2026
+
+[Biên bản cập nhật](../VUONG_WEEK2_PR_REVIEW.md) ghi source #5 `da59e56`, kiểm tra source/test và đọc CI 115 passed/0 skipped, phản hồi/resolve hai thread UI bằng `Vuong-it`. Cùng biên bản ghi approval có phạm vi của Trung trên #11 `e346a9f` và log CI 168 passed/0 skipped trên merge thử `f3c1690`. Đây là xác nhận bằng bằng chứng có sẵn, không phải lần chạy local mới. [Bàn giao hiện hành](../VUONG_WEEK2_HANDOFF.md) phân biệt phần đã xong và việc chờ tích hợp/nghiệm thu nhóm; dữ liệu lịch sử bên dưới giữ nguyên.
+
 ## Review phụ thuộc và chạy lại tích hợp
 
 [Biên bản review](../VUONG_WEEK2_PR_REVIEW.md): PR5 source gốc `10c8082` chạy 108 test/0 skip, PR10 source gốc `1bf9f8b` chạy 78 SQL test/0 skip; Vương `3390199` chạy lại 168 test/0 skip trong phiên `20261019_224053`. Mỗi kết quả có JUnit/log/manifest/audit riêng; không dùng source đã sửa của Vương làm bằng chứng UI gốc Trung. [CI log trích theo SHA và review ID](vuong_pr_review_ci.json); [harness](vuong_pr_review_harness/README.md). Thư mục 224053 giữ ảnh browser và khảo sát của chính phiên mới.

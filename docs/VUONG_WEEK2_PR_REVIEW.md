@@ -1,5 +1,15 @@
 # Review phụ thuộc và kiểm tra tích hợp tuần 2 — Vương
 
+## Xác nhận cuối — 20/10/2026
+
+Vương (`Vuong-it`) đã phản hồi và resolve hai thread do mình tạo trên #5: [responsive](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5#discussion_r4321140559), [title](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5#discussion_r4321140844). Đã đọc source đúng head `da59e561b187ee693842efd4c6e943c64201a4a1`: form nối `clinical-form`, base nạp `week2.css`, CSS giới hạn fieldset/control; title lịch sử chỉ định danh trang/bệnh nhân, bảng ở content.
+
+Đã đọc `tests/test_week2_review_regressions.py` tại head trên và log [run 39356597220/job 118412695683](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39356597220/job/118412695683): `test_history_title_does_not_contain_clinical_tables` và `test_prescription_controls_fit_mobile` đều PASSED; ca mobile kiểm tra 320/390/1440px sau thêm dòng thứ tư. Toàn suite 115 passed/0 skipped trong 18,17s; source checkout merge thử `3e905049703dbf368d8bd8ca93a2f4b9d95bce57` của head `da59e56` với main `20cd47a`. Audit cuối sạch, 11 bảng/9 trigger/1.144 dòng. Hai workflow của head #5 success. Phiên này chỉ đọc source và log CI, không chạy lại local/MySQL/browser.
+
+#11 đã được [Trung APPROVE tại e346a9f](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/11#pullrequestreview-5579919269) trong phạm vi backend/context/JSON. Đã đọc log [run 39280384214/job 118153244300](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39280384214/job/118153244300): merge thử `f3c169009172b7191d88c9783adb5cf4e9bfb048`, head `e346a9f39b6e4fa932cd689dea85c95008cb1687`, 168 passed/0 skipped trong 60,83s, audit sạch 11 bảng/9 trigger/1.144 dòng. Cả ba workflow của head này success. Không dùng kết quả này thay kiểm thử commit tài liệu tiếp theo hoặc tree tích hợp cuối.
+
+#10 giữ head `1bf9f8b` và approval Vương đã đăng; không review/test lại. #5/#10/#11 chưa merge; không sửa nhánh Trung/Quyền hoặc cập nhật nền. Chờ Quyền nghiệm thu UI và điều phối tích hợp/merge; Vương phối hợp kiểm tra UI sau tích hợp. T16 là cổng tuần 3, chưa chạy. Nội dung bên dưới giữ lịch sử phiên 19/10, các trạng thái “chưa review/CI” của phiên cũ đã được cập nhật bởi mục này.
+
 Ngày 19/10/2026, reviewer GitHub `Vuong-it`. Phạm vi: UI/hợp đồng của Trung và SQL/oracle của Quyền ảnh hưởng phần Vương. Không sửa nhánh người khác, không merge PR hoặc đóng issue #2.
 
 ## Phiên bản và kết quả riêng biệt
