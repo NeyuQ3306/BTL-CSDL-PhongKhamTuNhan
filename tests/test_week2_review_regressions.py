@@ -60,7 +60,10 @@ def test_history_title_does_not_contain_clinical_tables(review_app):
 @pytest.mark.skipif(os.getenv('RUN_BROWSER_TESTS') != '1', reason='Chromium opt-in')
 def test_prescription_controls_fit_mobile(review_app, monkeypatch):
     from playwright.sync_api import sync_playwright
-    monkeypatch.setattr(clinical_routes, 'fetch_one', lambda *args: {'ngay_kham': date(2001, 2, 1)})
+    # Support both Trung's original form and Vuong's read-only context adapter.
+    context = dict(ngay_kham=date(2001, 2, 1), ma_luot='REVIEWL',
+                   ma_benh_nhan='REVIEWBN', ho_ten='Review patient')
+    monkeypatch.setattr(clinical_routes, 'fetch_one', lambda *args: dict(context))
     monkeypatch.setattr(clinical_routes, 'choices', lambda: dict(
         patients=[], doctors=[], nurses=[], diseases=[], episodes=[],
         medicines=[dict(ma_thuoc='T001', ten_thuoc='Ibuprofen 400 mg ' * 8, gia_hien_tai=2500)]))

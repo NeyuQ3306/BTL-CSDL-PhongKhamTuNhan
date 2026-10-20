@@ -1,5 +1,15 @@
 # Trung — sửa theo review tuần 2
 
+## Review tích hợp ngày 20/10/2026
+
+Trung đã submit APPROVE phần backend/context/JSON của Vương tại e346a9f: https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/11#pullrequestreview-5579919269 . Đã đọc delta riêng Vương; kiểm tra cục bộ trên bản clinic_app của Vương: 15 test report/JSON/title đạt; 13 assertion riêng với DB/workflow mock cho context 5 form, missing record404, thiếu CSRF400, conflict409 giữ draft và redirect303 đạt. Không coi mock là kiểm thử MySQL.
+
+Đã đọc CI #11 run39280384214/job118153244300: 168 passed/0 skipped, audit sạch, 11 bảng/9 trigger/1.144 dòng; thực chạy merge thử f3c1690 của e346a9f vào main20cd47a. Ba CI của head e346a9f đều success. Kết quả này không bao gồm test mới thêm trong nhánh Trung sau nền10c8082.
+
+Đối chiếu #5 tại872e518 và #11: cùng error envelope HTTP400/404/422, title đã sạch; CSSweek2.css giống nguồn Vương. Khi tích hợp giữ bản clinical_routes.py, routes.py, toàn bộ form/context/JS/template báo cáo của #11; giữ test mới của #5. Không thay full UI của Vương bằng form tối thiểu trong #5. Fixture test responsive đã bổ sung context ma_luot/ma_benh_nhan/ho_ten để chạy được cùng adapter mới; không đổi code nghiệp vụ.
+
+CI của872e518 đã thành công: run39287507433/job118178746236, 115 passed/0 skipped; audit sạch. Commit fixture sau đó phải có kết quả CI riêng. Nghiệm thu cá nhân Windows vẫn giữ kết quả đã xác nhận. Việc Trung thực hiện review #11 đã xong; còn người khác review head #5, Quyền điều phối tích hợp #10/#11 và CI/oracle trên tree cuối. Không tự approve #5 hoặc merge.
+
 ## Nguồn đối chiếu
 
 - Backend trước sửa: 10c808238ef2f8f4f0a1aabcfc59da19079b38f8, PR #5.
