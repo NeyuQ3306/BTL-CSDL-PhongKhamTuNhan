@@ -1,0 +1,42 @@
+TRUNG WEEK 2 — VERIFIED EXECUTION, 2026-10-17
+Code commit: 26bc627b5bd8943f275d369a0d86f2d640aaf06f
+GitHub Actions: https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39009890037
+Job: 117329978105, conclusion: success
+Python 3.11 / MySQL 8.4.11 / Chromium (Playwright)
+
+pytest: 59 passed in 4.34s. No skipped tests in this CI execution.
+23 previous week-1 cases + 35 week-2 cases + 1 real browser workflow.
+Compileall: passed. Jinja parse: passed. Seed import: passed.
+
+Verified cases:
+- Hand-calculated reports: re-examinations, recurrence, multiple diseases,
+  cross-month episode, cure-date bonus, nurse per-visit bonus.
+- January consultation 250; February consultation 550 + medicine 8000 = 8550.
+- Frozen sale price despite later catalog price change.
+- Complete history and current disease state; empty month/base salary.
+- Invalid input, dates, duplicate active episode, wrong patient, closed visit.
+- Atomic rollback after missing nurse and after second medicine lookup fails.
+- Concurrent active episode requests: one success, one conflict.
+- Concurrent re-examinations: sequential, distinct examination numbers.
+- HTML forms and JSON report formats; CSRF protection remains enabled.
+- Real Chromium: create visit, prescribe, cure, revenue/history, date error.
+
+Browser expected and observed: consultation 120000 + medicine 2000 = 122000.
+Five screenshots downloaded from successful job and visually inspected.
+Permanent copies: docs/evidence/week2/01-visit.png through 05-validation.png.
+Original artifact: week2-browser-39009890037 (artifact ID 12091889870).
+
+After isolated test cleanup:
+bac_si=10; y_ta=12; benh_nhan=40; benh=15; thuoc=30;
+dot_dieu_tri=137; luot_den_kham=140; lan_kham_benh=173;
+don_thuoc=140; chi_tiet_don_thuoc=267; ho_tro=180.
+Total=1144, matches_expected_counts=true.
+All nine inherited audit queries returned empty findings.
+
+Local: 36 passed, 23 skipped (no local MySQL/browser execution claimed).
+CI first attempt found empty-row container inconsistency and a test query
+parameterization error; corrected before the passing execution above.
+
+Scope limit: direct SQL writes do not use backend patient locks. Constraints
+and independent expected results still require Quyền review. Vương must confirm
+UI integration. Group-machine setup and team acceptance are not claimed.

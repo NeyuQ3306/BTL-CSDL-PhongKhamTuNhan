@@ -2,6 +2,8 @@
 
 Vương quản lý kết quả; Quyền tính đáp án mẫu; Trung bổ sung test tự động cho backend. Chưa có ca nào được đánh dấu chạy đạt tại thời điểm khởi tạo.
 
+**Bổ sung 19/10/2026:** [Biên bản local tuần 2 của Vương](VUONG_WEEK2_ACCEPTANCE.md) đã đối chiếu T01–T15, 168 test đạt/0 skipped trên source được định danh bằng HEAD và manifest. Biên bản phân biệt browser/HTTP/SQL, CI và phần chưa chạy. T16 và nghiệm thu toàn nhóm chưa được xác nhận.
+
 Kết quả kiểm tra **UI tuần 1 của Vương, ngày 17/10/2026** được ghi riêng trong [VUONG_WEEK1_CHECKLIST.md](VUONG_WEEK1_CHECKLIST.md): 33 ca script trên MySQL và 14 ca trình duyệt đạt, có ảnh/log và phần chưa chạy. Kết quả UI này không tự đánh dấu các ca nghiệp vụ toàn dự án bên dưới là đã đạt.
 
 | ID | Tình huống | Kết quả mong đợi |

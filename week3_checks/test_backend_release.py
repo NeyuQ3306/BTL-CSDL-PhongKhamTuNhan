@@ -65,9 +65,10 @@ def test_teardown_never_commits_and_closes_after_rollback_failure(unit_app):
 def live_app():
     if os.getenv('RUN_MYSQL_TESTS') != '1':
         pytest.skip('Real MySQL checks require RUN_MYSQL_TESTS=1')
-    if not os.getenv('DB_NAME', '').endswith('_test'):
+    app = create_app({'TESTING': True, 'SECRET_KEY': 'week3-live-session'})
+    if not app.config['DB_NAME'].endswith('_test'):
         pytest.fail('Use an isolated database ending in _test')
-    return create_app({'TESTING': True, 'SECRET_KEY': 'week3-live-session'})
+    return app
 
 
 @pytest.fixture

@@ -1,0 +1,14 @@
+{
+  "source_sha": "f8d80c8ea64ce0843430b5e16eac1538b7eb2d85",
+  "run_at": "20261019_214402",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "database": "clinic_vuong_week2_prepare_test",
+  "mysql_port": 55044,
+  "dependencies": {
+    "trung": "10c808238ef2f8f4f0a1aabcfc59da19079b38f8",
+    "quyen": "1bf9f8b18342eaf6d0097f3693df1bc02addfcfa"
+  },
+  "scope": "Preparation baseline, not final week-2 acceptance",
+  "screens": [],
+  "env_unchanged": true
+}

@@ -1,0 +1,87 @@
+...................................F.................................... [ 44%]
+........................................................................ [ 88%]
+...................                                                      [100%]
+================================== FAILURES ===================================
+_________________________ test_browser_clinical_flow __________________________
+
+app = <Flask 'clinic_app'>, clinical_data = None
+
+    @pytest.mark.skipif(os.getenv('RUN_BROWSER_TESTS') != '1', reason='Set RUN_BROWSER_TESTS=1 and install Playwright Chromium')
+    def test_browser_clinical_flow(app, clinical_data):
+        from playwright.sync_api import sync_playwright, expect
+        server=make_server('127.0.0.1',0,app,threaded=True)
+        thread=threading.Thread(target=server.serve_forever,daemon=True)
+        thread.start()
+        base=f'http://127.0.0.1:{server.server_port}'
+        output=Path('test-artifacts/week2');output.mkdir(parents=True,exist_ok=True)
+        try:
+            with sync_playwright() as p:
+                browser=p.chromium.launch()
+                page=browser.new_page(viewport={'width':1440,'height':1000})
+                page.goto(base+'/visits/new')
+                for key,value in dict(ma_luot='W2L7',ngay_vao_vien='2001-02-01',ma_dot='W2D7',ma_lan_kham='W2K7',ngay_kham='2001-02-01',tien_kham_chua='120000',ket_luan='Theo dõi',ngay_ho_tro='2001-02-01',noi_dung_ho_tro='Tiếp đón').items():
+                    page.locator(f'[name="{key}"]').fill(value)
+                for key,value in dict(ma_benh_nhan='W2BN1',ma_benh='W2B1',ma_bac_si='W2BS',ma_y_ta='W2YT1').items():
+                    page.locator(f'[name="{key}"]').select_option(value)
+                page.get_by_role('button',name='Lưu',exact=True).click()
+                expect(page).to_have_url(base+'/visits/W2L7')
+                expect(page.get_by_text('Đã lưu thành công.',exact=True)).to_be_visible()
+                page.screenshot(path=str(output/'01-visit.png'),full_page=True)
+                page.get_by_role('link',name='Kê đơn',exact=True).click()
+                page.locator('[name="ma_don"]').fill('W2P7')
+                expect(page.locator('[name="ngay_lap_don"]')).to_have_value('2001-02-01')
+                page.locator('[name="ma_thuoc"]').first.select_option('W2T1')
+                page.locator('[name="so_luong"]').first.fill('2')
+                page.locator('[name="lieu_dung"]').first.fill('Sáng và tối')
+                page.get_by_role('button',name='Lưu',exact=True).click()
+                expect(page).to_have_url(base+'/prescriptions/W2P7')
+                expect(page.get_by_role('heading',name='Tổng: 2.000 đ')).to_be_visible()
+                page.screenshot(path=str(output/'02-prescription.png'),full_page=True)
+                page.goto(base+'/treatments/W2D7/cure')
+                page.locator('[name="ngay_khoi"]').fill('2001-02-02')
+                page.get_by_role('button',name='Lưu',exact=True).click()
+                expect(page).to_have_url(base+'/treatments')
+                page.goto(base+'/reports/revenue?month=2001-02')
+>               expect(page.get_by_text('122.000 đ',exact=True)).to_be_visible()
+E               AssertionError: Locator expected to be visible
+E               Actual value: None
+E               Error: strict mode violation: get_by_text("122.000 đ", exact=True) resolved to 2 elements:
+E                   1) <p class="report-value" data-revenue="total">122.000 đ</p> aka get_by_label("Tổng hợp doanh thu").get_by_text("122.000 đ")
+E                   2) <td class="money-cell">122.000 đ</td> aka get_by_role("cell", name="122.000 đ")
+E
+E               Call log:
+E                 - Expect "to_be_visible" get_by_text("122.000 đ", exact=True) with timeout 5000ms
+E                 - waiting for get_by_text("122.000 đ", exact=True)
+
+tests\test_browser_week2.py:47: AssertionError
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "GET /visits/W2L7 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:47] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "GET /examinations/W2K7/prescription HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[32mPOST /examinations/W2K7/prescription HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "GET /prescriptions/W2P7 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "GET /treatments/W2D7/cure HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[32mPOST /treatments/W2D7/cure HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "GET /treatments HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "GET /reports/revenue?month=2001-02 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:04:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+=========================== short test summary info ===========================
+FAILED tests/test_browser_week2.py::test_browser_clinical_flow - AssertionErr...
+1 failed, 162 passed in 34.63s

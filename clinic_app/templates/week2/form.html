@@ -1,0 +1,55 @@
+{% extends 'week1/base.html' %}
+{% macro field(name,label,type='text',default='',hint='') %}
+<div class="clinical-field"><label for="{{ name }}">{{ label }} <span class="required-mark" aria-hidden="true">*</span></label>
+<input id="{{ name }}" name="{{ name }}" type="{{ type }}" value="{{ values.get(name,default) }}" required
+{% if type=='date' %}min="1900-01-01" max="{{ today }}"{% elif type=='number' %}min="0" max="999999999999" step="1"{% elif name.startswith('ma_') %}maxlength="12" pattern="[A-Za-z0-9_\-]{1,12}" spellcheck="false"{% else %}maxlength="255"{% endif %}
+{% if hint %}aria-describedby="{{ name }}-hint"{% endif %}>
+{% if hint %}<small id="{{ name }}-hint" class="field-hint">{{ hint }}</small>{% endif %}</div>
+{% endmacro %}
+{% macro select(name,label,items,key,caption,required=True) %}
+<div class="clinical-field"><label for="{{ name }}">{{ label }} <span class="required-mark" aria-hidden="true">*</span></label>
+<select id="{{ name }}" name="{{ name }}" {% if required %}required{% endif %}><option value="">— Chọn —</option>{% for item in items %}<option value="{{ item[key] }}" {% if values.get(name)==item[key] %}selected{% endif %}>{{ item[key] }} · {{ item[caption] }}</option>{% endfor %}</select></div>
+{% endmacro %}
+{% block content %}
+<a class="back-link" href="{{ back_url }}">← {{ 'Danh sách lượt khám' if action=='visit' else 'Quay lại hồ sơ' if action=='cure' else 'Quay lại lượt khám' }}</a>
+<p class="eyebrow">KHÁM VÀ ĐIỀU TRỊ</p><h1>{{ title }}</h1>
+{% if clinical_context %}<p class="notice">{{ clinical_context.ho_ten }} · Bệnh nhân <strong>{{ clinical_context.ma_benh_nhan }}</strong>{% if clinical_context.ten_benh %} · {{ clinical_context.ten_benh }}{% endif %}{% if clinical_context.ngay_vao_vien %} · Ngày vào {{ clinical_context.ngay_vao_vien.strftime('%d/%m/%Y') }}{% endif %}</p>{% endif %}
+<p class="page-description">Các trường có dấu * là bắt buộc. Kiểm tra thông tin trước khi lưu.</p>
+{% if error %}<section id="clinical-error" class="notice error error-summary" role="alert" tabindex="-1"><h2>Chưa lưu được thông tin</h2><p>{{ error }}</p><p>Dữ liệu bạn nhập được giữ lại để sửa. Chưa có thay đổi nào được lưu từ lần gửi này.</p><a href="#clinical-form">Kiểm tra lại biểu mẫu</a></section>{% endif %}
+<form id="clinical-form" method="post" class="record-form clinical-form" data-action="{{ action }}" data-patient="{{ clinical_context.ma_benh_nhan if clinical_context else '' }}" data-posted="{{ 'true' if request.method=='POST' else 'false' }}" tabindex="-1">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+{% if action=='visit' %}<fieldset><legend>1. Tiếp nhận bệnh nhân</legend><div class="fields">
+{{ field('ma_luot','Mã lượt mới',hint='Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng new.') }}
+{{ select('ma_benh_nhan','Bệnh nhân',choices.patients,'ma_benh_nhan','ho_ten') }}
+{{ field('ngay_vao_vien','Ngày vào viện','date',today) }}</div></fieldset>{% endif %}
+{% if action in ['visit','exam'] %}<fieldset><legend>{{ '2. Lần khám đầu tiên' if action=='visit' else 'Thông tin lần khám' }}</legend>
+<p>Đợt mới dùng khi khám bệnh lần đầu hoặc tái mắc sau ngày khỏi. Tái khám tiếp tục đợt đang điều trị, giữ nguyên bác sĩ; số thứ tự do hệ thống cấp.</p>
+<div class="fields"><div class="clinical-field"><label for="che_do_dot">Loại khám *</label><select id="che_do_dot" name="che_do_dot" required><option value="new" {% if values.get('che_do_dot','new')=='new' %}selected{% endif %}>Đợt mới / tái mắc</option><option value="existing" {% if values.get('che_do_dot')=='existing' %}selected{% endif %}>Tái khám trong đợt đang điều trị</option></select></div>
+<div id="episode-picker-wrap" hidden><label for="episode-picker">Chọn đợt đang điều trị *</label><select id="episode-picker" aria-describedby="episode-info"><option value="">— Chọn đợt —</option>{% for e in choices.episodes %}<option value="{{ e.ma_dot }}" data-patient="{{ e.ma_benh_nhan }}">{{ e.ma_dot }} · {{ e.ten_benh }} · BS {{ e.ten_bac_si }}</option>{% endfor %}</select><p id="episode-info" class="field-hint" aria-live="polite"></p></div>
+{{ field('ma_dot','Mã đợt mới hoặc mã đợt tái khám',hint='Đợt mới: tự đặt mã chưa sử dụng. Tái khám: chọn đợt của đúng bệnh nhân.') }}
+<div data-new-episode>{{ select('ma_benh','Bệnh',choices.diseases,'ma_benh','ten_benh',False) }}</div>
+<div data-new-episode>{{ select('ma_bac_si','Bác sĩ phụ trách',choices.doctors,'ma_bac_si','ho_ten',False) }}</div>
+{{ field('ma_lan_kham','Mã lần khám mới',hint='Mỗi lần khám có một mã riêng, tối đa 12 ký tự.') }}
+{{ field('ngay_kham','Ngày khám','date',today) }}
+{{ field('tien_kham_chua','Tiền khám/chữa (đồng)','number','0','Chưa gồm tiền thuốc. Nhập số nguyên, không có dấu phân cách.') }}
+{{ field('ket_luan','Kết luận') }}</div>
+<noscript><p>Không có JavaScript: nhập mã đợt khi tái khám; bệnh và bác sĩ chỉ áp dụng cho đợt mới. Tra mã ở danh sách bên dưới.</p></noscript>
+<details class="episode-reference"><summary>Tra mã đợt đang điều trị</summary><ul>{% for e in choices.episodes %}<li>{{ e.ma_dot }} · Bệnh nhân {{ e.ma_benh_nhan }} · {{ e.ten_benh }} · {{ e.ten_bac_si }}</li>{% else %}<li>Chưa có đợt đang điều trị.</li>{% endfor %}</ul></details></fieldset>{% endif %}
+{% if action in ['visit','support'] %}<fieldset><legend>{{ '3. Y tá hỗ trợ' if action=='visit' else 'Y tá hỗ trợ' }}</legend>
+<p>Chọn y tá đã hỗ trợ để sửa nội dung và giữ ngày bắt đầu. Chọn người khác để thêm hỗ trợ; mỗi y tá/lượt tính thưởng một lần.</p><div class="fields">
+{{ select('ma_y_ta','Y tá',choices.nurses,'ma_y_ta','ho_ten') }}{{ field('ngay_ho_tro','Ngày bắt đầu hỗ trợ','date',today) }}{{ field('noi_dung_ho_tro','Nội dung công việc') }}</div><p id="support-info" class="field-hint" aria-live="polite"></p></fieldset>{% endif %}
+{% if action=='close' %}<fieldset><legend>Kết thúc lượt đến khám</legend><p>Kết thúc lượt sẽ khóa việc thêm lần khám và sửa hỗ trợ của lượt này. Đợt điều trị vẫn tiếp tục cho đến khi xác nhận khỏi.</p>{{ field('ngay_ra_vien','Ngày ra viện','date',today,'Không trước ngày khám hoặc ngày hỗ trợ cuối cùng trong lượt.') }}</fieldset>{% endif %}
+{% if action=='cure' %}<fieldset><legend>Xác nhận kết thúc đợt điều trị</legend><p>Sau khi xác nhận khỏi, đợt này không nhận thêm lần khám. Nếu tái mắc sau ngày khỏi, tạo đợt mới. Thao tác này không tự đóng các lượt khám.</p>{{ field('ngay_khoi','Ngày khỏi','date',today,'Không trước lần khám cuối cùng. Thưởng bác sĩ được tính theo tháng của ngày khỏi.') }}</fieldset>{% endif %}
+{% if action=='prescription' %}<fieldset><legend>Thông tin đơn thuốc</legend><p>Ngày đơn bằng ngày khám. Giá bán do hệ thống lấy khi lưu; đơn đã lưu giữ nguyên đơn giá lịch sử.</p><div class="fields">{{ field('ma_don','Mã đơn mới') }}{{ field('ngay_lap_don','Ngày lập đơn','date',today) }}</div></fieldset>
+<h2>Thuốc trong đơn</h2><p id="medicine-hint">Cần ít nhất một thuốc, tối đa 100 dòng. Mỗi thuốc chỉ xuất hiện một lần; các dòng hoàn toàn trống sẽ được bỏ qua.</p>
+{% set ids=values.getlist('ma_thuoc') %}{% set qty=values.getlist('so_luong') %}{% set usage=values.getlist('lieu_dung') %}
+<div id="medicine-lines" aria-describedby="medicine-hint">{% for i in range([3, ids|length]|max) %}<fieldset class="medicine-line"><legend>Thuốc {{ i+1 }}</legend><div class="fields">
+<div><label for="medicine-{{ i }}">Thuốc</label><select id="medicine-{{ i }}" name="ma_thuoc"><option value="">— Chọn —</option>{% for m in choices.medicines %}<option value="{{ m.ma_thuoc }}" {% if ids[i]|default('')==m.ma_thuoc %}selected{% endif %}>{{ m.ma_thuoc }} · {{ m.ten_thuoc }} · {{ m.gia_hien_tai|money }}</option>{% endfor %}</select></div>
+<div><label for="quantity-{{ i }}">Số lượng</label><input id="quantity-{{ i }}" type="number" min="1" max="2147483647" step="1" name="so_luong" value="{{ qty[i]|default('') }}"></div>
+<div><label for="usage-{{ i }}">Liều dùng</label><input id="usage-{{ i }}" name="lieu_dung" maxlength="255" value="{{ usage[i]|default('') }}"></div></div>
+<button class="button-secondary remove-medicine" type="button" hidden>Xóa dòng {{ i+1 }}</button></fieldset>{% endfor %}</div>
+<button class="button-secondary" type="button" id="add-medicine" hidden>Thêm dòng thuốc</button><p id="medicine-status" class="field-hint" role="status"></p>{% endif %}
+<div class="actions"><button type="submit">Lưu</button><a href="{{ back_url }}">Hủy</a></div></form>
+<script type="application/json" id="support-data">{{ support_rows|tojson }}</script>
+<script src="{{ url_for('static',filename='week2.js') }}" defer></script>
+{% endblock %}

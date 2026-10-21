@@ -1,10 +1,10 @@
 # Trung phối hợp Vương — clone sạch máy thứ hai
 
-Trạng thái: quy trình chuẩn bị, CHƯA chạy và chưa chốt SHA release. Không dùng kết quả nghiệm thu Windows tuần2 của Trung thay máy thứ hai tuần3.
+Trạng thái 21/10/2026: tuần 2 đã tích hợp tại main f486929; quy trình máy thứ hai CHƯA thực chạy. Nhóm cần chốt SHA chứa cả PR #12 sau review trước nghiệm thu tuần 3. Không dùng kết quả nghiệm thu Windows tuần2 của Trung thay máy thứ hai tuần3.
 
 ## Điều kiện
 
-Quyền chốt SHA tích hợp sau review #5/#10/#11. Dùng Git, Python3.11, MySQL8.4 và trình duyệt trên một máy khác máy chạy đầu tiên. Workbench không thay MySQL Server. Cần tài khoản DB thử riêng đủ quyền tạo bảng/trigger; không dùng DB đang làm bài. Chọn thư mục clone và tên DB mới, không xóa dữ liệu cũ.
+#5/#10/#11 đã merge. Quyền chốt SHA release sau review thay đổi tuần 3. Dùng Git, Python3.11, MySQL8.4 và trình duyệt trên một máy khác máy chạy đầu tiên. Workbench không thay MySQL Server. Cần tài khoản DB thử riêng đủ quyền tạo bảng/trigger; không dùng DB đang làm bài. Chọn thư mục clone và tên DB mới, không xóa dữ liệu cũ.
 
 ## Clone và cài
 

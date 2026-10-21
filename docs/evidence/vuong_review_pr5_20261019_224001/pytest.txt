@@ -1,0 +1,194 @@
+........................................................................ [ 66%]
+....................................                                     [100%]
+=================================== PASSES ====================================
+_________________________ test_start_without_database _________________________
+------------------------------ Captured log call ------------------------------
+ERROR    clinic_app:__init__.py:37 MySQL operation failed; code=2003 endpoint=clinic.health_db
+ERROR    clinic_app:__init__.py:37 MySQL operation failed; code=2003 endpoint=clinic.listing
+______________________ test_browser_week1_crud[patients] ______________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:11] "GET /patients/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:11] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:11] "[32mPOST /patients/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:11] "GET /patients/UiW1pat HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:11] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:11] "GET /patients/uiw1pat/edit HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:11] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "[32mPOST /patients/uiw1pat/edit HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "GET /patients/UiW1pat HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "[32mPOST /patients/UiW1pat/delete HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "GET /patients HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "[33mGET /patients/UiW1pat HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+______________________ test_browser_week1_crud[doctors] _______________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "GET /doctors/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "[32mPOST /doctors/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "GET /doctors/UiW1doc HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "GET /doctors/uiw1doc/edit HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:13] "[32mPOST /doctors/uiw1doc/edit HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:14] "GET /doctors/UiW1doc HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:14] "[32mPOST /doctors/UiW1doc/delete HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:14] "GET /doctors HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:14] "[33mGET /doctors/UiW1doc HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+_______________________ test_browser_week1_crud[nurses] _______________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "GET /nurses/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "[32mPOST /nurses/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "GET /nurses/UiW1nur HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "GET /nurses/uiw1nur/edit HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "[32mPOST /nurses/uiw1nur/edit HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "GET /nurses/UiW1nur HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:15] "[32mPOST /nurses/UiW1nur/delete HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:16] "GET /nurses HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:16] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:16] "[33mGET /nurses/UiW1nur HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:16] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+_________________________ test_browser_clinical_flow __________________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "GET /visits/W2L7 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "GET /examinations/W2K7/prescription?ngay_lap_don=2001-02-01 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[32mPOST /examinations/W2K7/prescription?ngay_lap_don=2001-02-01 HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "GET /prescriptions/W2P7 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "GET /treatments/W2D7/cure HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[32mPOST /treatments/W2D7/cure HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "GET /treatments HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "GET /reports/revenue?month=2001-02 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "GET /reports/history?patient_id=W2BN1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "GET /visits/W2L7/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "[31m[1mPOST /visits/W2L7/close HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 22:40:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+- generated xml file: D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\docs\evidence\vuong_review_pr5_20261019_224001\junit.xml -
+=========================== short test summary info ===========================
+PASSED tests/test_backend.py::test_validation[cmt-abc]
+PASSED tests/test_backend.py::test_validation[so_dien_thoai-12]
+PASSED tests/test_backend.py::test_validation[ngay_sinh-2001-02-29]
+PASSED tests/test_backend.py::test_validation[ngay_sinh-2999-01-01]
+PASSED tests/test_backend.py::test_validation[ho_ten-]
+PASSED tests/test_backend.py::test_validation[ma_benh_nhan-a/b]
+PASSED tests/test_backend.py::test_validation[dia_chi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]
+PASSED tests/test_backend.py::test_start_without_database
+PASSED tests/test_backend.py::test_sql_split
+PASSED tests/test_backend.py::test_crud[patients]
+PASSED tests/test_backend.py::test_crud[doctors]
+PASSED tests/test_backend.py::test_crud[nurses]
+PASSED tests/test_backend.py::test_history_prevents_delete[patients-BN001]
+PASSED tests/test_backend.py::test_history_prevents_delete[doctors-BS001]
+PASSED tests/test_backend.py::test_history_prevents_delete[nurses-YT001]
+PASSED tests/test_backend.py::test_bad_form_and_queries
+PASSED tests/test_backend.py::test_transaction_rollback_and_connection_lifecycle
+PASSED tests/test_backend.py::test_read_foundation_and_seed_counts
+PASSED tests/test_backend.py::test_unicode_csrf_is_bad_request[kh\xf4ng h\u1ee3p l\u1ec7]
+PASSED tests/test_backend.py::test_unicode_csrf_is_bad_request[\U0001f600]
+PASSED tests/test_backend.py::test_reserved_record_id[patients]
+PASSED tests/test_backend.py::test_reserved_record_id[doctors]
+PASSED tests/test_backend.py::test_reserved_record_id[nurses]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CASETEST-patients]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CASETEST-doctors]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CASETEST-nurses]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CaseTest-patients]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CaseTest-doctors]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CaseTest-nurses]
+PASSED tests/test_browser_week1.py::test_browser_week1_crud[patients]
+PASSED tests/test_browser_week1.py::test_browser_week1_crud[doctors]
+PASSED tests/test_browser_week1.py::test_browser_week1_crud[nurses]
+PASSED tests/test_browser_week2.py::test_browser_clinical_flow
+PASSED tests/test_quyen_database.py::test_seed_and_audit
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-07]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-08]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-09]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-10]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2025-12]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO dot_dieu_tri VALUES ('QD2','2001-01-02',NULL,'\u0110ang \u0111i\u1ec1u tr\u1ecb','BN001','QB1','BS002')]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO dot_dieu_tri VALUES ('QD2','2001-01-02','2001-01-03','\u0110\xe3 kh\u1ecfi','BN002','QB1','BS002')]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO lan_kham_benh VALUES ('QK2',3,'2001-01-02',100,'Test','QD1','QL1')]
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE dot_dieu_tri SET ma_bac_si='BS002' WHERE ma_dot='QD1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE dot_dieu_tri SET ngay_khoi='2000-12-31',trang_thai='\u0110\xe3 kh\u1ecfi' WHERE ma_dot='QD1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET ma_dot='D0001' WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET ngay_kham='2001-01-02' WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET so_thu_tu_trong_dot=2 WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE luot_den_kham SET ma_benh_nhan='BN002' WHERE ma_luot='QL1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE luot_den_kham SET ngay_ra_vien='2000-12-31' WHERE ma_luot='QL1']
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO ho_tro VALUES ('QL1','YT002','Test','2000-12-31')]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO ho_tro VALUES ('QL1','YT001','Duplicate','2001-01-01')]
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE ho_tro SET ngay_ho_tro='2001-01-02' WHERE ma_luot='QL1']
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO don_thuoc VALUES ('QP1','2001-01-02','QK1')]
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET tien_kham_chua=-1 WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[DELETE FROM benh_nhan WHERE ma_benh_nhan='BN001']
+PASSED tests/test_quyen_database.py::test_valid_workflow_and_rollback
+PASSED tests/test_quyen_database.py::test_wrong_patient_and_closed_episode
+PASSED tests/test_quyen_database.py::test_empty_completed_visit
+PASSED tests/test_quyen_database.py::test_seed_covers_required_scenarios
+PASSED tests/test_record_ui.py::test_referenced_record_delete_shows_conflict[1217]
+PASSED tests/test_record_ui.py::test_referenced_record_delete_shows_conflict[1451]
+PASSED tests/test_record_ui.py::test_invalid_edit_keeps_original_navigation_and_readonly_code[BN001]
+PASSED tests/test_record_ui.py::test_invalid_edit_keeps_original_navigation_and_readonly_code[bn001]
+PASSED tests/test_report_shells.py::test_integrated_report_dispatch[diseases]
+PASSED tests/test_report_shells.py::test_integrated_report_dispatch[salaries]
+PASSED tests/test_report_shells.py::test_integrated_report_dispatch[revenue]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[2026-13]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[0000-01]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[26-10]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[<script>]
+PASSED tests/test_report_shells.py::test_hub_and_single_report_url
+PASSED tests/test_week2.py::test_reports_hand_calculated
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes0-404]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes1-422]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes2-422]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes3-404]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes4-422]
+PASSED tests/test_week2.py::test_clinical_constraints
+PASSED tests/test_week2.py::test_prescription_rollback
+PASSED tests/test_week2.py::test_concurrent_episode_and_sequence
+PASSED tests/test_week2.py::test_routes_and_json
+PASSED tests/test_week2.py::test_invalid_money[-1]
+PASSED tests/test_week2.py::test_invalid_money[NaN]
+PASSED tests/test_week2.py::test_invalid_money[Infinity]
+PASSED tests/test_week2.py::test_invalid_money[1.1]
+PASSED tests/test_week2.py::test_invalid_money[1e3]
+PASSED tests/test_week2.py::test_invalid_money[1000000000000]
+PASSED tests/test_week2.py::test_invalid_money[]
+PASSED tests/test_week2.py::test_invalid_money[None]
+PASSED tests/test_week2.py::test_invalid_quantity[0]
+PASSED tests/test_week2.py::test_invalid_quantity[-1]
+PASSED tests/test_week2.py::test_invalid_quantity[1.5]
+PASSED tests/test_week2.py::test_invalid_quantity[2147483648]
+PASSED tests/test_week2.py::test_invalid_quantity[]
+PASSED tests/test_week2.py::test_invalid_quantity[None]
+PASSED tests/test_week2.py::test_invalid_day[2001-02-29]
+PASSED tests/test_week2.py::test_invalid_day[2999-01-01]
+PASSED tests/test_week2.py::test_invalid_day[2001-1-01]
+PASSED tests/test_week2.py::test_invalid_day[None]
+PASSED tests/test_week2.py::test_invalid_month[]
+PASSED tests/test_week2.py::test_invalid_month[2026-13]
+PASSED tests/test_week2.py::test_invalid_month[2026-00]
+PASSED tests/test_week2.py::test_invalid_month[2026-1]
+PASSED tests/test_week2.py::test_invalid_month[9999-12]
+PASSED tests/test_week2.py::test_invalid_month[' OR 1=1]
+PASSED tests/test_week2.py::test_month_boundaries
+PASSED tests/test_week2.py::test_existing_episode_case_alias_uses_canonical_owner
+108 passed in 14.79s

@@ -25,6 +25,9 @@ REPORT_PAGES = {
 def reports(report=None):
     if report is not None and report not in REPORT_PAGES:
         raise NotFound()
+    if report is not None:
+        from .clinical_routes import report as clinical_report
+        return clinical_report(report)
     month = request.args.get('month', today_vn().strftime('%Y-%m'))
     patient_id = request.args.get('patient_id', '').strip()
     filter_error = ''
@@ -168,7 +171,6 @@ def treatments():
 
 @bp.get('/patients/<record_id>/history')
 def history(record_id):
-    entity = ENTITIES['patients']
-    return render_template('week1/history.html', patient=services.get_record(entity, record_id),
-                           visits=services.visits(record_id), treatments=services.treatments(record_id),
-                           examinations=services.examinations(record_id))
+    from .reports import history as full_history
+    from .clinical_routes import patient_choices
+    return render_template('week1/history.html', patients=patient_choices(), **full_history(record_id))

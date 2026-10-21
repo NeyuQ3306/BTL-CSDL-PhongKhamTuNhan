@@ -23,6 +23,8 @@ def create_app(test_config=None):
     app.jinja_env.filters['money'] = lambda v: f'{Decimal(v or 0):,.0f}'.replace(',', '.') + ' đ'
     from .routes import bp
     app.register_blueprint(bp)
+    from .clinical_routes import bp as clinical_bp
+    app.register_blueprint(clinical_bp)
 
     @app.errorhandler(HTTPException)
     def http_error(exc):

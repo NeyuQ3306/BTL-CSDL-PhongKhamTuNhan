@@ -1,35 +1,36 @@
-# Trung — chuẩn bị tuần 3
+# Trung — bàn giao tuần 3
 
-## Phạm vi
+## Trạng thái ngày 21/10/2026
 
-Theo docs/PHAN_CONG_3_TUAN.md: kiểm tra/sửa backend và transaction, NULL/số tiền/dữ liệu không tồn tại/rollback; chạy MySQL thống nhất; phối hợp cài từ clone mới trên máy thứ hai; chuẩn bị giải thích route/kết nối/ràng buộc ứng dụng.
+#5, #10, #11 đã merge. Nền hiện tại là main f4869299c25fdfd0b711597e30b60ab277120f44. Nhánh trung/week-3 đồng bộ nền bằng merge thường; chỉ bổ sung bộ kiểm tra, công cụ audit và tài liệu của Trung. Code nghiệp vụ/UI/SQL đã tích hợp được giữ từ main.
 
-Nhánh trung/week-3 tạo từ main20cd47ab7530b1f088213fd5ab08a27dfc87f25a, không mang lịch sử PR#5/#10/#11 vào main. Không thay nhánh tuần2 hay code/schema/UI của người khác. Đây là PR nháp làm trước; chưa xác nhận nghiệm thu tuần3.
+Theo PHAN_CONG_3_TUAN.md: kiểm tra/sửa backend và transaction, NULL/số tiền/dữ liệu không tồn tại/rollback; chạy MySQL thống nhất; phối hợp clone mới máy thứ hai; chuẩn bị giải thích route/kết nối/ràng buộc.
 
-## Sản phẩm
+## Đã triển khai
 
-- week3_checks/test_backend_release.py: kiểm tra tiền ở0 và trần DECIMAL(12,0), dữ liệu tiền không hợp lệ, transaction lỗi ở body/commit và phục hồi request sau, teardown khi mất kết nối; MySQL thật kiểm tra lịch sử rỗng, ngày kết thúc NULL, không kê đơn, lưu tiền lớn chính xác, rollback lượt lỗi, rollback thuốc thứ hai rồi thử lại cùng mã đơn, dữ liệu thiếu trả404.
-- tools/trung_week3_preflight.py: chỉ đọc, ghi receipt không có credentials; kiểm tra11bảng/1.144dòng,9trigger,10audit SQL và9nhóm findings. Có --expected-sha; failed audit trả exit1; không import/drop/xóa, không ghi đè receipt cũ. Chạy trên DB seed sạch trước/sau dọn, không dùng kiểm tra số dòng chuẩn khi còn hồ sơ demo.
-- docs/TRUNG_WEEK3_SECOND_MACHINE.md: quy trình clone mới, cài MySQL/Python và mẫu ghi nhận máy thứ hai.
-- docs/TRUNG_WEEK3_BACKEND_EXPLAIN.md: tài liệu vấn đáp và ranh giới bảo vệ ở ứng dụng/SQL.
-- .github/workflows/trung-week3.yml: CI riêng Python3.11/MySQL8.4, mỗi candidate một DB mới. Chỉ chạy bộ kiểm tra tuần3; không gọi đây là toàn bộ regression UI/nhóm.
+- week3_checks/test_backend_release.py: validation tiền ở 0 và trần DECIMAL(12,0); lỗi body/commit rồi request tiếp theo; teardown khi mất kết nối; MySQL thật kiểm tra lịch sử rỗng, ngày NULL, không kê đơn, tiền lớn chính xác, rollback lượt lỗi, rollback thuốc thứ hai rồi thử lại cùng mã đơn, dữ liệu thiếu trả 404.
+- week3_checks/test_preflight.py: kiểm tra receipt sạch và các trường hợp phải thất bại (sai SHA, số dòng/trigger/audit/findings, không ghi đè receipt).
+- tools/trung_week3_preflight.py: chỉ đọc; xác nhận source SHA khi được yêu cầu; 11 bảng/1.144 dòng, 9 trigger, 10 audit SQL và 9 nhóm findings. Failed audit trả exit 1. Không import/drop/xóa hoặc ghi đè receipt cũ. Chỉ kiểm tra chuẩn số dòng khi DB đã dọn về seed.
+- docs/TRUNG_WEEK3_SECOND_MACHINE.md: clone/cấu hình/import và mẫu ghi nhận máy thứ hai.
+- docs/TRUNG_WEEK3_BACKEND_EXPLAIN.md: route, DB, transaction, NULL/tiền, ràng buộc và vấn đáp.
 
-## Nền kiểm tra tạm thời
+Fixture MySQL lấy tên DB từ cấu hình app sau khi nạp .env, đồng thời vẫn bắt buộc RUN_MYSQL_TESTS=1 và tên DB kết thúc _test. Chạy riêng các ca MySQL không còn phụ thuộc test unit trước đó có nạp .env hay chưa.
 
-| Candidate | SHA cố định | Ý nghĩa |
-|---|---|---|
-| Trung #5 | da59e561b187ee693842efd4c6e943c64201a4a1 | Backend và bản sửa tuần2 của Trung |
-| Vương #11 | e346a9f39b6e4fa932cd689dea85c95008cb1687 | UI/context và oracle Quyền tích hợp trên nền backend10c8082 |
+## Kiểm chứng hiện tại
 
-CI checkout từng candidate, chép đúng week3_checks và preflight từ PR tuần3 để kiểm tra, không sửa candidate trên GitHub. Không gọi hai snapshot này là tree tích hợp cuối. Workflow chuẩn của main vẫn kiểm tra nền main; workflow tuần3 mới kiểm tra backend tuần2 đã pin.
+Workflow trung-week3.yml kiểm tra trực tiếp checkout hiện tại, không checkout candidate tuần 2 cũ. CI Python 3.11/MySQL 8.4/Chromium bật QUYEN_CHECK_WEEK2=1; chạy chung tests và week3_checks, có audit trước/sau, JUnit/ảnh/JSON.
 
-Khi #5/#10/#11 merge: cập nhật nền nhánh này từ main mới bằng merge thường (không force push); cập nhật SHA candidate sang bản tích hợp đã chốt và chạy lại. Khi sẵn sàng nộp, chuyển kiểm tra candidate pin thành kiểm tra chính head tích hợp; không để CI chỉ chứng minh snapshot cũ.
+PR event chạy SHA merge thử; push event chạy head nhánh. Receipt source_sha phải bằng github.sha của event. Kết quả từng commit lấy từ Checks PR #12, không gán CI cũ cho commit mới.
 
-## Việc còn chờ thực tế
+## Kết quả lịch sử
 
-- Review/merge tuần2 và chạy oracle trên tree cuối do Quyền điều phối.
-- Máy thứ hai thực sự clone/cấu hình/import/chạy UI với Vương, ghi phiên bản/SHA/kết quả; CI Linux không thay bằng chứng này.
-- Chạy lại regression UI đầy đủ, demo nhóm, reviewer khác duyệt PR tuần3.
-- Quyền phụ trách script nộp/tag; Vương phụ trách UI/demo. Không tự sửa thứ tự script nộp trong phân công: seed hiện cần trước trigger, Quyền phải xử lý mâu thuẫn này khi đóng gói dựa trên SETUP chuẩn.
+Commit chuẩn bị 2ac0d2f: run 39360946626 đạt 24/24 trên từng candidate Trung da59e56 và Vương e346a9f, audit sạch. Đây là hai snapshot trước tích hợp, không thay kết quả workflow hiện tại. Local cũ 16 passed/8 skipped không phải nghiệm thu MySQL.
 
-Không phát hiện lỗi sản phẩm thì không thay code chỉ để có commit sửa. Các test mới phải được chạy và kết quả ghi riêng theo commit; không lấy115test tuần2 làm kết quả tuần3. Kết quả cụ thể xem Checks và mô tả PR tuần3.
+## Còn chờ thực tế
+
+- Trung/Vương thực sự clone mới trên máy thứ hai, ghi OS/Python/MySQL/browser/SHA, import/audit và thao tác UI. T16 CHƯA XÁC NHẬN; CI Linux không thay bằng chứng máy thứ hai.
+- Reviewer khác kiểm tra PR #12. Giữ Draft đến khi đủ nghiệm thu; không tự approve/merge/tag.
+- Sau mọi sửa code hoặc thay nền release, chạy lại trên SHA cuối. Quyền phụ trách SQL nộp/tag, Vương phụ trách UI/demo.
+- Khi đóng gói SQL, Quyền cần giữ thứ tự import thực tế schema → seed → audit → constraints → audit → queries theo SETUP; không áp dụng máy móc mô tả thứ tự cũ nếu seed bị trigger từ chối.
+
+Chưa thấy lỗi nghiệp vụ cần sửa từ bộ ca đã chạy trước đây. Mọi lỗi phát hiện trong lần kiểm tra hiện tại cần xử lý hoặc ghi rõ trước chốt.

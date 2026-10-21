@@ -1,4 +1,9 @@
--- Bản nháp bốn nhóm truy vấn của Quyền, dùng cùng hợp đồng backend Trung.
+-- Bốn nhóm truy vấn tuần 2 của Quyền, dùng cùng hợp đồng backend Trung.
+-- Sửa @thang (ngày đầu tháng) và @ma_benh_nhan bên dưới rồi chạy cả file.
+-- 11 tập kết quả: Q1, Q2a, Q2b, 7 tập Q3, Q4. Không thay đổi dữ liệu.
+-- Kỳ tính [@thang, @den): gồm ngày đầu, loại ngày đầu kỳ kế tiếp.
+-- Q3 luôn trả toàn bộ lịch sử, không bị lọc theo @thang.
+-- Mã không tồn tại: cả 7 tập Q3 rỗng; hồ sơ chưa khám: chỉ tập hồ sơ có dòng.
 -- Chọn tháng YYYY-MM-01, giờ Việt Nam; tháng hiện tại dừng ở ngày hôm nay.
 SET time_zone = '+07:00';
 SET @thang = DATE('2026-10-01');

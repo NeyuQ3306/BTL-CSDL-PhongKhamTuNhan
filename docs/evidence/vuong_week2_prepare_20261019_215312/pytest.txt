@@ -1,0 +1,193 @@
+.............................F.......................................... [ 44%]
+........................................................................ [ 89%]
+.................                                                        [100%]
+================================== FAILURES ===================================
+________________________ test_vuong_clinical_workflow _________________________
+
+app = <Flask 'clinic_app'>, clinical_data = None
+
+    def test_vuong_clinical_workflow(app, clinical_data):
+        from playwright.sync_api import sync_playwright, expect
+        server = make_server('127.0.0.1', 0, app, threaded=True)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        base = f'http://127.0.0.1:{server.server_port}'
+        out = Path('test-artifacts/vuong-week2'); out.mkdir(parents=True, exist_ok=True)
+        try:
+            with sync_playwright() as pw:
+                browser = pw.chromium.launch()
+                page = browser.new_page(viewport={'width': 390, 'height': 900}, locale='vi-VN')
+                errors = []
+                page.on('pageerror', lambda error: errors.append(str(error)))
+
+                def fill(values):
+                    for key, value in values.items():
+                        item = page.locator(f'[name="{key}"]')
+                        if item.evaluate('(el) => el.tagName') == 'SELECT':
+                            item.select_option(value)
+                        else:
+                            item.fill(value)
+
+                def save():
+                    page.get_by_role('button', name='Lưu', exact=True).click()
+
+                def shot(name):
+                    page.screenshot(path=str(out / name), full_page=True)
+                    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+
+                def reception(l, k, episode, mode='new', when='2001-02-01'):
+                    page.goto(base + '/visits/new')
+                    fill(dict(ma_luot=l, ma_benh_nhan='W2BN1', ngay_vao_vien=when,
+                              che_do_dot=mode, ma_lan_kham=k, ngay_kham=when,
+                              tien_kham_chua='120000', ket_luan='Theo dõi', ma_y_ta='W2YT1',
+                              ngay_ho_tro=when, noi_dung_ho_tro='Tiếp đón'))
+                    if mode == 'new':
+                        fill(dict(ma_dot=episode, ma_benh='W2B1', ma_bac_si='W2BS'))
+                    else:
+                        page.locator('#episode-picker').select_option(episode)
+                        expect(page.locator('[name="ma_dot"]')).to_have_value(episode)
+                        expect(page.locator('[name="ma_bac_si"]')).to_be_disabled()
+                    save()
+                    expect(page).to_have_url(base + '/visits/' + l)
+
+                reception('W2L8', 'W2K8', 'W2D8')
+                shot('01-visit-mobile.png')
+                page.get_by_role('link', name='Khám thêm bệnh', exact=True).click()
+                fill(dict(ma_dot='W2D9', ma_benh='W2B2', ma_bac_si='W2BS', ma_lan_kham='W2K9',
+                          ngay_kham='2001-02-01', tien_kham_chua='80000', ket_luan='Bệnh thứ hai'))
+                save()
+>               expect(page.get_by_text('Bệnh kiểm thử 2', exact=True)).to_be_visible()
+E               AssertionError: Locator expected to be visible
+E               Actual value: None
+E               Error: element(s) not found
+E               Call log:
+E                 - Expect "to_be_visible" get_by_text("Bệnh kiểm thử 2", exact=True) with timeout 5000ms
+E                 - waiting for get_by_text("Bệnh kiểm thử 2", exact=True)
+E
+E               Aria snapshot:
+E               - link "Chuyển đến nội dung":
+E                 - /url: "#main-content"
+E               - banner:
+E                 - link "PHÒNG KHÁM Quản lý phòng khám tư nhân":
+E                   - /url: /
+E                 - text: Dữ liệu giả lập
+E                 - navigation "Điều hướng chính":
+E                   - link "Bệnh nhân":
+E                     - /url: /patients
+E                   - link "Bác sĩ":
+E                     - /url: /doctors
+E                   - link "Y tá":
+E                     - /url: /nurses
+E                   - link "Tiếp nhận / khám":
+E                     - /url: /visits/new
+E                   - link "Lượt khám":
+E                     - /url: /visits
+E                   - link "Đợt điều trị":
+E                     - /url: /treatments
+E                   - link "Báo cáo":
+E                     - /url: /reports
+E               - main:
+E                 - status: Đã lưu thành công.
+E                 - link "← Danh sách lượt khám":
+E                   - /url: /visits
+E                 - paragraph: CHI TIẾT LƯỢT ĐẾN KHÁM
+E                 - heading "Lượt W2L8" [level=1]
+E                 - paragraph: Đang khám
+E                 - term: Bệnh nhân
+E                 - definition:
+E                   - link "Bệnh nhân thử W2BN1 · W2BN1":
+E                     - /url: /patients/W2BN1/history
+E                 - term: Ngày vào / ngày ra
+E                 - definition: 01/02/2001 / —
+E                 - term: Số lần khám trong lượt
+E                 - definition: "2"
+E                 - term: Tiền khám/chữa (chưa gồm thuốc)
+E                 - definition: 200.000 đ
+E                 - link "Toàn bộ lịch sử":
+E                   - /url: /patients/W2BN1/history
+E                 - link "Khám thêm bệnh":
+E                   - /url: /visits/W2L8/examinations/new
+E                 - link "Ghi hỗ trợ y tá":
+E                   - /url: /visits/W2L8/support
+E                 - link "Kết thúc lượt":
+E                   - /url: /visits/W2L8/close
+E                 - heading "Các bệnh được khám" [level=2]
+E                 - paragraph: Mỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.
+E                 - region "Các bệnh được khám":
+E                   - table "Lần khám, đợt điều trị và thao tác":
+E                     - caption: Lần khám, đợt điều trị và thao tác
+E                     - rowgroup:
+E                       - row "Lần khám / đợt Bệnh / trạng thái đợt Ngày / thứ tự Bác sĩ Kết luận Tiền khám Thao tác":
+E                         - columnheader "Lần khám / đợt"
+E                         - columnheader "Bệnh / trạng thái đợt"
+E                         - columnheader "Ngày / thứ tự"
+E                         - columnheader "Bác sĩ"
+E                         - columnheader "Kết luận"
+E                         - columnheader "Tiền khám"
+E                         - columnheader "Thao tác"
+E                     - rowgroup:
+E                       - row "W2K8 / W2D8 Bệnh kiểm thử 1 Đang điều trị 01/02/2001 · Lần 1 W2BS Theo dõi 120.000 đ Kê đơn Xác nhận khỏi":
+E                         - rowheader "W2K8 / W2D8"
+E                         - cell "Bệnh kiểm thử 1 Đang điều trị"
+E                         - cell "01/02/2001 · Lần 1"
+E                         - cell "W2BS"
+E                         - cell "Theo dõi"
+E                         - cell "120.000 đ"
+E                         - cell "Kê đơn Xác nhận khỏi":
+E                           - link "Kê đơn":
+E                             - /url: /examinations/W2K8/prescription
+E                           - link "Xác nhận khỏi":
+E                             - /url: /treatments/W2D8/cure
+E                       - row "W2K9 / W2D9 Bệnh kiểm thử 2 Đang điều trị 01/02/2001 · Lần 1 W2BS Bệnh thứ hai 80.000 đ Kê đơn Xác nhận khỏi":
+E                         - rowheader "W2K9 / W2D9"
+E                         - cell "Bệnh kiểm thử 2 Đang điều trị"
+E                         - cell "01/02/2001 · Lần 1"
+E                         - cell "W2BS"
+E                         - cell "Bệnh thứ hai"
+E                         - cell "80.000 đ"
+E                         - cell "Kê đơn Xác nhận khỏi":
+E                           - link "Kê đơn":
+E                             - /url: /examinations/W2K9/prescription
+E                           - link "Xác nhận khỏi":
+E                             - /url: /treatments/W2D9/cure
+E                 - heading "Y tá hỗ trợ" [level=2]
+E                 - region "Y tá hỗ trợ":
+E                   - table "Ngày bắt đầu và nội dung hỗ trợ":
+E                     - caption: Ngày bắt đầu và nội dung hỗ trợ
+E                     - rowgroup:
+E                       - row "Y tá Ngày bắt đầu Nội dung Thao tác":
+E                         - columnheader "Y tá"
+E                         - columnheader "Ngày bắt đầu"
+E                         - columnheader "Nội dung"
+E                         - columnheader "Thao tác"
+E                     - rowgroup:
+E                       - row "Y tá thử · W2YT1 01/02/2001 Tiếp đón Cập nhật hỗ trợ W2YT1":
+E                         - rowheader "Y tá thử · W2YT1"
+E                         - cell "01/02/2001"
+E                         - cell "Tiếp đón"
+E                         - cell "Cập nhật hỗ trợ W2YT1":
+E                           - link "Cập nhật hỗ trợ W2YT1":
+E                             - /url: /visits/W2L8/support?ma_y_ta=W2YT1
+E               - contentinfo: Phòng khám tư nhân · Project 1 Dữ liệu giả lập phục vụ học tập
+
+tests\test_browser_vuong_week2.py:63: AssertionError
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:21] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:21] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:21] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:21] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "GET /visits/W2L8/examinations/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[32mPOST /visits/W2L8/examinations/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [19/Oct/2026 21:53:22] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+=========================== short test summary info ===========================
+FAILED tests/test_browser_vuong_week2.py::test_vuong_clinical_workflow - Asse...
+1 failed, 160 passed in 24.41s
