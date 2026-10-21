@@ -1,5 +1,7 @@
 # Hợp đồng backend tuần 2
 
+Tích hợp 21/10/2026: giữ context/form/JS/báo cáo Vương e1119e9; nhập test hồi quy và tài liệu sửa Trung da59e56. Lỗi hạ tầng 500/503 vẫn theo handler chung. Xem [bản sửa Trung](TRUNG_WEEK2_REVIEW_FIXES.md).
+
 Các route dưới đây đã triển khai. GET mở form/tra cứu; POST thay đổi DB và yêu cầu `csrf_token`. Chưa có JSON mutation API. GET báo cáo hỗ trợ `format=json` để UI khác dùng. Mọi tên bảng/cột là snake_case như seed chuẩn hóa tuần 1.
 
 ## Route và form
