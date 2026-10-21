@@ -1,0 +1,64 @@
+name: Quyen week 2 independent reports
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tests/test_quyen_week2_reports.py'
+      - 'database/**'
+      - '.github/workflows/quyen-week2.yml'
+      - 'docs/QUYEN_WEEK2_HANDOFF.md'
+permissions:
+  contents: read
+jobs:
+  reports:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: disposable-ci-password
+          MYSQL_DATABASE: clinic_week2_oracle_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=12
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: '3306'
+      DB_USER: root
+      DB_PASSWORD: disposable-ci-password
+      DB_NAME: clinic_week2_oracle_test
+      RUN_MYSQL_TESTS: '1'
+      FLASK_SECRET_KEY: disposable-ci-session-key
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Canonical import and full audit
+        run: python -m tools.quyen_week1_evidence --install
+      - name: Independent SQL oracle for all 40 patients
+        run: python -m pytest tests/test_quyen_database.py tests/test_quyen_week2_reports.py -v
+      - uses: actions/checkout@v4
+        with:
+          ref: 10c808238ef2f8f4f0a1aabcfc59da19079b38f8
+          path: candidate
+      - name: Install independent tests into pinned Trung candidate
+        run: |
+          cp tests/test_quyen_week2_reports.py candidate/tests/
+          cp tests/test_quyen_database.py candidate/tests/
+          cp database/queries.sql candidate/database/queries.sql
+          cp database/seed.sql candidate/database/seed.sql
+      - name: Backend report parity against independent seed oracle
+        working-directory: candidate
+        env:
+          QUYEN_CHECK_WEEK2: '1'
+        run: python -m pytest tests/test_quyen_week2_reports.py -v
+      - name: Final audit and report evidence
+        run: python -m tools.quyen_week1_evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quyen-week2-oracle
+          path: test-artifacts/quyen-week1/
