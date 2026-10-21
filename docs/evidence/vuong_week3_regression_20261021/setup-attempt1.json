@@ -1,0 +1,25 @@
+{
+  "session_id": "vuong_week3_regression_20261021",
+  "started_at": "2026-10-21T11:26:49.740558+07:00",
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "timezone": "Asia/Bangkok (UTC+07:00)",
+  "evidence_kind": "local",
+  "branch": "vuong/week-3",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "source_dirty": false,
+  "checkout_status_before": "?? docs/VUONG_WEEK3_ACCEPTANCE.md\n?? docs/evidence/vuong_week2_prepare_20261019_225048/\n?? docs/evidence/vuong_week3_regression_20261021/\n?? docs/evidence/vuong_week3_setup_20261021_111405/",
+  "source_copy": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-regression-20261021\\source",
+  "source_copy_matches_checkout": true,
+  "python_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+  "python_version": "3.11.9",
+  "mysql_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+  "browser_cache": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\browsers",
+  "flags": {
+    "RUN_MYSQL_TESTS": "1",
+    "RUN_BROWSER_TESTS": "1",
+    "QUYEN_CHECK_WEEK2": "1"
+  },
+  "flags_origin": "Set unconditionally by unchanged runner before pytest",
+  "scope": "Week-3 step-2 automated regression only; no manual step-3 acceptance or T16/CI",
+  "run_started": false
+}

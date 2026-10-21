@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-10-21T11:27:16.0807097+07:00",
+  "initial_inventory": [
+    "System venv: Python 3.14.6",
+    "Previous acceptance runtime: Python 3.12.14",
+    "Installed system MySQL Server: 8.0",
+    "WindowsApps py launcher inaccessible",
+    "No Python 3.11/MySQL 8.4 located in inspected installation paths"
+  ],
+  "target_difference": "No major/minor mismatch: using new Python 3.11.9 and MySQL 8.4.7 private ZIP runtime; Chromium actual version in session.json",
+  "downloads": [
+    {
+      "component": "Python",
+      "version": "3.11.9",
+      "source": "https://api.nuget.org/v3-flatcontainer/python/3.11.9/python.3.11.9.nupkg",
+      "sha256": "9283876D58C017E0E846F95B490DA3BCA0FC0A6EE1134B2870677CFB7EEC3C67"
+    },
+    {
+      "component": "MySQL Server",
+      "version": "8.4.7",
+      "source": "https://cdn.mysql.com/archives/mysql-8.4/mysql-8.4.7-winx64.zip",
+      "sha256": "FD9BDBD4B5A878D31C8E4067078BD60665B1B3C4677FA1F099416D194B458AFF"
+    }
+  ],
+  "commands": [
+    ".venv/week3-tools/python311/tools/python.exe -m venv .venv/week3-runtime",
+    ".venv/week3-runtime/Scripts/python.exe -m pip install -r requirements-dev.txt playwright>=1.50,<2",
+    "PLAYWRIGHT_BROWSERS_PATH=.venv/week3-tools/browsers; .venv/week3-runtime/Scripts/python.exe -m playwright install chromium",
+    ".venv/week3-runtime/Scripts/python.exe docs/evidence/vuong_week3_regression_20261021/run_regression.py"
+  ],
+  "download_probe_issues": [
+    "NuGet v2 HEAD returned 404; flat-container endpoint succeeded",
+    "MySQL downloads archive returned 403 and current download filename 404; official CDN archive succeeded"
+  ],
+  "system_installation_modified": false,
+  "windows_service_installed": false
+}

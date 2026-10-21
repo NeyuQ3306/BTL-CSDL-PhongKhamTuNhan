@@ -1,0 +1,105 @@
+{
+  "reviewer": "Trợ lý Codex thay mặt Vương",
+  "method": "Explicit view_image of all 24 files in six batches",
+  "session": "vuong_week3_demo_20261021_125437_817175",
+  "reviewed": [
+    {
+      "file": "03-revisit-across-month.png",
+      "sha256": "a8b100f542c68bea92baa944412b7d6be6da11eb573db9fe663240f893ab38a5"
+    },
+    {
+      "file": "05-prescription.png",
+      "sha256": "5acdf838dc8293d53f7bf26cc095390af8c5b8aab08c29f7f356b0b1a6b5fa4d"
+    },
+    {
+      "file": "08-2026-10-diseases.png",
+      "sha256": "24cbe7d21ff23cb8e092e3d9e5834998c34ce7a64f24e9d863605100111608a1"
+    },
+    {
+      "file": "08-2026-10-salaries.png",
+      "sha256": "57990f909a40ee95772929a708edcc67718ba5a6f632505b60463a946b9575cd"
+    },
+    {
+      "file": "08-2026-10-revenue.png",
+      "sha256": "609fc11166dd2919d5f7c461a79c1f1152581b3926ab2d534ae1f8dfafd52637"
+    },
+    {
+      "file": "09-seed-history.png",
+      "sha256": "c2d7f3d015caa2bc5d6a702a5427ebe0dd6c7a0ccb094d60f28261720e187e13"
+    },
+    {
+      "file": "11-error-preserves-input.png",
+      "sha256": "ca701e5f36694c367cb4b5140a6fde1bbbdf39a8bcb781e6f5109bbc89c6d219"
+    },
+    {
+      "file": "12-mobile-history-390.png",
+      "sha256": "8ec3d68c53a6120a7f14f6e44adcaf4810aaaec016ac3a1615335315f29bc317"
+    },
+    {
+      "file": "02-crud-patients.png",
+      "sha256": "18238e107d6a835b43fbe43a928b6fac462c876689ac8cc34f64d7eb2f5c34e6"
+    },
+    {
+      "file": "02-crud-doctors.png",
+      "sha256": "0168004dc00c0e2ad890d9211236136fb56b9d737fcff70a822c6b517b697a54"
+    },
+    {
+      "file": "02-crud-nurses.png",
+      "sha256": "e7ab471bce8dbc385b2e72e11c3fd9734b3a3cdf387a2d9566a75e50fc10e16a"
+    },
+    {
+      "file": "04-nurse-support.png",
+      "sha256": "04b428cdf89c849c8b96f7e3c8a2612824fe09d0e12e36bcb2c98963846425d6"
+    },
+    {
+      "file": "06-recurrence-two-diseases.png",
+      "sha256": "0523e2f08517597e9c805af2e8c79b8469dc00b9503b558a43e07a3fbc123e2a"
+    },
+    {
+      "file": "07-closed-visit.png",
+      "sha256": "d0c3de06d40f416bb5a821c81ad12dd3fd75b8632a3b6b09cce6548ea9a9bb7e"
+    },
+    {
+      "file": "10-demo-history.png",
+      "sha256": "4764c0d5615007e2cfa8e1c285ab7de0426a33ab6572cec78f42302b2d517554"
+    },
+    {
+      "file": "08-2004-02-diseases.png",
+      "sha256": "916e8822b3717166c1da13b60f26eacd5b578da2374afec14fa6aeca2321c3d7"
+    },
+    {
+      "file": "08-2004-02-salaries.png",
+      "sha256": "e67540d1f75343c55163e083a85910f2639a97a7a02589ee15dd5e84423aa727"
+    },
+    {
+      "file": "08-2004-02-revenue.png",
+      "sha256": "ae8ef3e69746ade571cc52b3fe76814c22d3b93a5ada4e3770f92ebe1f2f5f52"
+    },
+    {
+      "file": "08-2004-03-diseases.png",
+      "sha256": "a28b4601af567738f536e044ab8d18a8822f19f297ec2a38e783d9ae1ef6f4fa"
+    },
+    {
+      "file": "08-2004-03-salaries.png",
+      "sha256": "a6c6e379f7ae634f7cd57e287c6f25a9d808176ca3b5225c800ad264dcf0e0a6"
+    },
+    {
+      "file": "08-2004-03-revenue.png",
+      "sha256": "65a4a329ec7ac0c8e0c04aa05d531ea38deced67f3695e8596707fc989654c86"
+    },
+    {
+      "file": "08-2025-12-diseases.png",
+      "sha256": "6a122478bdf56020a3473b55226efeb7505f4dcb837686aed4361f3c2a874e8b"
+    },
+    {
+      "file": "08-2025-12-salaries.png",
+      "sha256": "4f4532014f37c85a0998844e509e5e3e7c5e3d028bd9f79255fe05b27b769140"
+    },
+    {
+      "file": "08-2025-12-revenue.png",
+      "sha256": "d95b50732afa22805a1a051b38d0243f84667ff64dba9ef01e3edd4978e399de"
+    }
+  ],
+  "findings": "No blocking layout defect seen; wide tables remain inside scroll regions at 390px; numeric results also checked against SQL/expected",
+  "limits": "Long images were scaled in the viewer; not screen reader, physical device or T16 verification"
+}

@@ -1,0 +1,51 @@
+{
+  "source": "Tự tính từ input U3 và quy ước/đáp án database/expected_results.md; không lấy output SQL làm expected",
+  "custom": {
+    "2001-09": {
+      "U3B1": 1,
+      "consultation": 300000,
+      "medicine": 0,
+      "revenue": 300000,
+      "U3BS": 7000000,
+      "U3YT1": 5600000,
+      "U3YT2": 5000000
+    },
+    "2001-10": {
+      "U3B1": 2,
+      "U3B2": 1,
+      "consultation": 250000,
+      "medicine": 8000,
+      "revenue": 258000,
+      "U3BS": 8000000,
+      "U3YT1": 5400000,
+      "U3YT2": 5200000
+    },
+    "2000-12": {
+      "episodes": 0,
+      "revenue": 0,
+      "U3BS": 7000000,
+      "U3YT1": 5000000,
+      "U3YT2": 5000000
+    }
+  },
+  "seed_october": {
+    "episodes": 24,
+    "consultation": 4680000,
+    "medicine": 5820800,
+    "revenue": 10500800,
+    "doctor_total_after_U3_staff": 85000000,
+    "nurse_total_after_U3_staff": 75600000,
+    "formula": "Bác sĩ:78000000+7000000; y tá:65600000+2*5000000 vì thêm nhân viên U3 chưa có hoạt động tháng10/2026"
+  },
+  "history_U3BN1": {
+    "visits": 5,
+    "episodes": 3,
+    "examinations": 6,
+    "medicine_lines": 2,
+    "support": 6,
+    "active_episodes": 2,
+    "last_sequence_U3D1": 4,
+    "consultation_all": 550000,
+    "medicine_all": 8000
+  }
+}

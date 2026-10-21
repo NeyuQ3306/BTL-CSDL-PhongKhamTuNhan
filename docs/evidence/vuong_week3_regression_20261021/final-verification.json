@@ -1,0 +1,11 @@
+{
+  "local_links_resolve": true,
+  "matrix_cases": 16,
+  "automated_cases_pass": 15,
+  "t16_pending": true,
+  "all_122_checkout_source_hashes_unchanged": true,
+  "all_58_original_week2_hashes_unchanged": true,
+  "staged_files": [],
+  "product_source_diff_empty": true,
+  "credential_shaped_urls_found": 0
+}

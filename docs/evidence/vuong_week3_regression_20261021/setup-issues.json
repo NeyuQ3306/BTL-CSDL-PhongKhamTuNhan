@@ -1,0 +1,6 @@
+{
+  "scope": "Environment setup issue, not product test failure",
+  "symptom": "Playwright driver startup did not complete in restricted execution; runner not started and no tests collected",
+  "action": "Stopped only task-specific Python PIDs 14400/28004; preserve first metadata; retry with execution approval",
+  "state": "No product source change; retry uses a new source mirror"
+}

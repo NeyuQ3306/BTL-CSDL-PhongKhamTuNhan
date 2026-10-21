@@ -1,0 +1,35 @@
+[
+  {
+    "month": "2001-01",
+    "episodes": 1,
+    "fees": 250,
+    "medicines": 0,
+    "total": 250,
+    "doctor": 7000000,
+    "nurse1": 5400000,
+    "nurse2": 5000000,
+    "ui_json_sql_expected": "PASS"
+  },
+  {
+    "month": "2001-02",
+    "episodes": 3,
+    "fees": 550,
+    "medicines": 8000,
+    "total": 8550,
+    "doctor": 8000000,
+    "nurse1": 5400000,
+    "nurse2": 5200000,
+    "ui_json_sql_expected": "PASS"
+  },
+  {
+    "month": "2001-03",
+    "episodes": 0,
+    "fees": 0,
+    "medicines": 0,
+    "total": 0,
+    "doctor": 7000000,
+    "nurse1": 5000000,
+    "nurse2": 5000000,
+    "ui_json_sql_expected": "PASS"
+  }
+]

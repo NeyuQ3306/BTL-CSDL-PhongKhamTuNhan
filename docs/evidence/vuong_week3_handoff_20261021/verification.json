@@ -1,0 +1,58 @@
+{
+  "at": "2026-10-21T13:48:05.173443+07:00",
+  "kind": "Evidence/source/syntax/link verification, not new MySQL/browser execution",
+  "source_head_at_verification": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "candidate_id": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+  "full_manifest_files": 124,
+  "documentation_differences": [
+    ".gitattributes",
+    "README.md",
+    "docs/SETUP.md",
+    "docs/VUONG_WEEK2_USER_GUIDE.md"
+  ],
+  "application_manifest_files": 66,
+  "application_manifest_matches": true,
+  "demo_tool_matches_rehearsed_hash": true,
+  "prior_evidence_files": 573,
+  "prior_evidence_unchanged": true,
+  "junit_actual": {
+    "total": 179,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "T01_T15_all_pass": true,
+  "T16": {
+    "status": "Không thực hiện theo quyết định nhóm",
+    "actual": "Chưa chạy",
+    "required": false
+  },
+  "audit_1144_clean": true,
+  "cleanup_verified_in_existing_evidence": true,
+  "python_syntax_files": 47,
+  "jinja_templates": 16,
+  "local_links_checked": 397,
+  "broken_links": [],
+  "secret_scan_candidates": [
+    {
+      "file": "docs/SETUP.md",
+      "line": 55
+    }
+  ],
+  "secret_scan_review": [
+    {
+      "file": "docs/SETUP.md",
+      "line": 55,
+      "reason": "MAT_KHAU_MYSQL_TREN_MAY_BAN is a documented placeholder, not a credential"
+    }
+  ],
+  "unresolved_secret_candidates": 0,
+  "step6": "Vương xác nhận hoàn thành; chi tiết tập chung chưa cung cấp",
+  "remaining": [
+    "Trung review",
+    "Quyền nghiệm thu/merge",
+    "Kiểm tra main sau merge",
+    "Quyền release/tag"
+  ],
+  "runner_issue": "W3-RUN-01 remains open"
+}

@@ -1,0 +1,7 @@
+2026-10-21T05:12:33.936089Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-10-21T05:12:34.177869Z 0 [System] [MY-010116] [Server] D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\.venv\week3-tools\mysql84\mysql-8.4.7-winx64\bin\mysqld.exe (mysqld 8.4.7) starting as process 13296
+2026-10-21T05:12:34.214027Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-21T05:12:34.473610Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-21T05:12:34.703570Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-21T05:12:34.704120Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-21T05:12:34.739461Z 0 [System] [MY-010931] [Server] D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\.venv\week3-tools\mysql84\mysql-8.4.7-winx64\bin\mysqld.exe: ready for connections. Version: '8.4.7'  socket: ''  port: 57136  MySQL Community Server - GPL.

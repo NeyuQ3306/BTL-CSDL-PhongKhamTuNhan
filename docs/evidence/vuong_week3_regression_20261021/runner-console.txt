@@ -1,0 +1,224 @@
+Private import ready; running baseline tests
+ests/test_week2.py::test_atomic_visit_rollback[changes2-422]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes3-404]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes4-422]
+PASSED tests/test_week2.py::test_clinical_constraints
+PASSED tests/test_week2.py::test_prescription_rollback
+PASSED tests/test_week2.py::test_concurrent_episode_and_sequence
+PASSED tests/test_week2.py::test_routes_and_json
+PASSED tests/test_week2.py::test_invalid_money[-1]
+PASSED tests/test_week2.py::test_invalid_money[NaN]
+PASSED tests/test_week2.py::test_invalid_money[Infinity]
+PASSED tests/test_week2.py::test_invalid_money[1.1]
+PASSED tests/test_week2.py::test_invalid_money[1e3]
+PASSED tests/test_week2.py::test_invalid_money[1000000000000]
+PASSED tests/test_week2.py::test_invalid_money[]
+PASSED tests/test_week2.py::test_invalid_money[None]
+PASSED tests/test_week2.py::test_invalid_quantity[0]
+PASSED tests/test_week2.py::test_invalid_quantity[-1]
+PASSED tests/test_week2.py::test_invalid_quantity[1.5]
+PASSED tests/test_week2.py::test_invalid_quantity[2147483648]
+PASSED tests/test_week2.py::test_invalid_quantity[]
+PASSED tests/test_week2.py::test_invalid_quantity[None]
+PASSED tests/test_week2.py::test_invalid_day[2001-02-29]
+PASSED tests/test_week2.py::test_invalid_day[2999-01-01]
+PASSED tests/test_week2.py::test_invalid_day[2001-1-01]
+PASSED tests/test_week2.py::test_invalid_day[None]
+PASSED tests/test_week2.py::test_invalid_month[]
+PASSED tests/test_week2.py::test_invalid_month[2026-13]
+PASSED tests/test_week2.py::test_invalid_month[2026-00]
+PASSED tests/test_week2.py::test_invalid_month[2026-1]
+PASSED tests/test_week2.py::test_invalid_month[9999-12]
+PASSED tests/test_week2.py::test_invalid_month[' OR 1=1]
+PASSED tests/test_week2.py::test_month_boundaries
+PASSED tests/test_week2.py::test_existing_episode_case_alias_uses_canonical_owner
+PASSED tests/test_week2_review_regressions.py::test_invalid_month_json_and_html[diseases]
+PASSED tests/test_week2_review_regressions.py::test_invalid_month_json_and_html[salaries]
+PASSED tests/test_week2_review_regressions.py::test_invalid_month_json_and_html[revenue]
+PASSED tests/test_week2_review_regressions.py::test_missing_patient_json
+PASSED tests/test_week2_review_regressions.py::test_invalid_patient_json_before_database
+PASSED tests/test_week2_review_regressions.py::test_history_title_does_not_contain_clinical_tables
+PASSED tests/test_week2_review_regressions.py::test_prescription_controls_fit_mobile
+175 passed in 55.74s
+
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /patients HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week1.css HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week2.css HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /visits/new HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week2.js HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /visits/L0001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /visits/L0001/examinations/new HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:24] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /visits/L0001/support HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /visits/L0001/close HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /treatments/D0001/cure HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /examinations/K0001/prescription HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /prescriptions/DT0001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /reports HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /reports/diseases?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:25] "GET /reports/salaries?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /reports/revenue?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /reports/history HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /reports/history?patient_id=BN001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /reports/revenue?month=2025-12 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /reports/revenue?month=2026-13 HTTP/1.1" 400 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /reports/history?patient_id=MISSING HTTP/1.1" 404 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:26] "GET /patients HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /visits/new HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /visits/L0001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /visits/L0001/examinations/new HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /visits/L0001/support HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /visits/L0001/close HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /treatments/D0001/cure HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /examinations/K0001/prescription HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:27] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /prescriptions/DT0001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /reports HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /reports/diseases?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /reports/salaries?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /reports/revenue?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /reports/history HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /reports/history?patient_id=BN001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:28] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /reports/revenue?month=2025-12 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /reports/revenue?month=2026-13 HTTP/1.1" 400 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /reports/history?patient_id=MISSING HTTP/1.1" 404 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /patients HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /visits/new HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /visits/L0001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /visits/L0001/examinations/new HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /visits/L0001/support HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:29] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /visits/L0001/close HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /treatments/D0001/cure HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /examinations/K0001/prescription HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.js HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /prescriptions/DT0001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /reports HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /reports/diseases?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /reports/salaries?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /reports/revenue?month=2026-10 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:30] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /reports/history HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /reports/history?patient_id=BN001 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /reports/revenue?month=2025-12 HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /reports/revenue?month=2026-13 HTTP/1.1" 400 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week2.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /reports/history?patient_id=MISSING HTTP/1.1" 404 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week1.css HTTP/1.1" 304 -
+127.0.0.1 - - [21/Oct/2026 11:29:31] "GET /static/week2.css HTTP/1.1" 304 -
+BASELINE READY http://127.0.0.1:60683/visits/new ; evidence: docs\evidence\vuong_week2_prepare_20261021_112820

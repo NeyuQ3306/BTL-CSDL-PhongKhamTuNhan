@@ -1,0 +1,25 @@
+{
+  "scope": "Step 1 preparation only; no acceptance tests run",
+  "prepared_at": "2026-10-21T11:14:05.6142766+07:00",
+  "timezone": "Asia/Bangkok (UTC+07:00)",
+  "executor": "Trợ lý Codex thay mặt Vương; không phải Vương tự thao tác",
+  "branch": "vuong/week-3",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "origin_main_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "initial_branch": "main",
+  "initial_tracked_changes": "none",
+  "initial_untracked": [
+    "docs/evidence/vuong_week2_prepare_20261019_225048/"
+  ],
+  "fetch": "git fetch origin: exit 0",
+  "main_update": "git merge --ff-only origin/main: Already up to date",
+  "branch_creation": "git switch -c vuong/week-3 origin/main: success",
+  "python": "Chưa chạy kiểm thử; chưa xác minh runtime",
+  "mysql": "Chưa chạy kiểm thử; chưa xác minh server",
+  "chromium": "Chưa chạy kiểm thử; chưa xác minh browser",
+  "tests_run": false,
+  "old_evidence_file_count": 58,
+  "preserved_evidence": "docs/evidence/vuong_week2_prepare_20261019_225048/",
+  "external_message_sent": false,
+  "commit_created": false
+}

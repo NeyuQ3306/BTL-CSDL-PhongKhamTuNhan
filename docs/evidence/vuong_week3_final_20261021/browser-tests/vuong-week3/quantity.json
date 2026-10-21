@@ -1,0 +1,39 @@
+{
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "kind": "quantity",
+  "browser_locale": "en-US",
+  "actual": [
+    {
+      "input": "0",
+      "expected": "Giá trị phải lớn hơn hoặc bằng 1.",
+      "actual": "Giá trị phải lớn hơn hoặc bằng 1.",
+      "posts": 0
+    },
+    {
+      "input": "-1",
+      "expected": "Giá trị phải lớn hơn hoặc bằng 1.",
+      "actual": "Giá trị phải lớn hơn hoặc bằng 1.",
+      "posts": 0
+    },
+    {
+      "input": "2147483648",
+      "expected": "Giá trị không được lớn hơn 2147483647.",
+      "actual": "Giá trị không được lớn hơn 2147483647.",
+      "posts": 0
+    },
+    {
+      "input": "1.5",
+      "expected": "Vui lòng nhập số nguyên.",
+      "actual": "Vui lòng nhập số nguyên.",
+      "posts": 0
+    },
+    {
+      "dynamic_row_localized": true,
+      "optional_blank_valid": true
+    }
+  ],
+  "error_recovery": true,
+  "input_preserved": true,
+  "posts": [],
+  "js_errors": []
+}

@@ -1,0 +1,976 @@
+[
+  {
+    "id": "history-1440",
+    "url": "http://127.0.0.1:64505/reports/history?patient_id=U3BN1",
+    "metrics": {
+      "documentWidth": 1440,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Các đợt điều trị của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        },
+        {
+          "contentWidth": 1318,
+          "name": "Các lần khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        },
+        {
+          "contentWidth": 1318,
+          "name": "Lượt đến khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        },
+        {
+          "contentWidth": 1318,
+          "name": "Thuốc đã kê cho bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        },
+        {
+          "contentWidth": 1318,
+          "name": "Y tá hỗ trợ bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:47:55.514Z"
+  },
+  {
+    "id": "history-390",
+    "url": "http://127.0.0.1:64505/reports/history?patient_id=U3BN1",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Các đợt điều trị của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        },
+        {
+          "contentWidth": 911,
+          "name": "Các lần khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        },
+        {
+          "contentWidth": 720,
+          "name": "Lượt đến khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        },
+        {
+          "contentWidth": 859,
+          "name": "Thuốc đã kê cho bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        },
+        {
+          "contentWidth": 720,
+          "name": "Y tá hỗ trợ bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "19-history-390.jpg",
+    "at": "2026-10-21T04:47:55.535Z"
+  },
+  {
+    "id": "history-320",
+    "url": "http://127.0.0.1:64505/reports/history?patient_id=U3BN1",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Các đợt điều trị của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 911,
+          "name": "Các lần khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 720,
+          "name": "Lượt đến khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 859,
+          "name": "Thuốc đã kê cho bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 720,
+          "name": "Y tá hỗ trợ bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "image": "20-history-320.jpg",
+    "at": "2026-10-21T04:47:55.694Z"
+  },
+  {
+    "id": "history-320-keyboard",
+    "url": "http://127.0.0.1:64505/reports/history?patient_id=U3BN1",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Các đợt điều trị của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 911,
+          "name": "Các lần khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 720,
+          "name": "Lượt đến khám của bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 859,
+          "name": "Thuốc đã kê cho bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 720,
+          "name": "Y tá hỗ trợ bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "image": "21-history-table-keyboard-320.jpg",
+    "at": "2026-10-21T04:48:07.977Z"
+  },
+  {
+    "id": "treatments-320",
+    "url": "http://127.0.0.1:64505/treatments",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [],
+      "width": 320
+    },
+    "image": "22-treatments-320.jpg",
+    "at": "2026-10-21T04:48:08.685Z"
+  },
+  {
+    "id": "visits-320",
+    "url": "http://127.0.0.1:64505/visits",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách lượt khám",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "image": "23-visits-320.jpg",
+    "at": "2026-10-21T04:48:24.002Z"
+  },
+  {
+    "id": "patients-320",
+    "url": "http://127.0.0.1:64505/patients",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "image": "24-patients-320.jpg",
+    "at": "2026-10-21T04:48:24.555Z"
+  },
+  {
+    "id": "doctors-320",
+    "url": "http://127.0.0.1:64505/doctors",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách bác sĩ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:50.007Z",
+    "image": "responsive-doctors-320.jpg"
+  },
+  {
+    "id": "nurses-320",
+    "url": "http://127.0.0.1:64505/nurses",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách y tá",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:50.273Z",
+    "image": "responsive-nurses-320.jpg"
+  },
+  {
+    "id": "new-patient-320",
+    "url": "http://127.0.0.1:64505/patients/new",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:50.504Z",
+    "image": "responsive-new-patient-320.jpg"
+  },
+  {
+    "id": "new-doctor-320",
+    "url": "http://127.0.0.1:64505/doctors/new",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:50.670Z",
+    "image": "responsive-new-doctor-320.jpg"
+  },
+  {
+    "id": "new-nurse-320",
+    "url": "http://127.0.0.1:64505/nurses/new",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:50.861Z",
+    "image": "responsive-new-nurse-320.jpg"
+  },
+  {
+    "id": "new-visit-320",
+    "url": "http://127.0.0.1:64505/visits/new",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:51.129Z",
+    "image": "responsive-new-visit-320.jpg"
+  },
+  {
+    "id": "prescription-form-320",
+    "url": "http://127.0.0.1:64505/examinations/U3K6/prescription",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:51.445Z",
+    "image": "responsive-prescription-form-320.jpg"
+  },
+  {
+    "id": "saved-prescription-320",
+    "url": "http://127.0.0.1:64505/prescriptions/U3RX1",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Thuốc trong đơn đã lưu",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:51.665Z",
+    "image": "responsive-saved-prescription-320.jpg"
+  },
+  {
+    "id": "visit-detail-320",
+    "url": "http://127.0.0.1:64505/visits/U3L5",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 779,
+          "name": "Các bệnh được khám",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 720,
+          "name": "Y tá hỗ trợ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:51.904Z",
+    "image": "responsive-visit-detail-320.jpg"
+  },
+  {
+    "id": "Q1-320",
+    "url": "http://127.0.0.1:64505/reports/diseases?month=2001-10",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Thống kê bệnh",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:52.121Z",
+    "image": "responsive-Q1-320.jpg"
+  },
+  {
+    "id": "Q2-320",
+    "url": "http://127.0.0.1:64505/reports/salaries?month=2001-10",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Lương bác sĩ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        },
+        {
+          "contentWidth": 720,
+          "name": "Lương y tá",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:52.362Z",
+    "image": "responsive-Q2-320.jpg"
+  },
+  {
+    "id": "Q4-320",
+    "url": "http://127.0.0.1:64505/reports/revenue?month=2001-10",
+    "metrics": {
+      "documentWidth": 305,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Chi tiết doanh thu",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 263
+        }
+      ],
+      "width": 320
+    },
+    "at": "2026-10-21T04:48:52.545Z",
+    "image": "responsive-Q4-320.jpg"
+  },
+  {
+    "id": "doctors-390",
+    "url": "http://127.0.0.1:64505/doctors",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách bác sĩ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-doctors-390.jpg",
+    "at": "2026-10-21T04:49:04.954Z"
+  },
+  {
+    "id": "nurses-390",
+    "url": "http://127.0.0.1:64505/nurses",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách y tá",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-nurses-390.jpg",
+    "at": "2026-10-21T04:49:05.168Z"
+  },
+  {
+    "id": "new-patient-390",
+    "url": "http://127.0.0.1:64505/patients/new",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [],
+      "width": 390
+    },
+    "image": "responsive-new-patient-390.jpg",
+    "at": "2026-10-21T04:49:05.433Z"
+  },
+  {
+    "id": "new-doctor-390",
+    "url": "http://127.0.0.1:64505/doctors/new",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [],
+      "width": 390
+    },
+    "image": "responsive-new-doctor-390.jpg",
+    "at": "2026-10-21T04:49:05.621Z"
+  },
+  {
+    "id": "new-nurse-390",
+    "url": "http://127.0.0.1:64505/nurses/new",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [],
+      "width": 390
+    },
+    "image": "responsive-new-nurse-390.jpg",
+    "at": "2026-10-21T04:49:05.866Z"
+  },
+  {
+    "id": "new-visit-390",
+    "url": "http://127.0.0.1:64505/visits/new",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [],
+      "width": 390
+    },
+    "image": "responsive-new-visit-390.jpg",
+    "at": "2026-10-21T04:49:06.130Z"
+  },
+  {
+    "id": "prescription-form-390",
+    "url": "http://127.0.0.1:64505/examinations/U3K6/prescription",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [],
+      "width": 390
+    },
+    "image": "responsive-prescription-form-390.jpg",
+    "at": "2026-10-21T04:49:06.379Z"
+  },
+  {
+    "id": "saved-prescription-390",
+    "url": "http://127.0.0.1:64505/prescriptions/U3RX1",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Thuốc trong đơn đã lưu",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-saved-prescription-390.jpg",
+    "at": "2026-10-21T04:49:06.662Z"
+  },
+  {
+    "id": "visit-detail-390",
+    "url": "http://127.0.0.1:64505/visits/U3L5",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 779,
+          "name": "Các bệnh được khám",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        },
+        {
+          "contentWidth": 720,
+          "name": "Y tá hỗ trợ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-visit-detail-390.jpg",
+    "at": "2026-10-21T04:49:06.860Z"
+  },
+  {
+    "id": "Q1-390",
+    "url": "http://127.0.0.1:64505/reports/diseases?month=2001-10",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Thống kê bệnh",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-Q1-390.jpg",
+    "at": "2026-10-21T04:49:07.104Z"
+  },
+  {
+    "id": "Q2-390",
+    "url": "http://127.0.0.1:64505/reports/salaries?month=2001-10",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Lương bác sĩ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        },
+        {
+          "contentWidth": 720,
+          "name": "Lương y tá",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-Q2-390.jpg",
+    "at": "2026-10-21T04:49:07.384Z"
+  },
+  {
+    "id": "Q4-390",
+    "url": "http://127.0.0.1:64505/reports/revenue?month=2001-10",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Chi tiết doanh thu",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-Q4-390.jpg",
+    "at": "2026-10-21T04:49:07.584Z"
+  },
+  {
+    "id": "patients-390",
+    "url": "http://127.0.0.1:64505/patients",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-patients-390.jpg",
+    "at": "2026-10-21T04:49:07.829Z"
+  },
+  {
+    "id": "visits-390",
+    "url": "http://127.0.0.1:64505/visits",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 720,
+          "name": "Danh sách lượt khám",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 333
+        }
+      ],
+      "width": 390
+    },
+    "image": "responsive-visits-390.jpg",
+    "at": "2026-10-21T04:49:08.186Z"
+  },
+  {
+    "id": "treatments-390",
+    "url": "http://127.0.0.1:64505/treatments",
+    "metrics": {
+      "documentWidth": 375,
+      "overflow": false,
+      "regions": [],
+      "width": 390
+    },
+    "image": "responsive-treatments-390.jpg",
+    "at": "2026-10-21T04:49:08.465Z"
+  },
+  {
+    "id": "doctors-1440",
+    "url": "http://127.0.0.1:64505/doctors",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Danh sách bác sĩ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:08.694Z"
+  },
+  {
+    "id": "nurses-1440",
+    "url": "http://127.0.0.1:64505/nurses",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Danh sách y tá",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:08.828Z"
+  },
+  {
+    "id": "new-patient-1440",
+    "url": "http://127.0.0.1:64505/patients/new",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:08.908Z"
+  },
+  {
+    "id": "new-doctor-1440",
+    "url": "http://127.0.0.1:64505/doctors/new",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.007Z"
+  },
+  {
+    "id": "new-nurse-1440",
+    "url": "http://127.0.0.1:64505/nurses/new",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.092Z"
+  },
+  {
+    "id": "new-visit-1440",
+    "url": "http://127.0.0.1:64505/visits/new",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.245Z"
+  },
+  {
+    "id": "prescription-form-1440",
+    "url": "http://127.0.0.1:64505/examinations/U3K6/prescription",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.397Z"
+  },
+  {
+    "id": "saved-prescription-1440",
+    "url": "http://127.0.0.1:64505/prescriptions/U3RX1",
+    "metrics": {
+      "documentWidth": 1440,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Thuốc trong đơn đã lưu",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.514Z"
+  },
+  {
+    "id": "visit-detail-1440",
+    "url": "http://127.0.0.1:64505/visits/U3L5",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Các bệnh được khám",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        },
+        {
+          "contentWidth": 1318,
+          "name": "Y tá hỗ trợ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.653Z"
+  },
+  {
+    "id": "Q1-1440",
+    "url": "http://127.0.0.1:64505/reports/diseases?month=2001-10",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Thống kê bệnh",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.775Z"
+  },
+  {
+    "id": "Q2-1440",
+    "url": "http://127.0.0.1:64505/reports/salaries?month=2001-10",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Lương bác sĩ",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        },
+        {
+          "contentWidth": 1318,
+          "name": "Lương y tá",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:09.919Z"
+  },
+  {
+    "id": "Q4-1440",
+    "url": "http://127.0.0.1:64505/reports/revenue?month=2001-10",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Chi tiết doanh thu",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:10.068Z"
+  },
+  {
+    "id": "patients-1440",
+    "url": "http://127.0.0.1:64505/patients",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Danh sách bệnh nhân",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:10.194Z"
+  },
+  {
+    "id": "visits-1440",
+    "url": "http://127.0.0.1:64505/visits",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [
+        {
+          "contentWidth": 1318,
+          "name": "Danh sách lượt khám",
+          "overflowX": "auto",
+          "tabindex": "0",
+          "width": 1318
+        }
+      ],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:10.371Z"
+  },
+  {
+    "id": "treatments-1440",
+    "url": "http://127.0.0.1:64505/treatments",
+    "metrics": {
+      "documentWidth": 1425,
+      "overflow": false,
+      "regions": [],
+      "width": 1440
+    },
+    "at": "2026-10-21T04:49:10.540Z"
+  }
+]

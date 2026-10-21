@@ -1,0 +1,11 @@
+{
+  "base_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "candidate_id": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+  "source_dirty": true,
+  "source_files": 124,
+  "identity_rule": "SHA nền + source.diff + execution_source_sha256.json; không nhận commit nền chứa sửa đổi",
+  "untracked_execution_files": [
+    "clinic_app/static/number-validation.js",
+    "tests/test_vuong_week3_numeric_validation.py"
+  ]
+}

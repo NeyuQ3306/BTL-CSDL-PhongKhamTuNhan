@@ -1,0 +1,16 @@
+{
+  "verified_at": "2026-10-21T11:15:50.6880621+07:00",
+  "branch": "vuong/week-3",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "head_equals_main_and_origin_main": true,
+  "case_count": 16,
+  "exact_input_and_expected_match": true,
+  "all_case_execution_fields_unrun": true,
+  "t16_status": "Chờ nhóm chốt máy thứ hai",
+  "preserved_evidence_files": 58,
+  "preserved_evidence_sha256_unchanged": true,
+  "tracked_changes": [],
+  "staged_files": [],
+  "tests_run": false,
+  "local_links": "All local links in acceptance document and preparation index resolve"
+}

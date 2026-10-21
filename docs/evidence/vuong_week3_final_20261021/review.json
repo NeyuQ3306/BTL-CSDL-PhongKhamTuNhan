@@ -1,0 +1,50 @@
+{
+  "reviewed_at": "2026-10-21T12:16:01.528245+07:00",
+  "candidate": {
+    "base_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "candidate_id": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+    "source_dirty": true,
+    "source_files": 124,
+    "identity_rule": "SHA nền + source.diff + execution_source_sha256.json; không nhận commit nền chứa sửa đổi",
+    "untracked_execution_files": [
+      "clinic_app/static/number-validation.js",
+      "tests/test_vuong_week3_numeric_validation.py"
+    ]
+  },
+  "tests": {
+    "collected": 179,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "passed": 179
+  },
+  "pytest_seconds": 59.78,
+  "all_T01_T15_pass": true,
+  "UI_fix_W3_UX_01_retested": true,
+  "english_locale_regression_kinds": [
+    "doctor",
+    "nurse",
+    "fee",
+    "quantity"
+  ],
+  "interactive_IAB_retest": true,
+  "no_JS_errors_in_new_tests": true,
+  "audit_total": 1144,
+  "audit_findings_empty": true,
+  "seed_table_hashes_unchanged": true,
+  "source_matches_manifest_after_run": true,
+  "protected_prior_evidence_unchanged": {
+    "docs/evidence/vuong_week2_prepare_20261019_225048": true,
+    "test-artifacts": true,
+    "docs/evidence/vuong_week3_regression_20261021": true,
+    "docs/evidence/vuong_week3_ui_20261021": true,
+    "docs/evidence/vuong_week3_setup_20261021_111405": true
+  },
+  "env_unchanged": true,
+  "remaining_issue": "W3-RUN-01: source runner cleanup remains for Trung; task instances stopped and ports verified closed",
+  "cleanup_pass": true,
+  "T16": "Chờ nhóm chốt máy thứ hai",
+  "CI": "Chưa chạy/xác minh",
+  "step4_local_criteria_met": true,
+  "product_blockers_found": 0
+}
