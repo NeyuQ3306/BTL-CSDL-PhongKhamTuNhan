@@ -1,5 +1,7 @@
 # Nghiệm thu local tuần 2 của Vương — 19/10/2026
 
+> Phạm vi hiện hành 21/10/2026: bỏ T16/máy thứ hai theo quyết định Quyền; demo trên laptop Quyền. Các nhận xét T16 bên dưới là lịch sử của phiên trước, không còn là điều kiện nghiệm thu hoặc release. Không sửa kết quả kiểm thử gốc.
+
 > Mốc kiểm thử lịch sử. Trạng thái bàn giao hiện tại: [VUONG_WEEK2_HANDOFF.md](VUONG_WEEK2_HANDOFF.md).
 
 Chạy lại sau review #5/#10 tại source `33901998df480d753985127ed7f7e9a791cbc5fd`: **168 passed / 0 skipped, 47,12 giây**; [JUnit](evidence/vuong_week2_prepare_20261019_224053/junit.xml), [input/expected/actual mới](evidence/vuong_week2_prepare_20261019_224053/browser-tests/vuong-acceptance/cases.json), [biên bản review phụ thuộc](VUONG_WEEK2_PR_REVIEW.md). Các số liệu dưới đây giữ nguyên phiên lịch sử, không gán cho head mới.
