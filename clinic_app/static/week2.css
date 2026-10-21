@@ -1,0 +1,36 @@
+/* Scoped to clinical screens; retain the established week-1 layout. */
+.clinical-form { max-width: 1040px; }
+.clinical-form fieldset { min-width: 0; margin: 0 0 28px; padding: 20px; border: 1px solid var(--border); border-radius: 8px; }
+.clinical-form legend { max-width: 100%; font-weight: 700; color: #234652; padding: 0 8px; overflow-wrap: anywhere; }
+.clinical-form p { margin-top: 0; }
+.clinical-form .fields > *, .clinical-field { min-width: 0; }
+.clinical-form input, .clinical-form select { display: block; width: 100%; min-width: 0; max-width: 100%; margin-top: 7px; }
+.clinical-form select { appearance: auto; border: 1px solid #b6c8d2; border-radius: 6px; padding: 10px 8px; min-height: 44px; font: inherit; color: inherit; background: white; }
+.clinical-form select:focus { outline: 3px solid #b9e4e2; outline-offset: 1px; }
+.clinical-form [hidden] { display: none !important; }
+.clinical-form input[readonly] { background: #eaf0f3; }
+.clinical-form summary { padding: 10px 0; cursor: pointer; }
+.clinical-form .episode-reference { margin-top: 20px; }
+.clinical-form .episode-reference li { overflow-wrap: anywhere; }
+.clinical-form .remove-medicine { margin-top: 16px; }
+.clinical-form .medicine-line { background: #f8fbfb; }
+.clinical-form .actions { border-top: 1px solid var(--border); padding-top: 20px; }
+.clinical-summary { margin: 24px 0; }
+.clinical-status { display: inline-block; padding: 4px 12px; background: #e0f3e8; color: #245b3e; border-radius: 20px; }
+.clinical-table { margin: 16px 0 28px; }
+.clinical-table:focus-visible { outline-offset: 2px; }
+.clinical-table caption { padding: 12px 20px; text-align: left; color: #526875; }
+.clinical-table .row-actions { gap: 8px 16px; }
+.clinical-table .row-actions a { white-space: normal; }
+.clinical-actions { padding: 18px 0; }
+.report-value { font-size: clamp(20px, 2.4vw, 30px); font-weight: 700; color: #075e60; margin: 10px 0 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.report-summary > section { min-width: 0; }
+.report-filters input[aria-invalid="true"] { border-color: #a12727; }
+.clinical-table tfoot { background: #edf3f5; font-weight: 700; }
+@media (max-width: 760px) {
+  .clinical-form { padding: 16px; }
+  .clinical-form fieldset { padding: 14px 10px; }
+  .clinical-form .fields { gap: 18px; }
+  .clinical-form .actions { align-items: stretch; }
+  .clinical-form .actions button { flex: 1 1 120px; }
+}

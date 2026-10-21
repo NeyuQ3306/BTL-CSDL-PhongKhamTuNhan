@@ -1,0 +1,30 @@
+{% extends 'week1/base.html' %}
+{% macro field(name,label,type='text',default='',required=True) %}<label>{{ label }}<input name="{{ name }}" type="{{ type }}" value="{{ values.get(name,default) }}" {% if required %}required{% endif %} {% if type=='date' %}max="{{ today }}"{% endif %}></label>{% endmacro %}
+{% macro select(name,label,items,key,caption,required=True) %}<label>{{ label }}<select name="{{ name }}" {% if required %}required{% endif %}><option value="">— Chọn —</option>{% for item in items %}<option value="{{ item[key] }}" {% if values.get(name)==item[key] %}selected{% endif %}>{{ item[key] }} · {{ item[caption] }}</option>{% endfor %}</select></label>{% endmacro %}
+{% block content %}<a href="{{ url_for('clinic.visits') }}">← Danh sách lượt khám</a><h1>{{ title }}</h1>
+{% if error %}<p class="notice error" role="alert">{{ error }}</p>{% endif %}
+<form method="post" class="record-form clinical-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+{% if action=='visit' %}<h2>1. Lượt đến khám</h2><div class="fields">
+{{ field('ma_luot','Mã lượt mới') }}{{ select('ma_benh_nhan','Bệnh nhân',choices.patients,'ma_benh_nhan','ho_ten') }}
+{{ field('ngay_vao_vien','Ngày vào viện','date',today) }}</div>{% endif %}
+{% if action in ['visit','exam'] %}<h2>Khám một bệnh</h2><p>Đợt mới: nhập mã đợt mới, chọn bệnh và bác sĩ. Tái khám: nhập mã đợt đang điều trị; bác sĩ giữ nguyên theo đợt.</p><div class="fields">
+<label>Loại khám<select name="che_do_dot" required><option value="new" {% if values.get('che_do_dot','new')=='new' %}selected{% endif %}>Đợt mới / tái mắc sau khi khỏi</option><option value="existing" {% if values.get('che_do_dot')=='existing' %}selected{% endif %}>Tái khám trong đợt đang điều trị</option></select></label>
+{{ field('ma_dot','Mã đợt mới hoặc mã đợt tái khám') }}
+{{ select('ma_benh','Bệnh (chỉ bắt buộc với đợt mới)',choices.diseases,'ma_benh','ten_benh',False) }}
+{{ select('ma_bac_si','Bác sĩ phụ trách (đợt mới)',choices.doctors,'ma_bac_si','ho_ten',False) }}
+{{ field('ma_lan_kham','Mã lần khám mới') }}{{ field('ngay_kham','Ngày khám','date',today) }}
+{{ field('tien_kham_chua','Tiền khám/chữa (đồng, chưa gồm thuốc)','number','0') }}{{ field('ket_luan','Kết luận') }}</div>
+<details><summary>Tra mã đợt đang điều trị</summary><ul>{% for row in choices.episodes %}<li>{{ row.ma_dot }} · Bệnh nhân {{ row.ma_benh_nhan }} · Bệnh {{ row.ma_benh }}</li>{% else %}<li>Chưa có đợt.</li>{% endfor %}</ul></details>{% endif %}
+{% if action in ['visit','support'] %}<h2>Y tá hỗ trợ</h2><p>Mỗi y tá/lượt tính thưởng một lần. Ghi lại cùng y tá sẽ cập nhật nội dung, giữ nguyên ngày bắt đầu hỗ trợ.</p><div class="fields">
+{{ select('ma_y_ta','Y tá',choices.nurses,'ma_y_ta','ho_ten') }}{{ field('ngay_ho_tro','Ngày bắt đầu hỗ trợ','date',today) }}{{ field('noi_dung_ho_tro','Nội dung công việc') }}</div>{% endif %}
+{% if action=='close' %}{{ field('ngay_ra_vien','Ngày ra viện','date',today) }}<p>Sau khi kết thúc lượt, không thể thêm lần khám hoặc sửa hỗ trợ.</p>{% endif %}
+{% if action=='cure' %}{{ field('ngay_khoi','Ngày khỏi','date',today) }}<p>Bác sĩ phụ trách đợt được tính một khoản thưởng trong tháng của ngày khỏi. Đợt đã khỏi không nhận thêm lần khám.</p>{% endif %}
+{% if action=='prescription' %}<p>Giá bán lấy từ giá hiện tại trong DB khi lưu. Có thể bỏ trống toàn bộ dòng không dùng.</p><div class="fields">{{ field('ma_don','Mã đơn mới') }}{{ field('ngay_lap_don','Ngày lập đơn (bằng ngày khám)','date',today) }}</div>
+{% set ids=values.getlist('ma_thuoc') %}{% set qty=values.getlist('so_luong') %}{% set usage=values.getlist('lieu_dung') %}
+<div id="medicine-lines">{% for i in range([3, ids|length]|max) %}<fieldset><legend>Thuốc {{ i+1 }}</legend><div class="fields">
+<label>Thuốc<select name="ma_thuoc"><option value="">— Chọn —</option>{% for m in choices.medicines %}<option value="{{ m.ma_thuoc }}" {% if ids[i]|default('')==m.ma_thuoc %}selected{% endif %}>{{ m.ma_thuoc }} · {{ m.ten_thuoc }} · {{ m.gia_hien_tai|money }}</option>{% endfor %}</select></label>
+<label>Số lượng<input type="number" min="1" step="1" name="so_luong" value="{{ qty[i]|default('') }}"></label>
+<label>Liều dùng<input name="lieu_dung" maxlength="255" value="{{ usage[i]|default('') }}"></label></div></fieldset>{% endfor %}</div>
+<button type="button" id="add-medicine">Thêm dòng thuốc</button>
+<script>document.getElementById('add-medicine').addEventListener('click',()=>{const box=document.getElementById('medicine-lines');if(box.children.length>=100)return;const row=box.firstElementChild.cloneNode(true);row.querySelectorAll('input,select').forEach(x=>x.value='');row.querySelector('legend').textContent='Thuốc '+(box.children.length+1);box.appendChild(row);});</script>{% endif %}
+<div class="actions"><button type="submit">Lưu</button><a href="{{ url_for('clinic.visits') }}">Hủy</a></div></form>{% endblock %}

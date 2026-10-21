@@ -1,7 +1,7 @@
 name: Backend and MySQL
 on:
   push:
-    branches: [main, trung/week-1]
+    branches: [main, trung/week-1, trung/week-2]
   pull_request:
     branches: [main]
 permissions:
@@ -49,8 +49,9 @@ jobs:
           PY
       - run: python -m pip install "playwright>=1.50,<2"
       - run: python -m playwright install --with-deps chromium
-      - run: python -m tools.quyen_db
-      - run: python -m pytest -v
+      - run: python -m tools.quyen_week1_evidence --install
+      - run: python -m pytest -v --junitxml=test-artifacts/week2/pytest.xml
+      - run: python -m tools.quyen_week1_evidence
       - run: python -m tools.audit_seed
       - name: Week 1 browser evidence
         if: always()
@@ -59,4 +60,11 @@ jobs:
           name: week1-browser-${{ github.run_id }}
           path: test-artifacts/week1/
           if-no-files-found: warn
+          retention-days: 30
+      - name: Week 2 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week2-integration-${{ github.run_id }}
+          path: test-artifacts/
           retention-days: 30

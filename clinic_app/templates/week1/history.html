@@ -29,4 +29,6 @@
 {% for row in visits %}<tr><td>{{ row.ma_luot }}</td><td>{{ display_value(row.ngay_vao_vien, 'date') }}</td><td>{{ display_value(row.ngay_ra_vien, 'date') if row.ngay_ra_vien else 'Chưa kết thúc' }}</td><td class="money-cell">{{ row.tong_tien_kham|money }}</td></tr>
 {% else %}<tr><td colspan="4" class="pending-cell">Bệnh nhân chưa có lượt đến khám được ghi nhận.</td></tr>{% endfor %}
 </tbody></table></div>
+<h2>Thuốc đã kê</h2><div class="table-wrap"><table><tr><th>Ngày</th><th>Thuốc</th><th>Số lượng</th><th>Liều dùng</th><th>Thành tiền</th></tr>{% for row in medicines %}<tr><td>{{ row.ngay_lap_don }}</td><td>{{ row.ten_thuoc }}</td><td>{{ row.so_luong }}</td><td>{{ row.lieu_dung }}</td><td>{{ row.thanh_tien|money }}</td></tr>{% else %}<tr><td colspan="5">Chưa có thuốc.</td></tr>{% endfor %}</table></div>
+<h2>Y tá hỗ trợ</h2><div class="table-wrap"><table><tr><th>Lượt</th><th>Y tá</th><th>Ngày</th><th>Công việc</th></tr>{% for row in support %}<tr><td>{{ row.ma_luot }}</td><td>{{ row.ho_ten }}</td><td>{{ row.ngay_ho_tro }}</td><td>{{ row.noi_dung_ho_tro }}</td></tr>{% else %}<tr><td colspan="4">Chưa có hỗ trợ.</td></tr>{% endfor %}</table></div>
 {% endblock %}
