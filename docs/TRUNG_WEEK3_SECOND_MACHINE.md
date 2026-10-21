@@ -1,3 +1,9 @@
+# Hướng dẫn máy thứ hai — chỉ lưu tham khảo lịch sử
+
+**Cập nhật theo quyết định trực tiếp của Quyền ngày 21/10/2026:** bỏ T16/cài và chạy trên máy thứ hai khỏi điều kiện nghiệm thu, chốt tuần 3 và release. Máy demo chính là laptop Quyền. Không yêu cầu Trung/Vương thực hiện quy trình bên dưới, không đánh dấu T16 PASS. Vẫn cần kiểm tra bản cuối theo README/SQL trên laptop Quyền và đạt các ca T01–T15. Xem issue #3 và PR #14.
+
+## Quy trình cũ — không còn là checklist bắt buộc
+
 # Trung phối hợp Vương — clone sạch máy thứ hai
 
 Trạng thái 21/10/2026: tuần 2 đã tích hợp tại main f486929; quy trình máy thứ hai CHƯA thực chạy. Nhóm cần chốt SHA chứa cả PR #12 sau review trước nghiệm thu tuần 3. Không dùng kết quả nghiệm thu Windows tuần2 của Trung thay máy thứ hai tuần3.
