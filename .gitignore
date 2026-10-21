@@ -23,3 +23,6 @@ Thumbs.db
 htmlcov/
 instance/
 backups/
+
+# Generated test output; curated evidence belongs in docs/evidence.
+test-artifacts/

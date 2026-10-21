@@ -1,0 +1,7 @@
+# Harness review source gốc
+
+Đây là bản ghi tập lệnh đã dùng trong phiên Windows 19/10/2026, không phải source ứng dụng. `build_pr_review.py` export đúng hai SHA bằng `git archive --format=zip` vào `.venv/pr_review_20261019`, không checkout/ghi nhánh khác; tạo runner từ `tools/vuong_week2_prepare.py`. `run_pr5.py` và `run_pr10.py` là bản đã chạy, có đường dẫn tuyệt đối của workspace phiên này.
+
+Để dựng lại trong repo khác, chạy builder từ repo root với Python có requirements-dev, PyMySQL và Playwright; builder sẽ tự thay ROOT theo workspace. Windows cần MySQL 8.0/8.4, Chromium đã cài; có thể truyền `--mysqld` và `--browsers-path` vào runner. Chạy hai runner bằng cùng Python, không dùng `.env` để kết nối. Mỗi runner tạo MySQL datadir/port riêng và DB `_test`, import schema → seed → audit → constraints → audit → queries, chạy pytest, kiểm tra seed hash/audit rồi dừng server. PR5 thêm 54 ảnh, đo title/control bounds, ba probe JSON và POST thiếu CSRF. PR10 chỉ chạy hai module SQL; không dùng backend tuần 1 của head Quyền để nhận là backend tuần 2.
+
+Không dùng runner để approve head khác: thay SHA phải tạo phiên/bằng chứng mới. Các lần lỗi hạ tầng/harness trước khi pytest không tính đạt. Harness sửa đường dẫn/manifest ở phiên thử trước, rồi mới chạy hai phiên thành công được trỏ trong biên bản. Hai snapshot ứng dụng/test không bị sửa. Bản ghi runner không chứa password: thông tin MySQL/Flask được sinh ngẫu nhiên trong bộ nhớ.

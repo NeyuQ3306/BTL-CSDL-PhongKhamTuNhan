@@ -44,7 +44,7 @@ def test_browser_clinical_flow(app, clinical_data):
             page.get_by_role('button',name='Lưu',exact=True).click()
             expect(page).to_have_url(base+'/treatments')
             page.goto(base+'/reports/revenue?month=2001-02')
-            expect(page.get_by_text('122.000 đ',exact=True)).to_be_visible()
+            expect(page.locator('[data-revenue="total"]')).to_have_text('122.000 đ')
             page.screenshot(path=str(output/'03-revenue.png'),full_page=True)
             page.goto(base+'/reports/history?patient_id=W2BN1')
             expect(page.get_by_role('heading',name='Thuốc đã kê')).to_be_visible()

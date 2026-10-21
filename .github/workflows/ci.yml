@@ -31,6 +31,7 @@ jobs:
       FLASK_SECRET_KEY: disposable-ci-session-key
       RUN_MYSQL_TESTS: '1'
       RUN_BROWSER_TESTS: '1'
+      QUYEN_CHECK_WEEK2: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

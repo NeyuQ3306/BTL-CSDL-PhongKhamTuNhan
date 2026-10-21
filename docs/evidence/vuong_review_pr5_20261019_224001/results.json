@@ -1,0 +1,827 @@
+{
+  "source_sha": "10c808238ef2f8f4f0a1aabcfc59da19079b38f8",
+  "run_at": "20261019_224001",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "database": "clinic_vuong_week2_prepare_test",
+  "mysql_port": 63191,
+  "dependencies": {
+    "trung": "10c808238ef2f8f4f0a1aabcfc59da19079b38f8",
+    "quyen": "1bf9f8b18342eaf6d0097f3693df1bc02addfcfa"
+  },
+  "scope": "Review unmodified PR #5 head; runner only is external",
+  "screens": [
+    {
+      "route": "/patients",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Bệnh nhân"
+      ],
+      "title": "Bệnh nhân · Phòng khám",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-00.png"
+    },
+    {
+      "route": "/visits/new",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Tiếp nhận và khám bệnh"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-01.png"
+    },
+    {
+      "route": "/visits/L0001",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-02.png"
+    },
+    {
+      "route": "/visits/L0001/examinations/new",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Khám thêm bệnh trong lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-03.png"
+    },
+    {
+      "route": "/visits/L0001/support",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Ghi hỗ trợ cho lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-04.png"
+    },
+    {
+      "route": "/visits/L0001/close",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Kết thúc lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-05.png"
+    },
+    {
+      "route": "/treatments/D0001/cure",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Xác nhận khỏi — đợt D0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-06.png"
+    },
+    {
+      "route": "/examinations/K0001/prescription",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Kê đơn — lần khám K0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-07.png"
+    },
+    {
+      "route": "/prescriptions/DT0001",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Đơn thuốc DT0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-08.png"
+    },
+    {
+      "route": "/reports",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Báo cáo phòng khám"
+      ],
+      "title": "Báo cáo · Phòng khám",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-09.png"
+    },
+    {
+      "route": "/reports/diseases?month=2026-10",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Thống kê bệnh theo đợt mắc"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-10.png"
+    },
+    {
+      "route": "/reports/salaries?month=2026-10",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Lương bác sĩ và y tá"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-11.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-10",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-12.png"
+    },
+    {
+      "route": "/reports/history",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-13.png"
+    },
+    {
+      "route": "/reports/history?patient_id=BN001",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Đỗ Ngọc Phương"
+      ],
+      "title": "Lịch sử Đỗ Ngọc Phương · Phòng khám<h2>Thuốc đã kê</h2><div class=\"table-wrap\"><table><tr><th>Ngày</th><th>Thuốc</th><th>Số lượng</th><th>Liều dùng</th><th>Thành tiền</th></tr><tr><td>2026-08-04</td><td>Ciprofloxacin 500 mg</td><td>14</td><td>Sử dụng theo hướng dẫn trên đơn</td><td>91.000 đ</td></tr><tr><td>2026-08-04</td><td>Cetirizine 10 mg</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>19.000 đ</td></tr><tr><td>2026-08-04</td><td>Hydrocortisone cream 1%</td><td>14</td><td>1 viên/lần, theo đơn</td><td>406.000 đ</td></tr><tr><td>2026-08-29</td><td>Clotrimazole cream 1%</td><td>5</td><td>Sử dụng theo hướng dẫn trên đơn</td><td>155.000 đ</td></tr><tr><td>2026-08-29</td><td>Paracetamol 500 mg</td><td>14</td><td>1 viên/lần, theo đơn</td><td>16.800 đ</td></tr><tr><td>2026-08-29</td><td>Ibuprofen 400 mg</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>25.000 đ</td></tr><tr><td>2026-09-18</td><td>Hydrocortisone cream 1%</td><td>20</td><td>1 viên/lần, theo đơn</td><td>580.000 đ</td></tr><tr><td>2026-09-18</td><td>Clotrimazole cream 1%</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>310.000 đ</td></tr></table></div> <h2>Y tá hỗ trợ</h2><div class=\"table-wrap\"><table><tr><th>Lượt</th><th>Y tá</th><th>Ngày</th><th>Công việc</th></tr><tr><td>L0055</td><td>Hoàng Hữu Quân</td><td>2026-08-04</td><td>Hỗ trợ chăm sóc bệnh nhân</td></tr><tr><td>L0088</td><td>Võ Văn Tâm</td><td>2026-08-29</td><td>Hỗ trợ cấp phát thuốc</td></tr><tr><td>L0105</td><td>Đỗ Văn Vy</td><td>2026-09-18</td><td>Tiếp đón và hướng dẫn</td></tr></table></div>",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-14.png"
+    },
+    {
+      "route": "/reports/revenue?month=2025-12",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-15.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-13",
+      "width": 1440,
+      "status": 400,
+      "heading": [
+        "Không thể hoàn tất yêu cầu (400)"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-16.png"
+    },
+    {
+      "route": "/reports/history?patient_id=MISSING",
+      "width": 1440,
+      "status": 404,
+      "heading": [
+        "Không thể hoàn tất yêu cầu (404)"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 1440,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "1440-17.png"
+    },
+    {
+      "route": "/patients",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Bệnh nhân"
+      ],
+      "title": "Bệnh nhân · Phòng khám",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-00.png"
+    },
+    {
+      "route": "/visits/new",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Tiếp nhận và khám bệnh"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-01.png"
+    },
+    {
+      "route": "/visits/L0001",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-02.png"
+    },
+    {
+      "route": "/visits/L0001/examinations/new",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Khám thêm bệnh trong lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-03.png"
+    },
+    {
+      "route": "/visits/L0001/support",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Ghi hỗ trợ cho lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-04.png"
+    },
+    {
+      "route": "/visits/L0001/close",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Kết thúc lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-05.png"
+    },
+    {
+      "route": "/treatments/D0001/cure",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Xác nhận khỏi — đợt D0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-06.png"
+    },
+    {
+      "route": "/examinations/K0001/prescription",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Kê đơn — lần khám K0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-07.png"
+    },
+    {
+      "route": "/prescriptions/DT0001",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Đơn thuốc DT0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-08.png"
+    },
+    {
+      "route": "/reports",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Báo cáo phòng khám"
+      ],
+      "title": "Báo cáo · Phòng khám",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-09.png"
+    },
+    {
+      "route": "/reports/diseases?month=2026-10",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Thống kê bệnh theo đợt mắc"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-10.png"
+    },
+    {
+      "route": "/reports/salaries?month=2026-10",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Lương bác sĩ và y tá"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-11.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-10",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-12.png"
+    },
+    {
+      "route": "/reports/history",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-13.png"
+    },
+    {
+      "route": "/reports/history?patient_id=BN001",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Đỗ Ngọc Phương"
+      ],
+      "title": "Lịch sử Đỗ Ngọc Phương · Phòng khám<h2>Thuốc đã kê</h2><div class=\"table-wrap\"><table><tr><th>Ngày</th><th>Thuốc</th><th>Số lượng</th><th>Liều dùng</th><th>Thành tiền</th></tr><tr><td>2026-08-04</td><td>Ciprofloxacin 500 mg</td><td>14</td><td>Sử dụng theo hướng dẫn trên đơn</td><td>91.000 đ</td></tr><tr><td>2026-08-04</td><td>Cetirizine 10 mg</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>19.000 đ</td></tr><tr><td>2026-08-04</td><td>Hydrocortisone cream 1%</td><td>14</td><td>1 viên/lần, theo đơn</td><td>406.000 đ</td></tr><tr><td>2026-08-29</td><td>Clotrimazole cream 1%</td><td>5</td><td>Sử dụng theo hướng dẫn trên đơn</td><td>155.000 đ</td></tr><tr><td>2026-08-29</td><td>Paracetamol 500 mg</td><td>14</td><td>1 viên/lần, theo đơn</td><td>16.800 đ</td></tr><tr><td>2026-08-29</td><td>Ibuprofen 400 mg</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>25.000 đ</td></tr><tr><td>2026-09-18</td><td>Hydrocortisone cream 1%</td><td>20</td><td>1 viên/lần, theo đơn</td><td>580.000 đ</td></tr><tr><td>2026-09-18</td><td>Clotrimazole cream 1%</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>310.000 đ</td></tr></table></div> <h2>Y tá hỗ trợ</h2><div class=\"table-wrap\"><table><tr><th>Lượt</th><th>Y tá</th><th>Ngày</th><th>Công việc</th></tr><tr><td>L0055</td><td>Hoàng Hữu Quân</td><td>2026-08-04</td><td>Hỗ trợ chăm sóc bệnh nhân</td></tr><tr><td>L0088</td><td>Võ Văn Tâm</td><td>2026-08-29</td><td>Hỗ trợ cấp phát thuốc</td></tr><tr><td>L0105</td><td>Đỗ Văn Vy</td><td>2026-09-18</td><td>Tiếp đón và hướng dẫn</td></tr></table></div>",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-14.png"
+    },
+    {
+      "route": "/reports/revenue?month=2025-12",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-15.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-13",
+      "width": 390,
+      "status": 400,
+      "heading": [
+        "Không thể hoàn tất yêu cầu (400)"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-16.png"
+    },
+    {
+      "route": "/reports/history?patient_id=MISSING",
+      "width": 390,
+      "status": 404,
+      "heading": [
+        "Không thể hoàn tất yêu cầu (404)"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 390,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "390-17.png"
+    },
+    {
+      "route": "/patients",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Bệnh nhân"
+      ],
+      "title": "Bệnh nhân · Phòng khám",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-00.png"
+    },
+    {
+      "route": "/visits/new",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Tiếp nhận và khám bệnh"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-01.png"
+    },
+    {
+      "route": "/visits/L0001",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-02.png"
+    },
+    {
+      "route": "/visits/L0001/examinations/new",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Khám thêm bệnh trong lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-03.png"
+    },
+    {
+      "route": "/visits/L0001/support",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Ghi hỗ trợ cho lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-04.png"
+    },
+    {
+      "route": "/visits/L0001/close",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Kết thúc lượt L0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-05.png"
+    },
+    {
+      "route": "/treatments/D0001/cure",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Xác nhận khỏi — đợt D0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-06.png"
+    },
+    {
+      "route": "/examinations/K0001/prescription",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Kê đơn — lần khám K0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 376,
+      "controls": [
+        {
+          "name": "ma_thuoc",
+          "text": "SELECT",
+          "left": 57,
+          "right": 376
+        },
+        {
+          "name": "ma_thuoc",
+          "text": "SELECT",
+          "left": 57,
+          "right": 376
+        },
+        {
+          "name": "ma_thuoc",
+          "text": "SELECT",
+          "left": 57,
+          "right": 376
+        }
+      ],
+      "overflow": true,
+      "screenshot": "320-07.png"
+    },
+    {
+      "route": "/prescriptions/DT0001",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Đơn thuốc DT0001"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-08.png"
+    },
+    {
+      "route": "/reports",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Báo cáo phòng khám"
+      ],
+      "title": "Báo cáo · Phòng khám",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-09.png"
+    },
+    {
+      "route": "/reports/diseases?month=2026-10",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Thống kê bệnh theo đợt mắc"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-10.png"
+    },
+    {
+      "route": "/reports/salaries?month=2026-10",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Lương bác sĩ và y tá"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-11.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-10",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-12.png"
+    },
+    {
+      "route": "/reports/history",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-13.png"
+    },
+    {
+      "route": "/reports/history?patient_id=BN001",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Đỗ Ngọc Phương"
+      ],
+      "title": "Lịch sử Đỗ Ngọc Phương · Phòng khám<h2>Thuốc đã kê</h2><div class=\"table-wrap\"><table><tr><th>Ngày</th><th>Thuốc</th><th>Số lượng</th><th>Liều dùng</th><th>Thành tiền</th></tr><tr><td>2026-08-04</td><td>Ciprofloxacin 500 mg</td><td>14</td><td>Sử dụng theo hướng dẫn trên đơn</td><td>91.000 đ</td></tr><tr><td>2026-08-04</td><td>Cetirizine 10 mg</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>19.000 đ</td></tr><tr><td>2026-08-04</td><td>Hydrocortisone cream 1%</td><td>14</td><td>1 viên/lần, theo đơn</td><td>406.000 đ</td></tr><tr><td>2026-08-29</td><td>Clotrimazole cream 1%</td><td>5</td><td>Sử dụng theo hướng dẫn trên đơn</td><td>155.000 đ</td></tr><tr><td>2026-08-29</td><td>Paracetamol 500 mg</td><td>14</td><td>1 viên/lần, theo đơn</td><td>16.800 đ</td></tr><tr><td>2026-08-29</td><td>Ibuprofen 400 mg</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>25.000 đ</td></tr><tr><td>2026-09-18</td><td>Hydrocortisone cream 1%</td><td>20</td><td>1 viên/lần, theo đơn</td><td>580.000 đ</td></tr><tr><td>2026-09-18</td><td>Clotrimazole cream 1%</td><td>10</td><td>Dùng theo chỉ định bác sĩ</td><td>310.000 đ</td></tr></table></div> <h2>Y tá hỗ trợ</h2><div class=\"table-wrap\"><table><tr><th>Lượt</th><th>Y tá</th><th>Ngày</th><th>Công việc</th></tr><tr><td>L0055</td><td>Hoàng Hữu Quân</td><td>2026-08-04</td><td>Hỗ trợ chăm sóc bệnh nhân</td></tr><tr><td>L0088</td><td>Võ Văn Tâm</td><td>2026-08-29</td><td>Hỗ trợ cấp phát thuốc</td></tr><tr><td>L0105</td><td>Đỗ Văn Vy</td><td>2026-09-18</td><td>Tiếp đón và hướng dẫn</td></tr></table></div>",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-14.png"
+    },
+    {
+      "route": "/reports/revenue?month=2025-12",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-15.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-13",
+      "width": 320,
+      "status": 400,
+      "heading": [
+        "Không thể hoàn tất yêu cầu (400)"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-16.png"
+    },
+    {
+      "route": "/reports/history?patient_id=MISSING",
+      "width": 320,
+      "status": 404,
+      "heading": [
+        "Không thể hoàn tất yêu cầu (404)"
+      ],
+      "title": "Phòng khám tư nhân",
+      "document_width": 320,
+      "controls": [],
+      "overflow": false,
+      "screenshot": "320-17.png"
+    }
+  ],
+  "preparation_success": true,
+  "mysql": "8.0.46",
+  "import": [
+    {
+      "file": "schema.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "seed.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "constraints.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "queries.sql",
+      "result_sets": 11
+    }
+  ],
+  "pytest_exit_code": 0,
+  "pytest_junit_stats": {
+    "tests": 108,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "seed_unchanged_after_tests": true,
+  "url": "http://127.0.0.1:57339",
+  "chromium": "156.0.8078.4",
+  "json_probes": [
+    {
+      "route": "/reports/revenue?month=2026-10&format=json",
+      "status": 200,
+      "content_type": "application/json",
+      "body": "{\"consultation\":\"4680000\",\"medicine\":\"5820800\",\"month\":\"2026-10\",\"total\":\"10500800\"}\n"
+    },
+    {
+      "route": "/reports/revenue?month=2026-13&format=json",
+      "status": 400,
+      "content_type": "text/html; charset=utf-8",
+      "body": "<!doctype html>\n<html lang=\"vi\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"color-scheme\" content=\"light\">\n  <title>Phòng khám tư nhân</title>\n  <link rel=\"stylesheet\" href=\"/static/week1.css\">\n</head>\n<body>\n  <a class=\"skip-link\" href=\"#main-content\">Chuyển đến nội dung</a>\n  <header class=\"site-header\">\n    <div class=\"he"
+    },
+    {
+      "route": "/reports/history?patient_id=MISSING&format=json",
+      "status": 404,
+      "content_type": "text/html; charset=utf-8",
+      "body": "<!doctype html>\n<html lang=\"vi\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"color-scheme\" content=\"light\">\n  <title>Phòng khám tư nhân</title>\n  <link rel=\"stylesheet\" href=\"/static/week1.css\">\n</head>\n<body>\n  <a class=\"skip-link\" href=\"#main-content\">Chuyển đến nội dung</a>\n  <header class=\"site-header\">\n    <div class=\"he"
+    }
+  ],
+  "missing_csrf_status": 400,
+  "audit": {
+    "mysql_version": "8.0.46",
+    "counts": {
+      "bac_si": 10,
+      "y_ta": 12,
+      "benh_nhan": 40,
+      "benh": 15,
+      "thuoc": 30,
+      "dot_dieu_tri": 137,
+      "luot_den_kham": 140,
+      "lan_kham_benh": 173,
+      "don_thuoc": 140,
+      "chi_tiet_don_thuoc": 267,
+      "ho_tro": 180
+    },
+    "total": 1144,
+    "matches_expected_counts": true,
+    "findings": {
+      "different_patient": [],
+      "exam_outside_visit_or_treatment": [],
+      "duplicate_active_episode": [],
+      "nonconsecutive_exam_numbers": [],
+      "empty_visit": [],
+      "empty_prescription": [],
+      "support_outside_visit": [],
+      "prescription_date_mismatch": [],
+      "overlapping_episodes": []
+    }
+  },
+  "seed_unchanged_after_browser": true,
+  "trigger_count": 9,
+  "final_sql_audit_sets": 10,
+  "env_unchanged": true
+}

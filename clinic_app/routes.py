@@ -172,4 +172,5 @@ def treatments():
 @bp.get('/patients/<record_id>/history')
 def history(record_id):
     from .reports import history as full_history
-    return render_template('week1/history.html', **full_history(record_id))
+    from .clinical_routes import patient_choices
+    return render_template('week1/history.html', patients=patient_choices(), **full_history(record_id))

@@ -1,0 +1,9 @@
+{% macro patient_filter(patients,patient_id='',filter_error='') %}
+<form class="report-filters" action="{{ url_for('clinic.reports',report='history') }}" method="get" aria-label="Chọn bệnh nhân xem lịch sử">
+<div class="filter-field"><label for="patient_id">Mã bệnh nhân *</label>
+<input id="patient_id" name="patient_id" list="report-patients" value="{{ patient_id }}" required maxlength="12" spellcheck="false" autocomplete="off" aria-describedby="patient-hint{% if filter_error %} patient-error{% endif %}"{% if filter_error %} aria-invalid="true"{% endif %}>
+<datalist id="report-patients">{% for p in patients %}<option value="{{ p.ma_benh_nhan }}">{{ p.ho_ten }}</option>{% endfor %}</datalist>
+<small id="patient-hint" class="field-hint">Gõ mã và chọn gợi ý, hoặc tìm theo tên trong danh sách bệnh nhân. Lịch sử bao gồm mọi tháng.</small>
+{% if filter_error %}<p id="patient-error" class="error-text" role="alert">{{ filter_error }}</p>{% endif %}</div>
+<button type="submit">Xem lịch sử</button><a href="{{ url_for('clinic.listing',slug='patients') }}">Tìm bệnh nhân</a></form>
+{% endmacro %}
