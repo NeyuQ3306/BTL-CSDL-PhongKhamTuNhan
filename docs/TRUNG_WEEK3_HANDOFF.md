@@ -34,3 +34,13 @@ Commit chuẩn bị 2ac0d2f: run 39360946626 đạt 24/24 trên từng candidate
 - Khi đóng gói SQL, Quyền cần giữ thứ tự import thực tế schema → seed → audit → constraints → audit → queries theo SETUP; không áp dụng máy móc mô tả thứ tự cũ nếu seed bị trigger từ chối.
 
 Chưa thấy lỗi nghiệp vụ cần sửa từ bộ ca đã chạy trước đây. Mọi lỗi phát hiện trong lần kiểm tra hiện tại cần xử lý hoặc ghi rõ trước chốt.
+
+## Bàn giao W3-RUN-01 từ Vương
+
+Nguồn: PR #13 head 0a8aeccf5ad7c88e4902ae66d6378ef3b5ffcd5b, docs/VUONG_WEEK3_ISSUES.md. Runner tools/vuong_week2_prepare.py trước đây terminate launcher nhưng có thể để MySQL con giữ cổng trên Windows.
+
+Sửa trong nhánh Trung: helper tools/private_mysql_cleanup.py kiểm tra @@datadir/@@port trước SHUTDOWN; khi kết nối không dùng được, chỉ terminate/kill tiến trình có executable và tham số --datadir khớp chính xác. Chờ kết thúc launcher, quét lại PID và kiểm tra cổng đóng. Không taskkill theo tên, không xóa datadir hoặc bằng chứng. Cleanup vẫn chạy nếu đóng server/db lỗi; kết quả chỉ ghi sau cleanup. Thất bại cleanup làm runner exit lỗi, không nhận preparation_success.
+
+Dependency dev psutil>=6,<8 để nhận diện tiến trình Windows và tránh chỉ dừng parent. Test nhận diện exact datadir, từ chối connection khác, connection failure và không log message nhạy cảm. Windows CI có hai ca MySQL 8.4 thật: exit bình thường dùng SHUTDOWN và lỗi sau startup kèm connection đã đóng, buộc fallback; yêu cầu không còn PID/cổng, .env giữ nguyên. --cleanup-check là smoke cleanup, KHÔNG chạy suite/UI và không phải nghiệm thu T16.
+
+Kết quả theo Checks head mới và PR #12; 207 test trước đây thuộc 72563e2, không tự gán cho bản sửa này. Cần retest Windows thành công trước khi nhận W3-RUN-01 đã được xác minh.
