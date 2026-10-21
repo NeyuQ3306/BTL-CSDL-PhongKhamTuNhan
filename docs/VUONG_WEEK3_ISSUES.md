@@ -44,3 +44,10 @@ Liên kết [hồ sơ nghiệm thu](VUONG_WEEK3_ACCEPTANCE.md). Chỉ ghi lỗi/
 Không có lỗi backend/SQL/nghiệp vụ chặn nào được chứng minh trong Bước2–3. UI đã có retest trực tiếp và suite cuối179/179 đạt, audit sạch. **Tiêu chí local Bước4 đạt**, không có lỗi chặn demo/sai nghiệp vụ còn được chứng minh; lỗi công cụ W3-RUN-01 vẫn mở cho Trung, có workaround và chưa tự đóng. T16 **không thực hiện theo quyết định Quyền và cả nhóm**, do Vương thông báo ngày 21/10/2026; chưa chạy, không tính đạt và không còn cổng nghiệm thu. Quyết định này không đóng W3-RUN-01. Chưa gửi tin nhắn, đăng bình luận, push, PR hoặc merge.
 
 Bản nháp trao đổi từng người: [VUONG_WEEK3_STEP4_HANDOFF.md](VUONG_WEEK3_STEP4_HANDOFF.md). Người dùng chưa cần tự chạy lệnh để xác minh lại phần local đã có bằng chứng.
+
+## W3-DEMO-02 — Cleanup demo bị ngắt khi SHUTDOWN/close/wait lỗi
+
+- Mức P2 công cụ; Trung yêu cầu sửa tại [thread PR #13](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/13#discussion_r4336604656), head phát hiện `0a8aecc`. Phụ trách sửa: Vương.
+- Trước sửa: exception trong finally có thể bỏ qua proc.wait/log.close/session cuối. Sau sửa: các bước app/MySQL/log/check độc lập, session phân biệt workload và cleanup; giữ lỗi workload gốc, không ghi message có thể chứa credentials.
+- Lấy riêng helper của Trung từ PR #12 `d566abf` với dependency psutil; không merge nhánh Trung. [Kiểm thử và bằng chứng mới](evidence/vuong_week3_cleanup_final_20261021/README.md). Trạng thái: đã sửa/retest local, chờ Trung re-review đúng head.
+- **W3-RUN-01 vẫn mở**: runner tuần 2 trên nhánh này chưa đổi. PR #12 có bản sửa và bằng chứng riêng, cần Trung/Quyền kiểm tra tích hợp và quyết định; không dùng retest demo này để đóng lỗi runner. T16 vẫn không thực hiện, không ghi PASS.

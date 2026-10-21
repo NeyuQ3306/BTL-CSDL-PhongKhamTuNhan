@@ -1,0 +1,26 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-8.4.2, pluggy-1.7.0 -- D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\.venv\week3-runtime\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan
+configfile: pytest.ini
+collecting ... collected 16 items
+
+tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[none] PASSED [  6%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[shutdown] PASSED [ 12%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[close] PASSED [ 18%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[wait] PASSED [ 25%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[app_shutdown] PASSED [ 31%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[app_close] PASSED [ 37%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[app_join] PASSED [ 43%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[mysql_cleanup] PASSED [ 50%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[log_close] PASSED [ 56%]
+tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[source_unchanged] PASSED [ 62%]
+tests/test_vuong_week3_cleanup.py::test_identity_mismatch_never_sends_shutdown PASSED [ 68%]
+tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args0-True] PASSED [ 75%]
+tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args1-True] PASSED [ 81%]
+tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[system-mysqld-args2-False] PASSED [ 87%]
+tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args3-False] PASSED [ 93%]
+tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args4-False] PASSED [100%]
+
+- generated xml file: D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\docs\evidence\vuong_week3_cleanup_review_20261021\junit.xml -
+============================= 16 passed in 0.26s ==============================

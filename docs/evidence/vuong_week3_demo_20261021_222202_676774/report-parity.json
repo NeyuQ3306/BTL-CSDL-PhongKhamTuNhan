@@ -1,0 +1,282 @@
+{
+  "months": [
+    {
+      "month": "2026-10",
+      "actual": {
+        "episodes": 24,
+        "consultation": 4680000,
+        "medicine": 5820800,
+        "revenue": 10500800,
+        "doctors": 78000000,
+        "nurses": 65600000
+      },
+      "ui_json_sql_expected": "PASS"
+    },
+    {
+      "month": "2004-02",
+      "actual": {
+        "episodes": 1,
+        "consultation": 100000,
+        "medicine": 0,
+        "revenue": 100000,
+        "doctor": 7000000,
+        "nurse1": 5200000,
+        "nurse2": 5000000
+      },
+      "ui_json_sql_expected": "PASS"
+    },
+    {
+      "month": "2004-03",
+      "actual": {
+        "episodes": 3,
+        "consultation": 250000,
+        "medicine": 9900,
+        "revenue": 259900,
+        "doctor": 8000000,
+        "nurse1": 5400000,
+        "nurse2": 5200000
+      },
+      "ui_json_sql_expected": "PASS"
+    },
+    {
+      "month": "2025-12",
+      "actual": {
+        "episodes": 0,
+        "consultation": 0,
+        "medicine": 0,
+        "revenue": 0
+      },
+      "ui_json_sql_expected": "PASS"
+    }
+  ],
+  "history_actual": {
+    "visits": 3,
+    "treatments": 3,
+    "current": 2,
+    "examinations": 4,
+    "medicines": 2,
+    "support": 4
+  },
+  "history": {
+    "current": [
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "lan_kham_hien_tai": 1,
+        "ma_bac_si": "BS001",
+        "ma_benh": "B001",
+        "ma_benh_nhan": "DM6BN",
+        "ma_dot": "DM6D2",
+        "ngay_bat_dau": "2004-03-02",
+        "ngay_khoi": null,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm họng cấp",
+        "trang_thai": "Đang điều trị"
+      },
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "lan_kham_hien_tai": 1,
+        "ma_bac_si": "BS001",
+        "ma_benh": "B002",
+        "ma_benh_nhan": "DM6BN",
+        "ma_dot": "DM6D3",
+        "ngay_bat_dau": "2004-03-02",
+        "ngay_khoi": null,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm mũi dị ứng",
+        "trang_thai": "Đang điều trị"
+      }
+    ],
+    "examinations": [
+      {
+        "ket_luan": "Theo dõi demo",
+        "ma_don": null,
+        "ma_dot": "DM6D2",
+        "ma_lan_kham": "DM6K3",
+        "ma_luot": "DM6L3",
+        "ngay_kham": "2004-03-02",
+        "ngay_lap_don": null,
+        "so_thu_tu_trong_dot": 1,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm họng cấp",
+        "tien_kham_chua": "100000",
+        "tien_thuoc": "0"
+      },
+      {
+        "ket_luan": "Bệnh thứ hai demo",
+        "ma_don": null,
+        "ma_dot": "DM6D3",
+        "ma_lan_kham": "DM6K4",
+        "ma_luot": "DM6L3",
+        "ngay_kham": "2004-03-02",
+        "ngay_lap_don": null,
+        "so_thu_tu_trong_dot": 1,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm mũi dị ứng",
+        "tien_kham_chua": "50000",
+        "tien_thuoc": "0"
+      },
+      {
+        "ket_luan": "Theo dõi demo",
+        "ma_don": "DM6RX",
+        "ma_dot": "DM6D1",
+        "ma_lan_kham": "DM6K2",
+        "ma_luot": "DM6L2",
+        "ngay_kham": "2004-03-01",
+        "ngay_lap_don": "2004-03-01",
+        "so_thu_tu_trong_dot": 2,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm họng cấp",
+        "tien_kham_chua": "100000",
+        "tien_thuoc": "9900"
+      },
+      {
+        "ket_luan": "Theo dõi demo",
+        "ma_don": null,
+        "ma_dot": "DM6D1",
+        "ma_lan_kham": "DM6K1",
+        "ma_luot": "DM6L1",
+        "ngay_kham": "2004-02-28",
+        "ngay_lap_don": null,
+        "so_thu_tu_trong_dot": 1,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm họng cấp",
+        "tien_kham_chua": "100000",
+        "tien_thuoc": "0"
+      }
+    ],
+    "medicines": [
+      {
+        "don_gia_ban": "1200",
+        "don_vi_tinh": "Viên",
+        "lieu_dung": "Sáng",
+        "ma_don": "DM6RX",
+        "ma_lan_kham": "DM6K2",
+        "ma_thuoc": "T001",
+        "ngay_lap_don": "2004-03-01",
+        "so_luong": 2,
+        "ten_thuoc": "Paracetamol 500 mg",
+        "thanh_tien": "2400"
+      },
+      {
+        "don_gia_ban": "2500",
+        "don_vi_tinh": "Viên",
+        "lieu_dung": "Tối",
+        "ma_don": "DM6RX",
+        "ma_lan_kham": "DM6K2",
+        "ma_thuoc": "T002",
+        "ngay_lap_don": "2004-03-01",
+        "so_luong": 3,
+        "ten_thuoc": "Ibuprofen 400 mg",
+        "thanh_tien": "7500"
+      }
+    ],
+    "patient": {
+      "cmt": "999000006004",
+      "dia_chi": "Hà Nội",
+      "ho_ten": "Bệnh nhân demo tuần 3",
+      "ma_benh_nhan": "DM6BN",
+      "ngay_sinh": "1980-01-01",
+      "so_dien_thoai": "0900000006"
+    },
+    "support": [
+      {
+        "ho_ten": "Huỳnh Phương Long",
+        "ma_luot": "DM6L1",
+        "ma_y_ta": "YT001",
+        "ngay_ho_tro": "2004-02-28",
+        "noi_dung_ho_tro": "Tiếp đón demo"
+      },
+      {
+        "ho_ten": "Huỳnh Phương Long",
+        "ma_luot": "DM6L2",
+        "ma_y_ta": "YT001",
+        "ngay_ho_tro": "2004-03-01",
+        "noi_dung_ho_tro": "Đo huyết áp và theo dõi demo"
+      },
+      {
+        "ho_ten": "Hoàng Hữu Quân",
+        "ma_luot": "DM6L2",
+        "ma_y_ta": "YT002",
+        "ngay_ho_tro": "2004-03-01",
+        "noi_dung_ho_tro": "Hỗ trợ thêm demo"
+      },
+      {
+        "ho_ten": "Huỳnh Phương Long",
+        "ma_luot": "DM6L3",
+        "ma_y_ta": "YT001",
+        "ngay_ho_tro": "2004-03-02",
+        "noi_dung_ho_tro": "Tiếp đón demo"
+      }
+    ],
+    "treatments": [
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "lan_kham_hien_tai": 1,
+        "ma_bac_si": "BS001",
+        "ma_benh": "B001",
+        "ma_benh_nhan": "DM6BN",
+        "ma_dot": "DM6D2",
+        "ngay_bat_dau": "2004-03-02",
+        "ngay_khoi": null,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm họng cấp",
+        "trang_thai": "Đang điều trị"
+      },
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "lan_kham_hien_tai": 1,
+        "ma_bac_si": "BS001",
+        "ma_benh": "B002",
+        "ma_benh_nhan": "DM6BN",
+        "ma_dot": "DM6D3",
+        "ngay_bat_dau": "2004-03-02",
+        "ngay_khoi": null,
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm mũi dị ứng",
+        "trang_thai": "Đang điều trị"
+      },
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "lan_kham_hien_tai": 2,
+        "ma_bac_si": "BS001",
+        "ma_benh": "B001",
+        "ma_benh_nhan": "DM6BN",
+        "ma_dot": "DM6D1",
+        "ngay_bat_dau": "2004-02-28",
+        "ngay_khoi": "2004-03-01",
+        "ten_bac_si": "Dương Ngọc Khánh",
+        "ten_benh": "Viêm họng cấp",
+        "trang_thai": "Đã khỏi"
+      }
+    ],
+    "visits": [
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "ma_benh_nhan": "DM6BN",
+        "ma_luot": "DM6L3",
+        "ngay_ra_vien": "2004-03-02",
+        "ngay_vao_vien": "2004-03-02",
+        "so_lan_kham": 2,
+        "tong_tien_kham": "150000"
+      },
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "ma_benh_nhan": "DM6BN",
+        "ma_luot": "DM6L2",
+        "ngay_ra_vien": "2004-03-01",
+        "ngay_vao_vien": "2004-03-01",
+        "so_lan_kham": 1,
+        "tong_tien_kham": "100000"
+      },
+      {
+        "ho_ten": "Bệnh nhân demo tuần 3",
+        "ma_benh_nhan": "DM6BN",
+        "ma_luot": "DM6L1",
+        "ngay_ra_vien": "2004-02-28",
+        "ngay_vao_vien": "2004-02-28",
+        "so_lan_kham": 1,
+        "tong_tien_kham": "100000"
+      }
+    ]
+  }
+}

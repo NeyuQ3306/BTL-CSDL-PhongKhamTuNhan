@@ -19,6 +19,8 @@ from datetime import datetime, timezone, timedelta
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from tools.private_mysql_cleanup import stop_private_mysql
+
 
 def now():
     return datetime.now(timezone(timedelta(hours=7))).isoformat()
@@ -41,6 +43,51 @@ def port_open(port):
     with socket.socket() as s:
         s.settimeout(1)
         return s.connect_ex(('127.0.0.1', port)) == 0
+
+
+def finish_session(out, report, *, proc, db, server, thread, log, executable,
+                   data, port, old_env, manifest, protected):
+    """Attempt every cleanup stage; retain workload failure and record recovery."""
+    errors = []
+
+    def attempt(stage, action):
+        try:
+            return action()
+        except Exception as exc:
+            # Exception messages may include credentials; record only their type.
+            errors.append(dict(stage=stage, type=type(exc).__name__))
+            return None
+
+    report['workload_success'] = report['success']
+    if server is not None:
+        if thread is not None and thread.is_alive():
+            attempt('app_shutdown', server.shutdown)
+        attempt('app_close', server.server_close)
+        if thread is not None:
+            attempt('app_join', lambda: thread.join(timeout=5))
+    cleanup = attempt('mysql_cleanup', lambda: stop_private_mysql(
+        proc, db, executable, data, port))
+    report['mysql_cleanup'] = cleanup or dict(success=False)
+    if log is not None:
+        attempt('log_close', log.close)
+    report['log_closed'] = log is None or log.closed
+    checks = dict(
+        mysql_port_closed=lambda: not port_open(port),
+        app_port_closed=lambda: not port_open(server.server_port) if server is not None else True,
+        app_thread_stopped=lambda: thread is None or not thread.is_alive(),
+        checkout_env_unchanged=lambda: (digest(ROOT/'.env') if (ROOT/'.env').exists() else None) == old_env,
+        source_unchanged=lambda: all(digest(ROOT/p) == h for p, h in manifest.items()),
+        old_evidence_unchanged=lambda: all(snapshot(ROOT/rel) == values for rel, values in protected.items()))
+    for key, check in checks.items():
+        report[key] = attempt(key, check) is True
+    report.update(finished_at=now(), cleanup_errors=errors)
+    report['success'] = bool(report['workload_success'] and not errors
+                             and report['mysql_cleanup']['success']
+                             and report['log_closed'] and all(report[k] for k in checks))
+    write(out, 'session.json', report)
+    print(json.dumps({k: report.get(k) for k in [
+        'success', 'workload_success', 'failure', 'mysql_cleanup', 'cleanup_errors',
+        'log_closed', *checks]}, ensure_ascii=False), flush=True)
 
 
 def expected():
@@ -275,6 +322,8 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('--rehearse', action='store_true')
     mode.add_argument('--serve', action='store_true')
+    parser.add_argument('--cleanup-check', choices=['success', 'error'],
+                        help='Private DB startup/cleanup smoke only; error injects a lost connection')
     parser.add_argument('--mysqld', type=Path, default=ROOT / '.venv/week3-tools/mysql84/mysql-8.4.7-winx64/bin/mysqld.exe')
     parser.add_argument('--browsers-path', type=Path, default=ROOT / '.venv/week3-tools/browsers')
     args = parser.parse_args()
@@ -287,8 +336,12 @@ def main():
     work.mkdir()
     old_env = digest(ROOT/'.env') if (ROOT/'.env').exists() else None
     manifest = json.loads((ROOT/'docs/evidence/vuong_week3_step5_20261021/execution_source_sha256.json').read_text())
-    assert all(digest(ROOT/p)==h for p,h in manifest.items()), 'App source differs from accepted candidate; review first'
-    manifest['tools/vuong_week3_demo.py'] = digest(Path(__file__))
+    # Development dependency changed deliberately for the scoped cleanup helper.
+    # Keep the accepted application/SQL/browser sources guarded by their old hashes.
+    assert all(digest(ROOT/p)==h for p,h in manifest.items() if p != 'requirements-dev.txt'), 'App source differs from accepted candidate; review first'
+    for rel in ['tools/vuong_week3_demo.py', 'tools/private_mysql_cleanup.py',
+                'requirements-dev.txt', 'tests/test_vuong_week3_cleanup.py']:
+        manifest[rel] = digest(ROOT/rel)
     write(out, 'execution_source_sha256.json', manifest)
     (out/'source.diff').write_bytes(subprocess.check_output(['git','diff','HEAD','--','clinic_app','tests'],cwd=ROOT))
     for rel in ['clinic_app/static/number-validation.js', 'tests/test_vuong_week3_numeric_validation.py', 'tools/vuong_week3_demo.py']:
@@ -300,15 +353,16 @@ def main():
     data = work/'mysql-data'
     report = dict(started_at=now(), mode='automated rehearsal' if args.rehearse else 'fresh seed group server',
                   executor='Trợ lý Codex thay mặt Vương', source_sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
-                  branch=subprocess.check_output(['git','branch','--show-current'],text=True).strip(), source_dirty=True,
+                  branch=subprocess.check_output(['git','branch','--show-current'],text=True).strip(), source_dirty=bool(subprocess.check_output(['git','status','--porcelain','--',
+                      'clinic_app','tools','tests','requirements-dev.txt'],text=True).strip()),
                   application_candidate='sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894',
                   demo_tool_sha256=digest(Path(__file__)), python=sys.version, executable=sys.executable,
                   mysql_executable=str(args.mysqld.resolve()), datadir=str(data), mysql_port=port,
                   database='clinic_week3_demo_test', group_rehearsal=False, success=False)
     write(out,'session.json',report)
-    proc = db = server = thread = None
-    log = (work/'mysql-console.txt').open('wb')
+    proc = db = server = thread = log = None
     try:
+        log = (work/'mysql-console.txt').open('wb')
         subprocess.run([str(args.mysqld), '--no-defaults','--initialize-insecure',f'--datadir={data}'],
                        stdout=log,stderr=subprocess.STDOUT,check=True,creationflags=subprocess.CREATE_NO_WINDOW)
         proc = subprocess.Popen([str(args.mysqld),'--no-defaults',f'--datadir={data}','--bind-address=127.0.0.1',
@@ -321,6 +375,13 @@ def main():
                 break
             except pymysql.OperationalError: time.sleep(.25)
         assert db is not None, 'Cannot connect to private MySQL'
+        if args.cleanup_check:
+            report['cleanup_check'] = args.cleanup_check
+            if args.cleanup_check == 'error':
+                db.close()
+                raise RuntimeError('Injected workload failure with closed private connection')
+            report['success'] = True
+            return
         password=secrets.token_hex(24)
         with db.cursor() as c:
             c.execute("ALTER USER 'root'@'localhost' IDENTIFIED BY %s",(password,))
@@ -374,25 +435,14 @@ def main():
         assert report['all_seed_rows_preserved']
         report['success']=True
     except BaseException as exc:
-        report['failure']=dict(type=type(exc).__name__,message=str(exc)[:1500])
+        report['failure']=dict(type=type(exc).__name__)
         raise
     finally:
-        if server:
-            server.shutdown();server.server_close();thread.join(timeout=5)
-        if db:
-            try:
-                with db.cursor() as c: c.execute('SHUTDOWN')
-            finally: db.close()
-        if proc:
-            proc.wait(timeout=30)
-        log.close()
-        report.update(finished_at=now(),mysql_port_closed=not port_open(port),
-                      app_port_closed=not port_open(server.server_port) if server else True,
-                      checkout_env_unchanged=(digest(ROOT/'.env') if (ROOT/'.env').exists() else None)==old_env,
-                      source_unchanged=all(digest(ROOT/p)==h for p,h in manifest.items()),
-                      old_evidence_unchanged=all(snapshot(ROOT/rel)==values for rel,values in protected.items()))
-        write(out,'session.json',report)
-        print(json.dumps({k:report.get(k) for k in ['success','rehearsal_seconds','failure','mysql_port_closed','app_port_closed','checkout_env_unchanged','source_unchanged','old_evidence_unchanged']},ensure_ascii=False),flush=True)
+        finish_session(out, report, proc=proc, db=db, server=server, thread=thread,
+                       log=log, executable=args.mysqld, data=data, port=port,
+                       old_env=old_env, manifest=manifest, protected=protected)
+        if sys.exc_info()[0] is None and not report['success']:
+            raise RuntimeError('Demo or cleanup failed; inspect session.json')
     assert all(report[k] for k in ['success','mysql_port_closed','app_port_closed','checkout_env_unchanged','source_unchanged','old_evidence_unchanged'])
 
 

@@ -1,0 +1,104 @@
+{
+  "command_python": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+  "smoke_source_sha256": "73cb72c68b63aad2e4636e322af4b0a9e74e40378bfa608ebf16144cc554a96c",
+  "before": [],
+  "after": [],
+  "unrelated_mysql_unchanged": true,
+  "runs": [
+    {
+      "case": "success",
+      "exit_code": 0,
+      "evidence": "docs\\evidence\\vuong_week3_demo_20261021_222446_280961",
+      "session": {
+        "started_at": "2026-10-21T22:24:46.672841+07:00",
+        "mode": "automated rehearsal",
+        "executor": "Trợ lý Codex thay mặt Vương",
+        "source_sha": "0a8aeccf5ad7c88e4902ae66d6378ef3b5ffcd5b",
+        "branch": "vuong/week-3",
+        "source_dirty": true,
+        "application_candidate": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+        "demo_tool_sha256": "ab2385fae771088d1f3ecc420e6d29dfa58f0689e97c7f80af3929e0a76cd934",
+        "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+        "executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+        "mysql_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+        "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_222446_280961\\mysql-data",
+        "mysql_port": 51579,
+        "database": "clinic_week3_demo_test",
+        "group_rehearsal": false,
+        "success": true,
+        "cleanup_check": "success",
+        "workload_success": true,
+        "mysql_cleanup": {
+          "shutdown_requested": true,
+          "fallback_pids": [],
+          "errors": [],
+          "remaining_pids": [],
+          "port_closed": true,
+          "launcher_exited": true,
+          "success": true
+        },
+        "log_closed": true,
+        "mysql_port_closed": true,
+        "app_port_closed": true,
+        "app_thread_stopped": true,
+        "checkout_env_unchanged": true,
+        "source_unchanged": true,
+        "old_evidence_unchanged": true,
+        "finished_at": "2026-10-21T22:24:53.141047+07:00",
+        "cleanup_errors": []
+      }
+    },
+    {
+      "case": "error",
+      "exit_code": 1,
+      "evidence": "docs\\evidence\\vuong_week3_demo_20261021_222453_269113",
+      "session": {
+        "started_at": "2026-10-21T22:24:53.619931+07:00",
+        "mode": "automated rehearsal",
+        "executor": "Trợ lý Codex thay mặt Vương",
+        "source_sha": "0a8aeccf5ad7c88e4902ae66d6378ef3b5ffcd5b",
+        "branch": "vuong/week-3",
+        "source_dirty": true,
+        "application_candidate": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+        "demo_tool_sha256": "ab2385fae771088d1f3ecc420e6d29dfa58f0689e97c7f80af3929e0a76cd934",
+        "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+        "executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+        "mysql_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+        "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_222453_269113\\mysql-data",
+        "mysql_port": 51584,
+        "database": "clinic_week3_demo_test",
+        "group_rehearsal": false,
+        "success": false,
+        "cleanup_check": "error",
+        "failure": {
+          "type": "RuntimeError"
+        },
+        "workload_success": false,
+        "mysql_cleanup": {
+          "shutdown_requested": false,
+          "fallback_pids": [
+            25212,
+            25444
+          ],
+          "errors": [
+            "InterfaceError",
+            "Error"
+          ],
+          "remaining_pids": [],
+          "port_closed": true,
+          "launcher_exited": true,
+          "success": true
+        },
+        "log_closed": true,
+        "mysql_port_closed": true,
+        "app_port_closed": true,
+        "app_thread_stopped": true,
+        "checkout_env_unchanged": true,
+        "source_unchanged": true,
+        "old_evidence_unchanged": true,
+        "finished_at": "2026-10-21T22:25:09.475660+07:00",
+        "cleanup_errors": []
+      }
+    }
+  ]
+}

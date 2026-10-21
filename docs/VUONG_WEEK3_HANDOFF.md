@@ -37,3 +37,9 @@ Sau merge, ghi SHA main thực tế, so sánh source thực thi với bản đã
 - [ ] Quyền chốt release/tag.
 
 Không đánh dấu bước 7 hoàn thành trước khi có kết quả review, merge và kiểm tra sau merge. Trạng thái PR/CI mới được ghi trong PR; kết quả local và CI phải tách riêng.
+
+## Bổ sung sau review cleanup PR #13 — 21/10/2026
+
+Đã sửa đường lỗi demo: dùng riêng helper PR #12 `d566abf` (nguồn Trung, cần psutil) và ghi session/đóng log qua các bước độc lập, phân biệt workload với cleanup. Không merge nhánh Trung, không đổi app/SQL hoặc runner tuần 2. [Bằng chứng và giới hạn mới](evidence/vuong_week3_cleanup_final_20261021/README.md), [sổ lỗi](VUONG_WEEK3_ISSUES.md). 179 test/ảnh/biên bản cũ giữ đúng source cũ; CI head mới báo riêng trong PR.
+
+Còn chờ Trung re-review cleanup/head mới; Quyền nghiệm thu T01–T15 và bản cuối trên laptop Quyền, điều phối tích hợp/merge và xử lý W3-RUN-01. Chưa tự approve, resolve thay Trung, merge, release/tag; T16 không chạy theo quyết định nhóm.

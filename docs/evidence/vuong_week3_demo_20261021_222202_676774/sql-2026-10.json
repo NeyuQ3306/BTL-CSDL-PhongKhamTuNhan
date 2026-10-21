@@ -1,0 +1,506 @@
+[
+  [
+    {
+      "ma_benh": "B004",
+      "ten_benh": "Cảm cúm",
+      "so_dot_mac": 4
+    },
+    {
+      "ma_benh": "B003",
+      "ten_benh": "Viêm phế quản",
+      "so_dot_mac": 3
+    },
+    {
+      "ma_benh": "B005",
+      "ten_benh": "Tăng huyết áp",
+      "so_dot_mac": 3
+    },
+    {
+      "ma_benh": "B001",
+      "ten_benh": "Viêm họng cấp",
+      "so_dot_mac": 2
+    },
+    {
+      "ma_benh": "B009",
+      "ten_benh": "Đau nửa đầu",
+      "so_dot_mac": 2
+    },
+    {
+      "ma_benh": "B010",
+      "ten_benh": "Thoái hóa cột sống cổ",
+      "so_dot_mac": 2
+    },
+    {
+      "ma_benh": "B013",
+      "ten_benh": "Nhiễm khuẩn tiết niệu",
+      "so_dot_mac": 2
+    },
+    {
+      "ma_benh": "B014",
+      "ten_benh": "Rối loạn lipid máu",
+      "so_dot_mac": 2
+    },
+    {
+      "ma_benh": "B002",
+      "ten_benh": "Viêm mũi dị ứng",
+      "so_dot_mac": 1
+    },
+    {
+      "ma_benh": "B007",
+      "ten_benh": "Viêm dạ dày",
+      "so_dot_mac": 1
+    },
+    {
+      "ma_benh": "B011",
+      "ten_benh": "Viêm da tiếp xúc",
+      "so_dot_mac": 1
+    },
+    {
+      "ma_benh": "B012",
+      "ten_benh": "Viêm kết mạc",
+      "so_dot_mac": 1
+    }
+  ],
+  [
+    {
+      "ma_bac_si": "BS001",
+      "ho_ten": "Dương Ngọc Khánh",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 1,
+      "tien_thuong": 1000000,
+      "tong_luong": 8000000
+    },
+    {
+      "ma_bac_si": "BS002",
+      "ho_ten": "Vũ Hoài An",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 0,
+      "tien_thuong": 0,
+      "tong_luong": 7000000
+    },
+    {
+      "ma_bac_si": "BS003",
+      "ho_ten": "Ngô Văn Bình",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 1,
+      "tien_thuong": 1000000,
+      "tong_luong": 8000000
+    },
+    {
+      "ma_bac_si": "BS004",
+      "ho_ten": "Đặng Ngọc Tuấn",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 1,
+      "tien_thuong": 1000000,
+      "tong_luong": 8000000
+    },
+    {
+      "ma_bac_si": "BS005",
+      "ho_ten": "Ngô Thanh Quân",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 3,
+      "tien_thuong": 3000000,
+      "tong_luong": 10000000
+    },
+    {
+      "ma_bac_si": "BS006",
+      "ho_ten": "Đặng Phương Quân",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 1,
+      "tien_thuong": 1000000,
+      "tong_luong": 8000000
+    },
+    {
+      "ma_bac_si": "BS007",
+      "ho_ten": "Ngô Ngọc Trinh",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 1,
+      "tien_thuong": 1000000,
+      "tong_luong": 8000000
+    },
+    {
+      "ma_bac_si": "BS008",
+      "ho_ten": "Bùi Văn Linh",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 0,
+      "tien_thuong": 0,
+      "tong_luong": 7000000
+    },
+    {
+      "ma_bac_si": "BS009",
+      "ho_ten": "Võ Minh Dũng",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 0,
+      "tien_thuong": 0,
+      "tong_luong": 7000000
+    },
+    {
+      "ma_bac_si": "BS010",
+      "ho_ten": "Bùi Anh Giang",
+      "luong_co_ban": 7000000,
+      "so_dot_khoi": 0,
+      "tien_thuong": 0,
+      "tong_luong": 7000000
+    }
+  ],
+  [
+    {
+      "ma_y_ta": "YT001",
+      "ho_ten": "Huỳnh Phương Long",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 1,
+      "tien_thuong": 200000,
+      "tong_luong": 5200000
+    },
+    {
+      "ma_y_ta": "YT002",
+      "ho_ten": "Hoàng Hữu Quân",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 3,
+      "tien_thuong": 600000,
+      "tong_luong": 5600000
+    },
+    {
+      "ma_y_ta": "YT003",
+      "ho_ten": "Lê Văn Châu",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 3,
+      "tien_thuong": 600000,
+      "tong_luong": 5600000
+    },
+    {
+      "ma_y_ta": "YT004",
+      "ho_ten": "Đỗ Văn Vy",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 2,
+      "tien_thuong": 400000,
+      "tong_luong": 5400000
+    },
+    {
+      "ma_y_ta": "YT005",
+      "ho_ten": "Vũ Thanh Hùng",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 2,
+      "tien_thuong": 400000,
+      "tong_luong": 5400000
+    },
+    {
+      "ma_y_ta": "YT006",
+      "ho_ten": "Dương Văn Tâm",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 4,
+      "tien_thuong": 800000,
+      "tong_luong": 5800000
+    },
+    {
+      "ma_y_ta": "YT007",
+      "ho_ten": "Vũ Văn Hạnh",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 2,
+      "tien_thuong": 400000,
+      "tong_luong": 5400000
+    },
+    {
+      "ma_y_ta": "YT008",
+      "ho_ten": "Đỗ Thị Khánh",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 1,
+      "tien_thuong": 200000,
+      "tong_luong": 5200000
+    },
+    {
+      "ma_y_ta": "YT009",
+      "ho_ten": "Võ Văn Tâm",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 0,
+      "tien_thuong": 0,
+      "tong_luong": 5000000
+    },
+    {
+      "ma_y_ta": "YT010",
+      "ho_ten": "Võ Ngọc Trang",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 3,
+      "tien_thuong": 600000,
+      "tong_luong": 5600000
+    },
+    {
+      "ma_y_ta": "YT011",
+      "ho_ten": "Nguyễn Hoài Yến",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 6,
+      "tien_thuong": 1200000,
+      "tong_luong": 6200000
+    },
+    {
+      "ma_y_ta": "YT012",
+      "ho_ten": "Lê Hữu Minh",
+      "luong_co_ban": 5000000,
+      "so_luot_ho_tro": 1,
+      "tien_thuong": 200000,
+      "tong_luong": 5200000
+    }
+  ],
+  [
+    {
+      "ma_benh_nhan": "BN001",
+      "cmt": "000000300001",
+      "ho_ten": "Đỗ Ngọc Phương",
+      "ngay_sinh": "2002-09-04",
+      "dia_chi": "Số 165, đường Trần Duy Hưng, Hà Nội",
+      "so_dien_thoai": "0900000201"
+    }
+  ],
+  [
+    {
+      "ma_luot": "L0055",
+      "ngay_vao_vien": "2026-08-04",
+      "ngay_ra_vien": "2026-08-06",
+      "ma_benh_nhan": "BN001"
+    },
+    {
+      "ma_luot": "L0088",
+      "ngay_vao_vien": "2026-08-29",
+      "ngay_ra_vien": "2026-08-29",
+      "ma_benh_nhan": "BN001"
+    },
+    {
+      "ma_luot": "L0105",
+      "ngay_vao_vien": "2026-09-18",
+      "ngay_ra_vien": "2026-09-18",
+      "ma_benh_nhan": "BN001"
+    }
+  ],
+  [
+    {
+      "ma_dot": "D0055",
+      "ngay_bat_dau": "2026-08-04",
+      "ngay_khoi": "2026-08-04",
+      "trang_thai": "Đã khỏi",
+      "ma_benh_nhan": "BN001",
+      "ma_benh": "B013",
+      "ma_bac_si": "BS006",
+      "ten_benh": "Nhiễm khuẩn tiết niệu",
+      "bac_si": "Đặng Phương Quân",
+      "lan_kham_hien_tai": 1
+    },
+    {
+      "ma_dot": "D0056",
+      "ngay_bat_dau": "2026-08-04",
+      "ngay_khoi": "2026-08-05",
+      "trang_thai": "Đã khỏi",
+      "ma_benh_nhan": "BN001",
+      "ma_benh": "B011",
+      "ma_bac_si": "BS004",
+      "ten_benh": "Viêm da tiếp xúc",
+      "bac_si": "Đặng Ngọc Tuấn",
+      "lan_kham_hien_tai": 1
+    },
+    {
+      "ma_dot": "D0090",
+      "ngay_bat_dau": "2026-08-29",
+      "ngay_khoi": "2026-09-20",
+      "trang_thai": "Đã khỏi",
+      "ma_benh_nhan": "BN001",
+      "ma_benh": "B011",
+      "ma_bac_si": "BS006",
+      "ten_benh": "Viêm da tiếp xúc",
+      "bac_si": "Đặng Phương Quân",
+      "lan_kham_hien_tai": 2
+    },
+    {
+      "ma_dot": "D0091",
+      "ngay_bat_dau": "2026-08-29",
+      "ngay_khoi": null,
+      "trang_thai": "Đang điều trị",
+      "ma_benh_nhan": "BN001",
+      "ma_benh": "B009",
+      "ma_bac_si": "BS002",
+      "ten_benh": "Đau nửa đầu",
+      "bac_si": "Vũ Hoài An",
+      "lan_kham_hien_tai": 1
+    }
+  ],
+  [
+    {
+      "ma_dot": "D0091",
+      "ten_benh": "Đau nửa đầu",
+      "lan_kham_hien_tai": 1
+    }
+  ],
+  [
+    {
+      "ma_lan_kham": "K0068",
+      "so_thu_tu_trong_dot": 1,
+      "ngay_kham": "2026-08-04",
+      "tien_kham_chua": "80000",
+      "ket_luan": "Cần tái khám theo hẹn",
+      "ma_dot": "D0055",
+      "ma_luot": "L0055"
+    },
+    {
+      "ma_lan_kham": "K0069",
+      "so_thu_tu_trong_dot": 1,
+      "ngay_kham": "2026-08-04",
+      "tien_kham_chua": "100000",
+      "ket_luan": "Đáp ứng điều trị tốt",
+      "ma_dot": "D0056",
+      "ma_luot": "L0055"
+    },
+    {
+      "ma_lan_kham": "K0109",
+      "so_thu_tu_trong_dot": 1,
+      "ngay_kham": "2026-08-29",
+      "tien_kham_chua": "300000",
+      "ket_luan": "Cần tái khám theo hẹn",
+      "ma_dot": "D0090",
+      "ma_luot": "L0088"
+    },
+    {
+      "ma_lan_kham": "K0110",
+      "so_thu_tu_trong_dot": 1,
+      "ngay_kham": "2026-08-29",
+      "tien_kham_chua": "350000",
+      "ket_luan": "Ổn định, theo dõi thêm",
+      "ma_dot": "D0091",
+      "ma_luot": "L0088"
+    },
+    {
+      "ma_lan_kham": "K0130",
+      "so_thu_tu_trong_dot": 2,
+      "ngay_kham": "2026-09-18",
+      "tien_kham_chua": "80000",
+      "ket_luan": "Điều trị ngoại trú",
+      "ma_dot": "D0090",
+      "ma_luot": "L0105"
+    }
+  ],
+  [
+    {
+      "ma_don": "DT0058",
+      "ngay_lap_don": "2026-08-04",
+      "ma_lan_kham": "K0068",
+      "ma_thuoc": "T029",
+      "ten_thuoc": "Ciprofloxacin 500 mg",
+      "don_vi_tinh": "Viên",
+      "so_luong": 14,
+      "lieu_dung": "Sử dụng theo hướng dẫn trên đơn",
+      "don_gia_ban": "6500",
+      "thanh_tien": "91000"
+    },
+    {
+      "ma_don": "DT0059",
+      "ngay_lap_don": "2026-08-04",
+      "ma_lan_kham": "K0069",
+      "ma_thuoc": "T005",
+      "ten_thuoc": "Cetirizine 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_luong": 10,
+      "lieu_dung": "Dùng theo chỉ định bác sĩ",
+      "don_gia_ban": "1900",
+      "thanh_tien": "19000"
+    },
+    {
+      "ma_don": "DT0059",
+      "ngay_lap_don": "2026-08-04",
+      "ma_lan_kham": "K0069",
+      "ma_thuoc": "T027",
+      "ten_thuoc": "Hydrocortisone cream 1%",
+      "don_vi_tinh": "Tuýp",
+      "so_luong": 14,
+      "lieu_dung": "1 viên/lần, theo đơn",
+      "don_gia_ban": "29000",
+      "thanh_tien": "406000"
+    },
+    {
+      "ma_don": "DT0087",
+      "ngay_lap_don": "2026-08-29",
+      "ma_lan_kham": "K0109",
+      "ma_thuoc": "T028",
+      "ten_thuoc": "Clotrimazole cream 1%",
+      "don_vi_tinh": "Tuýp",
+      "so_luong": 5,
+      "lieu_dung": "Sử dụng theo hướng dẫn trên đơn",
+      "don_gia_ban": "31000",
+      "thanh_tien": "155000"
+    },
+    {
+      "ma_don": "DT0088",
+      "ngay_lap_don": "2026-08-29",
+      "ma_lan_kham": "K0110",
+      "ma_thuoc": "T001",
+      "ten_thuoc": "Paracetamol 500 mg",
+      "don_vi_tinh": "Viên",
+      "so_luong": 14,
+      "lieu_dung": "1 viên/lần, theo đơn",
+      "don_gia_ban": "1200",
+      "thanh_tien": "16800"
+    },
+    {
+      "ma_don": "DT0088",
+      "ngay_lap_don": "2026-08-29",
+      "ma_lan_kham": "K0110",
+      "ma_thuoc": "T002",
+      "ten_thuoc": "Ibuprofen 400 mg",
+      "don_vi_tinh": "Viên",
+      "so_luong": 10,
+      "lieu_dung": "Dùng theo chỉ định bác sĩ",
+      "don_gia_ban": "2500",
+      "thanh_tien": "25000"
+    },
+    {
+      "ma_don": "DT0105",
+      "ngay_lap_don": "2026-09-18",
+      "ma_lan_kham": "K0130",
+      "ma_thuoc": "T027",
+      "ten_thuoc": "Hydrocortisone cream 1%",
+      "don_vi_tinh": "Tuýp",
+      "so_luong": 20,
+      "lieu_dung": "1 viên/lần, theo đơn",
+      "don_gia_ban": "29000",
+      "thanh_tien": "580000"
+    },
+    {
+      "ma_don": "DT0105",
+      "ngay_lap_don": "2026-09-18",
+      "ma_lan_kham": "K0130",
+      "ma_thuoc": "T028",
+      "ten_thuoc": "Clotrimazole cream 1%",
+      "don_vi_tinh": "Tuýp",
+      "so_luong": 10,
+      "lieu_dung": "Dùng theo chỉ định bác sĩ",
+      "don_gia_ban": "31000",
+      "thanh_tien": "310000"
+    }
+  ],
+  [
+    {
+      "ma_luot": "L0055",
+      "ma_y_ta": "YT002",
+      "noi_dung_ho_tro": "Hỗ trợ chăm sóc bệnh nhân",
+      "ngay_ho_tro": "2026-08-04",
+      "ho_ten": "Hoàng Hữu Quân"
+    },
+    {
+      "ma_luot": "L0088",
+      "ma_y_ta": "YT009",
+      "noi_dung_ho_tro": "Hỗ trợ cấp phát thuốc",
+      "ngay_ho_tro": "2026-08-29",
+      "ho_ten": "Võ Văn Tâm"
+    },
+    {
+      "ma_luot": "L0105",
+      "ma_y_ta": "YT004",
+      "noi_dung_ho_tro": "Tiếp đón và hướng dẫn",
+      "ngay_ho_tro": "2026-09-18",
+      "ho_ten": "Đỗ Văn Vy"
+    }
+  ],
+  [
+    {
+      "tien_kham": "4680000",
+      "tien_thuoc": "5820800",
+      "doanh_thu": "10500800"
+    }
+  ]
+]
