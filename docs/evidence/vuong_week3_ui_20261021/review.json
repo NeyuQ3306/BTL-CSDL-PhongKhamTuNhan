@@ -1,0 +1,50 @@
+{
+  "scope": "Step3 interactive UI and SQL parity; no product fixes or Step4",
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "observations": 49,
+  "responsive_checks": 49,
+  "unique_route_groups": 16,
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "page_overflows": 0,
+  "screenshots": 52,
+  "images_reviewed": 33,
+  "direct_ui_T_ids": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T14",
+    "T15"
+  ],
+  "specialized_only_from_step2": [
+    "T05",
+    "T06",
+    "T13"
+  ],
+  "concurrency_from_step2": "T07",
+  "all_sql_expected_checks_pass": true,
+  "native_validation_finding": "W3-UX-01, P3; no product fix",
+  "blocking_bugs_found": 0,
+  "source_unchanged": true,
+  "env_unchanged": true,
+  "seed_1144_rows_unchanged": true,
+  "final_total": 1175,
+  "deliberate_U3_row_delta": 31,
+  "audit_findings_empty": true,
+  "private_services_stopped": true,
+  "browser_version_verified": false,
+  "ci_verified": false,
+  "T16": "Chờ nhóm chốt máy thứ hai",
+  "step4_started": false
+}

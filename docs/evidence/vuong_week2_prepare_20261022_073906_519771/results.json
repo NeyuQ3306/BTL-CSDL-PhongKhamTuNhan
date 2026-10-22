@@ -1,0 +1,636 @@
+{
+  "source_sha": "dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3",
+  "run_at": "20261022_073906_519771",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "database": "clinic_vuong_week2_prepare_test",
+  "mysql_port": 57456,
+  "dependencies": {
+    "trung": "10c808238ef2f8f4f0a1aabcfc59da19079b38f8",
+    "quyen": "1bf9f8b18342eaf6d0097f3693df1bc02addfcfa"
+  },
+  "scope": "Preparation baseline, not final week-2 acceptance",
+  "screens": [
+    {
+      "route": "/patients",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "1440-00.png"
+    },
+    {
+      "route": "/visits/new",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Tiếp nhận và khám bệnh"
+      ],
+      "overflow": false,
+      "screenshot": "1440-01.png"
+    },
+    {
+      "route": "/visits/L0001",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "1440-02.png"
+    },
+    {
+      "route": "/visits/L0001/examinations/new",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Khám thêm bệnh trong lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "1440-03.png"
+    },
+    {
+      "route": "/visits/L0001/support",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Ghi hỗ trợ cho lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "1440-04.png"
+    },
+    {
+      "route": "/visits/L0001/close",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Kết thúc lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "1440-05.png"
+    },
+    {
+      "route": "/treatments/D0001/cure",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Xác nhận khỏi — đợt D0001"
+      ],
+      "overflow": false,
+      "screenshot": "1440-06.png"
+    },
+    {
+      "route": "/examinations/K0001/prescription",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Kê đơn — lần khám K0001"
+      ],
+      "overflow": false,
+      "screenshot": "1440-07.png"
+    },
+    {
+      "route": "/prescriptions/DT0001",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Đơn thuốc DT0001"
+      ],
+      "overflow": false,
+      "screenshot": "1440-08.png"
+    },
+    {
+      "route": "/reports",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Báo cáo phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "1440-09.png"
+    },
+    {
+      "route": "/reports/diseases?month=2026-10",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Thống kê bệnh theo đợt mắc"
+      ],
+      "overflow": false,
+      "screenshot": "1440-10.png"
+    },
+    {
+      "route": "/reports/salaries?month=2026-10",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Lương bác sĩ và y tá"
+      ],
+      "overflow": false,
+      "screenshot": "1440-11.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-10",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "1440-12.png"
+    },
+    {
+      "route": "/reports/history",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "1440-13.png"
+    },
+    {
+      "route": "/reports/history?patient_id=BN001",
+      "width": 1440,
+      "status": 503,
+      "heading": [
+        "Không thể hoàn tất yêu cầu (503)"
+      ],
+      "overflow": false,
+      "screenshot": "1440-14.png"
+    },
+    {
+      "route": "/reports/revenue?month=2025-12",
+      "width": 1440,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "1440-15.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-13",
+      "width": 1440,
+      "status": 400,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "1440-16.png"
+    },
+    {
+      "route": "/reports/history?patient_id=MISSING",
+      "width": 1440,
+      "status": 404,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "1440-17.png"
+    },
+    {
+      "route": "/patients",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "390-00.png"
+    },
+    {
+      "route": "/visits/new",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Tiếp nhận và khám bệnh"
+      ],
+      "overflow": false,
+      "screenshot": "390-01.png"
+    },
+    {
+      "route": "/visits/L0001",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "390-02.png"
+    },
+    {
+      "route": "/visits/L0001/examinations/new",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Khám thêm bệnh trong lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "390-03.png"
+    },
+    {
+      "route": "/visits/L0001/support",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Ghi hỗ trợ cho lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "390-04.png"
+    },
+    {
+      "route": "/visits/L0001/close",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Kết thúc lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "390-05.png"
+    },
+    {
+      "route": "/treatments/D0001/cure",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Xác nhận khỏi — đợt D0001"
+      ],
+      "overflow": false,
+      "screenshot": "390-06.png"
+    },
+    {
+      "route": "/examinations/K0001/prescription",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Kê đơn — lần khám K0001"
+      ],
+      "overflow": false,
+      "screenshot": "390-07.png"
+    },
+    {
+      "route": "/prescriptions/DT0001",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Đơn thuốc DT0001"
+      ],
+      "overflow": false,
+      "screenshot": "390-08.png"
+    },
+    {
+      "route": "/reports",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Báo cáo phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "390-09.png"
+    },
+    {
+      "route": "/reports/diseases?month=2026-10",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Thống kê bệnh theo đợt mắc"
+      ],
+      "overflow": false,
+      "screenshot": "390-10.png"
+    },
+    {
+      "route": "/reports/salaries?month=2026-10",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Lương bác sĩ và y tá"
+      ],
+      "overflow": false,
+      "screenshot": "390-11.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-10",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "390-12.png"
+    },
+    {
+      "route": "/reports/history",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "390-13.png"
+    },
+    {
+      "route": "/reports/history?patient_id=BN001",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Đỗ Ngọc Phương"
+      ],
+      "overflow": false,
+      "screenshot": "390-14.png"
+    },
+    {
+      "route": "/reports/revenue?month=2025-12",
+      "width": 390,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "390-15.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-13",
+      "width": 390,
+      "status": 400,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "390-16.png"
+    },
+    {
+      "route": "/reports/history?patient_id=MISSING",
+      "width": 390,
+      "status": 404,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "390-17.png"
+    },
+    {
+      "route": "/patients",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "320-00.png"
+    },
+    {
+      "route": "/visits/new",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Tiếp nhận và khám bệnh"
+      ],
+      "overflow": false,
+      "screenshot": "320-01.png"
+    },
+    {
+      "route": "/visits/L0001",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "320-02.png"
+    },
+    {
+      "route": "/visits/L0001/examinations/new",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Khám thêm bệnh trong lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "320-03.png"
+    },
+    {
+      "route": "/visits/L0001/support",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Ghi hỗ trợ cho lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "320-04.png"
+    },
+    {
+      "route": "/visits/L0001/close",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Kết thúc lượt L0001"
+      ],
+      "overflow": false,
+      "screenshot": "320-05.png"
+    },
+    {
+      "route": "/treatments/D0001/cure",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Xác nhận khỏi — đợt D0001"
+      ],
+      "overflow": false,
+      "screenshot": "320-06.png"
+    },
+    {
+      "route": "/examinations/K0001/prescription",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Kê đơn — lần khám K0001"
+      ],
+      "overflow": false,
+      "screenshot": "320-07.png"
+    },
+    {
+      "route": "/prescriptions/DT0001",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Đơn thuốc DT0001"
+      ],
+      "overflow": false,
+      "screenshot": "320-08.png"
+    },
+    {
+      "route": "/reports",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Báo cáo phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "320-09.png"
+    },
+    {
+      "route": "/reports/diseases?month=2026-10",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Thống kê bệnh theo đợt mắc"
+      ],
+      "overflow": false,
+      "screenshot": "320-10.png"
+    },
+    {
+      "route": "/reports/salaries?month=2026-10",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Lương bác sĩ và y tá"
+      ],
+      "overflow": false,
+      "screenshot": "320-11.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-10",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "320-12.png"
+    },
+    {
+      "route": "/reports/history",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "320-13.png"
+    },
+    {
+      "route": "/reports/history?patient_id=BN001",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Đỗ Ngọc Phương"
+      ],
+      "overflow": false,
+      "screenshot": "320-14.png"
+    },
+    {
+      "route": "/reports/revenue?month=2025-12",
+      "width": 320,
+      "status": 200,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "320-15.png"
+    },
+    {
+      "route": "/reports/revenue?month=2026-13",
+      "width": 320,
+      "status": 400,
+      "heading": [
+        "Doanh thu phòng khám"
+      ],
+      "overflow": false,
+      "screenshot": "320-16.png"
+    },
+    {
+      "route": "/reports/history?patient_id=MISSING",
+      "width": 320,
+      "status": 404,
+      "heading": [
+        "Lịch sử và tình trạng bệnh nhân"
+      ],
+      "overflow": false,
+      "screenshot": "320-17.png"
+    }
+  ],
+  "preparation_success": false,
+  "mysql": "8.4.11",
+  "import": [
+    {
+      "file": "schema.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "seed.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "constraints.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "queries.sql",
+      "result_sets": 11
+    }
+  ],
+  "pytest_exit_code": 1,
+  "pytest_junit_stats": {
+    "tests": 195,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "seed_unchanged_after_tests": true,
+  "url": "http://127.0.0.1:60860",
+  "chromium": "156.0.8078.4",
+  "audit": {
+    "mysql_version": "8.4.11",
+    "counts": {
+      "bac_si": 10,
+      "y_ta": 12,
+      "benh_nhan": 40,
+      "benh": 15,
+      "thuoc": 30,
+      "dot_dieu_tri": 137,
+      "luot_den_kham": 140,
+      "lan_kham_benh": 173,
+      "don_thuoc": 140,
+      "chi_tiet_don_thuoc": 267,
+      "ho_tro": 180
+    },
+    "total": 1144,
+    "matches_expected_counts": true,
+    "findings": {
+      "different_patient": [],
+      "exam_outside_visit_or_treatment": [],
+      "duplicate_active_episode": [],
+      "nonconsecutive_exam_numbers": [],
+      "empty_visit": [],
+      "empty_prescription": [],
+      "support_outside_visit": [],
+      "prescription_date_mismatch": [],
+      "overlapping_episodes": []
+    }
+  },
+  "seed_unchanged_after_browser": true,
+  "trigger_count": 9,
+  "final_sql_audit_sets": 10,
+  "failure_type": "AssertionError",
+  "mysql_cleanup": {
+    "shutdown_requested": true,
+    "fallback_pids": [],
+    "errors": [],
+    "remaining_pids": [],
+    "port_closed": true,
+    "launcher_exited": true,
+    "success": true
+  },
+  "cleanup_errors": [],
+  "env_unchanged": true
+}

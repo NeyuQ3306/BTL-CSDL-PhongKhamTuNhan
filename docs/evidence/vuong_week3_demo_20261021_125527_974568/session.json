@@ -1,0 +1,55 @@
+{
+  "started_at": "2026-10-21T12:55:28.585282+07:00",
+  "mode": "fresh seed group server",
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "branch": "vuong/week-3",
+  "source_dirty": true,
+  "application_candidate": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+  "demo_tool_sha256": "f5d348c18fc64549321aa4f34d1985cae3acf115f1090f79eca50f8ac06864ed",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+  "mysql_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+  "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_125527_974568\\mysql-data",
+  "mysql_port": 58973,
+  "database": "clinic_week3_demo_test",
+  "group_rehearsal": false,
+  "success": true,
+  "mysql": "8.4.7",
+  "import": [
+    {
+      "file": "schema.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "seed.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "constraints.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "queries.sql",
+      "result_sets": 11
+    }
+  ],
+  "reserved_codes_absent": true,
+  "url": "http://127.0.0.1:58977",
+  "final_sql_audit_sets": 10,
+  "all_seed_rows_preserved": true,
+  "finished_at": "2026-10-21T12:55:48.456393+07:00",
+  "mysql_port_closed": true,
+  "app_port_closed": true,
+  "checkout_env_unchanged": true,
+  "source_unchanged": true,
+  "old_evidence_unchanged": true
+}

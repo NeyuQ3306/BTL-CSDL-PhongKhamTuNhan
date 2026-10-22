@@ -1,0 +1,17 @@
+{
+  "method": "Direct SQL setup only; not UI",
+  "diseases": [
+    "U3B1",
+    "U3B2"
+  ],
+  "medicines": [
+    {
+      "id": "U3T1",
+      "price": 1000
+    },
+    {
+      "id": "U3T2",
+      "price": 2000
+    }
+  ]
+}

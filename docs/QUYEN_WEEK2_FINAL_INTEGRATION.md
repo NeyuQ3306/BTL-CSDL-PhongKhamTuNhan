@@ -1,5 +1,7 @@
 # Tích hợp tuần 2 — 21/10/2026
 
+> Phạm vi hiện hành 21/10/2026: bỏ T16/máy thứ hai theo quyết định Quyền; demo trên laptop Quyền. Các nhận xét T16 bên dưới là lịch sử của phiên trước, không còn là điều kiện nghiệm thu hoặc release. Không sửa kết quả kiểm thử gốc.
+
 - #5 da59e56 đã squash merge tại 7575eb5; #10 1bf9f8b đã squash merge tại e9d4c97.
 - Cập nhật nền #11 bằng merge commit có parent head Vương e1119e9 và main e9d4c97; không force push, không xóa nhánh.
 - Giữ nguyên mọi file clinic_app của e1119e9 đã được Quyền/Trung review. Các sửa JSON/title/CSS Trung có cùng hành vi trong UI Vương; không đưa lại form tối thiểu.

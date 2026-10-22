@@ -1,0 +1,586 @@
+{
+  "months": [
+    {
+      "month": "2026-07",
+      "episodes": 49,
+      "consultation": 9890000,
+      "medicine": 14248600,
+      "revenue": 24138600,
+      "salaries": {
+        "doctors": 107000000,
+        "nurses": 72200000
+      },
+      "ui_json_sql_expected": "PASS"
+    },
+    {
+      "month": "2026-08",
+      "episodes": 49,
+      "consultation": 9260000,
+      "medicine": 9420000,
+      "revenue": 18680000,
+      "salaries": {
+        "doctors": 105000000,
+        "nurses": 71000000
+      },
+      "ui_json_sql_expected": "PASS"
+    },
+    {
+      "month": "2026-09",
+      "episodes": 25,
+      "consultation": 6520000,
+      "medicine": 10335400,
+      "revenue": 16855400,
+      "salaries": {
+        "doctors": 90000000,
+        "nurses": 67200000
+      },
+      "ui_json_sql_expected": "PASS"
+    },
+    {
+      "month": "2026-10",
+      "episodes": 24,
+      "consultation": 4680000,
+      "medicine": 5820800,
+      "revenue": 10500800,
+      "salaries": {
+        "doctors": 78000000,
+        "nurses": 65600000
+      },
+      "ui_json_sql_expected": "PASS"
+    },
+    {
+      "month": "2025-12",
+      "episodes": 0,
+      "consultation": 0,
+      "medicine": 0,
+      "revenue": 0,
+      "salaries": {
+        "doctors": 70000000,
+        "nurses": 60000000
+      },
+      "ui_json_sql_expected": "PASS"
+    }
+  ],
+  "patients": [
+    {
+      "patient": "BN001",
+      "groups": [
+        1,
+        3,
+        4,
+        1,
+        5,
+        8,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN002",
+      "groups": [
+        1,
+        5,
+        5,
+        1,
+        6,
+        13,
+        6
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN003",
+      "groups": [
+        1,
+        2,
+        3,
+        3,
+        3,
+        5,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN004",
+      "groups": [
+        1,
+        3,
+        2,
+        0,
+        4,
+        8,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN005",
+      "groups": [
+        1,
+        5,
+        4,
+        2,
+        7,
+        12,
+        6
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN006",
+      "groups": [
+        1,
+        3,
+        4,
+        1,
+        4,
+        6,
+        4
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN007",
+      "groups": [
+        1,
+        2,
+        3,
+        1,
+        3,
+        4,
+        2
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN008",
+      "groups": [
+        1,
+        5,
+        6,
+        1,
+        6,
+        8,
+        6
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN009",
+      "groups": [
+        1,
+        3,
+        2,
+        0,
+        3,
+        5,
+        5
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN010",
+      "groups": [
+        1,
+        5,
+        4,
+        0,
+        6,
+        7,
+        5
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN011",
+      "groups": [
+        1,
+        3,
+        4,
+        1,
+        4,
+        6,
+        4
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN012",
+      "groups": [
+        1,
+        4,
+        4,
+        3,
+        5,
+        9,
+        7
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN013",
+      "groups": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN014",
+      "groups": [
+        1,
+        3,
+        3,
+        1,
+        4,
+        7,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN015",
+      "groups": [
+        1,
+        3,
+        3,
+        1,
+        3,
+        6,
+        4
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN016",
+      "groups": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN017",
+      "groups": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        3,
+        1
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN018",
+      "groups": [
+        1,
+        3,
+        4,
+        0,
+        5,
+        6,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN019",
+      "groups": [
+        1,
+        2,
+        3,
+        1,
+        3,
+        5,
+        2
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN020",
+      "groups": [
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN021",
+      "groups": [
+        1,
+        6,
+        6,
+        0,
+        6,
+        7,
+        6
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN022",
+      "groups": [
+        1,
+        1,
+        2,
+        0,
+        2,
+        2,
+        1
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN023",
+      "groups": [
+        1,
+        1,
+        1,
+        0,
+        1,
+        3,
+        1
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN024",
+      "groups": [
+        1,
+        3,
+        4,
+        2,
+        4,
+        5,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN025",
+      "groups": [
+        1,
+        5,
+        3,
+        1,
+        5,
+        8,
+        7
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN026",
+      "groups": [
+        1,
+        4,
+        3,
+        0,
+        4,
+        5,
+        4
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN027",
+      "groups": [
+        1,
+        4,
+        4,
+        0,
+        4,
+        7,
+        6
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN028",
+      "groups": [
+        1,
+        7,
+        5,
+        1,
+        8,
+        9,
+        11
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN029",
+      "groups": [
+        1,
+        3,
+        3,
+        2,
+        4,
+        8,
+        4
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN030",
+      "groups": [
+        1,
+        5,
+        6,
+        2,
+        6,
+        10,
+        6
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN031",
+      "groups": [
+        1,
+        2,
+        2,
+        0,
+        2,
+        2,
+        2
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN032",
+      "groups": [
+        1,
+        4,
+        3,
+        1,
+        5,
+        4,
+        5
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN033",
+      "groups": [
+        1,
+        2,
+        2,
+        0,
+        2,
+        3,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN034",
+      "groups": [
+        1,
+        8,
+        6,
+        3,
+        10,
+        20,
+        13
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN035",
+      "groups": [
+        1,
+        9,
+        6,
+        1,
+        13,
+        21,
+        11
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN036",
+      "groups": [
+        1,
+        2,
+        1,
+        0,
+        2,
+        4,
+        4
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN037",
+      "groups": [
+        1,
+        3,
+        4,
+        2,
+        4,
+        5,
+        3
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN038",
+      "groups": [
+        1,
+        6,
+        5,
+        1,
+        6,
+        9,
+        8
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN039",
+      "groups": [
+        1,
+        4,
+        4,
+        1,
+        5,
+        7,
+        7
+      ],
+      "json_expected": "PASS"
+    },
+    {
+      "patient": "BN040",
+      "groups": [
+        1,
+        2,
+        4,
+        0,
+        4,
+        4,
+        3
+      ],
+      "json_expected": "PASS"
+    }
+  ]
+}

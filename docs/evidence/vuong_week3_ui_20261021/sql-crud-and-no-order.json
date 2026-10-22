@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-21T11:46:22.603344+07:00",
+  "method": "Direct SQL; not UI",
+  "request": {
+    "action": "query",
+    "sql": "SELECT 'temporary_patients' label, COUNT(*) n FROM benh_nhan WHERE ma_benh_nhan='U3TMPBN' UNION ALL SELECT 'temporary_doctors',COUNT(*) FROM bac_si WHERE ma_bac_si='U3TMPBS' UNION ALL SELECT 'temporary_nurses',COUNT(*) FROM y_ta WHERE ma_y_ta='U3TMPYT' UNION ALL SELECT 'K1_orders',COUNT(*) FROM don_thuoc WHERE ma_lan_kham='U3K1'",
+    "output": "sql-crud-and-no-order.json"
+  },
+  "rows": [
+    {
+      "label": "temporary_patients",
+      "n": 0
+    },
+    {
+      "label": "temporary_doctors",
+      "n": 0
+    },
+    {
+      "label": "temporary_nurses",
+      "n": 0
+    },
+    {
+      "label": "K1_orders",
+      "n": 0
+    }
+  ]
+}

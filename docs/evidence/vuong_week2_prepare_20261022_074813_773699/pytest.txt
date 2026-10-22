@@ -1,0 +1,1083 @@
+........................................................................ [ 36%]
+........................................................................ [ 73%]
+...................................................                      [100%]
+=================================== PASSES ====================================
+_________________________ test_start_without_database _________________________
+------------------------------ Captured log call ------------------------------
+ERROR    clinic_app:__init__.py:37 MySQL operation failed; code=2003 endpoint=clinic.health_db
+ERROR    clinic_app:__init__.py:37 MySQL operation failed; code=2003 endpoint=clinic.listing
+___________________ test_seed_reports_ui_json_sql_expected ____________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:28] "GET /reports/diseases?month=2026-07&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:28] "GET /reports/diseases?month=2026-07 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "GET /reports/salaries?month=2026-07&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "GET /reports/salaries?month=2026-07 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "GET /reports/revenue?month=2026-07&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "GET /reports/revenue?month=2026-07 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:29] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "GET /reports/diseases?month=2026-08&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "GET /reports/diseases?month=2026-08 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "GET /reports/salaries?month=2026-08&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "GET /reports/salaries?month=2026-08 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "GET /reports/revenue?month=2026-08&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "GET /reports/revenue?month=2026-08 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:30] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/diseases?month=2026-09&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/diseases?month=2026-09 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/salaries?month=2026-09&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/salaries?month=2026-09 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/revenue?month=2026-09&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/revenue?month=2026-09 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/diseases?month=2026-10&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "GET /reports/diseases?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:31] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "GET /reports/salaries?month=2026-10&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "GET /reports/salaries?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "GET /reports/revenue?month=2026-10&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "GET /reports/revenue?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "GET /reports/diseases?month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "GET /reports/diseases?month=2025-12 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:32] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/salaries?month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/salaries?month=2025-12 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/revenue?month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/revenue?month=2025-12 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/history?patient_id=BN001&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/history?patient_id=BN002&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/history?patient_id=BN003&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/history?patient_id=BN004&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/history?patient_id=BN005&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:33] "GET /reports/history?patient_id=BN006&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN007&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN008&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN009&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN010&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN011&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN012&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN013&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN014&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN015&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN016&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN017&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN018&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN019&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN020&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN021&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN022&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN023&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN024&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN025&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN026&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:34] "GET /reports/history?patient_id=BN027&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN028&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN029&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN030&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN031&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN032&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN033&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN034&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN035&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN036&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN037&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN038&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN039&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN040&month=2025-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN001 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN001&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN001&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN001&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:35] "GET /reports/history?patient_id=BN001&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "GET /reports/history?patient_id=BN001&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "GET /reports/diseases?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "GET /reports/salaries?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "GET /reports/revenue?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "GET /reports/history?patient_id=BN001 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "GET /reports/diseases?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:36] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "GET /reports/salaries?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "GET /reports/revenue?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "GET /reports/history?patient_id=BN001 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "GET /reports/diseases?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "GET /reports/salaries?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "GET /reports/revenue?month=2026-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:37] "GET /reports/history?patient_id=BN001 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:38] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:38] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:38] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+______________________ test_stored_edge_cases_and_errors ______________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /reports/revenue?month=2001-01&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /reports/revenue?month=2001-01 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /reports/diseases?month=2001-01&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /reports/diseases?month=2001-01 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:39] "GET /reports/salaries?month=2001-01&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/salaries?month=2001-01 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/revenue?month=2001-02&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/revenue?month=2001-02 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/diseases?month=2001-02&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/diseases?month=2001-02 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/salaries?month=2001-02&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/salaries?month=2001-02 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/revenue?month=2001-03&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "GET /reports/revenue?month=2001-03 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:40] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "GET /reports/diseases?month=2001-03&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "GET /reports/diseases?month=2001-03 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "GET /reports/salaries?month=2001-03&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "GET /reports/salaries?month=2001-03 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "GET /reports/history?patient_id=W2BN1&month=INVALID&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "GET /reports/history?patient_id=W2BN1&month=2001-01 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "GET /reports/history HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:41] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "GET /reports/history?patient_id=W2BN2 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "GET /reports/history?patient_id=W2BN2&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[31m[1mGET /reports/diseases?month=2026-13 HTTP/1.1[0m" 400 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[31m[1mGET /reports/diseases?month=2026-13&format=json HTTP/1.1[0m" 400 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[31m[1mGET /reports/salaries?month=2026-13 HTTP/1.1[0m" 400 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[31m[1mGET /reports/salaries?month=2026-13&format=json HTTP/1.1[0m" 400 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[31m[1mGET /reports/revenue?month=2026-13 HTTP/1.1[0m" 400 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[31m[1mGET /reports/revenue?month=2026-13&format=json HTTP/1.1[0m" 400 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "GET /reports/revenue?month=2001-02 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[33mGET /reports/history?patient_id=MISSING HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[33mGET /reports/history?patient_id=MISSING&format=json HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "[31m[1mGET /reports/history?patient_id=<script>&format=json HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:42] "GET /reports/history?patient_id=W2BN1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:43] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:43] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:43] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+________________________ test_vuong_clinical_workflow _________________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:44] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:44] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:44] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:44] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:44] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:44] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "GET /visits/W2L8/examinations/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[32mPOST /visits/W2L8/examinations/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "GET /visits/W2L8/support?ma_y_ta=W2YT1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:45] "[32mPOST /visits/W2L8/support?ma_y_ta=W2YT1 HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "GET /visits/W2L8/support HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[32mPOST /visits/W2L8/support HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "GET /examinations/W2K8/prescription HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[31m[1mPOST /examinations/W2K8/prescription HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:46] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[32mPOST /examinations/W2K8/prescription HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "GET /prescriptions/W2P8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "GET /prescriptions/W2P8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "GET /visits/W2L8/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[31m[1mPOST /visits/W2L8/close HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:47] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[32mPOST /visits/W2L8/close HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "GET /visits/W2L8 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "GET /visits/W2L9 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "GET /treatments/W2D8/cure HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:48] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[31m[1mPOST /treatments/W2D8/cure HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[32mPOST /treatments/W2D8/cure HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "GET /treatments HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "GET /visits/W2L9/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[32mPOST /visits/W2L9/close HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "GET /visits/W2L9 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:49] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "GET /visits/W2L10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "GET /visits/W2L10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "GET /visits/W2L10/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "GET /visits/W2L10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "GET /visits/W2L10/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:50] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "GET /visits/W2L10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "GET /visits/W2L10/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:51] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+______________________ test_browser_week1_crud[patients] ______________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "GET /patients/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "[32mPOST /patients/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "GET /patients/UiW1pat HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:52] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "GET /patients/uiw1pat/edit HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[32mPOST /patients/uiw1pat/edit HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "GET /patients/UiW1pat HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[32mPOST /patients/UiW1pat/delete HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "GET /patients HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:53] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:54] "[33mGET /patients/UiW1pat HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:54] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:54] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:54] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+______________________ test_browser_week1_crud[doctors] _______________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "GET /doctors/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[32mPOST /doctors/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "GET /doctors/UiW1doc HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "GET /doctors/uiw1doc/edit HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:55] "[32mPOST /doctors/uiw1doc/edit HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "GET /doctors/UiW1doc HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[32mPOST /doctors/UiW1doc/delete HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "GET /doctors HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[33mGET /doctors/UiW1doc HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:56] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+_______________________ test_browser_week1_crud[nurses] _______________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "GET /nurses/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[32mPOST /nurses/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "GET /nurses/UiW1nur HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "GET /nurses/uiw1nur/edit HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[32mPOST /nurses/uiw1nur/edit HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "GET /nurses/UiW1nur HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:58] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[32mPOST /nurses/UiW1nur/delete HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "GET /nurses HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[33mGET /nurses/UiW1nur HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:48:59] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+_________________________ test_browser_clinical_flow __________________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:00] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:00] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:00] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:00] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:00] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "GET /visits/W2L7 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "GET /examinations/W2K7/prescription HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[32mPOST /examinations/W2K7/prescription HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "GET /prescriptions/W2P7 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "GET /treatments/W2D7/cure HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:01] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[32mPOST /treatments/W2D7/cure HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "GET /treatments HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "GET /reports/revenue?month=2001-02 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "GET /reports/history?patient_id=W2BN1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "GET /visits/W2L7/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[31m[1mPOST /visits/W2L7/close HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:02] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+_______________ test_acceptance_browser_t01_t04_t08_t12_t14_t15 _______________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:11] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:11] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:11] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:11] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:11] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "GET /visits/AC1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "GET /visits/AC2 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "GET /visits/AC3 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:12] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "GET /reports/diseases?month=2001-09 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "GET /visits/AC4 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "GET /reports/diseases?month=2001-09 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "GET /reports/diseases?month=2001-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:13] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "GET /treatments/AD1/cure HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[32mPOST /treatments/AD1/cure HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "GET /treatments HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "GET /reports/salaries?month=2001-09 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "GET /reports/salaries?month=2001-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:14] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "GET /visits/AC5 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "GET /reports/diseases?month=2001-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "GET /visits/AC5/examinations/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[32mPOST /visits/AC5/examinations/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "GET /visits/AC5 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "GET /visits/AC5/support?ma_y_ta=W2YT1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:15] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[32mPOST /visits/AC5/support?ma_y_ta=W2YT1 HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "GET /visits/AC5 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "GET /visits/AC5/support HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[32mPOST /visits/AC5/support HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "GET /visits/AC5 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "GET /reports/salaries?month=2001-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "GET /reports/history?patient_id=W2BN1&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "GET /examinations/AK5/prescription HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:16] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[31m[1mPOST /examinations/AK5/prescription HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[31m[1mPOST /examinations/AK5/prescription HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[32mPOST /examinations/AK5/prescription HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "GET /prescriptions/AR1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "GET /prescriptions/AR1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "GET /reports/revenue?month=2001-10 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:17] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[31m[1mPOST /visits/new HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "GET /visits/AC5/close HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[31m[1mPOST /visits/AC5/close HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[32mPOST /visits/AC5/close HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "GET /visits/AC5 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "GET /reports/revenue?month=2000-12 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "GET /reports/diseases?month=2000-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "GET /reports/salaries?month=2000-12 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:18] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:19] "GET /reports/history?patient_id=W2BN1&month=2000-12&format=json HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:19] "GET /reports/history?patient_id=W2BN1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:19] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:19] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:19] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+________________________ test_t05_wrong_owner_and_csrf ________________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "[31m[1mPOST /visits/new HTTP/1.1[0m" 422 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "[31m[1mPOST /visits/new HTTP/1.1[0m" 400 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:21] "[31m[1mPOST /visits/new HTTP/1.1[0m" 400 -
+___________________________ test_t06_duplicate_keys ___________________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:22] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "GET /visits/AC1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:23] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "GET /visits/AC2 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "GET /visits/AC3 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:24] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+__________________________ test_t07_concurrent_http ___________________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:26] "[31m[1mPOST /visits/new HTTP/1.1[0m" 409 -
+___________________ test_t13_partial_prescription_rollback ____________________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:27] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:27] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:27] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:27] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:27] "GET /static/week2.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[32mPOST /visits/new HTTP/1.1[0m" 303 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "GET /visits/AC1 HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "GET /examinations/AK1/prescription HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/week2.js HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[33mPOST /examinations/AK1/prescription HTTP/1.1[0m" 404 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "GET /patients/W2BN1/history HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/week1.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/week2.css HTTP/1.1[0m" 304 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:28] "[36mGET /static/number-validation.js HTTP/1.1[0m" 304 -
+______________ test_cleanup_recovery_records_final_session[none] ______________
+---------------------------- Captured stdout call -----------------------------
+{"success": true, "workload_success": true, "failure": null, "mysql_cleanup": {"shutdown_requested": true, "fallback_pids": [], "errors": [], "remaining_pids": [], "port_closed": true, "launcher_exited": true, "success": true}, "cleanup_errors": [], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+____________ test_cleanup_recovery_records_final_session[shutdown] ____________
+---------------------------- Captured stdout call -----------------------------
+{"success": true, "workload_success": true, "failure": null, "mysql_cleanup": {"shutdown_requested": false, "fallback_pids": [123], "errors": ["RuntimeError"], "remaining_pids": [], "port_closed": true, "launcher_exited": true, "success": true}, "cleanup_errors": [], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+_____________ test_cleanup_recovery_records_final_session[close] ______________
+---------------------------- Captured stdout call -----------------------------
+{"success": true, "workload_success": true, "failure": null, "mysql_cleanup": {"shutdown_requested": true, "fallback_pids": [123], "errors": ["RuntimeError"], "remaining_pids": [], "port_closed": true, "launcher_exited": true, "success": true}, "cleanup_errors": [], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+______________ test_cleanup_recovery_records_final_session[wait] ______________
+---------------------------- Captured stdout call -----------------------------
+{"success": false, "workload_success": true, "failure": null, "mysql_cleanup": {"shutdown_requested": true, "fallback_pids": [123], "errors": ["LauncherTimeout"], "remaining_pids": [], "port_closed": true, "launcher_exited": false, "success": false}, "cleanup_errors": [], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+_______ test_cleanup_stage_failure_does_not_skip_session[app_shutdown] ________
+---------------------------- Captured stdout call -----------------------------
+{"success": false, "workload_success": false, "failure": {"type": "OriginalWorkloadError"}, "mysql_cleanup": {"success": true}, "cleanup_errors": [{"stage": "app_shutdown", "type": "OSError"}], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+_________ test_cleanup_stage_failure_does_not_skip_session[app_close] _________
+---------------------------- Captured stdout call -----------------------------
+{"success": false, "workload_success": false, "failure": {"type": "OriginalWorkloadError"}, "mysql_cleanup": {"success": true}, "cleanup_errors": [{"stage": "app_close", "type": "OSError"}], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+_________ test_cleanup_stage_failure_does_not_skip_session[app_join] __________
+---------------------------- Captured stdout call -----------------------------
+{"success": false, "workload_success": false, "failure": {"type": "OriginalWorkloadError"}, "mysql_cleanup": {"success": true}, "cleanup_errors": [{"stage": "app_join", "type": "OSError"}], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+_______ test_cleanup_stage_failure_does_not_skip_session[mysql_cleanup] _______
+---------------------------- Captured stdout call -----------------------------
+{"success": false, "workload_success": false, "failure": {"type": "OriginalWorkloadError"}, "mysql_cleanup": {"success": false}, "cleanup_errors": [{"stage": "mysql_cleanup", "type": "OSError"}], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+_________ test_cleanup_stage_failure_does_not_skip_session[log_close] _________
+---------------------------- Captured stdout call -----------------------------
+{"success": false, "workload_success": false, "failure": {"type": "OriginalWorkloadError"}, "mysql_cleanup": {"success": true}, "cleanup_errors": [{"stage": "log_close", "type": "OSError"}], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+_____ test_cleanup_stage_failure_does_not_skip_session[source_unchanged] ______
+---------------------------- Captured stdout call -----------------------------
+{"success": false, "workload_success": false, "failure": {"type": "OriginalWorkloadError"}, "mysql_cleanup": {"success": true}, "cleanup_errors": [{"stage": "source_unchanged", "type": "FileNotFoundError"}], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": false, "old_evidence_unchanged": true}
+________ test_numeric_validation_vietnamese_in_english_browser[doctor] ________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:30] "GET /doctors/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:30] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:30] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:30] "GET /static/number-validation.js HTTP/1.1" 200 -
+________ test_numeric_validation_vietnamese_in_english_browser[nurse] _________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:31] "GET /nurses/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:31] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:31] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:31] "GET /static/number-validation.js HTTP/1.1" 200 -
+_________ test_numeric_validation_vietnamese_in_english_browser[fee] __________
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:33] "GET /visits/new HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:33] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:33] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:33] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:33] "GET /static/week2.js HTTP/1.1" 200 -
+_______ test_numeric_validation_vietnamese_in_english_browser[quantity] _______
+------------------------------ Captured log call ------------------------------
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:35] "GET /examinations/W2K1/prescription HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:35] "GET /static/week1.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:35] "GET /static/week2.css HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:35] "GET /static/number-validation.js HTTP/1.1" 200 -
+INFO     werkzeug:_internal.py:97 127.0.0.1 - - [22/Oct/2026 07:49:35] "GET /static/week2.js HTTP/1.1" 200 -
+- generated xml file: C:\Users\LENOVO\clinic-week3-quyen\docs\evidence\vuong_week2_prepare_20261022_074813_773699\junit.xml -
+=========================== short test summary info ===========================
+PASSED tests/test_backend.py::test_validation[cmt-abc]
+PASSED tests/test_backend.py::test_validation[so_dien_thoai-12]
+PASSED tests/test_backend.py::test_validation[ngay_sinh-2001-02-29]
+PASSED tests/test_backend.py::test_validation[ngay_sinh-2999-01-01]
+PASSED tests/test_backend.py::test_validation[ho_ten-]
+PASSED tests/test_backend.py::test_validation[ma_benh_nhan-a/b]
+PASSED tests/test_backend.py::test_validation[dia_chi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]
+PASSED tests/test_backend.py::test_start_without_database
+PASSED tests/test_backend.py::test_sql_split
+PASSED tests/test_backend.py::test_crud[patients]
+PASSED tests/test_backend.py::test_crud[doctors]
+PASSED tests/test_backend.py::test_crud[nurses]
+PASSED tests/test_backend.py::test_history_prevents_delete[patients-BN001]
+PASSED tests/test_backend.py::test_history_prevents_delete[doctors-BS001]
+PASSED tests/test_backend.py::test_history_prevents_delete[nurses-YT001]
+PASSED tests/test_backend.py::test_bad_form_and_queries
+PASSED tests/test_backend.py::test_transaction_rollback_and_connection_lifecycle
+PASSED tests/test_backend.py::test_read_foundation_and_seed_counts
+PASSED tests/test_backend.py::test_unicode_csrf_is_bad_request[kh\xf4ng h\u1ee3p l\u1ec7]
+PASSED tests/test_backend.py::test_unicode_csrf_is_bad_request[\U0001f600]
+PASSED tests/test_backend.py::test_reserved_record_id[patients]
+PASSED tests/test_backend.py::test_reserved_record_id[doctors]
+PASSED tests/test_backend.py::test_reserved_record_id[nurses]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CASETEST-patients]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CASETEST-doctors]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CASETEST-nurses]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CaseTest-patients]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CaseTest-doctors]
+PASSED tests/test_backend.py::test_case_variant_url_keeps_stored_primary_key[CaseTest-nurses]
+PASSED tests/test_browser_vuong_reports.py::test_seed_reports_ui_json_sql_expected
+PASSED tests/test_browser_vuong_reports.py::test_stored_edge_cases_and_errors
+PASSED tests/test_browser_vuong_week2.py::test_vuong_clinical_workflow
+PASSED tests/test_browser_week1.py::test_browser_week1_crud[patients]
+PASSED tests/test_browser_week1.py::test_browser_week1_crud[doctors]
+PASSED tests/test_browser_week1.py::test_browser_week1_crud[nurses]
+PASSED tests/test_browser_week2.py::test_browser_clinical_flow
+PASSED tests/test_quyen_database.py::test_seed_and_audit
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-07]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-08]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-09]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2026-10]
+PASSED tests/test_quyen_database.py::test_reports_python_oracle[2025-12]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO dot_dieu_tri VALUES ('QD2','2001-01-02',NULL,'\u0110ang \u0111i\u1ec1u tr\u1ecb','BN001','QB1','BS002')]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO dot_dieu_tri VALUES ('QD2','2001-01-02','2001-01-03','\u0110\xe3 kh\u1ecfi','BN002','QB1','BS002')]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO lan_kham_benh VALUES ('QK2',3,'2001-01-02',100,'Test','QD1','QL1')]
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE dot_dieu_tri SET ma_bac_si='BS002' WHERE ma_dot='QD1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE dot_dieu_tri SET ngay_khoi='2000-12-31',trang_thai='\u0110\xe3 kh\u1ecfi' WHERE ma_dot='QD1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET ma_dot='D0001' WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET ngay_kham='2001-01-02' WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET so_thu_tu_trong_dot=2 WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE luot_den_kham SET ma_benh_nhan='BN002' WHERE ma_luot='QL1']
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE luot_den_kham SET ngay_ra_vien='2000-12-31' WHERE ma_luot='QL1']
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO ho_tro VALUES ('QL1','YT002','Test','2000-12-31')]
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO ho_tro VALUES ('QL1','YT001','Duplicate','2001-01-01')]
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE ho_tro SET ngay_ho_tro='2001-01-02' WHERE ma_luot='QL1']
+PASSED tests/test_quyen_database.py::test_invalid_write[INSERT INTO don_thuoc VALUES ('QP1','2001-01-02','QK1')]
+PASSED tests/test_quyen_database.py::test_invalid_write[UPDATE lan_kham_benh SET tien_kham_chua=-1 WHERE ma_lan_kham='QK1']
+PASSED tests/test_quyen_database.py::test_invalid_write[DELETE FROM benh_nhan WHERE ma_benh_nhan='BN001']
+PASSED tests/test_quyen_database.py::test_valid_workflow_and_rollback
+PASSED tests/test_quyen_database.py::test_wrong_patient_and_closed_episode
+PASSED tests/test_quyen_database.py::test_empty_completed_visit
+PASSED tests/test_quyen_database.py::test_seed_covers_required_scenarios
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN001]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN002]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN003]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN004]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN005]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN006]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN007]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN008]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN009]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN010]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN011]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN012]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN013]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN014]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN015]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN016]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN017]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN018]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN019]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN020]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN021]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN022]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN023]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN024]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN025]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN026]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN027]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN028]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN029]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN030]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN031]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN032]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN033]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN034]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN035]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN036]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN037]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN038]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN039]
+PASSED tests/test_quyen_week2_reports.py::test_q3_all_seed_patients[BN040]
+PASSED tests/test_quyen_week2_reports.py::test_monthly_seed_oracle_and_backend[2026-07]
+PASSED tests/test_quyen_week2_reports.py::test_monthly_seed_oracle_and_backend[2026-08]
+PASSED tests/test_quyen_week2_reports.py::test_monthly_seed_oracle_and_backend[2026-09]
+PASSED tests/test_quyen_week2_reports.py::test_monthly_seed_oracle_and_backend[2026-10]
+PASSED tests/test_quyen_week2_reports.py::test_monthly_seed_oracle_and_backend[2025-12]
+PASSED tests/test_quyen_week2_reports.py::test_period_boundaries[2004-02-2004-02-28-1-100-0-0-supports0]
+PASSED tests/test_quyen_week2_reports.py::test_period_boundaries[2004-02-2004-02-29-1-300-8000-0-supports1]
+PASSED tests/test_quyen_week2_reports.py::test_period_boundaries[2004-02-2004-03-02-1-300-8000-0-supports2]
+PASSED tests/test_quyen_week2_reports.py::test_period_boundaries[2004-03-2004-03-01-1-300-0-1-supports3]
+PASSED tests/test_quyen_week2_reports.py::test_period_boundaries[2004-03-2004-03-02-2-700-0-1-supports4]
+PASSED tests/test_quyen_week2_reports.py::test_period_boundaries[2004-01-2004-03-02-0-0-0-0-supports5]
+PASSED tests/test_quyen_week2_reports.py::test_new_history_and_empty_patient
+PASSED tests/test_record_ui.py::test_referenced_record_delete_shows_conflict[1217]
+PASSED tests/test_record_ui.py::test_referenced_record_delete_shows_conflict[1451]
+PASSED tests/test_record_ui.py::test_invalid_edit_keeps_original_navigation_and_readonly_code[BN001]
+PASSED tests/test_record_ui.py::test_invalid_edit_keeps_original_navigation_and_readonly_code[bn001]
+PASSED tests/test_report_shells.py::test_integrated_report_dispatch[diseases]
+PASSED tests/test_report_shells.py::test_integrated_report_dispatch[salaries]
+PASSED tests/test_report_shells.py::test_integrated_report_dispatch[revenue]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[2026-13]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[0000-01]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[26-10]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[]
+PASSED tests/test_report_shells.py::test_bad_month_rejected_before_query[<script>]
+PASSED tests/test_report_shells.py::test_hub_and_single_report_url
+PASSED tests/test_vuong_acceptance.py::test_acceptance_browser_t01_t04_t08_t12_t14_t15
+PASSED tests/test_vuong_acceptance.py::test_t05_wrong_owner_and_csrf
+PASSED tests/test_vuong_acceptance.py::test_t06_duplicate_keys
+PASSED tests/test_vuong_acceptance.py::test_t07_concurrent_http
+PASSED tests/test_vuong_acceptance.py::test_t13_partial_prescription_rollback
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[none]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[shutdown]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[close]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_recovery_records_final_session[wait]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[app_shutdown]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[app_close]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[app_join]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[mysql_cleanup]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[log_close]
+PASSED tests/test_vuong_week3_cleanup.py::test_cleanup_stage_failure_does_not_skip_session[source_unchanged]
+PASSED tests/test_vuong_week3_cleanup.py::test_identity_mismatch_never_sends_shutdown
+PASSED tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args0-True]
+PASSED tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args1-True]
+PASSED tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[system-mysqld-args2-False]
+PASSED tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args3-False]
+PASSED tests/test_vuong_week3_cleanup.py::test_process_scope_requires_executable_and_exact_datadir[private-mysqld-args4-False]
+PASSED tests/test_vuong_week3_numeric_validation.py::test_numeric_validation_vietnamese_in_english_browser[doctor]
+PASSED tests/test_vuong_week3_numeric_validation.py::test_numeric_validation_vietnamese_in_english_browser[nurse]
+PASSED tests/test_vuong_week3_numeric_validation.py::test_numeric_validation_vietnamese_in_english_browser[fee]
+PASSED tests/test_vuong_week3_numeric_validation.py::test_numeric_validation_vietnamese_in_english_browser[quantity]
+PASSED tests/test_week2.py::test_reports_hand_calculated
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes0-404]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes1-422]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes2-422]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes3-404]
+PASSED tests/test_week2.py::test_atomic_visit_rollback[changes4-422]
+PASSED tests/test_week2.py::test_clinical_constraints
+PASSED tests/test_week2.py::test_prescription_rollback
+PASSED tests/test_week2.py::test_concurrent_episode_and_sequence
+PASSED tests/test_week2.py::test_routes_and_json
+PASSED tests/test_week2.py::test_invalid_money[-1]
+PASSED tests/test_week2.py::test_invalid_money[NaN]
+PASSED tests/test_week2.py::test_invalid_money[Infinity]
+PASSED tests/test_week2.py::test_invalid_money[1.1]
+PASSED tests/test_week2.py::test_invalid_money[1e3]
+PASSED tests/test_week2.py::test_invalid_money[1000000000000]
+PASSED tests/test_week2.py::test_invalid_money[]
+PASSED tests/test_week2.py::test_invalid_money[None]
+PASSED tests/test_week2.py::test_invalid_quantity[0]
+PASSED tests/test_week2.py::test_invalid_quantity[-1]
+PASSED tests/test_week2.py::test_invalid_quantity[1.5]
+PASSED tests/test_week2.py::test_invalid_quantity[2147483648]
+PASSED tests/test_week2.py::test_invalid_quantity[]
+PASSED tests/test_week2.py::test_invalid_quantity[None]
+PASSED tests/test_week2.py::test_invalid_day[2001-02-29]
+PASSED tests/test_week2.py::test_invalid_day[2999-01-01]
+PASSED tests/test_week2.py::test_invalid_day[2001-1-01]
+PASSED tests/test_week2.py::test_invalid_day[None]
+PASSED tests/test_week2.py::test_invalid_month[]
+PASSED tests/test_week2.py::test_invalid_month[2026-13]
+PASSED tests/test_week2.py::test_invalid_month[2026-00]
+PASSED tests/test_week2.py::test_invalid_month[2026-1]
+PASSED tests/test_week2.py::test_invalid_month[9999-12]
+PASSED tests/test_week2.py::test_invalid_month[' OR 1=1]
+PASSED tests/test_week2.py::test_month_boundaries
+PASSED tests/test_week2.py::test_existing_episode_case_alias_uses_canonical_owner
+PASSED tests/test_week2_review_regressions.py::test_invalid_month_json_and_html[diseases]
+PASSED tests/test_week2_review_regressions.py::test_invalid_month_json_and_html[salaries]
+PASSED tests/test_week2_review_regressions.py::test_invalid_month_json_and_html[revenue]
+PASSED tests/test_week2_review_regressions.py::test_missing_patient_json
+PASSED tests/test_week2_review_regressions.py::test_invalid_patient_json_before_database
+PASSED tests/test_week2_review_regressions.py::test_history_title_does_not_contain_clinical_tables
+PASSED tests/test_week2_review_regressions.py::test_prescription_controls_fit_mobile
+195 passed in 80.03s (0:01:20)

@@ -1,0 +1,7 @@
+{"success": false, "workload_success": false, "failure": {"type": "RuntimeError"}, "mysql_cleanup": {"shutdown_requested": false, "fallback_pids": [25212, 25444], "errors": ["InterfaceError", "Error"], "remaining_pids": [], "port_closed": true, "launcher_exited": true, "success": true}, "cleanup_errors": [], "log_closed": true, "mysql_port_closed": true, "app_port_closed": true, "app_thread_stopped": true, "checkout_env_unchanged": true, "source_unchanged": true, "old_evidence_unchanged": true}
+Traceback (most recent call last):
+  File "D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\tools\vuong_week3_demo.py", line 450, in <module>
+    main()
+  File "D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\tools\vuong_week3_demo.py", line 382, in main
+    raise RuntimeError('Injected workload failure with closed private connection')
+RuntimeError: Injected workload failure with closed private connection

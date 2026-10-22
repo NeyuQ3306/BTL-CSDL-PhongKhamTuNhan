@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-21T12:14:39.2956856+07:00",
+  "runner_issue_reproduced": true,
+  "method": "Verified executable and exact private datadir; stop remaining child only; wait and verify ports. Retest instance used graceful SQL SHUTDOWN.",
+  "stopped_mysql_pids": [
+    13296
+  ],
+  "remaining_final_mysql": 0,
+  "remaining_retest_mysql": 0,
+  "remaining_task_browsers": 0,
+  "ports": [
+    {
+      "port": 57136,
+      "closed": true
+    },
+    {
+      "port": 65396,
+      "closed": true
+    },
+    {
+      "port": 56646,
+      "closed": true
+    },
+    {
+      "port": 56651,
+      "closed": true
+    }
+  ],
+  "system_mysql_touched": false
+}

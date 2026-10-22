@@ -1,0 +1,57 @@
+{
+  "started_at": "2026-10-21T12:10:48.834276+07:00",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "branch": "vuong/week-3",
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "method": "Interactive browser through cua_repl; SQL fixtures and read-only oracle logged separately",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "mysqld": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+  "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-step4-retest-20261021\\mysql-data",
+  "mysql_port": 56646,
+  "database": "clinic_vuong_week3_step4_test",
+  "mysql": "8.4.7",
+  "imports": [
+    {
+      "file": "schema.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "seed.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "constraints.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "queries.sql",
+      "result_sets": 11
+    }
+  ],
+  "url": "http://127.0.0.1:56651",
+  "seed_rows_unchanged": {
+    "bac_si": true,
+    "y_ta": true,
+    "benh_nhan": true,
+    "benh": true,
+    "thuoc": true,
+    "dot_dieu_tri": true,
+    "luot_den_kham": true,
+    "lan_kham_benh": true,
+    "don_thuoc": true,
+    "chi_tiet_don_thuoc": true,
+    "ho_tro": true
+  },
+  "source_unchanged": true,
+  "env_unchanged": true,
+  "finished_at": "2026-10-21T12:12:26.421198+07:00",
+  "private_mysql_parent_exit": 0
+}

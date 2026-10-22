@@ -1,0 +1,7 @@
+{
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "browser": "Codex in-app browser controlled through cua_repl",
+  "browser_version": "Chưa xác minh: API browser hiện không cung cấp phiên bản; navigator không khả dụng trong readonly evaluate",
+  "measurements": "viewport innerWidth verified in responsive.json",
+  "automation": "Interactive browser; not runner Chromium instance"
+}

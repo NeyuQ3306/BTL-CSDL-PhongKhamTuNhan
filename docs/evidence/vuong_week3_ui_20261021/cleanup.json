@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-21T11:52:05.6197907+07:00",
+  "method": "Graceful SQL SHUTDOWN on private instance, then wait parent and verify processes/ports",
+  "remaining_private_mysql": 0,
+  "ports": [
+    {
+      "port": 64498,
+      "closed": true
+    },
+    {
+      "port": 64505,
+      "closed": true
+    }
+  ],
+  "touched_system_mysql": false
+}

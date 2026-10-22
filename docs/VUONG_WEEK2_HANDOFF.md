@@ -1,5 +1,7 @@
 # Bàn giao tuần 2 của Vương
 
+> Phạm vi hiện hành 21/10/2026: bỏ T16/máy thứ hai theo quyết định Quyền; demo trên laptop Quyền. Các nhận xét T16 bên dưới là lịch sử của phiên trước, không còn là điều kiện nghiệm thu hoặc release. Không sửa kết quả kiểm thử gốc.
+
 **Bản source kiểm tra mới nhất:** commit `33901998df480d753985127ed7f7e9a791cbc5fd`, đã chạy lại **168 passed / 0 skipped** khi review phụ thuộc, [JUnit](evidence/vuong_week2_prepare_20261019_224053/junit.xml), [log](evidence/vuong_week2_prepare_20261019_224053/pytest.txt), [audit](evidence/vuong_week2_prepare_20261019_224053/results.json). Code thực thi/test/workflow giữ nguyên từ `fa699a6`; commit sau phiên này chỉ bổ sung bằng chứng/tài liệu.
 
 **Xác nhận cuối ngày 20/10/2026:** Vương đã kiểm tra source/test và đọc log CI đúng head #5 `da59e561b187ee693842efd4c6e943c64201a4a1`, phản hồi và resolve hai nhận xét [select tràn 320px](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5#discussion_r4321140559) và [title lịch sử](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5#discussion_r4321140844) bằng tài khoản `Vuong-it`. Không chạy lại local trong phiên xác nhận. #10 vẫn giữ [approval của Vương tại 1bf9f8b](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/10#pullrequestreview-5574079099).

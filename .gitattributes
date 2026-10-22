@@ -3,3 +3,6 @@
 *.png binary
 *.jpg binary
 *.jpeg binary
+
+# Preserve byte hashes in captured week-3 manifests, logs and source snapshots.
+docs/evidence/vuong_week3*/** -text -whitespace

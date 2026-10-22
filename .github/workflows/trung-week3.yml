@@ -1,0 +1,84 @@
+name: Trung week 3 integrated backend
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [trung/week-3]
+permissions:
+  contents: read
+jobs:
+  backend-release:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: disposable-ci-password
+          MYSQL_DATABASE: clinic_week3_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s --health-timeout=5s --health-retries=12
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: '3306'
+      DB_USER: root
+      DB_PASSWORD: disposable-ci-password
+      DB_NAME: clinic_week3_test
+      FLASK_SECRET_KEY: disposable-week3-key
+      RUN_MYSQL_TESTS: '1'
+      RUN_BROWSER_TESTS: '1'
+      QUYEN_CHECK_WEEK2: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-dev.txt "playwright>=1.50,<2"
+      - run: python -m playwright install --with-deps chromium
+      - run: python -m compileall -q app.py clinic_app tools tests week3_checks
+      - name: Canonical import with audit
+        run: python -m tools.quyen_week1_evidence --install
+      - name: Before checks on actual checkout
+        run: python -m tools.trung_week3_preflight --expected-sha ${{ github.sha }} --output test-artifacts/week3/before.json
+      - name: Full regression plus week-3 release checks
+        run: python -m pytest tests week3_checks -v --junitxml=test-artifacts/week3/pytest.xml
+      - name: Audit after cleanup
+        if: always()
+        run: python -m tools.trung_week3_preflight --expected-sha ${{ github.sha }} --output test-artifacts/week3/after.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trung-week3-integrated-${{ github.run_id }}
+          path: test-artifacts/
+          retention-days: 30
+
+  windows-cleanup:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Install private MySQL 8.4 ZIP for cleanup tests
+        shell: pwsh
+        run: |
+          $zip = Join-Path $env:RUNNER_TEMP 'mysql.zip'
+          Invoke-WebRequest 'https://cdn.mysql.com/Downloads/MySQL-8.4/mysql-8.4.13-winx64.zip' -OutFile $zip
+          if ((Get-FileHash $zip -Algorithm MD5).Hash.ToLower() -ne '7b94489d5524dea9b27097068bea25a8') { throw 'MySQL archive checksum mismatch' }
+          $folder = Join-Path $env:RUNNER_TEMP 'mysql-private-binaries'
+          Expand-Archive $zip -DestinationPath $folder
+          $mysqld = Get-ChildItem $folder -Filter mysqld.exe -Recurse | Select-Object -First 1
+          if (!$mysqld) { throw 'MySQL executable missing' }
+          "W3_MYSQLD=$($mysqld.FullName)" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Real Windows MySQL cleanup success and broken-connection exception
+        run: python -m pytest windows_checks -v --junitxml=test-artifacts/week3/windows-cleanup.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trung-week3-windows-cleanup-${{ github.run_id }}
+          path: |
+            test-artifacts/week3/windows-cleanup.xml
+            docs/evidence/vuong_week2_prepare_*/results.json
+          retention-days: 30

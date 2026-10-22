@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-21T11:44:56.724160+07:00",
+  "method": "Direct SQL; not UI",
+  "request": {
+    "action": "price",
+    "output": "sql-price-update.json"
+  },
+  "affected": 1
+}
