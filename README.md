@@ -4,11 +4,15 @@
 
 Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**, múi giờ Việt Nam.
 
-## Bắt đầu với bản tích hợp hiện hành
+## Bắt đầu với ứng viên tích hợp #17
 
-Dùng [hướng dẫn cài/chạy Windows](docs/SETUP.md), [hướng dẫn sử dụng](docs/USER_GUIDE.md), [biên bản tuần 3](docs/VUONG_WEEK3_ACCEPTANCE.md), [kịch bản demo](docs/VUONG_WEEK3_DEMO.md) và [bàn giao review cuối](docs/VUONG_WEEK3_HANDOFF.md). Vương xác nhận đã hoàn thành bước 6 trong yêu cầu bàn giao ngày 21/10/2026; bằng chứng kỹ thuật và giới hạn của biên bản tập chung được ghi riêng trong kịch bản. Ngày 21/10/2026 đã fetch và xác minh main remote tại `f4869299c25fdfd0b711597e30b60ab277120f44` (PR #11), tích hợp backend/UI/bốn báo cáo. Chưa có release cuối được chốt.
+Trạng thái ngày **22/10/2026**: [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17), nhánh `quyen/week3-integration`, head `1964a4a10e8634384ce2ebf5951bc66e5525f755`, tích hợp #12/#13/#14/#15 từ main `f4869299c25fdfd0b711597e30b60ab277120f44`. Trung đã approve #17; PR vẫn mở, chưa merge/release. [PR #13](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/13#pullrequestreview-5602549788) của Vương đã được Trung approve tại `4f68099` và resolve thread cleanup.
 
-Ứng viên tuần 3 trên nhánh `vuong/week-3` có sửa UI/test, khác main ở trên. Kết quả local 179 test đạt, không failure/error/skip thuộc SHA nền **cộng candidate**, không gán cho riêng main: [đối chiếu source và kiểm tra bàn giao](docs/evidence/vuong_week3_handoff_20261021/verification.json), [đối chiếu hướng dẫn bước 5](docs/VUONG_WEEK3_STEP5_VERIFICATION.md), [bằng chứng ứng viên](docs/evidence/vuong_week3_final_20261021/README.md). T16 **Không thực hiện theo quyết định nhóm**, actual **Chưa chạy**; không tính PASS hoặc điều kiện còn thiếu. W3-RUN-01 về cleanup runner vẫn mở, có workaround trong SETUP. Bước 7 còn chờ review, nghiệm thu Quyền, merge và kiểm tra sau merge.
+Dùng [hướng dẫn cài/chạy Windows](docs/SETUP.md) để checkout đúng snapshot #17, [hướng dẫn sử dụng](docs/USER_GUIDE.md), [hồ sơ nghiệm thu](docs/VUONG_WEEK3_ACCEPTANCE.md), [kịch bản demo](docs/VUONG_WEEK3_DEMO.md) và [bàn giao tích hợp/bằng chứng](docs/VUONG_WEEK3_HANDOFF.md). Source chạy Windows trên laptop Quyền là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head `1964a4a` chỉ bổ sung 12 file bằng chứng. Phiên cuối có **236 test, 0 failure/error/skipped**; bốn workflow CI của head tích hợp đều success. Kết quả local, CI và các phiên Vương ngày 21/10 được phân biệt trong hồ sơ, không gán lại cho main hoặc bản tài liệu mới.
+
+**Còn chờ chốt:** W3-RUN-01 đã có bản sửa #12 được tích hợp và Trung review ở #17, nhưng chưa có quyết định đóng sổ lỗi của Trung/Quyền. Lỗi **HTTP 503/MySQL 2003** ở phiên Windows đầu vẫn theo dõi; hai phiên sau không tái hiện, chưa chứng minh đã sửa. T16 không thực hiện, actual chưa chạy, không tính PASS. Quyền còn quyết định phạm vi cuối, rà PDF–SQL–app/bộ nộp, merge và kiểm tra main sau merge. Chưa có xác nhận đầy đủ về phân vai/thời lượng tập chung.
+
+[PR #16](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/16#pullrequestreview-5608581327) đã được Vương approve phần dọn upstream nhưng **chưa tích hợp vào #17**; 7 file cũ vẫn có trong snapshot đang hướng dẫn.
 
 ## Bản bàn giao tuần 2 của Vương (lịch sử)
 
@@ -56,9 +60,9 @@ Python 3.11; Flask 3; PyMySQL; MySQL 8.4; HTML/CSS/Jinja. Giữ MySQL làm ngu�
 
 - `docs/design/`: hai PDF thiết kế đã chốt.
 - `docs/`: phân công, setup, hợp đồng tích hợp, test và nguồn tham khảo.
-- `database/`: schema, seed, truy vấn, expected_results và kiểm tra ràng buộc; script nộp cuối thuộc tuần 3.
+- `database/`: schema, seed, truy vấn, expected_results, audit và `project1_submission.sql` đã đóng gói trong #15/#17; xem SETUP để chọn đúng schema/import.
 - `app.py`: entry point; `clinic_app/`: backend và UI tiếng Việt tuần 1–2 đang được Flask sử dụng.
-- `templates/`, `static/`: UI upstream giữ nguyên để tránh xung đột phần Vương.
+- `clinic_app/templates/`, `clinic_app/static/`: UI đang chạy. `templates/`, `static/` ở gốc là upstream không dùng, còn trong snapshot #17; #16 dọn riêng, chưa tích hợp.
 - `tests/`: unit/SQL/backend/Chromium tuần 1–2, oracle và T01–T15.
 - `.github/`: mẫu issue/PR, CODEOWNERS và CI Python 3.11 + MySQL 8.4.
 

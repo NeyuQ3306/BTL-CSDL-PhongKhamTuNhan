@@ -1,25 +1,33 @@
 # Kịch bản demo tuần 3 — Vương
 
-Ngày 21/10/2026, UTC+07:00. Mục tiêu **13 phút**, có khoảng đệm đến 15 phút. **Cập nhật khi bàn giao bước 7: Vương xác nhận đã hoàn thành bước 6 trong yêu cầu ngày 21/10/2026.** Đây là xác nhận của người dùng; trợ lý không quan sát buổi tập chung, chưa có ngày giờ/thành phần/thời lượng/vướng mắc cụ thể để điền biên bản. Giữ checklist và kết quả tự động bên dưới làm ghi nhận kỹ thuật tại thời điểm chuẩn bị; không tự điền hoặc nhận đó là bằng chứng tập chung. Phân vai bên dưới là phương án trong kịch bản, cần đối chiếu với phân vai thực tế của nhóm.
+Cập nhật source/đường chạy **22/10/2026**, UTC+07:00; dữ liệu/kịch bản và các phiên diễn tập ngày21/10 giữ riêng. Mục tiêu **13 phút**, có khoảng đệm đến 15 phút. **Cập nhật khi bàn giao bước 7: Vương xác nhận đã hoàn thành bước 6 trong yêu cầu ngày 21/10/2026.** Đây là xác nhận của người dùng; trợ lý không quan sát buổi tập chung, chưa có ngày giờ/thành phần/thời lượng/vướng mắc cụ thể để điền biên bản. Giữ checklist và kết quả tự động bên dưới làm ghi nhận kỹ thuật tại thời điểm chuẩn bị; không tự điền hoặc nhận đó là bằng chứng tập chung. Phân vai bên dưới là phương án trong kịch bản, cần đối chiếu với phân vai thực tế của nhóm.
 
 ## 1. Đúng source và môi trường
 
-Dùng checkout `vuong/week-3`, SHA nền `f4869299c25fdfd0b711597e30b60ab277120f44` cộng sửa UI/test, application candidate `sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894`. Bản demo phải khớp manifest app của [bước 5](evidence/vuong_week3_step5_20261021/execution_source_sha256.json), cùng công cụ mới [vuong_week3_demo.py](../tools/vuong_week3_demo.py). Xem [đối chiếu source bàn giao](evidence/vuong_week3_handoff_20261021/verification.json); không coi SHA nền tự chứa sửa đổi hoặc là release cuối. Mỗi phiên lưu SHA, manifest, diff, môi trường và kết quả riêng.
+Dùng clone sạch/pin **#17 head`1964a4a10e8634384ce2ebf5951bc66e5525f755`** theo [SETUP](SETUP.md), không dùng main cũ hoặc tự ghép nhánh. Source Windows Quyền thực chạy là`dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head chỉ thêm evidence. [Bàn giao](VUONG_WEEK3_HANDOFF.md) phân biệt Windows/CI/giới hạn và #16 chưa tích hợp. #13 đã được Trung approve/resolve cleanup; #17 chưa merge/release. Candidate045a7c42 và manifest bước5 chỉ định danh các phiên lịch sử ở mục6, không phải source tích hợp mới. Mỗi phiên demo mới lưu SHA/manifest/môi trường và kết quả riêng; lần cập nhật tài liệu này không chạy lại demo.
 
 Cần Python 3.11 và dependencies theo [SETUP](SETUP.md); MySQL executable và Chromium hiện có đã được dùng ở bước 4–5. Công cụ demo dùng MySQL riêng, cổng loopback ngẫu nhiên, DB `clinic_week3_demo_test` trong **instance/datadir mới mỗi lần**. Tên DB giống nhau ở các instance không làm chúng dùng chung dữ liệu. Không đọc `.env`, không kết nối DB đang làm việc.
 
-Từ gốc repository, mở **bản seed mới cho nhóm thao tác**:
+Từ gốc clone đã cài `.venv` theo SETUP, chuẩn bị dependencies/browser nếu chưa có (lệnh cài browser chạy một lần; đổi đường mysqld ở lệnh sau theo máy):
 
 ```powershell
-.\.venv\week3-runtime\Scripts\python.exe -X utf8 tools/vuong_week3_demo.py --serve
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt "playwright>=1.50,<2"
+$env:PLAYWRIGHT_BROWSERS_PATH = Join-Path (Get-Location) '.venv/demo-browsers'
+.\.venv\Scripts\python.exe -m playwright install chromium
 ```
 
-Chờ `DEMO READY http://127.0.0.1:<cổng>`, mở URL đó với `/patients`. Giữ terminal mở. Mặc định công cụ dùng `.venv/week3-tools/mysql84/mysql-8.4.7-winx64/bin/mysqld.exe`; trên máy có layout khác dùng runtime Python thực tế và truyền `--mysqld "D:/duong-dan/bin/mysqld.exe"`. `--serve` chỉ tạo seed mới, **không tự chạy phần ghi của demo**.
+Mở **bản seed mới cho nhóm thao tác**:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 tools/vuong_week3_demo.py --serve --mysqld "C:/Program Files/MySQL/MySQL Server 8.4/bin/mysqld.exe" --browsers-path ".venv/demo-browsers"
+```
+
+Chờ `DEMO READY http://127.0.0.1:<cổng>`, mở URL đó với `/patients`. Giữ terminal mở. Công cụ mặc định còn trỏ layout `.venv/week3-tools/...8.4.7...` của phiên cũ; các lệnh ở đây truyền rõ executable MySQL8.4 đã cài và cache browser mới. Nếu máy dùng layout khác, sửa đúng đường `--mysqld`, không lấy đường mặc định làm bằng chứng phiên bản server thực chạy. `--serve` chỉ tạo seed mới, **không tự chạy phần ghi của demo**.
 
 Diễn tập kỹ thuật tự động (cần Playwright/Chromium theo SETUP):
 
 ```powershell
-.\.venv\week3-runtime\Scripts\python.exe -X utf8 tools/vuong_week3_demo.py --rehearse
+.\.venv\Scripts\python.exe -X utf8 tools/vuong_week3_demo.py --rehearse --mysqld "C:/Program Files/MySQL/MySQL Server 8.4/bin/mysqld.exe" --browsers-path ".venv/demo-browsers"
 ```
 
 Cache Chromium khác mặc định có thể truyền `--browsers-path "D:/duong-dan/browsers"`. Lệnh tạo phiên/evidence mới; không chạy chồng phiên cũ để tránh nhầm URL/cổng. Không dùng script dựng lại của bước 4–5 để ghi đè bằng chứng cũ.
@@ -93,7 +101,9 @@ Chuyển phần: Vương “Mời Trung giải thích vì sao không để lại
 
 Ctrl+C ở terminal `--serve` để server Flask đóng và helper kiểm tra `@@datadir`/`@@port` trước khi gửi `SHUTDOWN` trên kết nối MySQL private. Nếu connection mất/lỗi, fallback chỉ dừng process có đúng executable và datadir của phiên; kiểm tra PID/cổng/launcher sau đó. Cài `requirements-dev.txt` trước khi chạy (cần `psutil`). Đọc kết quả cuối: `mysql_port_closed`, `app_port_closed`, `checkout_env_unchanged`, `source_unchanged`, `old_evidence_unchanged` đều true. **Dữ liệu demo không được xóa bằng SQL**; datadir cũ giữ trong `.venv`, lần tiếp theo chạy lệnh tạo datadir/instance/seed mới và mở URL mới. Đây là cách khởi tạo lại, không phụ thuộc dữ liệu còn sót.
 
-W3-RUN-01 của runner tuần 2 vẫn mở. Demo đã tích hợp riêng helper từ PR #12 `d566abf`, không lấy runner tuần 2; không nhận đã sửa/đóng lỗi runner cũ. `session.json` có `workload_success`, `mysql_cleanup`, `cleanup_errors`, `log_closed`, trạng thái cổng/thread và `success` tổng hợp. Lỗi SHUTDOWN/close/wait vẫn phải đi tới đóng log và ghi session; lỗi workload gốc vẫn được ném lại. Fallback thành công có thể cho cleanup đạt với danh sách lỗi phục hồi; không biến workload lỗi thành thành công. Nếu cổng/tiến trình còn, đối chiếu đúng executable/datadir/cổng trong session rồi xử lý riêng; không dừng MySQL hệ thống hoặc theo tên chung. Dừng demo nếu chưa xác minh đúng môi trường. Không chạy lại import trên DB đã có lịch sử.
+W3-RUN-01 vẫn mở chờ Trung/Quyền quyết định đóng, nhưng #17 đã tích hợp runner/helper sửa từ #12 và được Trung review. Demo#13 cũng đã được Trung approve/resolve cleanup. Các mô tả chưa có runner sửa chỉ áp dụng nhánh Vương ngày21/10. `session.json` có `workload_success`, `mysql_cleanup`, `cleanup_errors`, `log_closed`, trạng thái cổng/thread và `success` tổng hợp. Lỗi SHUTDOWN/close/wait vẫn phải đi tới đóng log và ghi session; lỗi workload gốc vẫn được ném lại. Fallback thành công có thể cho cleanup đạt với danh sách lỗi phục hồi; không biến workload lỗi thành thành công. Nếu cổng/tiến trình còn, đối chiếu đúng executable/datadir/cổng trong session rồi xử lý riêng; không dừng MySQL hệ thống hoặc theo tên chung. Dừng demo nếu chưa xác minh đúng môi trường. Không chạy lại import trên DB đã có lịch sử.
+
+**Theo dõi HTTP503/MySQL2003:** phiên Windows đầu#17 từng gặp lỗi; hai phiên sau không tái hiện, chưa chứng minh đã sửa. Nếu tái diễn, dừng bước đang lỗi, ghi thời điểm/URL/input/instance/cổng và giữ app/MySQLconsole để Trung điều tra, Quyền quyết định chốt; không retry mù request ghi. Xem [W3-DB-01](VUONG_WEEK3_ISSUES.md#w3-db-01--http503mysql2003-gián-đoạn-trong-phiên-tích-hợp-windows).
 
 Nếu kết quả báo cáo sai nền, kiểm tra nhân sự tạm đã xóa và đúng URL/cổng trước; không sửa SQL/seed để ép đáp án. Nếu lỗi giữa buổi, ghi bước/mã/ngày/ảnh và dùng ảnh đã kiểm chứng để giải thích, nói rõ đây là bằng chứng phiên trước; không giả vờ ảnh là kết quả chạy trực tiếp.
 
@@ -120,6 +130,8 @@ Biên bản buổi tập chung — **để trống đến khi thực hiện**: n
 
 ## 6. Kết quả diễn tập kỹ thuật và bằng chứng
 
+**Hồ sơ lịch sử ngày21/10:** các SHA/candidate, kết quả và câu chưa commit/tập chung dưới đây chỉ áp dụng phiên đó; không gán sang #17. Vương đã xác nhận bước6 nhưng chưa có chi tiết buổi tập chung để bổ sung ngày giờ/thành phần/thời lượng.
+
 **Hai lần diễn tập tự động đạt trên hai datadir mới:** [lần 1 sau sửa công cụ](evidence/vuong_week3_demo_20261021_125348_319089/session.json) mất **10,421 giây**; [lần 2 / bản chứng cứ chính](evidence/vuong_week3_demo_20261021_125437_817175/session.json) mất **10,327 giây** cho thao tác browser, chụp ảnh và đối chiếu SQL. Phiên thứ hai từ 12:54:38 đến 12:54:55, khoảng **17,04 giây** cả khởi tạo và cleanup. Không có lời trình bày của con người; **chưa xác nhận thời lượng 13 phút**, chưa tập chung.
 
 Python **3.11.9**, MySQL **8.4.7**, Chromium **156.0.8078.4**, locale vi-VN. Đạt đủ CRUD ba nhóm, tiếp nhận/tái khám, hỗ trợ, đơn 9.900đ, đóng lượt/khỏi/tái mắc/nhiều bệnh, bốn báo cáo và ca sai. UI/JSON/SQL chuẩn/expected khớp; seed tháng 10/2026 vẫn nguyên số liệu sau ghi. Cuối phiên có **1.162 dòng** do thêm 18 dòng demo, `matches_expected_counts=false` là dự kiến; cả 9 nhóm findings và 10 tập audit SQL rỗng, toàn bộ 1.144 dòng seed giữ nguyên.
@@ -133,5 +145,7 @@ Python **3.11.9**, MySQL **8.4.7**, Chromium **156.0.8078.4**, locale vi-VN. Đ�
 **Phần còn lại thuộc nhóm:** xác nhận phân vai; tập ít nhất một lần với lời nói/chuyển phần, bấm giờ thật; ghi vướng mắc và kiểm tra lại thay đổi nếu có. T16 ngoài phạm vi. Chưa commit/push/PR, không gửi tin nhắn hoặc tự nhận nghiệm thu nhóm.
 
 ## 7. Retest cleanup sau review PR #13
+
+Trung đã [APPROVED head4f68099](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/13#pullrequestreview-5602549788) và resolve thread; bản sửa đã nằm trong #17. Bằng chứng sau đây giữ nguyên source phiên21/10. Nếu cần smoke mới, dùng Python/mysqld/browser flags ở mục1, thêm `--cleanup-check` vào lệnh rehearsal; không dùng kết quả smoke thay full rehearsal/nghiệm thu nhóm.
 
 Xem [hồ sơ cleanup mới](evidence/vuong_week3_cleanup_final_20261021/README.md) cho source/hash, 16 unit test và diễn tập/DB private thành công cùng ca lỗi. Bằng chứng 179 test cũ giữ nguyên, không gán lại cho source mới. Ca smoke chỉ startup/cleanup: `python tools/vuong_week3_demo.py --rehearse --cleanup-check success` hoặc `--cleanup-check error`; ca error cố ý đóng connection rồi ném RuntimeError, phải exit khác 0 với workload/success=false nhưng cleanup đạt. Đây không phải full rehearsal hoặc nghiệm thu nhóm.

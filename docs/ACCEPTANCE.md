@@ -1,5 +1,7 @@
 # Kiểm thử nghiệm thu Project 1
 
+**Cập nhật22/10/2026:** [hồ sơ tuần3](VUONG_WEEK3_ACCEPTANCE.md) và [bàn giao #17](VUONG_WEEK3_HANDOFF.md) phân biệt ma trận Vương ngày21/10, Windows Quyền tại source`dd1f41e` và CI head`1964a4a`. #13 đã được Trung approve/resolve; #17 được Trung approve và CI xanh, chưa merge hoặc chốt nghiệm thu toàn nhóm/release. Phiên Windows đầu194pass/1fail (HTTP503/MySQL2003), hai phiên sau195/236tests không failure/error/skip; lỗi còn theo dõi. W3-RUN-01 chờ Trung/Quyền quyết định đóng dù bản sửa đã tích hợp. #16 chưa tích hợp. Không tự đổi bảng kỳ vọng bên dưới thành kết quả PASS toàn nhóm.
+
 Vương quản lý kết quả; Quyền tính đáp án mẫu; Trung bổ sung test tự động cho backend. Chưa có ca nào được đánh dấu chạy đạt tại thời điểm khởi tạo.
 
 **Bổ sung 19/10/2026:** [Biên bản local tuần 2 của Vương](VUONG_WEEK2_ACCEPTANCE.md) đã đối chiếu T01–T15, 168 test đạt/0 skipped trên source được định danh bằng HEAD và manifest. Biên bản phân biệt browser/HTTP/SQL, CI và phần chưa chạy. Đây là trạng thái lịch sử tại ngày 19/10; phạm vi hiện hành theo quyết định bên dưới.
