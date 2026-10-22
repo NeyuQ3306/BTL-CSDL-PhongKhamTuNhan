@@ -1,0 +1,29 @@
+{
+  "mysql_version": "8.4.7",
+  "counts": {
+    "bac_si": 11,
+    "y_ta": 14,
+    "benh_nhan": 41,
+    "benh": 17,
+    "thuoc": 32,
+    "dot_dieu_tri": 140,
+    "luot_den_kham": 145,
+    "lan_kham_benh": 179,
+    "don_thuoc": 141,
+    "chi_tiet_don_thuoc": 269,
+    "ho_tro": 186
+  },
+  "total": 1175,
+  "matches_expected_counts": false,
+  "findings": {
+    "different_patient": [],
+    "exam_outside_visit_or_treatment": [],
+    "duplicate_active_episode": [],
+    "nonconsecutive_exam_numbers": [],
+    "empty_visit": [],
+    "empty_prescription": [],
+    "support_outside_visit": [],
+    "prescription_date_mismatch": [],
+    "overlapping_episodes": []
+  }
+}

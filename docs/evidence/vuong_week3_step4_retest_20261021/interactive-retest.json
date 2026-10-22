@@ -1,0 +1,45 @@
+{
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "at": "2026-10-21T05:11:48.512Z",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "identity": "SHA nền + manifest source sửa chưa commit",
+  "method": "cua_repl IAB tương tác, không giả làm thao tác Vương",
+  "cases": [
+    {
+      "input": "-1",
+      "expected": "Giá trị phải lớn hơn hoặc bằng 0.",
+      "actual": {
+        "message": "Giá trị phải lớn hơn hoặc bằng 0.",
+        "valid": false,
+        "value": "-1"
+      }
+    },
+    {
+      "input": "101",
+      "expected": "Giá trị không được lớn hơn 100.",
+      "actual": {
+        "message": "Giá trị không được lớn hơn 100.",
+        "valid": false,
+        "value": "101"
+      }
+    },
+    {
+      "input": "1.5",
+      "expected": "Vui lòng nhập số nguyên.",
+      "actual": {
+        "message": "Vui lòng nhập số nguyên.",
+        "valid": false,
+        "value": "1.5"
+      }
+    }
+  ],
+  "recovery": {
+    "customError": false,
+    "message": "",
+    "valid": true,
+    "value": "5"
+  },
+  "nameRetained": "",
+  "image": "doctor-vietnamese.jpg",
+  "browserVersion": "Chưa xác minh"
+}

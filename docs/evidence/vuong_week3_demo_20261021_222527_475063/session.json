@@ -1,0 +1,268 @@
+{
+  "started_at": "2026-10-21T22:25:27.856221+07:00",
+  "mode": "automated rehearsal",
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "source_sha": "0a8aeccf5ad7c88e4902ae66d6378ef3b5ffcd5b",
+  "branch": "vuong/week-3",
+  "source_dirty": true,
+  "application_candidate": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+  "demo_tool_sha256": "ab2385fae771088d1f3ecc420e6d29dfa58f0689e97c7f80af3929e0a76cd934",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+  "mysql_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+  "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_222527_475063\\mysql-data",
+  "mysql_port": 51596,
+  "database": "clinic_week3_demo_test",
+  "group_rehearsal": false,
+  "success": true,
+  "mysql": "8.4.7",
+  "import": [
+    {
+      "file": "schema.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "seed.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "constraints.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "queries.sql",
+      "result_sets": 11
+    }
+  ],
+  "reserved_codes_absent": true,
+  "url": "http://127.0.0.1:51599",
+  "steps": [
+    {
+      "step": "01-introduction",
+      "elapsed_seconds": 0.401,
+      "actual": "Private MySQL health OK; no group presentation",
+      "status": "PASS"
+    },
+    {
+      "step": "02-CRUD",
+      "elapsed_seconds": 3.446,
+      "actual": "Create/read/update/reload/delete patients/doctors/nurses; DM6BN retained",
+      "status": "PASS"
+    },
+    {
+      "step": "03-reception-revisit",
+      "elapsed_seconds": 4.558,
+      "actual": "DM6D1: two visits across February/March, STT checked later in SQL",
+      "status": "PASS"
+    },
+    {
+      "step": "04-support",
+      "elapsed_seconds": 5.19,
+      "actual": "Updated YT001 without duplicate; added YT002",
+      "status": "PASS"
+    },
+    {
+      "step": "05-prescription",
+      "elapsed_seconds": 5.575,
+      "actual": "2*1200 + 3*2500 = 9900; add/delete empty medicine row works",
+      "status": "PASS"
+    },
+    {
+      "step": "06-close-cure-recurrence",
+      "elapsed_seconds": 7.242,
+      "actual": "DM6D1 cured; DM6D2/DM6D3 active; all three visits closed",
+      "status": "PASS"
+    },
+    {
+      "step": "07-four-reports",
+      "elapsed_seconds": 10.135,
+      "actual": "UI/JSON/canonical SQL/independent expected match; seed October unchanged after demo writes",
+      "status": "PASS"
+    },
+    {
+      "step": "08-invalid-input",
+      "elapsed_seconds": 10.753,
+      "actual": "Active duplicate episode rejected in Vietnamese; input retained; no DM6BADL saved",
+      "status": "PASS"
+    }
+  ],
+  "chromium": "156.0.8078.4",
+  "screenshots": [
+    {
+      "file": "02-crud-patients.png",
+      "url": "http://127.0.0.1:51599/patients/DM6TMPBN",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "02-crud-doctors.png",
+      "url": "http://127.0.0.1:51599/doctors/DM6TMPBS",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "02-crud-nurses.png",
+      "url": "http://127.0.0.1:51599/nurses/DM6TMPYT",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "03-revisit-across-month.png",
+      "url": "http://127.0.0.1:51599/visits/DM6L2",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "04-nurse-support.png",
+      "url": "http://127.0.0.1:51599/visits/DM6L2",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "05-prescription.png",
+      "url": "http://127.0.0.1:51599/prescriptions/DM6RX",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "06-recurrence-two-diseases.png",
+      "url": "http://127.0.0.1:51599/visits/DM6L3",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "07-closed-visit.png",
+      "url": "http://127.0.0.1:51599/visits/DM6L3",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2026-10-diseases.png",
+      "url": "http://127.0.0.1:51599/reports/diseases?month=2026-10",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2026-10-salaries.png",
+      "url": "http://127.0.0.1:51599/reports/salaries?month=2026-10",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2026-10-revenue.png",
+      "url": "http://127.0.0.1:51599/reports/revenue?month=2026-10",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2004-02-diseases.png",
+      "url": "http://127.0.0.1:51599/reports/diseases?month=2004-02",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2004-02-salaries.png",
+      "url": "http://127.0.0.1:51599/reports/salaries?month=2004-02",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2004-02-revenue.png",
+      "url": "http://127.0.0.1:51599/reports/revenue?month=2004-02",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2004-03-diseases.png",
+      "url": "http://127.0.0.1:51599/reports/diseases?month=2004-03",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2004-03-salaries.png",
+      "url": "http://127.0.0.1:51599/reports/salaries?month=2004-03",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2004-03-revenue.png",
+      "url": "http://127.0.0.1:51599/reports/revenue?month=2004-03",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2025-12-diseases.png",
+      "url": "http://127.0.0.1:51599/reports/diseases?month=2025-12",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2025-12-salaries.png",
+      "url": "http://127.0.0.1:51599/reports/salaries?month=2025-12",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "08-2025-12-revenue.png",
+      "url": "http://127.0.0.1:51599/reports/revenue?month=2025-12",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "09-seed-history.png",
+      "url": "http://127.0.0.1:51599/reports/history?patient_id=BN001",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "10-demo-history.png",
+      "url": "http://127.0.0.1:51599/reports/history?patient_id=DM6BN",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "11-error-preserves-input.png",
+      "url": "http://127.0.0.1:51599/visits/new",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "file": "12-mobile-history-390.png",
+      "url": "http://127.0.0.1:51599/reports/history?patient_id=DM6BN",
+      "width": 390,
+      "overflow": false
+    }
+  ],
+  "rehearsal_seconds": 10.753,
+  "browser_errors": [],
+  "timing_kind": "Automated browser actions including screenshots/SQL; no human speech or group timing",
+  "final_sql_audit_sets": 10,
+  "all_seed_rows_preserved": true,
+  "workload_success": true,
+  "mysql_cleanup": {
+    "shutdown_requested": true,
+    "fallback_pids": [],
+    "errors": [],
+    "remaining_pids": [],
+    "port_closed": true,
+    "launcher_exited": true,
+    "success": true
+  },
+  "log_closed": true,
+  "mysql_port_closed": true,
+  "app_port_closed": true,
+  "app_thread_stopped": true,
+  "checkout_env_unchanged": true,
+  "source_unchanged": true,
+  "old_evidence_unchanged": true,
+  "finished_at": "2026-10-21T22:25:47.745819+07:00",
+  "cleanup_errors": []
+}

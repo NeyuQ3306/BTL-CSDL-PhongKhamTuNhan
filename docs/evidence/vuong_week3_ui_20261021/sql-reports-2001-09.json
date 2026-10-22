@@ -1,0 +1,448 @@
+{
+  "at": "2026-10-21T11:46:21.707989+07:00",
+  "method": "Direct SQL; not UI",
+  "request": {
+    "action": "reports",
+    "month": "2001-09",
+    "patient": "U3BN1",
+    "output": "sql-reports-2001-09.json"
+  },
+  "sets": [
+    [
+      {
+        "ma_benh": "U3B1",
+        "ten_benh": "Bệnh giả kiểm thử UI tuần 3 A",
+        "so_dot_mac": 1
+      }
+    ],
+    [
+      {
+        "ma_bac_si": "BS001",
+        "ho_ten": "Dương Ngọc Khánh",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS002",
+        "ho_ten": "Vũ Hoài An",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS003",
+        "ho_ten": "Ngô Văn Bình",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS004",
+        "ho_ten": "Đặng Ngọc Tuấn",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS005",
+        "ho_ten": "Ngô Thanh Quân",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS006",
+        "ho_ten": "Đặng Phương Quân",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS007",
+        "ho_ten": "Ngô Ngọc Trinh",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS008",
+        "ho_ten": "Bùi Văn Linh",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS009",
+        "ho_ten": "Võ Minh Dũng",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "BS010",
+        "ho_ten": "Bùi Anh Giang",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      },
+      {
+        "ma_bac_si": "U3BS",
+        "ho_ten": "Bác sĩ giả UI tuần 3",
+        "luong_co_ban": 7000000,
+        "so_dot_khoi": 0,
+        "tien_thuong": 0,
+        "tong_luong": 7000000
+      }
+    ],
+    [
+      {
+        "ma_y_ta": "U3YT1",
+        "ho_ten": "Y tá giả UI 1",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 3,
+        "tien_thuong": 600000,
+        "tong_luong": 5600000
+      },
+      {
+        "ma_y_ta": "U3YT2",
+        "ho_ten": "Y tá giả UI 2",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT001",
+        "ho_ten": "Huỳnh Phương Long",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT002",
+        "ho_ten": "Hoàng Hữu Quân",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT003",
+        "ho_ten": "Lê Văn Châu",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT004",
+        "ho_ten": "Đỗ Văn Vy",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT005",
+        "ho_ten": "Vũ Thanh Hùng",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT006",
+        "ho_ten": "Dương Văn Tâm",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT007",
+        "ho_ten": "Vũ Văn Hạnh",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT008",
+        "ho_ten": "Đỗ Thị Khánh",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT009",
+        "ho_ten": "Võ Văn Tâm",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT010",
+        "ho_ten": "Võ Ngọc Trang",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT011",
+        "ho_ten": "Nguyễn Hoài Yến",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      },
+      {
+        "ma_y_ta": "YT012",
+        "ho_ten": "Lê Hữu Minh",
+        "luong_co_ban": 5000000,
+        "so_luot_ho_tro": 0,
+        "tien_thuong": 0,
+        "tong_luong": 5000000
+      }
+    ],
+    [
+      {
+        "ma_benh_nhan": "U3BN1",
+        "cmt": "999003000001",
+        "ho_ten": "Bệnh nhân giả UI tuần 3",
+        "ngay_sinh": "1980-01-01",
+        "dia_chi": "Địa chỉ giả đã sửa UI tuần 3",
+        "so_dien_thoai": "0900000301"
+      }
+    ],
+    [
+      {
+        "ma_luot": "U3L1",
+        "ngay_vao_vien": "2001-09-28",
+        "ngay_ra_vien": null,
+        "ma_benh_nhan": "U3BN1"
+      },
+      {
+        "ma_luot": "U3L2",
+        "ngay_vao_vien": "2001-09-29",
+        "ngay_ra_vien": null,
+        "ma_benh_nhan": "U3BN1"
+      },
+      {
+        "ma_luot": "U3L3",
+        "ngay_vao_vien": "2001-09-30",
+        "ngay_ra_vien": null,
+        "ma_benh_nhan": "U3BN1"
+      },
+      {
+        "ma_luot": "U3L4",
+        "ngay_vao_vien": "2001-10-01",
+        "ngay_ra_vien": null,
+        "ma_benh_nhan": "U3BN1"
+      },
+      {
+        "ma_luot": "U3L5",
+        "ngay_vao_vien": "2001-10-02",
+        "ngay_ra_vien": "2001-10-02",
+        "ma_benh_nhan": "U3BN1"
+      }
+    ],
+    [
+      {
+        "ma_dot": "U3D1",
+        "ngay_bat_dau": "2001-09-28",
+        "ngay_khoi": "2001-10-01",
+        "trang_thai": "Đã khỏi",
+        "ma_benh_nhan": "U3BN1",
+        "ma_benh": "U3B1",
+        "ma_bac_si": "U3BS",
+        "ten_benh": "Bệnh giả kiểm thử UI tuần 3 A",
+        "bac_si": "Bác sĩ giả UI tuần 3",
+        "lan_kham_hien_tai": 4
+      },
+      {
+        "ma_dot": "U3D2",
+        "ngay_bat_dau": "2001-10-02",
+        "ngay_khoi": null,
+        "trang_thai": "Đang điều trị",
+        "ma_benh_nhan": "U3BN1",
+        "ma_benh": "U3B1",
+        "ma_bac_si": "U3BS",
+        "ten_benh": "Bệnh giả kiểm thử UI tuần 3 A",
+        "bac_si": "Bác sĩ giả UI tuần 3",
+        "lan_kham_hien_tai": 1
+      },
+      {
+        "ma_dot": "U3D3",
+        "ngay_bat_dau": "2001-10-02",
+        "ngay_khoi": null,
+        "trang_thai": "Đang điều trị",
+        "ma_benh_nhan": "U3BN1",
+        "ma_benh": "U3B2",
+        "ma_bac_si": "U3BS",
+        "ten_benh": "Bệnh giả kiểm thử UI tuần 3 B",
+        "bac_si": "Bác sĩ giả UI tuần 3",
+        "lan_kham_hien_tai": 1
+      }
+    ],
+    [
+      {
+        "ma_dot": "U3D2",
+        "ten_benh": "Bệnh giả kiểm thử UI tuần 3 A",
+        "lan_kham_hien_tai": 1
+      },
+      {
+        "ma_dot": "U3D3",
+        "ten_benh": "Bệnh giả kiểm thử UI tuần 3 B",
+        "lan_kham_hien_tai": 1
+      }
+    ],
+    [
+      {
+        "ma_lan_kham": "U3K1",
+        "so_thu_tu_trong_dot": 1,
+        "ngay_kham": "2001-09-28",
+        "tien_kham_chua": "100000",
+        "ket_luan": "Theo dõi giả lập UI tuần 3",
+        "ma_dot": "U3D1",
+        "ma_luot": "U3L1"
+      },
+      {
+        "ma_lan_kham": "U3K2",
+        "so_thu_tu_trong_dot": 2,
+        "ngay_kham": "2001-09-29",
+        "tien_kham_chua": "100000",
+        "ket_luan": "Tái khám giả lần 2",
+        "ma_dot": "U3D1",
+        "ma_luot": "U3L2"
+      },
+      {
+        "ma_lan_kham": "U3K3",
+        "so_thu_tu_trong_dot": 3,
+        "ngay_kham": "2001-09-30",
+        "tien_kham_chua": "100000",
+        "ket_luan": "Tái khám giả lần 3",
+        "ma_dot": "U3D1",
+        "ma_luot": "U3L3"
+      },
+      {
+        "ma_lan_kham": "U3K4",
+        "so_thu_tu_trong_dot": 4,
+        "ngay_kham": "2001-10-01",
+        "tien_kham_chua": "100000",
+        "ket_luan": "Tái khám giả lần 4",
+        "ma_dot": "U3D1",
+        "ma_luot": "U3L4"
+      },
+      {
+        "ma_lan_kham": "U3K5",
+        "so_thu_tu_trong_dot": 1,
+        "ngay_kham": "2001-10-02",
+        "tien_kham_chua": "100000",
+        "ket_luan": "Theo dõi giả lập UI tuần 3",
+        "ma_dot": "U3D2",
+        "ma_luot": "U3L5"
+      },
+      {
+        "ma_lan_kham": "U3K6",
+        "so_thu_tu_trong_dot": 1,
+        "ngay_kham": "2001-10-02",
+        "tien_kham_chua": "50000",
+        "ket_luan": "Khám bệnh thứ hai giả lập",
+        "ma_dot": "U3D3",
+        "ma_luot": "U3L5"
+      }
+    ],
+    [
+      {
+        "ma_don": "U3RX1",
+        "ngay_lap_don": "2001-10-02",
+        "ma_lan_kham": "U3K5",
+        "ma_thuoc": "U3T1",
+        "ten_thuoc": "Thuốc giả UI 1",
+        "don_vi_tinh": "viên",
+        "so_luong": 2,
+        "lieu_dung": "Sáng - dữ liệu giả",
+        "don_gia_ban": "1000",
+        "thanh_tien": "2000"
+      },
+      {
+        "ma_don": "U3RX1",
+        "ngay_lap_don": "2001-10-02",
+        "ma_lan_kham": "U3K5",
+        "ma_thuoc": "U3T2",
+        "ten_thuoc": "Thuốc giả UI 2",
+        "don_vi_tinh": "viên",
+        "so_luong": 3,
+        "lieu_dung": "Tối - dữ liệu giả",
+        "don_gia_ban": "2000",
+        "thanh_tien": "6000"
+      }
+    ],
+    [
+      {
+        "ma_luot": "U3L1",
+        "ma_y_ta": "U3YT1",
+        "noi_dung_ho_tro": "Tiếp đón giả lập",
+        "ngay_ho_tro": "2001-09-28",
+        "ho_ten": "Y tá giả UI 1"
+      },
+      {
+        "ma_luot": "U3L2",
+        "ma_y_ta": "U3YT1",
+        "noi_dung_ho_tro": "Tiếp đón và theo dõi giả",
+        "ngay_ho_tro": "2001-09-29",
+        "ho_ten": "Y tá giả UI 1"
+      },
+      {
+        "ma_luot": "U3L3",
+        "ma_y_ta": "U3YT1",
+        "noi_dung_ho_tro": "Tiếp đón và theo dõi giả",
+        "ngay_ho_tro": "2001-09-30",
+        "ho_ten": "Y tá giả UI 1"
+      },
+      {
+        "ma_luot": "U3L4",
+        "ma_y_ta": "U3YT1",
+        "noi_dung_ho_tro": "Tiếp đón và theo dõi giả",
+        "ngay_ho_tro": "2001-10-01",
+        "ho_ten": "Y tá giả UI 1"
+      },
+      {
+        "ma_luot": "U3L5",
+        "ma_y_ta": "U3YT1",
+        "noi_dung_ho_tro": "Tiếp đón, đo huyết áp, theo dõi giả",
+        "ngay_ho_tro": "2001-10-02",
+        "ho_ten": "Y tá giả UI 1"
+      },
+      {
+        "ma_luot": "U3L5",
+        "ma_y_ta": "U3YT2",
+        "noi_dung_ho_tro": "Y tá thứ hai hỗ trợ giả",
+        "ngay_ho_tro": "2001-10-02",
+        "ho_ten": "Y tá giả UI 2"
+      }
+    ],
+    [
+      {
+        "tien_kham": "300000",
+        "tien_thuoc": "0",
+        "doanh_thu": "300000"
+      }
+    ]
+  ]
+}

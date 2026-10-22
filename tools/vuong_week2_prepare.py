@@ -34,10 +34,12 @@ def main():
     parser.add_argument('--serve', action='store_true')
     parser.add_argument('--mysqld', type=Path, help='Windows mysqld.exe path; otherwise discover installed 8.4/8.0 or PATH')
     parser.add_argument('--browsers-path', type=Path, help='Optional Playwright browser cache; otherwise use environment/default cache')
+    parser.add_argument('--cleanup-check', choices=['success', 'error'],
+                        help='Private MySQL cleanup smoke only; no suite/UI acceptance')
     args = parser.parse_args()
     os.chdir(ROOT)
     sys.path.insert(0, str(ROOT))
-    stamp = datetime.now(timezone(timedelta(hours=7))).strftime('%Y%m%d_%H%M%S')
+    stamp = datetime.now(timezone(timedelta(hours=7))).strftime('%Y%m%d_%H%M%S_%f')
     private = ROOT / '.venv' / ('week2_prepare_' + stamp)
     private.mkdir(parents=True)
     data = private / 'mysql-data'
@@ -63,7 +65,7 @@ def main():
                   scope='Preparation baseline, not final week-2 acceptance', screens=[],
                   preparation_success=False)
     log = (private / 'mysql-console.log').open('wb')
-    proc = server = browser = None
+    proc = server = browser = thread = None
     db = None
     try:
         subprocess.run([str(mysqld), '--no-defaults', '--initialize-insecure', f'--datadir={data}'],
@@ -95,6 +97,12 @@ def main():
             COOKIE_SECURE='false', FLASK_DEBUG='false', PYTHON_DOTENV_DISABLED='1',
             RUN_MYSQL_TESTS='1', RUN_BROWSER_TESTS='1', QUYEN_CHECK_WEEK2='1',
             PYTHONIOENCODING='utf-8', VUONG_ACCEPTANCE_RUN=stamp)
+        if args.cleanup_check:
+            report['cleanup_check'] = args.cleanup_check
+            if args.cleanup_check == 'error':
+                db.close()  # exercise fallback when the connection is already unavailable
+                raise RuntimeError('Injected failure after private MySQL startup')
+            return
         if args.browsers_path:
             os.environ['PLAYWRIGHT_BROWSERS_PATH']=str(args.browsers_path.resolve())
         elif not os.getenv('PLAYWRIGHT_BROWSERS_PATH'):
@@ -201,18 +209,37 @@ def main():
             print('App/private DB remain active until Ctrl+C. Credentials are memory-only.', flush=True)
             while True:
                 time.sleep(1)
+    except BaseException as exc:
+        report['failure_type'] = type(exc).__name__
+        raise
     finally:
+        from tools.private_mysql_cleanup import stop_private_mysql
+        original_error = sys.exc_info()[0] is not None
+        cleanup_errors = []
+        try:
+            if server:
+                try:
+                    if thread is not None and thread.is_alive():
+                        server.shutdown()
+                    server.server_close()
+                    if thread is not None:
+                        thread.join(timeout=5)
+                except Exception as exc:
+                    cleanup_errors.append(type(exc).__name__)
+        finally:
+            try:
+                report['mysql_cleanup'] = stop_private_mysql(proc, db, mysqld, data, port)
+            except Exception as exc:
+                report['mysql_cleanup'] = dict(success=False, error_type=type(exc).__name__)
+            finally:
+                log.close()
+        report['cleanup_errors'] = cleanup_errors
         report['env_unchanged'] = env_hash() == before_env
+        if cleanup_errors or not report['mysql_cleanup']['success']:
+            report['preparation_success'] = False
         (out / 'results.json').write_text(json.dumps(report, ensure_ascii=False, indent=2, default=str), encoding='utf-8')
-        if server:
-            server.shutdown()
-            server.server_close()
-        if db:
-            db.close()
-        if proc:
-            proc.terminate()
-            proc.wait(timeout=20)
-        log.close()
+        if not original_error and (cleanup_errors or not report['mysql_cleanup']['success']):
+            raise RuntimeError('Private instance cleanup failed; inspect results.json')
 
 
 if __name__ == '__main__':

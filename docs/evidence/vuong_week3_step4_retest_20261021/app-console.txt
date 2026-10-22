@@ -1,0 +1,6 @@
+http://127.0.0.1:56651
+127.0.0.1 - - [21/Oct/2026 12:11:20] "GET /doctors/new HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 12:11:20] "GET /static/week1.css HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 12:11:20] "GET /static/week2.css HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 12:11:20] "GET /static/number-validation.js HTTP/1.1" 200 -
+127.0.0.1 - - [21/Oct/2026 12:11:20] "GET /favicon.ico HTTP/1.1" 404 -

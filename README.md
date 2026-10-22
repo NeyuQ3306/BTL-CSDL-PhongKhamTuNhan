@@ -1,16 +1,28 @@
 # Bài tập lớn CSDL — Quản lý phòng khám tư nhân
 
+**Quyết định phạm vi ngày 21/10/2026 của Quyền:** demo và nghiệm thu bản cuối trên laptop Quyền. Bỏ tiêu chí T16/cài trên máy thứ hai khỏi điều kiện hoàn thành và release; không ghi T16 là PASS. Vẫn kiểm tra hướng dẫn chạy, SQL, T01–T15 và các lỗi ảnh hưởng demo. Quyết định này thay các yêu cầu máy thứ hai trong tài liệu cũ; bằng chứng lịch sử giữ nguyên.
+
 Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**, múi giờ Việt Nam.
 
-## Bản bàn giao tuần 2 của Vương
+## Bắt đầu với ứng viên tích hợp #17
+
+Trạng thái ngày **22/10/2026**: [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17), nhánh `quyen/week3-integration`, head `1964a4a10e8634384ce2ebf5951bc66e5525f755`, tích hợp #12/#13/#14/#15 từ main `f4869299c25fdfd0b711597e30b60ab277120f44`. Trung đã approve #17; PR vẫn mở, chưa merge/release. [PR #13](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/13#pullrequestreview-5602549788) của Vương đã được Trung approve tại `4f68099` và resolve thread cleanup.
+
+Dùng [hướng dẫn cài/chạy Windows](docs/SETUP.md) để checkout đúng snapshot #17, [hướng dẫn sử dụng](docs/USER_GUIDE.md), [hồ sơ nghiệm thu](docs/VUONG_WEEK3_ACCEPTANCE.md), [kịch bản demo](docs/VUONG_WEEK3_DEMO.md) và [bàn giao tích hợp/bằng chứng](docs/VUONG_WEEK3_HANDOFF.md). Source chạy Windows trên laptop Quyền là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head `1964a4a` chỉ bổ sung 12 file bằng chứng. Phiên cuối có **236 test, 0 failure/error/skipped**; bốn workflow CI của head tích hợp đều success. Kết quả local, CI và các phiên Vương ngày 21/10 được phân biệt trong hồ sơ, không gán lại cho main hoặc bản tài liệu mới.
+
+**Còn chờ chốt:** W3-RUN-01 đã có bản sửa #12 được tích hợp và Trung review ở #17, nhưng chưa có quyết định đóng sổ lỗi của Trung/Quyền. Lỗi **HTTP 503/MySQL 2003** ở phiên Windows đầu vẫn theo dõi; hai phiên sau không tái hiện, chưa chứng minh đã sửa. T16 không thực hiện, actual chưa chạy, không tính PASS. Quyền còn quyết định phạm vi cuối, rà PDF–SQL–app/bộ nộp, merge và kiểm tra main sau merge. Chưa có xác nhận đầy đủ về phân vai/thời lượng tập chung.
+
+[PR #16](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/16#pullrequestreview-5608581327) đã được Vương approve phần dọn upstream nhưng **chưa tích hợp vào #17**; 7 file cũ vẫn có trong snapshot đang hướng dẫn.
+
+## Bản bàn giao tuần 2 của Vương (lịch sử)
 
 Bản trên nhánh `vuong/week-2` có UI tiếp nhận/khám/tái khám, hỗ trợ y tá, đơn thuốc, đóng lượt/xác nhận khỏi và bốn báo cáo MySQL thật. Phụ thuộc backend [#5](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5) tại `10c8082` và oracle [#10](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/10) tại `1bf9f8b`; hai PR chưa merge lúc đóng gói.
 
-Bắt đầu từ [bàn giao](docs/VUONG_WEEK2_HANDOFF.md), [hướng dẫn sử dụng ngắn](docs/VUONG_WEEK2_USER_GUIDE.md), [nghiệm thu T01–T15](docs/VUONG_WEEK2_ACCEPTANCE.md) và [hợp đồng tuần 2](docs/WEEK2_INTEGRATION.md). Local 168 test đạt/0 skipped trên Python 3.12/MySQL 8.0/Chromium; CI của commit sẽ được ghi riêng, không thay nghiệm thu máy thứ hai.
+Bắt đầu từ [bàn giao](docs/VUONG_WEEK2_HANDOFF.md), [hướng dẫn sử dụng ngắn](docs/VUONG_WEEK2_USER_GUIDE.md), [nghiệm thu T01–T15](docs/VUONG_WEEK2_ACCEPTANCE.md) và [hợp đồng tuần 2](docs/WEEK2_INTEGRATION.md). Local 168 test đạt/0 skipped trên Python 3.12/MySQL 8.0/Chromium; CI của commit sẽ được ghi riêng, không thay nghiệm thu bản cuối trên laptop Quyền.
 
 ## Nền tích hợp tuần 1 (lịch sử)
 
-Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md) cho nền tuần 1. #4/#6/#7/#8/#9 đã merge vào main `20cd47a`; dùng bộ SQL chuẩn trên nhánh đang chạy. Import schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
+[Hướng dẫn Windows thống nhất](docs/SETUP.md) hiện đã cập nhật cho bản tích hợp. Mốc lịch sử tuần 1: #4/#6/#7/#8/#9 đã merge vào main `20cd47a`. Thứ tự import hiện hành vẫn là schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
 
 ## Trạng thái nền tuần 1 (lịch sử)
 
@@ -20,9 +32,9 @@ Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md) cho nền tuần 1.
 - Xem [bàn giao tuần 1](docs/TRUNG_WEEK1_HANDOFF.md), [cách chạy](docs/SETUP.md), và [hợp đồng route/form](docs/INTEGRATION.md).
 - Chưa coi nghiệm thu hoàn tất trước khi nhóm review và merge PR theo RULES.md.
 
-## Bắt đầu từ đây
+## Tài liệu dự án và lịch sử tuần 1
 
-Tài liệu lịch sử UI tuần 1 của Vương: [bàn giao](docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](docs/VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](docs/VUONG_WEEK1_CHECKLIST.md). Mô tả khung báo cáo trong tài liệu tuần 1 chỉ áp dụng cho bản tuần 1; nhánh tuần 2 hiện dùng báo cáo thật theo các liên kết phía trên.
+Tài liệu lịch sử UI tuần 1 của Vương: [bàn giao](docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](docs/VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](docs/VUONG_WEEK1_CHECKLIST.md). Mô tả khung báo cáo tuần 1 chỉ áp dụng bản cũ; bản tích hợp hiện hành dùng đủ bốn báo cáo thật.
 
 1. Đọc [phân công 3 tuần](docs/PHAN_CONG_3_TUAN.md) hoặc [bản PDF](docs/Phan_cong_Project1_3_tuan.pdf).
 2. Đọc [RULES.md](RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.
@@ -48,7 +60,7 @@ Python 3.11; Flask 3; PyMySQL; MySQL 8.4; HTML/CSS/Jinja. Giữ MySQL làm ngu�
 
 - `docs/design/`: hai PDF thiết kế đã chốt.
 - `docs/`: phân công, setup, hợp đồng tích hợp, test và nguồn tham khảo.
-- `database/`: schema, seed, truy vấn, expected_results và kiểm tra ràng buộc; script nộp cuối thuộc tuần 3.
+- `database/`: schema, seed, truy vấn, expected_results, audit và `project1_submission.sql` đã đóng gói trong #15/#17; xem SETUP để chọn đúng schema/import.
 - `app.py`: entry point; `clinic_app/`: backend và UI tiếng Việt tuần 1–2 đang được Flask sử dụng.
 - `clinic_app/templates/`, `clinic_app/static/`: giao diện đang chạy. Template/CSS và schema bệnh viện upstream không còn dùng đã được gỡ khỏi checkout; source gốc vẫn có trong lịch sử Git.
 - `tests/`: unit/SQL/backend/Chromium tuần 1–2, oracle và T01–T15.

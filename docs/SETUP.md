@@ -1,45 +1,42 @@
-# Hướng dẫn thống nhất: import và chạy thử tuần 1 trên Windows
+# Cài đặt và chạy bản tích hợp trên Windows
 
-Cập nhật 19/10/2026: #4/#6/#7/#8 đã merge. Bản tích hợp tuần 1 là main `a813ac76ed925c3a127f2989c8195605ff80f1eb`, CI 72/72 test đạt. Dùng bản này để chạy thử; không ghép các nhánh riêng.
+Cập nhật **22/10/2026**, UTC+07:00, cho ứng viên tích hợp #17; chưa phải release. Chỉ dùng dữ liệu giả và DB thử riêng. Tài liệu tuần 1–2 và các phiên ngày 21/10 là lịch sử.
 
-## 1. Chuẩn bị và lấy đúng source
+## 1. Phiên bản và source
 
-Cần Git, Python 3.11 (có pip), MySQL Server 8.4 đang chạy và MySQL Workbench. Workbench chỉ là công cụ kết nối, không thay MySQL Server. Dùng PowerShell mới. Kiểm tra:
+Chuẩn nhóm: Git, **Python 3.11**, **MySQL Server 8.4**, PowerShell và MySQL Workbench để nhập SQL. Workbench không thay MySQL Server. Cài thư viện từ `requirements.txt`; kiểm thử/công cụ demo cần `requirements-dev.txt`, Playwright và Chromium. Phiên Windows của Quyền ở #17 dùng Python **3.11.9**, MySQL **8.4.11**, Chromium **156.0.8078.4**. Không coi mọi bản trong khoảng dependency đều đã kiểm thử.
+
+[PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) đang mở tại head **`1964a4a10e8634384ce2ebf5951bc66e5525f755`**, nhánh `quyen/week3-integration`; main vẫn `f4869299c25fdfd0b711597e30b60ab277120f44` ở lần kiểm tra GitHub ngày 22/10. Source Windows thực chạy là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head trên chỉ thêm bằng chứng. #16 chưa nằm trong bản này. Xem [bàn giao tích hợp](VUONG_WEEK3_HANDOFF.md) để phân biệt source/local/CI và việc còn chờ.
+
+Mở PowerShell, tạo clone mới; nếu thư mục đã tồn tại, chọn tên khác, không xóa checkout cũ:
 
 ```powershell
 git --version
-python --version
-python -m pip --version
-```
-
-Nếu python không tìm thấy, mở Microsoft Store hoặc trỏ tới MSYS2, chọn đúng Python đã cài trước khi tiếp tục; có thể dùng đường dẫn đầy đủ tới python.exe của Python 3.11.
-
-Để không ảnh hưởng thư mục làm việc cũ, tạo bản clone riêng tại C:\Users\LENOVO (hoặc thư mục người dùng của mỗi thành viên). Nếu clinic-week1-demo đã tồn tại, chọn tên thư mục mới, không xóa bản cũ.
-
-```powershell
-cd $env:USERPROFILE
-git clone https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-week1-demo
-cd clinic-week1-demo
-git fetch origin
-git switch -c local/week1-demo a813ac76ed925c3a127f2989c8195605ff80f1eb
+py -3.11 --version
+py -3.11 -m pip --version
+Set-Location $env:USERPROFILE
+git clone --branch quyen/week3-integration https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-week3-integration-demo
+Set-Location clinic-week3-integration-demo
+git switch --detach 1964a4a10e8634384ce2ebf5951bc66e5525f755
+git rev-parse HEAD
 git status --short
 ```
 
-Đây là bản main đã tích hợp SQL/backend/UI và được cố định để cả nhóm thử cùng phiên bản. `git status --short` phải trống ở clone mới. Không cần ghép file SQL từ nhánh khác. Nếu thư mục demo cũ đang chạy tốt, không import lại hoặc ghi đè .env; dùng clone/DB thử riêng khi cần nghiệm thu lại.
+Clone phải sạch và HEAD đúng SHA đã pin trước khi cấu hình. `main` chưa chứa đầy đủ thay đổi #17; không dùng clone main cũ rồi nhận đã chạy ứng viên này. Các manifest candidate ngày 21/10 chỉ truy vết phiên lịch sử, không phải định danh bản tích hợp mới. Không tự ghép các nhánh bàn giao. Sau merge, ghi SHA main thực tế và smoke trên DB riêng; chỉ kiểm thử thêm phần bị ảnh hưởng khi hành vi/source thực thi thay đổi hoặc có dấu hiệu lỗi, không chạy lại toàn suite chỉ vì đổi SHA/tài liệu.
 
-## 2. Cài môi trường Python
+## 2. Venv và .env
 
-Từ thư mục clinic-week1-demo:
+Từ gốc clone:
 
 ```powershell
-python -m venv .venv
+py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-if (!(Test-Path .env)) { Copy-Item .env.example .env }
+if (!(Test-Path -LiteralPath .env)) { Copy-Item -LiteralPath .env.example -Destination .env }
 .\.venv\Scripts\python.exe -c "import secrets; print(secrets.token_hex(32))"
 notepad .env
 ```
 
-Chỉ Copy-Item khi chưa có .env. Không cần activate nên không cần đổi ExecutionPolicy. Điền các dòng sau (giữ các dòng MYSQL_* khác nếu có):
+Không cần activate hoặc đổi ExecutionPolicy. Nếu thiếu launcher `py`, thay `py -3.11` bằng đường dẫn đầy đủ tới Python Windows 3.11. Điền khóa vừa sinh và cấu hình thật của DB thử:
 
 ```dotenv
 FLASK_SECRET_KEY=CHUOI_VUA_TAO
@@ -49,120 +46,104 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD='MAT_KHAU_MYSQL_TREN_MAY_BAN'
-DB_NAME=clinic_week1_demo
+DB_NAME=clinic_week3_demo_test
 ```
 
-Dùng root chỉ để chạy demo cục bộ lần đầu. Nếu có user demo được cấp quyền thì dùng user đó; import cần quyền tạo bảng/chỉ mục/trigger và đọc/ghi trong DB này, chạy app cần SELECT/INSERT/UPDATE/DELETE. Không gửi mật khẩu hoặc ảnh .env lên nhóm/GitHub. Nếu mật khẩu chứa dấu nháy đơn, dùng chuỗi nháy kép và escape phù hợp định dạng dotenv.
+MySQL cài trực tiếp thường dùng 3306; `.env.example` mặc định 3307 cho `compose.yaml`. Nếu dùng Docker có sẵn, dùng cổng/tài khoản thực tế và DB thử mới được cấp quyền, không thay volume cũ. Root chỉ dành cho demo local nếu chưa có tài khoản riêng. Import cần quyền tạo DB (hoặc nhờ quản trị viên tạo), DDL/index/trigger và đọc/ghi DB thử; app cần SELECT/INSERT/UPDATE/DELETE. App đọc `DB_*`; `MYSQL_ROOT_PASSWORD`/`MYSQL_PASSWORD` dùng cho Compose.
 
-Cổng 3306 áp dụng MySQL cài trực tiếp. Nếu đã có MySQL Docker của repo, dùng cổng 3307 và tài khoản thực tế của container; tạo DB demo mới và cấp quyền bằng quản trị viên, không đổi/xóa volume cũ. Hướng dẫn chính này dùng MySQL cài trực tiếp.
+Không ghi đè `.env` đã có, không đưa mật khẩu/khóa/ảnh `.env` vào Git/bằng chứng. Mật khẩu có ký tự đặc biệt cần chuỗi hợp lệ theo dotenv. `load_dotenv()` không ghi đè biến môi trường có sẵn: dùng terminal mới; kiểm tra các biến `DB_*`, `FLASK_SECRET_KEY`, `PYTHON_DOTENV_DISABLED` còn sót nếu cấu hình không được nhận, không in giá trị bí mật.
 
-Mở PowerShell mới để tránh DB_* từ buổi trước ghi đè .env. Flask đọc .env, nhưng biến môi trường đã tồn tại có độ ưu tiên cao hơn.
+## 3. Tạo DB và import trong Workbench
 
-## 3. Import chuẩn bằng MySQL Workbench
-
-Kết nối MySQL trên máy. Chạy trong SQL tab:
+Kết nối đúng server/cổng, chạy:
 
 ```sql
 SELECT VERSION();
-CREATE DATABASE clinic_week1_demo
+CREATE DATABASE clinic_week3_demo_test
   CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE clinic_week1_demo;
+USE clinic_week3_demo_test;
 ```
 
-Nếu báo database đã tồn tại: dừng và chọn tên mới (ví dụ clinic_week1_demo2), cập nhật DB_NAME tương ứng. Không DROP database cũ.
+Nếu DB đã tồn tại, dừng và chọn tên mới; cập nhật cả `USE` và `DB_NAME`. Không DROP/nhập chồng. Refresh SCHEMAS, chọn DB thử làm default schema. Mở từng file bằng File → Open SQL Script; mỗi tab phải chọn đúng schema (có thể thêm `USE clinic_week3_demo_test;` vào tab mà không lưu source). Chọn và chạy **toàn bộ file**, kiểm tra Action Output sau mỗi bước:
 
-Refresh SCHEMAS rồi nhấp đúp clinic_week1_demo để tên in đậm. Mở từng file bằng File → Open SQL Script. Mỗi tab phải chọn đúng default schema; có thể thêm USE clinic_week1_demo; vào đầu tab để chạy (không cần lưu thay đổi file). Chạy toàn bộ file, không chỉ câu đang đặt con trỏ, theo đúng thứ tự:
-
-| Bước | File | Kết quả bắt buộc |
+| Thứ tự | File | Điều kiện tiếp tục |
 |---|---|---|
-| 1 | database/schema.sql | Tạo đủ 11 bảng, không có lỗi |
-| 2 | database/seed.sql | Nhập dữ liệu mẫu, không có lỗi |
-| 3 | database/audit.sql | Tất cả 10 truy vấn đều trả 0 dòng; có dòng thì dừng |
-| 4 | database/constraints.sql | Tạo chỉ mục/trigger thành công |
-| 5 | database/audit.sql | Kiểm tra lại, vẫn 0 dòng |
-| 6 | database/queries.sql | Báo cáo SQL; đối chiếu database/expected_results.md với tham số mẫu trong file |
+| 1 | `database/schema.sql` | Đủ 11 bảng, không lỗi |
+| 2 | `database/seed.sql` | Nhập seed thành công |
+| 3 | `database/audit.sql` | Cả 10 tập kết quả đều 0 dòng |
+| 4 | `database/constraints.sql` | Tạo index/trigger thành công |
+| 5 | `database/audit.sql` | Cả 10 tập vẫn 0 dòng |
+| 6 | `database/queries.sql` | Đối chiếu tham số mẫu với `database/expected_results.md` |
 
-Kiểm tra Action Output sau mỗi file; có lỗi thì dừng, không chạy file tiếp theo. DDL có implicit commit: import lỗi có thể để lại bảng dù rollback. Ghi lại lỗi, dùng DB thử trống mới để chạy lại từ đầu.
+**schema → seed → audit → constraints → audit → queries** là thứ tự của bộ file nguồn. Seed chứa lịch sử hoàn tất nên nhập trước trigger.
 
-**Chỉ dùng thứ tự schema → seed → audit → constraints → audit → queries.** Seed chứa lịch sử đã hoàn tất nên phải nhập trước trigger.
+**Cách nhập file nộp gộp trong #15/#17:** sau khi tạo DB mới trống và chọn đúng default schema của tab Workbench, mở `database/project1_submission.sql` và Execute toàn bộ **một lần**, thay cho cả sáu bước của bảng. File không có `CREATE DATABASE`/`USE`; phải tự chọn đúng schema trước khi chạy. Giữ `DELIMITER`, kiểm tra Action Output, cả hai lần audit đều 10 tập rỗng và đủ 11 bảng/9 trigger. Chỉ chọn **một** cách: file gộp hoặc bộ file nguồn; không chạy cả hai trên cùng DB. [Bằng chứng Workbench của Quyền](evidence/quyen-week3-submission/acceptance.md) là xác nhận người chạy, CI thông thường không tự chứng minh đã nhập file gộp. Hash local đã thử khác blob Git; chưa kết luận cùng byte hoặc nguyên nhân chênh lệch, xem [review #15](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/15#pullrequestreview-5602203513). Không dùng `tools.import_seed`, `database/week1/clinic_seed.sql`, `hospital_db.sql` hoặc `python -m tools.quyen_db` thay quy trình này. Tiện ích cuối không đọc `.env` và thiếu audit trước constraints.
 
-Không chạy tools.import_seed, không nhập database/week1/clinic_seed.sql hoặc hospital_db.sql cho quy trình này. tools.quyen_db hiện không tự đọc .env và không chạy audit trước constraints nên cũng không phải lệnh import chuẩn của hướng dẫn này. Các hướng dẫn cũ trong bàn giao là lịch sử, nhường ưu tiên cho tài liệu này.
-
-Trong Workbench kiểm tra thêm:
 ```sql
-USE clinic_week1_demo;
 SHOW TABLES;
 SHOW TRIGGERS;
 ```
-Phải có 11 bảng và đúng 9 trigger.
 
-## 4. Đối chiếu dữ liệu rồi chạy web
+Kỳ vọng 11 bảng, 9 trigger. Có lỗi thì dừng; DDL implicit commit có thể để lại bảng dù rollback. Ghi lỗi và dùng DB thử mới. `DELIMITER` là lệnh SQL client: với PyMySQL phải dùng parser của repo, không gửi nguyên `DELIMITER` cho server hoặc bỏ qua constraints.
 
-Trong PowerShell, từ thư mục clinic-week1-demo:
+## 4. Audit và chạy app
+
+Từ gốc clone:
 
 ```powershell
 .\.venv\Scripts\python.exe -m tools.audit_seed
 .\.venv\Scripts\python.exe app.py
 ```
 
-Ngay sau import, audit phải cho total = 1144, matches_expected_counts = true, mọi findings đều là []. Công cụ này chỉ in kết quả; phải đọc kết quả, không chỉ dựa vào exit code. audit.sql ở bước 3 có thêm kiểm tra lượt không có y tá.
+Ngay sau import, đọc JSON audit: `total=1144`, `matches_expected_counts=true`, cả 9 nhóm `findings` đều `[]`. Exit 0 của audit chưa đủ chứng minh sạch. `audit.sql` có thêm kiểm tra lượt không y tá. Sau ghi dữ liệu giả, count thay đổi là bình thường, không import lại để ép số lượng.
 
-Giữ cửa sổ chạy app mở. Truy cập:
-- http://127.0.0.1:5000/health — kiểm tra Flask.
-- http://127.0.0.1:5000/health/db — kiểm tra kết nối MySQL.
-- http://127.0.0.1:5000/patients — giao diện bệnh nhân.
+Giữ terminal mở, truy cập:
 
-Dừng bằng Ctrl+C. Những lần sau chỉ cần MySQL đang chạy, vào đúng thư mục và chạy lại app.py; không import lại.
+- `http://127.0.0.1:5000/health`: HTTP 200, `status=ok`.
+- `http://127.0.0.1:5000/health/db`: HTTP 200, `status=ok`, `database=mysql`.
+- `http://127.0.0.1:5000/patients`: danh sách bệnh nhân.
+- `http://127.0.0.1:5000/visits/new`: tiếp nhận/khám.
+- `http://127.0.0.1:5000/reports`: đủ bốn báo cáo thật.
 
-## 5. Checklist thử máy thật
+Dừng app bằng Ctrl+C. Lần sau chỉ chạy lại app khi MySQL đang chạy, không import lại. Thao tác chi tiết: [USER_GUIDE.md](USER_GUIDE.md).
 
-Dùng dữ liệu giả:
-- Mã: BNTESTQ1; họ tên: Bệnh nhân thử Quyền; CMT: 999000001001.
-- Ngày sinh: 2000-01-01; địa chỉ: Hà Nội; điện thoại: 0900000001.
-- Nếu mã/CMT đã dùng, chọn giá trị mới.
+## 5. Hồi quy cách ly tùy chọn
 
-1. Thêm bệnh nhân → thấy trang chi tiết, tải lại trang vẫn còn.
-2. Trong Workbench: SELECT * FROM benh_nhan WHERE ma_benh_nhan = 'BNTESTQ1'; phải thấy đúng bản ghi.
-3. Sửa địa chỉ → tải lại và SELECT xác nhận đã lưu.
-4. Thêm lại mã hoặc CMT đang có → báo lỗi rõ, không tạo bản sao.
-5. Thử ngày sinh tương lai hoặc CMT không hợp lệ → bị từ chối.
-6. Mở bệnh nhân BN001 → xem lịch sử; thử xóa hồ sơ có lịch sử → bị chặn, hồ sơ còn nguyên.
-7. Thử thêm/xem/sửa/xóa hồ sơ giả không có lịch sử ở bác sĩ và y tá.
-8. Xóa riêng hồ sơ giả vừa tạo để trả dữ liệu về nền, chạy audit_seed lần nữa. Không xóa seed để đạt số lượng.
+Dùng clone/bản sao kiểm thử riêng vì test ghi `test-artifacts/`. Cài thêm:
 
-Trong lúc giữ hồ sơ thử, total khác 1144 là bình thường; không import lại để sửa chênh lệch. Ba báo cáo bệnh/lương/doanh thu trên UI tuần 1 còn là khung chờ; kiểm tra kết quả bằng queries.sql, không đánh dấu UI báo cáo hoàn tất.
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt "playwright>=1.50,<2"
+.\.venv\Scripts\python.exe -m playwright install chromium
+.\.venv\Scripts\python.exe tools/vuong_week2_prepare.py --serve
+```
+
+Tên runner tuần 2 là lịch sử; runner chạy source checkout hiện tại, tạo instance MySQL bind loopback/datadir mới dưới `.venv/` và DB `_test`, không dùng DB làm việc trong `.env`. Runner bật MySQL/browser/oracle, nhập đúng thứ tự mục 3; ghi JUnit/audit/ảnh tại `docs/evidence/vuong_week2_prepare_<timestamp>/`. Nếu MySQL ngoài Program Files/PATH, thêm `--mysqld "D:/duong-dan/bin/mysqld.exe"`; cache browser tùy chọn `--browsers-path "D:/duong-dan/browsers"`. Mở URL/cổng runner in sau khi test đạt, không mặc định cổng 5000. Đọc JUnit/failure/error/skip và audit; số test phụ thuộc source, không lấy 168/179 làm điều kiện cứng.
+
+**W3-RUN-01 vẫn mở trong sổ lỗi, chờ Trung/Quyền quyết định đóng:** #17 đã chứa bản sửa runner/helper từ #12; Trung đã review tích hợp và bằng chứng Windows success/error. Sau Ctrl+C, đọc `mysql_cleanup`, `cleanup_errors`, `preparation_success` trong results; xác minh PID/cổng/launcher của instance private đã thoát. Không còn dùng mô tả “chưa sửa source” cho snapshot #17. Nếu còn process/cổng, giữ log và đối chiếu đúng executable/datadir trước khi xử lý; không dừng MySQL hệ thống/theo tên chung, nhờ Trung nếu không xác minh được. [Trạng thái và bằng chứng](VUONG_WEEK3_ISSUES.md#w3-run-01--runner-còn-mysql-con-sau-khi-kết-thúc-trên-windows).
 
 ## 6. Lỗi thường gặp
 
-| Lỗi | Xử lý |
+| Hiện tượng | Xử lý |
 |---|---|
-| Không tìm thấy python/pip | Kiểm tra đúng Python Windows; dùng đường dẫn đầy đủ rồi tạo lại venv trong thư mục demo mới |
-| CREATE DATABASE bị từ chối / 1044 | Nhờ quản trị viên tạo DB thử trống và cấp quyền đúng DB; không nới quyền DB đang làm việc |
-| Access denied / 1045 | Kiểm tra user, mật khẩu, cổng và quyền DB; không gửi mật khẩu |
-| Can't connect / 2003 | Kiểm tra dịch vụ MySQL đang chạy và đúng 3306/3307 |
-| Unknown database / 1049 | Tạo đúng DB và sửa DB_NAME |
-| No database selected / 1046 | Chọn schema mặc định hoặc chạy USE trước mỗi file |
-| Table already exists / 1050 hoặc duplicate key khi import | Đã nhập một phần; dùng DB thử trống mới, không nhập chồng |
-| Không tạo được trigger | Kiểm tra quyền TRIGGER và log MySQL; không bỏ qua constraints |
-| Thiếu SECRET_KEY | Sinh khóa, điền FLASK_SECRET_KEY trong .env |
-| 503 trên web | Xem lỗi kết nối và /health/db; kiểm tra .env và DB_* đang ghi đè |
-| Cổng 5000 đang dùng | Dừng phiên app cũ bằng Ctrl+C rồi chạy lại |
-| Lỗi CSRF sau đổi khóa | Tải lại form rồi gửi lại |
+| Không thấy Python/pip | Dùng Python Windows 3.11 đúng đường dẫn, tránh alias Store/MSYS2 |
+| 1044 / không tạo DB | Nhờ quản trị viên tạo DB thử trống và cấp quyền đúng DB |
+| 1045 / Access denied | Kiểm tra user/mật khẩu/cổng/quyền và biến môi trường ghi đè `.env` |
+| HTTP 503 / MySQL 2003 | Giữ app/MySQL console và bước tái hiện, xác minh đúng instance/cổng/config; runner dùng cổng ngẫu nhiên. Phiên đầu #17 gặp gián đoạn chưa rõ nguyên nhân, hai phiên sau không tái hiện; không tự retry thao tác ghi để che lỗi |
+| 1049 / Unknown database | Đồng bộ `DB_NAME` và DB đã tạo |
+| 1046 / No database selected | Chọn default schema hoặc `USE` đúng DB ở mỗi tab |
+| 1050 / duplicate khi import | Dừng, dùng DB thử trống mới; không nhập chồng |
+| 1064 khi tạo trigger | Kiểm tra log/client và cách chạy toàn khối `DELIMITER`, xác minh đủ 9 trigger |
+| Thiếu secret | Sinh khóa, điền `FLASK_SECRET_KEY`, kiểm tra môi trường ghi đè |
+| `/health` đạt, `/health/db` 503 | Flask đã lên nhưng DB chưa kết nối; kiểm tra cấu hình/server |
+| Cổng 5000 bận | Dừng đúng app của bạn bằng Ctrl+C. Có thể chạy `.\.venv\Scripts\python.exe -m flask --app app run --host 127.0.0.1 --port 5001` rồi đổi URL tương ứng |
+| CSRF lỗi sau đổi khóa | Tải lại form rồi gửi lại |
+| Ô số báo tiếng Anh | Kiểm tra đúng SHA #17, JavaScript được nạp và loại ô number; #17 đã có bản sửa UI #13. Main cũ chưa có bản sửa; validation server vẫn áp dụng |
+| Count khác 1144 sau CRUD | Chỉ dọn hồ sơ giả không có lịch sử; không xóa seed/lịch sử hoặc import lại |
+| Báo cáo khác đáp án | Kiểm tra kỳ lọc/dữ liệu thêm; Q2 vẫn cộng lương cơ bản nhân sự mới |
+| Runner exit nhưng cổng còn mở | Xử lý W3-RUN-01 theo mục 5 |
 
-## 7. Bằng chứng chốt tuần 1
+## 7. Bằng chứng và giới hạn
 
-Mỗi thành viên ghi: tên, ngày giờ, phiên bản Python/MySQL, SHA ở bước 1, tên DB (không mật khẩu), kết quả từng bước, lỗi và ảnh. Chụp audit trước/sau, trang bệnh nhân mới, kết quả SELECT và thông báo chặn xóa. Cập nhật issue tuần 1.
+[Bàn giao #17](VUONG_WEEK3_HANDOFF.md) tổng hợp Windows trên máy Quyền, CI đúng head và phiên lỗi còn theo dõi; không nhận trợ lý đã chạy lại trong lần cập nhật tài liệu. [Biên bản bước 5](VUONG_WEEK3_STEP5_VERIFICATION.md) và [bằng chứng bước 4](evidence/vuong_week3_final_20261021/README.md) chỉ áp dụng candidate ngày 21/10; không gán kết quả cho main/release hay commit tài liệu mới.
 
-Ghi nhận lịch sử 18/10/2026, 19:51 (Asia/Ho_Chi_Minh): PR #7 đã hết Draft; Vương đã cập nhật bàn giao, rà 4/4 trang PDF và chạy tích hợp local. Quyền đã chạy Windows/Python 3.11.9/MySQL 8.4.11 trên DB clinic_week1_demo2: đủ 9 trigger, audit 1.144 dòng đúng và 9 nhóm findings rỗng; web và thêm/tìm/sửa/tải lại bệnh nhân được xác nhận. Chưa xác minh đầy đủ checklist/queries.sql trên máy Quyền hoặc nghiệm thu máy Trung. #7 đã merge; #6/#8 đã được Vuong-it review nhưng còn CHANGES_REQUESTED cần xác nhận lại sau cập nhật. Xem WEEK1_REVIEW_2026-10-18.md và bằng chứng Vương trong PR #7; không coi CI hoặc một máy là nghiệm thu cả ba máy.
-
-## 8. Lỗi đã gặp khi chạy trên máy Quyền
-
-- Workbench có thể mở file SQL qua VS Code: copy toàn bộ nội dung vào SQL tab, chọn đúng USE, Ctrl+A rồi Run. Kiểm tra đủ 11 bảng sau schema trước khi nhập seed.
-- constraints.sql đã tạo chỉ mục nhưng lỗi 1064 và chưa có trigger: không chạy lại cả file. Kiểm tra information_schema.TRIGGERS, rồi chạy riêng từng CREATE TRIGGER nguyên khối bằng PyMySQL (không gửi DELIMITER hoặc dấu $$ cho server). Phiên Quyền xác nhận đủ 9 trigger sau cách này. Không coi nguyên nhân parser là đã được chứng minh chỉ từ lỗi 1064.
-- MySQL trực tiếp dùng 3306 nhưng .env.example có 3307 cho Docker: sửa DB_PORT=3306. Test-NetConnection 127.0.0.1 -Port 3306 kiểm tra cổng, không kiểm tra tài khoản.
-- Lỗi 1045 với user clinic_app: cấu hình DB_USER và DB_PASSWORD đúng tài khoản local. Biến DB_* trong PowerShell có thể ghi đè .env; dùng terminal mới sau khi lưu file. Không gửi mật khẩu/ảnh .env.
-- Nếu chọn clinic_week1_demo2, phải dùng cùng tên trong USE và DB_NAME. Không tạo/import thêm DB chỉ vì cấu hình ứng dụng sai.
-
-## 9. Trạng thái sau tích hợp 19/10/2026
-
-#6/#8 đã được Vương approve và merge; các trạng thái chờ review phía trên là lịch sử. Main a813ac7 đã qua [CI 72 test và audit sạch](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/39202562894). [Trung xác nhận chạy cùng hướng dẫn trên main](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/9#issuecomment-6260786763), gồm import/CRUD/ca sai/chặn xóa/dọn dữ liệu; ảnh gốc chưa đính kèm GitHub. Quyền và Vương có bằng chứng theo snapshot đã ghi; không nhận đó là chạy lại trên main. PR #9 bổ sung bằng chứng tự động, chờ approval cuối. Xem QUYEN_WEEK1_ACCEPTANCE.md để phân biệt head PR và SHA merge thử thực chạy.
+T16 **không thực hiện theo quyết định nhóm ngày 21/10/2026**, actual **chưa chạy**, không tính PASS hoặc việc còn thiếu. Clone/DB khác trên cùng máy không chứng minh chạy trên thiết bị khác.

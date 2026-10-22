@@ -1,0 +1,19 @@
+[
+  {
+    "id": "W3-UX-01",
+    "severity": "P3 — quan sát UX, không chặn nghiệp vụ",
+    "title": "Thông báo validation native của ô số hiển thị tiếng Anh trong IAB",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "environment": "Codex in-app browser (phiên bản chưa xác minh), Python3.11.9/MySQL8.4.7, Windows",
+    "reproduction": [
+      "Form bác sĩ: nhập thâm niên -1 rồi bấm Thêm hồ sơ; hoặc form kê đơn nhập số lượng0/-1; hoặc tiếp nhận nhập phí-1.",
+      "Quan sát validationMessage của ô số và việc trình duyệt chặn gửi form."
+    ],
+    "expected": "Theo mục tiêu thông báo tiếng Việt, người dùng nhận chỉ dẫn tiếng Việt; validation server vẫn cần kiểm thử riêng.",
+    "actual": "Native message: Value must be greater than or equal to 0/1. Không gửi dữ liệu sai; thông báo nghiệp vụ/server của app vẫn bằng tiếng Việt.",
+    "evidence": "ui-observations.json: CRUD-BS-invalid, T12-UI-quantity0, T12-UI-quantityNegative, T12-UI-negative-fee",
+    "owner": "Vương xem xét UI/locale; Quyền chốt yêu cầu đối với thông báo native phụ thuộc trình duyệt",
+    "status": "Đã ghi nhận; chưa sửa, chưa kiểm thử lại; Bước4 chưa thực hiện",
+    "limitation": "Không kết luận mọi trình duyệt/locale đều hiển thị tiếng Anh."
+  }
+]

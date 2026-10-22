@@ -1,0 +1,27 @@
+{
+  "source_124_hashes_match_after_docs": true,
+  "candidate_id": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+  "tracked_diff_files": [
+    "clinic_app/templates/week1/base.html"
+  ],
+  "new_source_files": [
+    "clinic_app/static/number-validation.js",
+    "tests/test_vuong_week3_numeric_validation.py"
+  ],
+  "no_backend_API_schema_formula_changes": true,
+  "no_staged_files": true,
+  "all_protected_prior_evidence_unchanged": true,
+  "old_week2_58_files_unchanged": true,
+  "user_T16_message_note_preserved": true,
+  "no_external_messages_sent": true,
+  "no_push_PR_merge": true,
+  "handoff_excludes": [
+    ".env",
+    "venv/cache",
+    "datadir",
+    "personal dumps",
+    "untracked week2 evidence"
+  ],
+  "local_links_resolve": true,
+  "new_text_secret_shape_scan": "No credential URLs/private key material; synthetic fixtures only; no .env included"
+}

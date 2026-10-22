@@ -1,5 +1,7 @@
 # Review phụ thuộc và kiểm tra tích hợp tuần 2 — Vương
 
+> Phạm vi hiện hành 21/10/2026: bỏ T16/máy thứ hai theo quyết định Quyền; demo trên laptop Quyền. Các nhận xét T16 bên dưới là lịch sử của phiên trước, không còn là điều kiện nghiệm thu hoặc release. Không sửa kết quả kiểm thử gốc.
+
 ## Xác nhận cuối — 20/10/2026
 
 Vương (`Vuong-it`) đã phản hồi và resolve hai thread do mình tạo trên #5: [responsive](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5#discussion_r4321140559), [title](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5#discussion_r4321140844). Đã đọc source đúng head `da59e561b187ee693842efd4c6e943c64201a4a1`: form nối `clinical-form`, base nạp `week2.css`, CSS giới hạn fieldset/control; title lịch sử chỉ định danh trang/bệnh nhân, bảng ở content.

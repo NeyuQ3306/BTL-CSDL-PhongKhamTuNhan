@@ -1,0 +1,46 @@
+{
+  "checked_at": "2026-10-21T13:00:54.468532+07:00",
+  "success": true,
+  "sessions": [
+    {
+      "session": "vuong_week3_demo_20261021_125348_319089",
+      "mode": "automated rehearsal",
+      "rehearsal_seconds": 10.421,
+      "success": true,
+      "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_125348_319089\\mysql-data",
+      "mysql_port": 53340
+    },
+    {
+      "session": "vuong_week3_demo_20261021_125437_817175",
+      "mode": "automated rehearsal",
+      "rehearsal_seconds": 10.327,
+      "success": true,
+      "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_125437_817175\\mysql-data",
+      "mysql_port": 62903
+    },
+    {
+      "session": "vuong_week3_demo_20261021_125527_974568",
+      "mode": "fresh seed group server",
+      "rehearsal_seconds": null,
+      "success": true,
+      "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_125527_974568\\mysql-data",
+      "mysql_port": 58973
+    }
+  ],
+  "files": [
+    "README.md",
+    "docs/USER_GUIDE.md",
+    "docs/VUONG_WEEK3_DEMO.md",
+    "docs/VUONG_WEEK3_ACCEPTANCE.md",
+    "docs\\evidence\\vuong_week3_demo_20261021_125437_817175\\README.md"
+  ],
+  "links_checked": 203,
+  "broken_links": [],
+  "execution_files_match": 67,
+  "screenshots_viewed": 24,
+  "private_mysql_process_count": 0,
+  "git_diff_check": 0,
+  "group_rehearsal_done": false,
+  "full_step6_complete": false,
+  "remaining": "Group confirms roles, rehearses together, times speech/transitions and records follow-up"
+}

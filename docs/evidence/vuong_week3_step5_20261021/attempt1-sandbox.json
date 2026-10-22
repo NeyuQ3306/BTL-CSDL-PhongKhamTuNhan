@@ -1,0 +1,21 @@
+{
+  "started_at": "2026-10-21T12:39:08.763679+07:00",
+  "kind": "local setup verification, not CI/T16",
+  "base_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+  "work": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-step5-20261021_123908",
+  "success": false,
+  "step4_execution_files_match": 66,
+  "mysql_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+  "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-step5-20261021_123908\\mysql-data",
+  "db_port": 63330,
+  "app_port": 63331,
+  "database": "clinic_week3_demo_test",
+  "db_port_closed": true,
+  "app_port_closed": true,
+  "checkout_env_unchanged": true,
+  "old_evidence_unchanged": true,
+  "execution_source_unchanged": true,
+  "finished_at": "2026-10-21T12:40:21.342227+07:00"
+}

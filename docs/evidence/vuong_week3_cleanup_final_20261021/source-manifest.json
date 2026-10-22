@@ -1,0 +1,10 @@
+{
+  "base_sha": "0a8aeccf5ad7c88e4902ae66d6378ef3b5ffcd5b",
+  "source_dirty": true,
+  "files": {
+    "tools/vuong_week3_demo.py": "ab2385fae771088d1f3ecc420e6d29dfa58f0689e97c7f80af3929e0a76cd934",
+    "tools/private_mysql_cleanup.py": "5ed56ad196c171c6dd2e2fe71f90611dc934617d1ed17e920fa6c8da963fc417",
+    "tests/test_vuong_week3_cleanup.py": "06d5058bddd56878540bf4c1690c1403eaf148b68867afde2f52ad25bb366fc0",
+    "requirements-dev.txt": "e71ef416d717c904f9896d9b235ec99bb883d4c3781ee7248a660ff53a0065ac"
+  }
+}

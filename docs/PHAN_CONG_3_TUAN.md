@@ -2,6 +2,8 @@
 
 **Nhóm:** Minh Quyền (trưởng nhóm), Trung, Vương. **Thời gian:** 13/10–03/11/2026, đúng 3 tuần. **Múi giờ:** Việt Nam. Yêu cầu 1 đã chốt thiết kế; công việc còn lại tập trung yêu cầu 2 và 3, đồng thời đóng gói bản nộp yêu cầu 1.
 
+**Quyết định phạm vi ngày 21/10/2026 của Quyền:** demo và nghiệm thu bản cuối trên laptop Quyền. Bỏ tiêu chí T16/cài trên máy thứ hai khỏi điều kiện hoàn thành và release; không ghi T16 là PASS. Vẫn kiểm tra hướng dẫn chạy, SQL, T01–T15 và các lỗi ảnh hưởng demo. Quyết định này thay các yêu cầu máy thứ hai trong tài liệu cũ; bằng chứng lịch sử giữ nguyên.
+
 ## Mục tiêu và người chịu trách nhiệm
 
 | Hạng mục | Chủ trì | Người phối hợp/review | Sản phẩm cuối |
@@ -83,7 +85,7 @@
 ### Trung
 
 - Sửa lỗi backend/transaction; hoàn thiện xử lý NULL, số tiền, dữ liệu không tồn tại và rollback.
-- Kiểm tra chạy trên bản MySQL đã thống nhất; phối hợp Vương cài từ clone mới trên máy thứ hai.
+- Kiểm tra chạy trên bản MySQL đã thống nhất; phối hợp Vương kiểm tra cấu hình và chạy bản cuối trên laptop Quyền để demo.
 - Chuẩn bị giải thích route, kết nối DB và ràng buộc thực thi ở ứng dụng.
 
 ### Vương
@@ -92,7 +94,7 @@
 - Hoàn thiện hướng dẫn sử dụng, ảnh demo và kịch bản demo; tập demo với cả nhóm.
 - Tính năng phụ chỉ làm sau nghiệm thu lõi: tìm kiếm/lọc, xuất CSV, in đơn. Ghi rõ đây là mục tiêu bổ sung, điểm phụ do giảng viên đánh giá, không tự cam kết đạt tối đa.
 
-**Nghiệm thu 03/11 lúc 20:00:** clone sạch, cấu hình và import SQL thành công trên máy thứ hai; không còn lỗi chặn demo; đủ PDF YC1, SQL YC2, link repo/app YC3 và hướng dẫn chạy. PR cuối trước 20:00 ngày 02/11; 03/11 chỉ sửa lỗi và đóng gói.
+**Nghiệm thu 03/11 lúc 20:00:** cấu hình, import SQL trên DB thử trống và chạy bản cuối theo README trên laptop Quyền; không còn lỗi chặn demo; đủ PDF YC1, SQL YC2, link repo/app YC3 và hướng dẫn chạy. PR cuối trước 20:00 ngày 02/11; 03/11 chỉ sửa lỗi và đóng gói.
 
 ## Phụ thuộc và cách phối hợp
 

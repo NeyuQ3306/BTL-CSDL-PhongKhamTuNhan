@@ -1,10 +1,14 @@
 # Kiểm thử nghiệm thu Project 1
 
+**Cập nhật22/10/2026:** [hồ sơ tuần3](VUONG_WEEK3_ACCEPTANCE.md) và [bàn giao #17](VUONG_WEEK3_HANDOFF.md) phân biệt ma trận Vương ngày21/10, Windows Quyền tại source`dd1f41e` và CI head`1964a4a`. #13 đã được Trung approve/resolve; #17 được Trung approve và CI xanh, chưa merge hoặc chốt nghiệm thu toàn nhóm/release. Phiên Windows đầu194pass/1fail (HTTP503/MySQL2003), hai phiên sau195/236tests không failure/error/skip; lỗi còn theo dõi. W3-RUN-01 chờ Trung/Quyền quyết định đóng dù bản sửa đã tích hợp. #16 chưa tích hợp. Không tự đổi bảng kỳ vọng bên dưới thành kết quả PASS toàn nhóm.
+
 Vương quản lý kết quả; Quyền tính đáp án mẫu; Trung bổ sung test tự động cho backend. Chưa có ca nào được đánh dấu chạy đạt tại thời điểm khởi tạo.
 
-**Bổ sung 19/10/2026:** [Biên bản local tuần 2 của Vương](VUONG_WEEK2_ACCEPTANCE.md) đã đối chiếu T01–T15, 168 test đạt/0 skipped trên source được định danh bằng HEAD và manifest. Biên bản phân biệt browser/HTTP/SQL, CI và phần chưa chạy. T16 và nghiệm thu toàn nhóm chưa được xác nhận.
+**Bổ sung 19/10/2026:** [Biên bản local tuần 2 của Vương](VUONG_WEEK2_ACCEPTANCE.md) đã đối chiếu T01–T15, 168 test đạt/0 skipped trên source được định danh bằng HEAD và manifest. Biên bản phân biệt browser/HTTP/SQL, CI và phần chưa chạy. Đây là trạng thái lịch sử tại ngày 19/10; phạm vi hiện hành theo quyết định bên dưới.
 
 Kết quả kiểm tra **UI tuần 1 của Vương, ngày 17/10/2026** được ghi riêng trong [VUONG_WEEK1_CHECKLIST.md](VUONG_WEEK1_CHECKLIST.md): 33 ca script trên MySQL và 14 ca trình duyệt đạt, có ảnh/log và phần chưa chạy. Kết quả UI này không tự đánh dấu các ca nghiệp vụ toàn dự án bên dưới là đã đạt.
+
+**Quyết định phạm vi ngày 21/10/2026 của Quyền:** demo và nghiệm thu bản cuối trên laptop Quyền. Bỏ tiêu chí T16/cài trên máy thứ hai khỏi điều kiện hoàn thành và release; không ghi T16 là PASS. Vẫn kiểm tra hướng dẫn chạy, SQL, T01–T15 và các lỗi ảnh hưởng demo. Quyết định này thay các yêu cầu máy thứ hai trong tài liệu cũ; bằng chứng lịch sử giữ nguyên.
 
 | ID | Tình huống | Kết quả mong đợi |
 |---|---|---|
@@ -23,6 +27,5 @@ Kết quả kiểm tra **UI tuần 1 của Vương, ngày 17/10/2026** được 
 | T13 | Lỗi giữa lúc tạo đơn và chi tiết | Không tồn tại đơn dang dở sau rollback |
 | T14 | Tháng không có phát sinh | Không lỗi, tổng 0; lương cơ bản vẫn đúng |
 | T15 | Xem hồ sơ | Đủ lịch sử và bệnh đang điều trị, STT hiện tại đúng |
-| T16 | Import và chạy từ clone mới trên máy thứ hai | Chạy theo README, không phụ thuộc file riêng của máy tác giả |
 
-Mỗi kết quả ghi: ngày chạy, người chạy, commit, dữ liệu đầu vào, expected, actual, đạt/chưa đạt, ảnh hoặc log. T01–T15 phải đạt trước release; T16 là cổng nghiệm thu cuối.
+Mỗi kết quả ghi: ngày chạy, người chạy, commit, dữ liệu đầu vào, expected, actual, đạt/chưa đạt, ảnh hoặc log. T01–T15 phải đạt trước release. Bản cuối được xác nhận trên laptop Quyền, theo README và SQL nộp; không yêu cầu máy thứ hai.

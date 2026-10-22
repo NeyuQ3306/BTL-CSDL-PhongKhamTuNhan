@@ -1,0 +1,40 @@
+{
+  "seed": {
+    "episodes": 24,
+    "doctors": 78000000,
+    "nurses": 65600000,
+    "consultation": 4680000,
+    "medicine": 5820800,
+    "revenue": 10500800
+  },
+  "demo": {
+    "2004-02": {
+      "episodes": 1,
+      "consultation": 100000,
+      "medicine": 0,
+      "revenue": 100000,
+      "doctor": 7000000,
+      "nurse1": 5200000,
+      "nurse2": 5000000
+    },
+    "2004-03": {
+      "episodes": 3,
+      "consultation": 250000,
+      "medicine": 9900,
+      "revenue": 259900,
+      "doctor": 8000000,
+      "nurse1": 5400000,
+      "nurse2": 5200000
+    }
+  },
+  "history": {
+    "visits": 3,
+    "treatments": 3,
+    "current": 2,
+    "examinations": 4,
+    "medicines": 2,
+    "support": 4
+  },
+  "prescription": 9900,
+  "temporary_staff_remaining": 0
+}
