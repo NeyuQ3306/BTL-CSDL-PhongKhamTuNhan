@@ -2,9 +2,15 @@
 
 Lập ngày **21/10/2026**, múi giờ UTC+07:00 (Asia/Bangkok, cùng giờ Việt Nam). Người lập: **trợ lý Codex thay mặt Vương**, không phải xác nhận Vương đã tự thao tác kiểm thử.
 
-**Trạng thái hiện hành khi bàn giao bước 7:** Vương xác nhận đã hoàn thành bước 6 trong yêu cầu ngày 21/10/2026; chi tiết tập chung chưa được cung cấp. Đang chuẩn bị PR trên `vuong/week-3`, chờ review/Quyền nghiệm thu/merge/kiểm tra sau merge. [Bàn giao cuối](VUONG_WEEK3_HANDOFF.md) và [đối chiếu source/bằng chứng](evidence/vuong_week3_handoff_20261021/verification.json) là cập nhật mới; các câu “chưa commit/push/PR”, “chưa tập chung” bên dưới phản ánh từng mốc lịch sử. Không thay SHA hoặc kết quả của phiên cũ thành kết quả chạy trên commit mới.
+**Cập nhật hiện hành 22/10/2026:** ứng viên [#17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) tại `1964a4a10e8634384ce2ebf5951bc66e5525f755` đã tích hợp #12–#15 và được Trung approve; #13 của Vương đã được Trung approve/resolve cleanup. Chưa merge hoặc chốt nghiệm thu toàn nhóm/release. #16 đã được Vương approve nhưng chưa tích hợp. [Bàn giao #17](VUONG_WEEK3_HANDOFF.md) ghi source, review, Windows/CI, lỗi và việc còn chờ.
 
-## 1. Trạng thái và nguồn chuẩn
+Quyền chạy Windows trên source `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head#17 chỉ thêm12file evidence. Ba phiên [073906](evidence/vuong_week2_prepare_20261022_073906_519771/results.json) (194pass/1fail, HTTP503/MySQL2003 theo PR), [074813](evidence/vuong_week2_prepare_20261022_074813_773699/results.json) (195tests/0failure/error/skip), [075907](evidence/vuong_week2_prepare_20261022_075907_328633/results.json) ([JUnit236tests/0failure/error/skip](evidence/vuong_week2_prepare_20261022_075907_328633/junit.xml), gồm `tests week3_checks`) giữ riêng. Phiên cuối audit11bảng/9trigger/1.144dòng sạch, seed giữ nguyên/cleanup đạt; bốn workflow CI head#17 success. Đây là đọc bằng chứng Quyền và trạng thái CI, không nhận trợ lý chạy lại Windows hoặc xem ảnh còn trên máy Quyền.
+
+W3-RUN-01 vẫn mở chờ Trung/Quyền quyết định đóng, dù bản sửa đã tích hợp và được Trung review. HTTP503/MySQL2003 tiếp tục theo dõi, hai phiên sau không tái hiện nhưng chưa chứng minh đã sửa. T16 không thực hiện/actual chưa chạy/không tính PASS. Vương xác nhận bước6 ngày21/10; chưa có chi tiết buổi tập chung để điền.
+
+**Các mục1–10 bên dưới là hồ sơ lịch sử ngày21/10**, gồm ma trận ca với input/actual/source tại thời điểm chạy. Các câu “chưa commit/push/PR/CI”, “chờ Trung sửa/review”, “chưa tập chung” trong các mốc đó không thay trạng thái hiện hành này. Không thay SHA hoặc kết quả cũ thành kết quả trên #17/commit tài liệu mới.
+
+## 1. Trạng thái và nguồn chuẩn tại thời điểm chuẩn bị 21/10 (lịch sử)
 
 **Bước 1 đã chuẩn bị; Bước 2 đạt hồi quy tự động local ngày 21/10/2026: 175 passed / 0 failure / 0 error / 0 skipped. Bước 3 đã kiểm tra UI; Bước 4 đã sửa và kiểm tra lại UX, suite ứng viên cuối 179/179 đạt. Còn W3-RUN-01 về cleanup công cụ chờ Trung, có workaround; không có lỗi sản phẩm chặn được phát hiện.** Không chuyển kết quả, ảnh, số lượng 168 test hoặc trạng thái đạt tuần 2 thành nghiệm thu tuần 3. Chưa xác minh CI, chưa nghiệm thu nhóm, chưa thực hiện T16.
 
@@ -19,7 +25,7 @@ Nguồn ca: [ACCEPTANCE.md](ACCEPTANCE.md). Đã đối chiếu [RULES.md](../RU
 
 Bằng chứng chuẩn bị: [chỉ mục](evidence/vuong_week3_setup_20261021_111405/README.md), [thông tin chuẩn bị](evidence/vuong_week3_setup_20261021_111405/preparation.json), [manifest bằng chứng cũ được giữ nguyên](evidence/vuong_week3_setup_20261021_111405/preserved_week2_sha256.json), [kiểm tra hồ sơ](evidence/vuong_week3_setup_20261021_111405/verification.json). Đây là bằng chứng Bước 1, không phải bằng chứng các ca đạt.
 
-**Điều chỉnh phạm vi 21/10/2026:** Vương thông báo Quyền và cả nhóm đã chốt bỏ thực hiện T16. Trạng thái hiện hành: **Không thực hiện theo quyết định nhóm**; actual vẫn **Chưa chạy**, không tính đạt, không còn cổng nghiệm thu hoặc việc chờ máy thứ hai. Thông báo trong cuộc trao đổi này là nguồn quyết định; chưa có liên kết biên bản nhóm. Các ghi nhận chờ T16 ở mốc Bước 1–3 bên dưới là lịch sử, đã được quyết định này thay thế. Không sửa bằng chứng phiên cũ.
+**Điều chỉnh phạm vi 21/10/2026:** Vương thông báo Quyền và cả nhóm đã chốt bỏ thực hiện T16. Trạng thái hiện hành: **Không thực hiện theo quyết định nhóm**; actual vẫn **Chưa chạy**, không tính đạt, không còn cổng nghiệm thu hoặc việc chờ máy thứ hai. Nguồn quyết định hiện đã ghi tại [issue #3](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/issues/3) và [PR #14](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/14). Các ghi nhận chờ T16 ở mốc Bước 1–3 bên dưới là lịch sử, đã được quyết định này thay thế. Không sửa bằng chứng phiên cũ.
 
 ## 2. Ma trận T01–T16
 

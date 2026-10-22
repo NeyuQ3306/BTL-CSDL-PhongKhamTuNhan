@@ -1,35 +1,28 @@
 # Cài đặt và chạy bản tích hợp trên Windows
 
-Cập nhật 21/10/2026, UTC+07:00. Đây là hướng dẫn hiện hành; tài liệu tuần 1–2 là lịch sử. Chỉ dùng dữ liệu giả và DB thử riêng.
+Cập nhật **22/10/2026**, UTC+07:00, cho ứng viên tích hợp #17; chưa phải release. Chỉ dùng dữ liệu giả và DB thử riêng. Tài liệu tuần 1–2 và các phiên ngày 21/10 là lịch sử.
 
 ## 1. Phiên bản và source
 
-Chuẩn nhóm: Git, **Python 3.11**, **MySQL Server 8.4**, PowerShell và MySQL Workbench để nhập SQL. Workbench không thay MySQL Server. `requirements.txt` quy định Flask >=3,<4; PyMySQL[rsa] >=1.1,<2; python-dotenv >=1,<2; tzdata >=2024.1. Kiểm thử cần thêm `requirements-dev.txt`, Playwright >=1.50,<2 và Chromium.
+Chuẩn nhóm: Git, **Python 3.11**, **MySQL Server 8.4**, PowerShell và MySQL Workbench để nhập SQL. Workbench không thay MySQL Server. Cài thư viện từ `requirements.txt`; kiểm thử/công cụ demo cần `requirements-dev.txt`, Playwright và Chromium. Phiên Windows của Quyền ở #17 dùng Python **3.11.9**, MySQL **8.4.11**, Chromium **156.0.8078.4**. Không coi mọi bản trong khoảng dependency đều đã kiểm thử.
 
-Phiên local bước 4: Python **3.11.9**, MySQL **8.4.7**, Chromium **156.0.8078.4**; [thư viện thực chạy](evidence/vuong_week3_final_20261021/dependencies.txt). Không coi mọi bản trong khoảng dependency đều đã kiểm thử.
+[PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) đang mở tại head **`1964a4a10e8634384ce2ebf5951bc66e5525f755`**, nhánh `quyen/week3-integration`; main vẫn `f4869299c25fdfd0b711597e30b60ab277120f44` ở lần kiểm tra GitHub ngày 22/10. Source Windows thực chạy là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head trên chỉ thêm bằng chứng. #16 chưa nằm trong bản này. Xem [bàn giao tích hợp](VUONG_WEEK3_HANDOFF.md) để phân biệt source/local/CI và việc còn chờ.
 
-Ngày 21/10/2026, đã fetch và xác nhận main remote ở **`f4869299c25fdfd0b711597e30b60ab277120f44`** (PR #11). Ứng viên trên nhánh `vuong/week-3` = SHA này **cộng sửa UI/test**, candidate **`sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894`**. Main chưa chứa sửa thông báo ô số tiếng Việt; không gán 179 test của ứng viên cho riêng commit main. Xem [bàn giao cuối và đối chiếu source](VUONG_WEEK3_HANDOFF.md) để truy vết bản PR với bằng chứng. Chưa có release cuối được chốt.
-
-Mở PowerShell, tạo clone mới; nếu thư mục tồn tại, chọn tên khác, không xóa checkout cũ:
+Mở PowerShell, tạo clone mới; nếu thư mục đã tồn tại, chọn tên khác, không xóa checkout cũ:
 
 ```powershell
 git --version
 py -3.11 --version
 py -3.11 -m pip --version
 Set-Location $env:USERPROFILE
-git clone --branch main https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-main-demo
-Set-Location clinic-main-demo
+git clone --branch quyen/week3-integration https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-week3-integration-demo
+Set-Location clinic-week3-integration-demo
+git switch --detach 1964a4a10e8634384ce2ebf5951bc66e5525f755
 git rev-parse HEAD
 git status --short
 ```
 
-Clone mới phải sạch. Ghi SHA thực chạy; main có thể thay đổi. Để tái hiện snapshot main đã đối chiếu, chỉ trên clone mới sạch:
-
-```powershell
-git switch --detach f4869299c25fdfd0b711597e30b60ab277120f44
-```
-
-Ứng viên tuần 3 phải khớp [manifest bước 4](evidence/vuong_week3_final_20261021/execution_source_sha256.json) và [diff](evidence/vuong_week3_final_20261021/source.diff); clone main chưa có đủ bản sửa. Không tự ghép nhánh tuần 2. Sau merge/source đổi, kiểm tra lại phần bị ảnh hưởng và suite cuối trước nghiệm thu SHA mới.
+Clone phải sạch và HEAD đúng SHA đã pin trước khi cấu hình. `main` chưa chứa đầy đủ thay đổi #17; không dùng clone main cũ rồi nhận đã chạy ứng viên này. Các manifest candidate ngày 21/10 chỉ truy vết phiên lịch sử, không phải định danh bản tích hợp mới. Không tự ghép các nhánh bàn giao. Sau merge, ghi SHA main thực tế và smoke trên DB riêng; chỉ kiểm thử thêm phần bị ảnh hưởng khi hành vi/source thực thi thay đổi hoặc có dấu hiệu lỗi, không chạy lại toàn suite chỉ vì đổi SHA/tài liệu.
 
 ## 2. Venv và .env
 
@@ -82,7 +75,9 @@ Nếu DB đã tồn tại, dừng và chọn tên mới; cập nhật cả `USE`
 | 5 | `database/audit.sql` | Cả 10 tập vẫn 0 dòng |
 | 6 | `database/queries.sql` | Đối chiếu tham số mẫu với `database/expected_results.md` |
 
-**schema → seed → audit → constraints → audit → queries** là thứ tự hiện hành; chưa xác nhận có script nộp cuối của Quyền thay thế. Seed chứa lịch sử hoàn tất nên nhập trước trigger. Không dùng `tools.import_seed`, `database/week1/clinic_seed.sql`, `hospital_db.sql` hoặc `python -m tools.quyen_db` thay quy trình này. Tiện ích cuối không đọc `.env` và thiếu audit trước constraints.
+**schema → seed → audit → constraints → audit → queries** là thứ tự của bộ file nguồn. Seed chứa lịch sử hoàn tất nên nhập trước trigger.
+
+**Cách nhập file nộp gộp trong #15/#17:** sau khi tạo DB mới trống và chọn đúng default schema của tab Workbench, mở `database/project1_submission.sql` và Execute toàn bộ **một lần**, thay cho cả sáu bước của bảng. File không có `CREATE DATABASE`/`USE`; phải tự chọn đúng schema trước khi chạy. Giữ `DELIMITER`, kiểm tra Action Output, cả hai lần audit đều 10 tập rỗng và đủ 11 bảng/9 trigger. Chỉ chọn **một** cách: file gộp hoặc bộ file nguồn; không chạy cả hai trên cùng DB. [Bằng chứng Workbench của Quyền](evidence/quyen-week3-submission/acceptance.md) là xác nhận người chạy, CI thông thường không tự chứng minh đã nhập file gộp. Hash local đã thử khác blob Git; chưa kết luận cùng byte hoặc nguyên nhân chênh lệch, xem [review #15](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/15#pullrequestreview-5602203513). Không dùng `tools.import_seed`, `database/week1/clinic_seed.sql`, `hospital_db.sql` hoặc `python -m tools.quyen_db` thay quy trình này. Tiện ích cuối không đọc `.env` và thiếu audit trước constraints.
 
 ```sql
 SHOW TABLES;
@@ -124,7 +119,7 @@ Dùng clone/bản sao kiểm thử riêng vì test ghi `test-artifacts/`. Cài t
 
 Tên runner tuần 2 là lịch sử; runner chạy source checkout hiện tại, tạo instance MySQL bind loopback/datadir mới dưới `.venv/` và DB `_test`, không dùng DB làm việc trong `.env`. Runner bật MySQL/browser/oracle, nhập đúng thứ tự mục 3; ghi JUnit/audit/ảnh tại `docs/evidence/vuong_week2_prepare_<timestamp>/`. Nếu MySQL ngoài Program Files/PATH, thêm `--mysqld "D:/duong-dan/bin/mysqld.exe"`; cache browser tùy chọn `--browsers-path "D:/duong-dan/browsers"`. Mở URL/cổng runner in sau khi test đạt, không mặc định cổng 5000. Đọc JUnit/failure/error/skip và audit; số test phụ thuộc source, không lấy 168/179 làm điều kiện cứng.
 
-**W3-RUN-01 còn mở:** trên Windows, runner có thể exit nhưng MySQL con còn giữ cổng. Ctrl+C rồi xác minh đúng PID/executable/datadir/cổng private đã thoát. Nếu còn, dùng kết nối quản trị đúng instance để `SHUTDOWN`, hoặc xử lý riêng tiến trình đã xác minh; không dừng theo tên `mysqld` chung hay dịch vụ hệ thống. Nếu không xác minh được, nhờ Trung hỗ trợ. [Sổ lỗi](VUONG_WEEK3_ISSUES.md), [cleanup đã kiểm chứng](evidence/vuong_week3_final_20261021/cleanup.json). Đây là workaround, chưa phải sửa source runner.
+**W3-RUN-01 vẫn mở trong sổ lỗi, chờ Trung/Quyền quyết định đóng:** #17 đã chứa bản sửa runner/helper từ #12; Trung đã review tích hợp và bằng chứng Windows success/error. Sau Ctrl+C, đọc `mysql_cleanup`, `cleanup_errors`, `preparation_success` trong results; xác minh PID/cổng/launcher của instance private đã thoát. Không còn dùng mô tả “chưa sửa source” cho snapshot #17. Nếu còn process/cổng, giữ log và đối chiếu đúng executable/datadir trước khi xử lý; không dừng MySQL hệ thống/theo tên chung, nhờ Trung nếu không xác minh được. [Trạng thái và bằng chứng](VUONG_WEEK3_ISSUES.md#w3-run-01--runner-còn-mysql-con-sau-khi-kết-thúc-trên-windows).
 
 ## 6. Lỗi thường gặp
 
@@ -133,7 +128,7 @@ Tên runner tuần 2 là lịch sử; runner chạy source checkout hiện tại
 | Không thấy Python/pip | Dùng Python Windows 3.11 đúng đường dẫn, tránh alias Store/MSYS2 |
 | 1044 / không tạo DB | Nhờ quản trị viên tạo DB thử trống và cấp quyền đúng DB |
 | 1045 / Access denied | Kiểm tra user/mật khẩu/cổng/quyền và biến môi trường ghi đè `.env` |
-| 2003 / không kết nối | Kiểm tra dịch vụ MySQL và 3306/3307; mở cổng không chứng minh đăng nhập được |
+| HTTP 503 / MySQL 2003 | Giữ app/MySQL console và bước tái hiện, xác minh đúng instance/cổng/config; runner dùng cổng ngẫu nhiên. Phiên đầu #17 gặp gián đoạn chưa rõ nguyên nhân, hai phiên sau không tái hiện; không tự retry thao tác ghi để che lỗi |
 | 1049 / Unknown database | Đồng bộ `DB_NAME` và DB đã tạo |
 | 1046 / No database selected | Chọn default schema hoặc `USE` đúng DB ở mỗi tab |
 | 1050 / duplicate khi import | Dừng, dùng DB thử trống mới; không nhập chồng |
@@ -142,13 +137,13 @@ Tên runner tuần 2 là lịch sử; runner chạy source checkout hiện tại
 | `/health` đạt, `/health/db` 503 | Flask đã lên nhưng DB chưa kết nối; kiểm tra cấu hình/server |
 | Cổng 5000 bận | Dừng đúng app của bạn bằng Ctrl+C. Có thể chạy `.\.venv\Scripts\python.exe -m flask --app app run --host 127.0.0.1 --port 5001` rồi đổi URL tương ứng |
 | CSRF lỗi sau đổi khóa | Tải lại form rồi gửi lại |
-| Ô số báo tiếng Anh trên main | Sửa tiếng Việt nằm ở ứng viên tuần 3 chưa merge; native validation vẫn chặn sai |
+| Ô số báo tiếng Anh | Kiểm tra đúng SHA #17, JavaScript được nạp và loại ô number; #17 đã có bản sửa UI #13. Main cũ chưa có bản sửa; validation server vẫn áp dụng |
 | Count khác 1144 sau CRUD | Chỉ dọn hồ sơ giả không có lịch sử; không xóa seed/lịch sử hoặc import lại |
 | Báo cáo khác đáp án | Kiểm tra kỳ lọc/dữ liệu thêm; Q2 vẫn cộng lương cơ bản nhân sự mới |
 | Runner exit nhưng cổng còn mở | Xử lý W3-RUN-01 theo mục 5 |
 
 ## 7. Bằng chứng và giới hạn
 
-[Biên bản đối chiếu bước 5](VUONG_WEEK3_STEP5_VERIFICATION.md) phân biệt lệnh chạy mới, đối chiếu source và phần chưa chạy mới. [Bằng chứng bước 4](evidence/vuong_week3_final_20261021/README.md) gắn với candidate, gồm CRUD, luồng khám, bốn báo cáo và audit; không tự gán cho main mới/release chưa có.
+[Bàn giao #17](VUONG_WEEK3_HANDOFF.md) tổng hợp Windows trên máy Quyền, CI đúng head và phiên lỗi còn theo dõi; không nhận trợ lý đã chạy lại trong lần cập nhật tài liệu. [Biên bản bước 5](VUONG_WEEK3_STEP5_VERIFICATION.md) và [bằng chứng bước 4](evidence/vuong_week3_final_20261021/README.md) chỉ áp dụng candidate ngày 21/10; không gán kết quả cho main/release hay commit tài liệu mới.
 
 T16 **không thực hiện theo quyết định nhóm ngày 21/10/2026**, actual **chưa chạy**, không tính PASS hoặc việc còn thiếu. Clone/DB khác trên cùng máy không chứng minh chạy trên thiết bị khác.
