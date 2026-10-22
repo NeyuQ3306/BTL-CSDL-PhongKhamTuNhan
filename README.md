@@ -28,7 +28,7 @@ Bắt đầu từ [bàn giao](docs/VUONG_WEEK2_HANDOFF.md), [hướng dẫn sử
 
 - Đã chuyển backend sang lược đồ 11 bảng: CRUD bệnh nhân/bác sĩ/y tá, validation, kết nối theo request, transaction và cấu hình `.env`.
 - Có màn hình tra cứu lượt/đợt/lần khám làm nền tuần 2; chưa triển khai ghi nghiệp vụ và bốn báo cáo hoàn chỉnh.
-- `database/week1/clinic_seed.sql` là adapter định danh từ dữ liệu giả lập Vũ Đại Vương bàn giao; cần Quyền review. `hospital_db.sql` vẫn là schema tham khảo, không nhập cho app mới.
+- `database/week1/clinic_seed.sql` là adapter định danh từ dữ liệu giả lập Vũ Đại Vương bàn giao; cần Quyền review. Schema upstream `hospital_db.sql` được lưu trong lịch sử Git, không nhập cho app mới.
 - Xem [bàn giao tuần 1](docs/TRUNG_WEEK1_HANDOFF.md), [cách chạy](docs/SETUP.md), và [hợp đồng route/form](docs/INTEGRATION.md).
 - Chưa coi nghiệm thu hoàn tất trước khi nhóm review và merge PR theo RULES.md.
 
@@ -62,7 +62,7 @@ Python 3.11; Flask 3; PyMySQL; MySQL 8.4; HTML/CSS/Jinja. Giữ MySQL làm ngu�
 - `docs/`: phân công, setup, hợp đồng tích hợp, test và nguồn tham khảo.
 - `database/`: schema, seed, truy vấn, expected_results, audit và `project1_submission.sql` đã đóng gói trong #15/#17; xem SETUP để chọn đúng schema/import.
 - `app.py`: entry point; `clinic_app/`: backend và UI tiếng Việt tuần 1–2 đang được Flask sử dụng.
-- `clinic_app/templates/`, `clinic_app/static/`: UI đang chạy. `templates/`, `static/` ở gốc là upstream không dùng, còn trong snapshot #17; #16 dọn riêng, chưa tích hợp.
+- `clinic_app/templates/`, `clinic_app/static/`: giao diện đang chạy. Template/CSS và schema bệnh viện upstream không còn dùng đã được gỡ khỏi checkout; source gốc vẫn có trong lịch sử Git.
 - `tests/`: unit/SQL/backend/Chromium tuần 1–2, oracle và T01–T15.
 - `.github/`: mẫu issue/PR, CODEOWNERS và CI Python 3.11 + MySQL 8.4.
 
