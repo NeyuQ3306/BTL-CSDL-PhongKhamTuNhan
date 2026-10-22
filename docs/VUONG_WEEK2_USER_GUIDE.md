@@ -1,3 +1,5 @@
+> **Tài liệu lịch sử tuần 2, không phải hướng dẫn khởi đầu hiện hành.** Dùng [SETUP.md](SETUP.md) để cài/chạy bản tích hợp và [USER_GUIDE.md](USER_GUIDE.md) để thao tác. Các nhánh, số test và trạng thái máy thứ hai bên dưới chỉ phản ánh thời điểm tuần 2.
+
 # Hướng dẫn sử dụng tuần 2 — Vương
 
 ## Chạy bản review trên Windows

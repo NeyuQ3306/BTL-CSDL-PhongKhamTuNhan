@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-21T11:50:45.602821+07:00",
+  "method": "Direct SQL; not UI",
+  "request": {
+    "action": "query",
+    "sql": "SELECT 'U3L6' label,COUNT(*) n FROM luot_den_kham WHERE ma_luot='U3L6' UNION ALL SELECT 'U3D4',COUNT(*) FROM dot_dieu_tri WHERE ma_dot='U3D4' UNION ALL SELECT 'U3K7',COUNT(*) FROM lan_kham_benh WHERE ma_lan_kham='U3K7'",
+    "output": "sql-rejected-active-episode.json"
+  },
+  "rows": [
+    {
+      "label": "U3L6",
+      "n": 0
+    },
+    {
+      "label": "U3D4",
+      "n": 0
+    },
+    {
+      "label": "U3K7",
+      "n": 0
+    }
+  ]
+}

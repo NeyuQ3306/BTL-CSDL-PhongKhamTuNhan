@@ -1,0 +1,84 @@
+{
+  "checked_at": "2026-10-21T12:44:39.220325+07:00",
+  "success": true,
+  "main_remote": "f4869299c25fdfd0b711597e30b60ab277120f44\trefs/heads/main",
+  "source_base": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "execution_file_count": 66,
+  "execution_mismatches": [],
+  "files_checked": [
+    "README.md",
+    "docs/SETUP.md",
+    "docs/USER_GUIDE.md",
+    "docs/VUONG_WEEK3_STEP5_VERIFICATION.md",
+    "docs/VUONG_WEEK2_USER_GUIDE.md",
+    "docs/VUONG_WEEK3_ACCEPTANCE.md",
+    "docs\\evidence\\vuong_week3_step5_20261021\\README.md"
+  ],
+  "relative_links": 193,
+  "broken_links": [],
+  "step4_junit": {
+    "tests": 179,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "step4_T01_T15": "PASS, run_id 20261021_121231; inherited evidence, not rerun",
+  "new_SQL_actual": {
+    "episodes": 24,
+    "doctors": 78000000,
+    "nurses": 65600000,
+    "history_groups": [
+      1,
+      3,
+      4,
+      1,
+      5,
+      8,
+      3
+    ],
+    "revenue": {
+      "tien_kham": 4680000,
+      "tien_thuoc": 5820800,
+      "doanh_thu": 10500800
+    }
+  },
+  "new_SQL_expected": {
+    "episodes": 24,
+    "doctors": 78000000,
+    "nurses": 65600000,
+    "history_groups": [
+      1,
+      3,
+      4,
+      1,
+      5,
+      8,
+      3
+    ],
+    "revenue": {
+      "tien_kham": 4680000,
+      "tien_thuoc": 5820800,
+      "doanh_thu": 10500800
+    }
+  },
+  "step5_private_mysql_process_count": 0,
+  "git_diff_check_exit": 0,
+  "doc_sha256": {
+    "README.md": "8a2094e856831163f4849eddeafdfaabf7963f9aba8e1f91319fcf590ddf2ca0",
+    "docs/SETUP.md": "68f317e2cf5208a8a20622f949e539ca1ed67ad15e15568a718ec6d6e02bc87b",
+    "docs/USER_GUIDE.md": "8281ec76d68da74ea6bdaa902683349ac60d55766bf7698e60232800f5ba56f9",
+    "docs/VUONG_WEEK3_STEP5_VERIFICATION.md": "84642ff389e4751b6b022d8e716f84660f2443194631dec4cb76c9eb82f5d659",
+    "docs/VUONG_WEEK2_USER_GUIDE.md": "0084e59c5c8f799c0444586bf30c0432954ca69813fd65369b263d7067e57078",
+    "docs/VUONG_WEEK3_ACCEPTANCE.md": "b30f2dd2b803ae0cf5d6301b38bed6fe6f6e147f106008375fb5a097f69f083a",
+    "docs\\evidence\\vuong_week3_step5_20261021\\README.md": "0d65367c17715c11b94dbf357654dbd8d354070184ffdeecb1240fb5eb122b65"
+  },
+  "unchanged_app_source": true,
+  "new_full_suite_run": false,
+  "week2_guide_historical_body_preserved": true,
+  "limits": [
+    "Not a new dependency installation/clone",
+    "Not Workbench GUI or Docker verification",
+    "Not CI/release/group approval/T16",
+    "W3-RUN-01 remains open"
+  ]
+}

@@ -1,0 +1,541 @@
+[
+  {
+    "id": "CRUD-BN-create",
+    "input": "U3BN1; CCCD giả 999003000001; 1980-01-01",
+    "expected": "Lưu thành công, xem đúng hồ sơ",
+    "actual": "Đã thêm hồ sơ thành công.\n\n← Danh sách bệnh nhân\n\nHỒ SƠ BỆNH NHÂN\n\nBệnh nhân giả UI tuần 3\n\nMã hồ sơ: U3BN1\n\nSửa hồ sơ\nThông tin bệnh nhân\nMã bệnh nhân\nU3BN1\nCMT / CCCD\n999003000001\nHọ tên\nBệnh nhân giả UI tuần 3\nNgày sinh\n01/01/1980\nĐịa chỉ\nĐịa chỉ giả để kiểm thử\nSố điện thoại\n0900000301\nXem lịch sử khám\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:40:37.350Z",
+    "url": "http://127.0.0.1:64505/patients/U3BN1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "01-patient-created.jpg"
+  },
+  {
+    "id": "CRUD-BN-edit",
+    "input": "Đổi địa chỉ U3BN1 rồi tải lại",
+    "expected": "Địa chỉ mới tồn tại sau reload",
+    "actual": "← Danh sách bệnh nhân\n\nHỒ SƠ BỆNH NHÂN\n\nBệnh nhân giả UI tuần 3\n\nMã hồ sơ: U3BN1\n\nSửa hồ sơ\nThông tin bệnh nhân\nMã bệnh nhân\nU3BN1\nCMT / CCCD\n999003000001\nHọ tên\nBệnh nhân giả UI tuần 3\nNgày sinh\n01/01/1980\nĐịa chỉ\nĐịa chỉ giả đã sửa UI tuần 3\nSố điện thoại\n0900000301\nXem lịch sử khám\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:40:58.733Z",
+    "url": "http://127.0.0.1:64505/patients/U3BN1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-BN-duplicate",
+    "input": "U3BN1 trùng mã; CCCD khác; địa chỉ giả giữ khi lỗi",
+    "expected": "Lỗi tiếng Việt và giữ input",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Danh sách bệnh nhân\":\n    - /url: /patients\n  - paragraph: QUẢN LÝ HỒ SƠ\n  - heading \"Thêm bệnh nhân\" [level=1]\n  - paragraph: Điền thông tin bên dưới để tạo hồ sơ mới. Các trường có dấu * đều bắt buộc.\n  - alert:\n    - strong: Chưa lưu được hồ sơ\n    - paragraph: Mã hồ sơ hoặc CMT/CCCD đã tồn tại. Vui lòng kiểm tra lại.\n    - paragraph: Thông tin bạn đã nhập vẫn được giữ trong biểu mẫu. Kiểm tra lại trước khi lưu.\n  - form \"Thêm bệnh nhân\":\n    - generic: Mã bệnh nhân *\n    - textbox \"Mã bệnh nhân\": U3BN1\n    - generic: \"Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng mã “new”.\"\n    - generic: CMT / CCCD *\n    - textbox \"CMT / CCCD\": \"999003000009\"\n    - generic: Nhập 9–20 chữ số, giữ cả số 0 ở đầu.\n    - generic: Họ tên *\n    - textbox \"Họ tên\": Bệnh nhân giả cần xóa\n    - generic: Nhập đầy đủ họ tên có dấu, tối đa 100 ký tự.\n    - generic: Ngày sinh *\n    - textbox \"Ngày sinh\": 1980-01-01\n    - generic: Chọn ngày sinh từ năm 1900 đến hôm nay. Nếu nhập bằng bàn phím, dùng định dạng hiển thị trên ô.\n    - generic: Địa chỉ *\n    - textbox \"Địa chỉ\": Địa chỉ giả giữ khi lỗi\n    - generic: Nhập địa chỉ liên hệ, tối đa 255 ký tự.\n    - generic: Số điện thoại *\n    - textbox \"Số điện thoại\": <redacted>\n    - generic: \"Nhập 9–15 chữ số; có thể bắt đầu bằng dấu +. Ví dụ: 0901234567.\"\n    - button \"Thêm hồ sơ\"\n    - link \"Hủy\":\n      - /url: /patients\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:41:06.971Z",
+    "url": "http://127.0.0.1:64505/patients/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "02-patient-duplicate.jpg"
+  },
+  {
+    "id": "CRUD-BN-invalid",
+    "input": "Điện thoại abc trên U3TMPBN",
+    "expected": "Từ chối, lỗi tiếng Việt, giữ họ tên/địa chỉ",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Danh sách bệnh nhân\":\n    - /url: /patients\n  - paragraph: QUẢN LÝ HỒ SƠ\n  - heading \"Thêm bệnh nhân\" [level=1]\n  - paragraph: Điền thông tin bên dưới để tạo hồ sơ mới. Các trường có dấu * đều bắt buộc.\n  - 'alert \"Chưa lưu hồ sơ: có 1 trường cần kiểm tra\"':\n    - strong: \"Chưa lưu hồ sơ: có 1 trường cần kiểm tra\"\n    - list:\n      - 'link \"Số điện thoại: Số điện thoại gồm 9–15 chữ số, có thể bắt đầu bằng +.\"':\n        - /url: \"#so_dien_thoai\"\n  - form \"Thêm bệnh nhân\":\n    - generic: Mã bệnh nhân *\n    - textbox \"Mã bệnh nhân\": U3TMPBN\n    - generic: \"Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng mã “new”.\"\n    - generic: CMT / CCCD *\n    - textbox \"CMT / CCCD\": \"999003000009\"\n    - generic: Nhập 9–20 chữ số, giữ cả số 0 ở đầu.\n    - generic: Họ tên *\n    - textbox \"Họ tên\": Bệnh nhân giả cần xóa\n    - generic: Nhập đầy đủ họ tên có dấu, tối đa 100 ký tự.\n    - generic: Ngày sinh *\n    - textbox \"Ngày sinh\": 1980-01-01\n    - generic: Chọn ngày sinh từ năm 1900 đến hôm nay. Nếu nhập bằng bàn phím, dùng định dạng hiển thị trên ô.\n    - generic: Địa chỉ *\n    - textbox \"Địa chỉ\": Địa chỉ giả giữ khi lỗi\n    - generic: Nhập địa chỉ liên hệ, tối đa 255 ký tự.\n    - generic: Số điện thoại *\n    - textbox \"Số điện thoại\": <redacted>\n    - generic: \"Nhập 9–15 chữ số; có thể bắt đầu bằng dấu +. Ví dụ: 0901234567.\"\n    - generic: Số điện thoại gồm 9–15 chữ số, có thể bắt đầu bằng +.\n    - button \"Thêm hồ sơ\"\n    - link \"Hủy\":\n      - /url: /patients\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:41:14.763Z",
+    "url": "http://127.0.0.1:64505/patients/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "03-patient-invalid.jpg"
+  },
+  {
+    "id": "CRUD-BN-delete",
+    "input": "Xóa U3TMPBN chưa có lịch sử trên DB thử riêng",
+    "expected": "Đã xóa hồ sơ chưa phát sinh nghiệp vụ",
+    "actual": "Đã thêm hồ sơ thành công.",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:41:24.379Z",
+    "url": "http://127.0.0.1:64505/patients/U3TMPBN",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-BS-create",
+    "input": "U3BS, CCCD giả 999003100001",
+    "expected": "Thêm và xem được bác sĩ giả",
+    "actual": "Đã thêm hồ sơ thành công.\n\n← Danh sách bác sĩ\n\nHỒ SƠ BÁC SĨ\n\nBác sĩ giả UI tuần 3\n\nMã hồ sơ: U3BS\n\nSửa hồ sơ\nThông tin bác sĩ\nMã bác sĩ\nU3BS\nCMT / CCCD\n999003100001\nHọ tên\nBác sĩ giả UI tuần 3\nNgày sinh\n01/01/1970\nĐịa chỉ\nĐịa chỉ nhân viên giả tuần 3\nBậc nghề\nBậc 1\nThâm niên (năm)\n5\nChuyên môn\nNội tổng quát\nTrình độ đào tạo\nĐại học giả lập\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:41:41.114Z",
+    "url": "http://127.0.0.1:64505/doctors/U3BS",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "04-doctor-created.jpg"
+  },
+  {
+    "id": "CRUD-BS-edit",
+    "input": "Sửa địa chỉ U3BS rồi reload",
+    "expected": "Giữ địa chỉ mới",
+    "actual": "← Danh sách bác sĩ\n\nHỒ SƠ BÁC SĨ\n\nBác sĩ giả UI tuần 3\n\nMã hồ sơ: U3BS\n\nSửa hồ sơ\nThông tin bác sĩ\nMã bác sĩ\nU3BS\nCMT / CCCD\n999003100001\nHọ tên\nBác sĩ giả UI tuần 3\nNgày sinh\n01/01/1970\nĐịa chỉ\nĐịa chỉ bác sĩ giả đã sửa\nBậc nghề\nBậc 1\nThâm niên (năm)\n5\nChuyên môn\nNội tổng quát\nTrình độ đào tạo\nĐại học giả lập\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:41:54.299Z",
+    "url": "http://127.0.0.1:64505/doctors/U3BS",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-BS-duplicate",
+    "input": "Trùng U3BS, CCCD mới",
+    "expected": "Từ chối mã trùng, giữ input",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Danh sách bác sĩ\":\n    - /url: /doctors\n  - paragraph: QUẢN LÝ HỒ SƠ\n  - heading \"Thêm bác sĩ\" [level=1]\n  - paragraph: Điền thông tin bên dưới để tạo hồ sơ mới. Các trường có dấu * đều bắt buộc.\n  - alert:\n    - strong: Chưa lưu được hồ sơ\n    - paragraph: Mã hồ sơ hoặc CMT/CCCD đã tồn tại. Vui lòng kiểm tra lại.\n    - paragraph: Thông tin bạn đã nhập vẫn được giữ trong biểu mẫu. Kiểm tra lại trước khi lưu.\n  - form \"Thêm bác sĩ\":\n    - generic: Mã bác sĩ *\n    - textbox \"Mã bác sĩ\": U3BS\n    - generic: \"Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng mã “new”.\"\n    - generic: CMT / CCCD *\n    - textbox \"CMT / CCCD\": \"999003100009\"\n    - generic: Nhập 9–20 chữ số, giữ cả số 0 ở đầu.\n    - generic: Họ tên *\n    - textbox \"Họ tên\": Bác sĩ giả cần xóa\n    - generic: Nhập đầy đủ họ tên có dấu, tối đa 100 ký tự.\n    - generic: Ngày sinh *\n    - textbox \"Ngày sinh\": 1970-01-01\n    - generic: Chọn ngày sinh từ năm 1900 đến hôm nay. Nếu nhập bằng bàn phím, dùng định dạng hiển thị trên ô.\n    - generic: Địa chỉ *\n    - textbox \"Địa chỉ\": Địa chỉ nhân viên giả tuần 3\n    - generic: Nhập địa chỉ liên hệ, tối đa 255 ký tự.\n    - generic: Bậc nghề *\n    - textbox \"Bậc nghề\": Bậc 1\n    - generic: Nhập bậc nghề theo hồ sơ bác sĩ, tối đa 40 ký tự.\n    - generic: Thâm niên (năm) *\n    - spinbutton \"Thâm niên (năm)\": \"5\"\n    - generic: Nhập số năm tròn từ 0 đến 100; nhập 0 nếu chưa có thâm niên.\n    - generic: Chuyên môn *\n    - textbox \"Chuyên môn\": Nội tổng quát\n    - generic: \"Ví dụ: Nội tổng quát. Tối đa 100 ký tự.\"\n    - generic: Trình độ đào tạo *\n    - textbox \"Trình độ đào tạo\": Đại học giả lập\n    - generic: Nhập trình độ theo hồ sơ nhân viên, tối đa 100 ký tự.\n    - button \"Thêm hồ sơ\"\n    - link \"Hủy\":\n      - /url: /doctors\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:41:56.649Z",
+    "url": "http://127.0.0.1:64505/doctors/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-BS-invalid",
+    "input": "Thâm niên -1",
+    "expected": "HTML chặn giá trị âm trước gửi; không nhận là lỗi server",
+    "actual": {
+      "message": "Value must be greater than or equal to 0.",
+      "rangeUnderflow": true,
+      "valid": false,
+      "value": "-1"
+    },
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:42:07.470Z",
+    "url": "http://127.0.0.1:64505/doctors/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-BS-delete",
+    "input": "U3TMPBS không có lịch sử",
+    "expected": "Xóa thành công",
+    "actual": "Đã thêm hồ sơ thành công.",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:42:08.915Z",
+    "url": "http://127.0.0.1:64505/doctors/U3TMPBS",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-YT-create",
+    "input": "U3YT1",
+    "expected": "Lưu và xem hồ sơ y tá",
+    "actual": "Đã thêm hồ sơ thành công.\n\n← Danh sách y tá\n\nHỒ SƠ Y TÁ\n\nY tá giả UI 1\n\nMã hồ sơ: U3YT1\n\nSửa hồ sơ\nThông tin y tá\nMã y tá\nU3YT1\nCMT / CCCD\n999003200001\nHọ tên\nY tá giả UI 1\nNgày sinh\n01/01/1970\nĐịa chỉ\nĐịa chỉ nhân viên giả tuần 3\nSố điện thoại\n0900000321\nTrình độ\nCao đẳng giả lập\nThâm niên (năm)\n4\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:42:24.614Z",
+    "url": "http://127.0.0.1:64505/nurses/U3YT1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "05-nurse-created.jpg"
+  },
+  {
+    "id": "CRUD-YT-edit",
+    "input": "Sửa địa chỉ U3YT1 rồi reload",
+    "expected": "Giữ địa chỉ mới",
+    "actual": "← Danh sách y tá\n\nHỒ SƠ Y TÁ\n\nY tá giả UI 1\n\nMã hồ sơ: U3YT1\n\nSửa hồ sơ\nThông tin y tá\nMã y tá\nU3YT1\nCMT / CCCD\n999003200001\nHọ tên\nY tá giả UI 1\nNgày sinh\n01/01/1970\nĐịa chỉ\nĐịa chỉ y tá giả đã sửa\nSố điện thoại\n0900000321\nTrình độ\nCao đẳng giả lập\nThâm niên (năm)\n4\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:42:26.341Z",
+    "url": "http://127.0.0.1:64505/nurses/U3YT1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-YT-duplicate",
+    "input": "Trùng mã U3YT1 với CCCD khác",
+    "expected": "Từ chối và giữ thông tin",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Danh sách y tá\":\n    - /url: /nurses\n  - paragraph: QUẢN LÝ HỒ SƠ\n  - heading \"Thêm y tá\" [level=1]\n  - paragraph: Điền thông tin bên dưới để tạo hồ sơ mới. Các trường có dấu * đều bắt buộc.\n  - alert:\n    - strong: Chưa lưu được hồ sơ\n    - paragraph: Mã hồ sơ hoặc CMT/CCCD đã tồn tại. Vui lòng kiểm tra lại.\n    - paragraph: Thông tin bạn đã nhập vẫn được giữ trong biểu mẫu. Kiểm tra lại trước khi lưu.\n  - form \"Thêm y tá\":\n    - generic: Mã y tá *\n    - textbox \"Mã y tá\": U3YT1\n    - generic: \"Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng mã “new”.\"\n    - generic: CMT / CCCD *\n    - textbox \"CMT / CCCD\": \"999003200009\"\n    - generic: Nhập 9–20 chữ số, giữ cả số 0 ở đầu.\n    - generic: Họ tên *\n    - textbox \"Họ tên\": Y tá giả cần xóa\n    - generic: Nhập đầy đủ họ tên có dấu, tối đa 100 ký tự.\n    - generic: Ngày sinh *\n    - textbox \"Ngày sinh\": 1970-01-01\n    - generic: Chọn ngày sinh từ năm 1900 đến hôm nay. Nếu nhập bằng bàn phím, dùng định dạng hiển thị trên ô.\n    - generic: Địa chỉ *\n    - textbox \"Địa chỉ\": Địa chỉ nhân viên giả tuần 3\n    - generic: Nhập địa chỉ liên hệ, tối đa 255 ký tự.\n    - generic: Số điện thoại *\n    - textbox \"Số điện thoại\": <redacted>\n    - generic: \"Nhập 9–15 chữ số; có thể bắt đầu bằng dấu +. Ví dụ: 0901234567.\"\n    - generic: Trình độ *\n    - textbox \"Trình độ\": Cao đẳng giả lập\n    - generic: Nhập trình độ theo hồ sơ nhân viên, tối đa 100 ký tự.\n    - generic: Thâm niên (năm) *\n    - spinbutton \"Thâm niên (năm)\": \"4\"\n    - generic: Nhập số năm tròn từ 0 đến 100; nhập 0 nếu chưa có thâm niên.\n    - button \"Thêm hồ sơ\"\n    - link \"Hủy\":\n      - /url: /nurses\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:42:27.090Z",
+    "url": "http://127.0.0.1:64505/nurses/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-YT-invalid",
+    "input": "CCCD abc",
+    "expected": "Lỗi tiếng Việt và giữ dữ liệu hợp lệ",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Danh sách y tá\":\n    - /url: /nurses\n  - paragraph: QUẢN LÝ HỒ SƠ\n  - heading \"Thêm y tá\" [level=1]\n  - paragraph: Điền thông tin bên dưới để tạo hồ sơ mới. Các trường có dấu * đều bắt buộc.\n  - 'alert \"Chưa lưu hồ sơ: có 1 trường cần kiểm tra\"':\n    - strong: \"Chưa lưu hồ sơ: có 1 trường cần kiểm tra\"\n    - list:\n      - 'link \"CMT / CCCD: CMT/CCCD phải có từ 9 đến 20 chữ số.\"':\n        - /url: \"#cmt\"\n  - form \"Thêm y tá\":\n    - generic: Mã y tá *\n    - textbox \"Mã y tá\": U3TMPYT\n    - generic: \"Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng mã “new”.\"\n    - generic: CMT / CCCD *\n    - textbox \"CMT / CCCD\": abc\n    - generic: Nhập 9–20 chữ số, giữ cả số 0 ở đầu.\n    - generic: CMT/CCCD phải có từ 9 đến 20 chữ số.\n    - generic: Họ tên *\n    - textbox \"Họ tên\": Y tá giả cần xóa\n    - generic: Nhập đầy đủ họ tên có dấu, tối đa 100 ký tự.\n    - generic: Ngày sinh *\n    - textbox \"Ngày sinh\": 1970-01-01\n    - generic: Chọn ngày sinh từ năm 1900 đến hôm nay. Nếu nhập bằng bàn phím, dùng định dạng hiển thị trên ô.\n    - generic: Địa chỉ *\n    - textbox \"Địa chỉ\": Địa chỉ nhân viên giả tuần 3\n    - generic: Nhập địa chỉ liên hệ, tối đa 255 ký tự.\n    - generic: Số điện thoại *\n    - textbox \"Số điện thoại\": <redacted>\n    - generic: \"Nhập 9–15 chữ số; có thể bắt đầu bằng dấu +. Ví dụ: 0901234567.\"\n    - generic: Trình độ *\n    - textbox \"Trình độ\": Cao đẳng giả lập\n    - generic: Nhập trình độ theo hồ sơ nhân viên, tối đa 100 ký tự.\n    - generic: Thâm niên (năm) *\n    - spinbutton \"Thâm niên (năm)\": \"4\"\n    - generic: Nhập số năm tròn từ 0 đến 100; nhập 0 nếu chưa có thâm niên.\n    - button \"Thêm hồ sơ\"\n    - link \"Hủy\":\n      - /url: /nurses\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:42:36.020Z",
+    "url": "http://127.0.0.1:64505/nurses/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-YT-delete",
+    "input": "U3TMPYT chưa có hỗ trợ",
+    "expected": "Xóa thành công",
+    "actual": "Đã thêm hồ sơ thành công.",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:42:37.512Z",
+    "url": "http://127.0.0.1:64505/nurses/U3TMPYT",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "FLOW-new-T10",
+    "input": "U3L1/U3D1/U3K1; 28/09/2001; phí 100000; không kê đơn",
+    "expected": "Tạo thành công, STT1, có hỗ trợ y tá",
+    "actual": "Đã lưu thành công.\n\n← Danh sách lượt khám\n\nCHI TIẾT LƯỢT ĐẾN KHÁM\n\nLượt U3L1\n\nĐang khám\n\nBệnh nhân\nBệnh nhân giả UI tuần 3 · U3BN1\nNgày vào / ngày ra\n28/09/2001 / —\nSố lần khám trong lượt\n1\nTiền khám/chữa (chưa gồm thuốc)\n100.000 đ\nToàn bộ lịch sử\nKhám thêm bệnh\nGhi hỗ trợ y tá\nKết thúc lượt\nCác bệnh được khám\n\nMỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.\n\nLần khám, đợt điều trị và thao tác\nLần khám / đợt\tBệnh / trạng thái đợt\tNgày / thứ tự\tBác sĩ\tKết luận\tTiền khám\tThao tác\nU3K1 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\nĐang điều trị\t28/09/2001 · Lần 1\tU3BS\tTheo dõi giả lập UI tuần 3\t100.000 đ\t\nKê đơn\nXác nhận khỏi\nY tá hỗ trợ\nNgày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\tThao tác\nY tá giả UI 1 · U3YT1\t28/09/2001\tTiếp đón giả lập\tCập nhật hỗ trợ U3YT1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:43:01.209Z",
+    "url": "http://127.0.0.1:64505/visits/U3L1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "06-first-visit.jpg"
+  },
+  {
+    "id": "FLOW-revisit2",
+    "input": "U3L2/U3K2 tái khám U3D1 29/09/2001",
+    "expected": "STT2, giữ bác sĩ và bệnh",
+    "actual": "Đã lưu thành công.\n\n← Danh sách lượt khám\n\nCHI TIẾT LƯỢT ĐẾN KHÁM\n\nLượt U3L2\n\nĐang khám\n\nBệnh nhân\nBệnh nhân giả UI tuần 3 · U3BN1\nNgày vào / ngày ra\n29/09/2001 / —\nSố lần khám trong lượt\n1\nTiền khám/chữa (chưa gồm thuốc)\n100.000 đ\nToàn bộ lịch sử\nKhám thêm bệnh\nGhi hỗ trợ y tá\nKết thúc lượt\nCác bệnh được khám\n\nMỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.\n\nLần khám, đợt điều trị và thao tác\nLần khám / đợt\tBệnh / trạng thái đợt\tNgày / thứ tự\tBác sĩ\tKết luận\tTiền khám\tThao tác\nU3K2 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\nĐang điều trị\t29/09/2001 · Lần 2\tU3BS\tTái khám giả lần 2\t100.000 đ\t\nKê đơn\nXác nhận khỏi\nY tá hỗ trợ\nNgày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\tThao tác\nY tá giả UI 1 · U3YT1\t29/09/2001\tTiếp đón và theo dõi giả\tCập nhật hỗ trợ U3YT1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:43:21.293Z",
+    "url": "http://127.0.0.1:64505/visits/U3L2",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T01-UI",
+    "input": "U3D1 khám 28,29,30/09/2001",
+    "expected": "STT1–3, vẫn cùng U3D1",
+    "actual": "Đã lưu thành công.\n\n← Danh sách lượt khám\n\nCHI TIẾT LƯỢT ĐẾN KHÁM\n\nLượt U3L3\n\nĐang khám\n\nBệnh nhân\nBệnh nhân giả UI tuần 3 · U3BN1\nNgày vào / ngày ra\n30/09/2001 / —\nSố lần khám trong lượt\n1\nTiền khám/chữa (chưa gồm thuốc)\n100.000 đ\nToàn bộ lịch sử\nKhám thêm bệnh\nGhi hỗ trợ y tá\nKết thúc lượt\nCác bệnh được khám\n\nMỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.\n\nLần khám, đợt điều trị và thao tác\nLần khám / đợt\tBệnh / trạng thái đợt\tNgày / thứ tự\tBác sĩ\tKết luận\tTiền khám\tThao tác\nU3K3 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\nĐang điều trị\t30/09/2001 · Lần 3\tU3BS\tTái khám giả lần 3\t100.000 đ\t\nKê đơn\nXác nhận khỏi\nY tá hỗ trợ\nNgày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\tThao tác\nY tá giả UI 1 · U3YT1\t30/09/2001\tTiếp đón và theo dõi giả\tCập nhật hỗ trợ U3YT1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:43:22.959Z",
+    "url": "http://127.0.0.1:64505/visits/U3L3",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "07-third-visit.jpg"
+  },
+  {
+    "id": "T03-UI-flow",
+    "input": "U3D1 tái khám 01/10/2001",
+    "expected": "Đợt giữ nguyên, STT4 qua tháng",
+    "actual": "Đã lưu thành công.\n\n← Danh sách lượt khám\n\nCHI TIẾT LƯỢT ĐẾN KHÁM\n\nLượt U3L4\n\nĐang khám\n\nBệnh nhân\nBệnh nhân giả UI tuần 3 · U3BN1\nNgày vào / ngày ra\n01/10/2001 / —\nSố lần khám trong lượt\n1\nTiền khám/chữa (chưa gồm thuốc)\n100.000 đ\nToàn bộ lịch sử\nKhám thêm bệnh\nGhi hỗ trợ y tá\nKết thúc lượt\nCác bệnh được khám\n\nMỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.\n\nLần khám, đợt điều trị và thao tác\nLần khám / đợt\tBệnh / trạng thái đợt\tNgày / thứ tự\tBác sĩ\tKết luận\tTiền khám\tThao tác\nU3K4 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\nĐang điều trị\t01/10/2001 · Lần 4\tU3BS\tTái khám giả lần 4\t100.000 đ\t\nKê đơn\nXác nhận khỏi\nY tá hỗ trợ\nNgày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\tThao tác\nY tá giả UI 1 · U3YT1\t01/10/2001\tTiếp đón và theo dõi giả\tCập nhật hỗ trợ U3YT1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:43:25.766Z",
+    "url": "http://127.0.0.1:64505/visits/U3L4",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "FLOW-cure-T08",
+    "input": "U3D1 khỏi 01/10/2001 sau STT4",
+    "expected": "Đã khỏi, ngày khỏi tháng 10; STT4",
+    "actual": "U3D1\tBệnh nhân giả UI tuần 3\tBệnh giả kiểm thử UI tuần 3 A\tBác sĩ giả UI tuần 3\t2001-09-28\t2001-10-01\tĐã khỏi\t4",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:43:52.913Z",
+    "url": "http://127.0.0.1:64505/treatments",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T02-UI",
+    "input": "Tái mắc U3B1 02/10/2001 tạo U3D2",
+    "expected": "Đợt mới U3D2, STT1",
+    "actual": "Đã lưu thành công.\n\n← Danh sách lượt khám\n\nCHI TIẾT LƯỢT ĐẾN KHÁM\n\nLượt U3L5\n\nĐang khám\n\nBệnh nhân\nBệnh nhân giả UI tuần 3 · U3BN1\nNgày vào / ngày ra\n02/10/2001 / —\nSố lần khám trong lượt\n1\nTiền khám/chữa (chưa gồm thuốc)\n100.000 đ\nToàn bộ lịch sử\nKhám thêm bệnh\nGhi hỗ trợ y tá\nKết thúc lượt\nCác bệnh được khám\n\nMỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.\n\nLần khám, đợt điều trị và thao tác\nLần khám / đợt\tBệnh / trạng thái đợt\tNgày / thứ tự\tBác sĩ\tKết luận\tTiền khám\tThao tác\nU3K5 / U3D2\tBệnh giả kiểm thử UI tuần 3 A\nĐang điều trị\t02/10/2001 · Lần 1\tU3BS\tTheo dõi giả lập UI tuần 3\t100.000 đ\t\nKê đơn\nXác nhận khỏi\nY tá hỗ trợ\nNgày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\tThao tác\nY tá giả UI 1 · U3YT1\t02/10/2001\tTiếp đón giả lập\tCập nhật hỗ trợ U3YT1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:43:53.549Z",
+    "url": "http://127.0.0.1:64505/visits/U3L5",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T04-UI",
+    "input": "U3L5 thêm U3B2/U3D3/U3K6, phí50000",
+    "expected": "Một lượt có 2 bệnh, phí lượt150000",
+    "actual": "Đã lưu thành công.\n\n← Danh sách lượt khám\n\nCHI TIẾT LƯỢT ĐẾN KHÁM\n\nLượt U3L5\n\nĐang khám\n\nBệnh nhân\nBệnh nhân giả UI tuần 3 · U3BN1\nNgày vào / ngày ra\n02/10/2001 / —\nSố lần khám trong lượt\n2\nTiền khám/chữa (chưa gồm thuốc)\n150.000 đ\nToàn bộ lịch sử\nKhám thêm bệnh\nGhi hỗ trợ y tá\nKết thúc lượt\nCác bệnh được khám\n\nMỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.\n\nLần khám, đợt điều trị và thao tác\nLần khám / đợt\tBệnh / trạng thái đợt\tNgày / thứ tự\tBác sĩ\tKết luận\tTiền khám\tThao tác\nU3K5 / U3D2\tBệnh giả kiểm thử UI tuần 3 A\nĐang điều trị\t02/10/2001 · Lần 1\tU3BS\tTheo dõi giả lập UI tuần 3\t100.000 đ\t\nKê đơn\nXác nhận khỏi\n\nU3K6 / U3D3\tBệnh giả kiểm thử UI tuần 3 B\nĐang điều trị\t02/10/2001 · Lần 1\tU3BS\tKhám bệnh thứ hai giả lập\t50.000 đ\t\nKê đơn\nXác nhận khỏi\nY tá hỗ trợ\nNgày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\tThao tác\nY tá giả UI 1 · U3YT1\t02/10/2001\tTiếp đón giả lập\tCập nhật hỗ trợ U3YT1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:44:02.586Z",
+    "url": "http://127.0.0.1:64505/visits/U3L5",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "08-two-diseases.jpg"
+  },
+  {
+    "id": "T09-UI-support",
+    "input": "U3YT1 sửa thành nhiều công việc; thêm U3YT2",
+    "expected": "Đúng 2 y tá ở lượt U3L5, ngày hỗ trợ không đổi",
+    "actual": "Ngày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\tThao tác\nY tá giả UI 1 · U3YT1\t02/10/2001\tTiếp đón, đo huyết áp, theo dõi giả\tCập nhật hỗ trợ U3YT1\nY tá giả UI 2 · U3YT2\t02/10/2001\tY tá thứ hai hỗ trợ giả\tCập nhật hỗ trợ U3YT2",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:44:15.650Z",
+    "url": "http://127.0.0.1:64505/visits/U3L5",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "UI-keyboard-medicine",
+    "input": "Enter thêm dòng 4, Enter xóa dòng 4 và 3",
+    "expected": "Còn 2 dòng đã nhập, thêm/xóa dùng bàn phím",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Quay lại lượt khám\":\n    - /url: /visits/U3L5\n  - paragraph: KHÁM VÀ ĐIỀU TRỊ\n  - heading \"Kê đơn — lần khám U3K5\" [level=1]\n  - paragraph:\n    - text: Bệnh nhân giả UI tuần 3 · Bệnh nhân\n    - strong: U3BN1\n  - paragraph: Các trường có dấu * là bắt buộc. Kiểm tra thông tin trước khi lưu.\n  - group \"Thông tin đơn thuốc\":\n    - generic: Thông tin đơn thuốc\n    - paragraph: Ngày đơn bằng ngày khám. Giá bán do hệ thống lấy khi lưu; đơn đã lưu giữ nguyên đơn giá lịch sử.\n    - generic: Mã đơn mới *\n    - textbox \"Mã đơn mới\": U3RX1\n    - generic: Ngày lập đơn *\n    - textbox \"Ngày lập đơn\": 2001-10-02\n  - heading \"Thuốc trong đơn\" [level=2]\n  - paragraph: Cần ít nhất một thuốc, tối đa 100 dòng. Mỗi thuốc chỉ xuất hiện một lần; các dòng hoàn toàn trống sẽ được bỏ qua.\n  - group \"Thuốc 1\":\n    - generic: Thuốc 1\n    - generic: Thuốc\n    - combobox \"Thuốc\":\n      - option \"— Chọn —\"\n      - option \"T001 · Paracetamol 500 mg · 1.200 đ\"\n      - option \"T002 · Ibuprofen 400 mg · 2.500 đ\"\n      - option \"T003 · Amoxicillin 500 mg · 2.800 đ\"\n      - option \"T004 · Azithromycin 500 mg · 14.500 đ\"\n      - option \"T005 · Cetirizine 10 mg · 1.900 đ\"\n      - option \"T006 · Loratadine 10 mg · 2.200 đ\"\n      - option \"T007 · Omeprazole 20 mg · 3.200 đ\"\n      - option \"T008 · Esomeprazole 20 mg · 6.500 đ\"\n      - option \"T009 · Amlodipine 5 mg · 1.800 đ\"\n      - option \"T010 · Losartan 50 mg · 4.200 đ\"\n      - option \"T011 · Metformin 500 mg · 1.800 đ\"\n      - option \"T012 · Atorvastatin 10 mg · 6.100 đ\"\n      - option \"T013 · Rosuvastatin 10 mg · 8.200 đ\"\n      - option \"T014 · Salbutamol xịt 100 mcg · 79.000 đ\"\n      - option \"T015 · Acetylcysteine 200 mg · 2.700 đ\"\n      - option \"T016 · Dextromethorphan 15 mg · 2.300 đ\"\n      - option \"T017 · Vitamin C 500 mg · 1.500 đ\"\n      - option \"T018 · ORS bù nước · 4.000 đ\"\n      - option \"T019 · Nước muối sinh lý 0,9% · 13.000 đ\"\n      - option \"T020 · Thuốc nhỏ mắt Natri clorid 0,9% · 15.000 đ\"\n      - option \"T021 · Diclofenac gel 1% · 42.000 đ\"\n      - option \"T022 · Meloxicam 7,5 mg · 3.800 đ\"\n      - option \"T023 · Baclofen 10 mg · 3.900 đ\"\n      - option \"T024 · Domperidone 10 mg · 2.600 đ\"\n      - option \"T025 · Simethicone 80 mg · 3.000 đ\"\n      - option \"T026 · Gaviscon hỗn dịch · 9.500 đ\"\n      - option \"T027 · Hydrocortisone cream 1% · 29.000 đ\"\n      - option \"T028 · Clotrimazole cream 1% · 31.000 đ\"\n      - option \"T029 · Ciprofloxacin 500 mg · 6.500 đ\"\n      - option \"T030 · Montelukast 10 mg · 6.200 đ\"\n      - option \"U3T1 · Thuốc giả UI 1 · 1.000 đ\" [selected]\n      - option \"U3T2 · Thuốc giả UI 2 · 2.000 đ\"\n    - generic: Số lượng\n    - spinbutton \"Số lượng\": \"2\"\n    - generic: Liều dùng\n    - textbox \"Liều dùng\": Sáng - dữ liệu giả\n    - button \"Xóa dòng 1\"\n  - group \"Thuốc 2\":\n    - generic: Thuốc 2\n    - generic: Thuốc\n    - combobox \"Thuốc\" [active]:\n      - option \"— Chọn —\"\n      - option \"T001 · Paracetamol 500 mg · 1.200 đ\"\n      - option \"T002 · Ibuprofen 400 mg · 2.500 đ\"\n      - option \"T003 · Amoxicillin 500 mg · 2.800 đ\"\n      - option \"T004 · Azithromycin 500 mg · 14.500 đ\"\n      - option \"T005 · Cetirizine 10 mg · 1.900 đ\"\n      - option \"T006 · Loratadine 10 mg · 2.200 đ\"\n      - option \"T007 · Omeprazole 20 mg · 3.200 đ\"\n      - option \"T008 · Esomeprazole 20 mg · 6.500 đ\"\n      - option \"T009 · Amlodipine 5 mg · 1.800 đ\"\n      - option \"T010 · Losartan 50 mg · 4.200 đ\"\n      - option \"T011 · Metformin 500 mg · 1.800 đ\"\n      - option \"T012 · Atorvastatin 10 mg · 6.100 đ\"\n      - option \"T013 · Rosuvastatin 10 mg · 8.200 đ\"\n      - option \"T014 · Salbutamol xịt 100 mcg · 79.000 đ\"\n      - option \"T015 · Acetylcysteine 200 mg · 2.700 đ\"\n      - option \"T016 · Dextromethorphan 15 mg · 2.300 đ\"\n      - option \"T017 · Vitamin C 500 mg · 1.500 đ\"\n      - option \"T018 · ORS bù nước · 4.000 đ\"\n      - option \"T019 · Nước muối sinh lý 0,9% · 13.000 đ\"\n      - option \"T020 · Thuốc nhỏ mắt Natri clorid 0,9% · 15.000 đ\"\n      - option \"T021 · Diclofenac gel 1% · 42.000 đ\"\n      - option \"T022 · Meloxicam 7,5 mg · 3.800 đ\"\n      - option \"T023 · Baclofen 10 mg · 3.900 đ\"\n      - option \"T024 · Domperidone 10 mg · 2.600 đ\"\n      - option \"T025 · Simethicone 80 mg · 3.000 đ\"\n      - option \"T026 · Gaviscon hỗn dịch · 9.500 đ\"\n      - option \"T027 · Hydrocortisone cream 1% · 29.000 đ\"\n      - option \"T028 · Clotrimazole cream 1% · 31.000 đ\"\n      - option \"T029 · Ciprofloxacin 500 mg · 6.500 đ\"\n      - option \"T030 · Montelukast 10 mg · 6.200 đ\"\n      - option \"U3T1 · Thuốc giả UI 1 · 1.000 đ\"\n      - option \"U3T2 · Thuốc giả UI 2 · 2.000 đ\" [selected]\n    - generic: Số lượng\n    - spinbutton \"Số lượng\": \"3\"\n    - generic: Liều dùng\n    - textbox \"Liều dùng\": Tối - dữ liệu giả\n    - button \"Xóa dòng 2\"\n  - button \"Thêm dòng thuốc\"\n  - status: Đã xóa dòng thuốc. Còn 2 dòng.\n  - button \"Lưu\"\n  - link \"Hủy\":\n    - /url: /visits/U3L5\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:44:30.337Z",
+    "url": "http://127.0.0.1:64505/examinations/U3K5/prescription",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "09-prescription-form.jpg"
+  },
+  {
+    "id": "T12-UI-quantity0",
+    "input": "Số lượng thuốc đầu=0",
+    "expected": "Trình duyệt chặn số lượng dưới1, giữ 2 dòng thuốc",
+    "actual": {
+      "message": "Value must be greater than or equal to 1.",
+      "valid": false,
+      "value": "0"
+    },
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:44:45.509Z",
+    "url": "http://127.0.0.1:64505/examinations/U3K5/prescription",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T12-UI-quantityNegative",
+    "input": "Số lượng=-1",
+    "expected": "Trình duyệt chặn âm; server boundary đã có kiểm thử chuyên biệt Bước2",
+    "actual": {
+      "message": "Value must be greater than or equal to 1.",
+      "valid": false,
+      "value": "-1"
+    },
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:44:45.823Z",
+    "url": "http://127.0.0.1:64505/examinations/U3K5/prescription",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T11-UI-price",
+    "input": "U3RX1: 2×1000+3×2000; SQL đổi giá danh mục U3T1 sang9999",
+    "expected": "Giữ đơn giá1000/2000, tổng8000",
+    "actual": "← Quay lại lượt khám\n\nĐƠN THUỐC ĐÃ LƯU\n\nĐơn thuốc U3RX1\nNgày lập đơn\n02/10/2001\nLần khám / lượt\nU3K5 / U3L5\n\nĐơn giá dưới đây đã được lưu tại thời điểm kê đơn. Trên màn hình nhỏ, chọn bảng và dùng phím mũi tên hoặc cuộn ngang để xem đủ.\n\nChi tiết đơn U3RX1\nThuốc\tĐơn vị\tSố lượng\tLiều dùng\tĐơn giá đã lưu\tThành tiền\nThuốc giả UI 1\tviên\t2\tSáng - dữ liệu giả\t1.000 đ\t2.000 đ\nThuốc giả UI 2\tviên\t3\tTối - dữ liệu giả\t2.000 đ\t6.000 đ\nTổng: 8.000 đ\n\nTiền thuốc của đơn này, chưa gồm phí khám/chữa.",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:45:04.086Z",
+    "url": "http://127.0.0.1:64505/prescriptions/U3RX1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "10-historical-price.jpg"
+  },
+  {
+    "id": "T12-UI-invalid-close",
+    "input": "Ngày ra 01/10 trước ngày vào02/10/2001",
+    "expected": "Từ chối bằng tiếng Việt và giữ ngày nhập",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Quay lại lượt khám\":\n    - /url: /visits/U3L5\n  - paragraph: KHÁM VÀ ĐIỀU TRỊ\n  - heading \"Kết thúc lượt U3L5\" [level=1]\n  - paragraph:\n    - text: Bệnh nhân giả UI tuần 3 · Bệnh nhân\n    - strong: U3BN1\n    - text: · Ngày vào 02/10/2001\n  - paragraph: Các trường có dấu * là bắt buộc. Kiểm tra thông tin trước khi lưu.\n  - alert [active]:\n    - heading \"Chưa lưu được thông tin\" [level=2]\n    - paragraph: Ngày ra viện không được trước ngày vào viện.\n    - paragraph: Dữ liệu bạn nhập được giữ lại để sửa. Chưa có thay đổi nào được lưu từ lần gửi này.\n    - link \"Kiểm tra lại biểu mẫu\":\n      - /url: \"#clinical-form\"\n  - group \"Kết thúc lượt đến khám\":\n    - generic: Kết thúc lượt đến khám\n    - paragraph: Kết thúc lượt sẽ khóa việc thêm lần khám và sửa hỗ trợ của lượt này. Đợt điều trị vẫn tiếp tục cho đến khi xác nhận khỏi.\n    - generic: Ngày ra viện *\n    - textbox \"Ngày ra viện\": 2001-10-01\n    - generic: Không trước ngày khám hoặc ngày hỗ trợ cuối cùng trong lượt.\n  - button \"Lưu\"\n  - link \"Hủy\":\n    - /url: /visits/U3L5\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:45:21.617Z",
+    "url": "http://127.0.0.1:64505/visits/U3L5/close",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "11-invalid-close.jpg"
+  },
+  {
+    "id": "FLOW-close",
+    "input": "Đóng U3L5 ngày02/10/2001",
+    "expected": "Đã kết thúc, không còn thao tác thêm khám/sửa hỗ trợ",
+    "actual": "Đã lưu thành công.\n\n← Danh sách lượt khám\n\nCHI TIẾT LƯỢT ĐẾN KHÁM\n\nLượt U3L5\n\nĐã kết thúc lượt\n\nBệnh nhân\nBệnh nhân giả UI tuần 3 · U3BN1\nNgày vào / ngày ra\n02/10/2001 / 02/10/2001\nSố lần khám trong lượt\n2\nTiền khám/chữa (chưa gồm thuốc)\n150.000 đ\nToàn bộ lịch sử\n\nLượt đã kết thúc, không thể thêm lần khám hoặc sửa hỗ trợ. Đợt đang điều trị vẫn có thể tiếp tục trong lượt mới.\n\nCác bệnh được khám\n\nMỗi bệnh có một lần khám trong lượt. Trên màn hình nhỏ, cuộn ngang hoặc dùng phím mũi tên khi chọn bảng.\n\nLần khám, đợt điều trị và thao tác\nLần khám / đợt\tBệnh / trạng thái đợt\tNgày / thứ tự\tBác sĩ\tKết luận\tTiền khám\tThao tác\nU3K5 / U3D2\tBệnh giả kiểm thử UI tuần 3 A\nĐang điều trị\t02/10/2001 · Lần 1\tU3BS\tTheo dõi giả lập UI tuần 3\t100.000 đ\t\nĐơn U3RX1\nXác nhận khỏi\n\nU3K6 / U3D3\tBệnh giả kiểm thử UI tuần 3 B\nĐang điều trị\t02/10/2001 · Lần 1\tU3BS\tKhám bệnh thứ hai giả lập\t50.000 đ\t\nKê đơn\nXác nhận khỏi\nY tá hỗ trợ\nNgày bắt đầu và nội dung hỗ trợ\nY tá\tNgày bắt đầu\tNội dung\nY tá giả UI 1 · U3YT1\t02/10/2001\tTiếp đón, đo huyết áp, theo dõi giả\nY tá giả UI 2 · U3YT2\t02/10/2001\tY tá thứ hai hỗ trợ giả",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:45:23.362Z",
+    "url": "http://127.0.0.1:64505/visits/U3L5",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "12-closed-visit.jpg"
+  },
+  {
+    "id": "CRUD-BN-block-delete",
+    "input": "Xóa U3BN1 có 5 lượt khám",
+    "expected": "Bị chặn và giữ hồ sơ",
+    "actual": "← Danh sách bệnh nhân\n\nHỒ SƠ BỆNH NHÂN\n\nBệnh nhân giả UI tuần 3\n\nMã hồ sơ: U3BN1\n\nSửa hồ sơ\nChưa xóa được hồ sơ\n\nKhông thể xóa: hồ sơ đang được lịch sử khám hoặc hỗ trợ tham chiếu.\n\nHồ sơ và dữ liệu liên quan vẫn được giữ nguyên.\n\nThông tin bệnh nhân\nMã bệnh nhân\nU3BN1\nCMT / CCCD\n999003000001\nHọ tên\nBệnh nhân giả UI tuần 3\nNgày sinh\n01/01/1980\nĐịa chỉ\nĐịa chỉ giả đã sửa UI tuần 3\nSố điện thoại\n0900000301\nXem lịch sử khám\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:45:44.230Z",
+    "url": "http://127.0.0.1:64505/patients/U3BN1/delete",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "13-block-delete-patient.jpg"
+  },
+  {
+    "id": "CRUD-BS-block-delete",
+    "input": "Xóa U3BS có lịch sử/ hỗ trợ",
+    "expected": "Bị chặn, giữ hồ sơ",
+    "actual": "← Danh sách bác sĩ\n\nHỒ SƠ BÁC SĨ\n\nBác sĩ giả UI tuần 3\n\nMã hồ sơ: U3BS\n\nSửa hồ sơ\nChưa xóa được hồ sơ\n\nKhông thể xóa: hồ sơ đang được lịch sử khám hoặc hỗ trợ tham chiếu.\n\nHồ sơ và dữ liệu liên quan vẫn được giữ nguyên.\n\nThông tin bác sĩ\nMã bác sĩ\nU3BS\nCMT / CCCD\n999003100001\nHọ tên\nBác sĩ giả UI tuần 3\nNgày sinh\n01/01/1970\nĐịa chỉ\nĐịa chỉ bác sĩ giả đã sửa\nBậc nghề\nBậc 1\nThâm niên (năm)\n5\nChuyên môn\nNội tổng quát\nTrình độ đào tạo\nĐại học giả lập\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:45:46.864Z",
+    "url": "http://127.0.0.1:64505/doctors/U3BS/delete",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "CRUD-YT-block-delete",
+    "input": "Xóa U3YT1 có lịch sử/ hỗ trợ",
+    "expected": "Bị chặn, giữ hồ sơ",
+    "actual": "← Danh sách y tá\n\nHỒ SƠ Y TÁ\n\nY tá giả UI 1\n\nMã hồ sơ: U3YT1\n\nSửa hồ sơ\nChưa xóa được hồ sơ\n\nKhông thể xóa: hồ sơ đang được lịch sử khám hoặc hỗ trợ tham chiếu.\n\nHồ sơ và dữ liệu liên quan vẫn được giữ nguyên.\n\nThông tin y tá\nMã y tá\nU3YT1\nCMT / CCCD\n999003200001\nHọ tên\nY tá giả UI 1\nNgày sinh\n01/01/1970\nĐịa chỉ\nĐịa chỉ y tá giả đã sửa\nSố điện thoại\n0900000321\nTrình độ\nCao đẳng giả lập\nThâm niên (năm)\n4\nXóa hồ sơ chưa phát sinh nghiệp vụ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:45:48.337Z",
+    "url": "http://127.0.0.1:64505/nurses/U3YT1/delete",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "Q1-seed-Oct",
+    "input": "Q1 2026-10, seed không bị thay đổi",
+    "expected": "24 đợt theo đáp án Quyền, B004=4/B003=3/B005=3",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nThống kê bệnh theo đợt mắc\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2026-10. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nMột đợt có nhiều lần tái khám trong tháng chỉ tính một lần. Tái mắc ở đợt mới tính thêm một lần; đợt qua tháng được tính ở mỗi tháng có khám.\n\nTổng đợt theo bệnh\n\n24\n\nSố bệnh có phát sinh\n\n12\n\nSắp theo số đợt giảm dần, sau đó theo mã bệnh. Chọn bảng để cuộn bằng bàn phím trên màn hình hẹp.\n\nĐợt có lần khám trong tháng 2026-10\nMã bệnh\tTên bệnh\tSố đợt có khám\nB004\tCảm cúm\t4\nB003\tViêm phế quản\t3\nB005\tTăng huyết áp\t3\nB001\tViêm họng cấp\t2\nB009\tĐau nửa đầu\t2\nB010\tThoái hóa cột sống cổ\t2\nB013\tNhiễm khuẩn tiết niệu\t2\nB014\tRối loạn lipid máu\t2\nB002\tViêm mũi dị ứng\t1\nB007\tViêm dạ dày\t1\nB011\tViêm da tiếp xúc\t1\nB012\tViêm kết mạc\t1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:33.839Z",
+    "url": "http://127.0.0.1:64505/reports/diseases",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "14-seed-diseases.jpg"
+  },
+  {
+    "id": "T01-T03-Q1-Sep",
+    "input": "Q1 2001-09",
+    "expected": "Một đợt U3B1 dù khám3 lần",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nThống kê bệnh theo đợt mắc\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2001-09. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nMột đợt có nhiều lần tái khám trong tháng chỉ tính một lần. Tái mắc ở đợt mới tính thêm một lần; đợt qua tháng được tính ở mỗi tháng có khám.\n\nTổng đợt theo bệnh\n\n1\n\nSố bệnh có phát sinh\n\n1\n\nSắp theo số đợt giảm dần, sau đó theo mã bệnh. Chọn bảng để cuộn bằng bàn phím trên màn hình hẹp.\n\nĐợt có lần khám trong tháng 2001-09\nMã bệnh\tTên bệnh\tSố đợt có khám\nU3B1\tBệnh giả kiểm thử UI tuần 3 A\t1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:35.804Z",
+    "url": "http://127.0.0.1:64505/reports/diseases?month=2001-09",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T02-T03-T04-Q1-Oct",
+    "input": "Q1 2001-10",
+    "expected": "U3B1=2 đợt (qua tháng+tái mắc), U3B2=1; tổng3",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nThống kê bệnh theo đợt mắc\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2001-10. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nMột đợt có nhiều lần tái khám trong tháng chỉ tính một lần. Tái mắc ở đợt mới tính thêm một lần; đợt qua tháng được tính ở mỗi tháng có khám.\n\nTổng đợt theo bệnh\n\n3\n\nSố bệnh có phát sinh\n\n2\n\nSắp theo số đợt giảm dần, sau đó theo mã bệnh. Chọn bảng để cuộn bằng bàn phím trên màn hình hẹp.\n\nĐợt có lần khám trong tháng 2001-10\nMã bệnh\tTên bệnh\tSố đợt có khám\nU3B1\tBệnh giả kiểm thử UI tuần 3 A\t2\nU3B2\tBệnh giả kiểm thử UI tuần 3 B\t1",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:36.021Z",
+    "url": "http://127.0.0.1:64505/reports/diseases?month=2001-10",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "15-custom-diseases.jpg"
+  },
+  {
+    "id": "T14-Q1-empty",
+    "input": "Q1 2000-12",
+    "expected": "Không phát sinh, tổng0",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nThống kê bệnh theo đợt mắc\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2000-12. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nMột đợt có nhiều lần tái khám trong tháng chỉ tính một lần. Tái mắc ở đợt mới tính thêm một lần; đợt qua tháng được tính ở mỗi tháng có khám.\n\nTổng đợt theo bệnh\n\n0\n\nSố bệnh có phát sinh\n\n0\n\nSắp theo số đợt giảm dần, sau đó theo mã bệnh. Chọn bảng để cuộn bằng bàn phím trên màn hình hẹp.\n\nĐợt có lần khám trong tháng 2000-12\nMã bệnh\tTên bệnh\tSố đợt có khám\nKhông có phát sinh trong tháng.",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:37.356Z",
+    "url": "http://127.0.0.1:64505/reports/diseases?month=2000-12",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "Q2-seed-Oct",
+    "input": "Q2 2026-10 sau thêm U3BS và2 y tá",
+    "expected": "Tổng BS85000000; y tá75600000 = seed+ lương cơ bản nhân viên U3",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nLương bác sĩ và y tá\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2026-10. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nBác sĩ: 7.000.000 đ + 1.000.000 đ/đợt khỏi theo ngày khỏi. Y tá: 5.000.000 đ + 200.000 đ/cặp lượt–y tá theo ngày bắt đầu hỗ trợ. Tháng không có phát sinh vẫn có lương cơ bản.\n\nTổng lương bác sĩ\n\n85.000.000 đ\n\nTổng lương y tá\n\n75.600.000 đ\n\nTổng lương\n\n160.600.000 đ\n\nBác sĩ\nLương bác sĩ tháng 2026-10 — cuộn ngang để xem đủ\nMã nhân viên\tHọ tên\tLương cơ bản\tLần thưởng\tTiền thưởng\tTổng lương\nBS001\tDương Ngọc Khánh\t7.000.000 đ\t1\t1.000.000 đ\t8.000.000 đ\nBS002\tVũ Hoài An\t7.000.000 đ\t0\t0 đ\t7.000.000 đ\nBS003\tNgô Văn Bình\t7.000.000 đ\t1\t1.000.000 đ\t8.000.000 đ\nBS004\tĐặng Ngọc Tuấn\t7.000.000 đ\t1\t1.000.000 đ\t8.000.000 đ\nBS005\tNgô Thanh Quân\t7.000.000 đ\t3\t3.000.000 đ\t10.000.000 đ\nBS006\tĐặng Phương Quân\t7.000.000 đ\t1\t1.000.000 đ\t8.000.000 đ\nBS007\tNgô Ngọc Trinh\t7.000.000 đ\t1\t1.000.000 đ\t8.000.000 đ\nBS008\tBùi Văn Linh\t7.000.000 đ\t0\t0 đ\t7.000.000 đ\nBS009\tVõ Minh Dũng\t7.000.000 đ\t0\t0 đ\t7.000.000 đ\nBS010\tBùi Anh Giang\t7.000.000 đ\t0\t0 đ\t7.000.000 đ\nU3BS\tBác sĩ giả UI tuần 3\t7.000.000 đ\t0\t0 đ\t7.000.000 đ\nY tá\nLương y tá tháng 2026-10 — cuộn ngang để xem đủ\nMã nhân viên\tHọ tên\tLương cơ bản\tLần thưởng\tTiền thưởng\tTổng lương\nU3YT1\tY tá giả UI 1\t5.000.000 đ\t0\t0 đ\t5.000.000 đ\nU3YT2\tY tá giả UI 2\t5.000.000 đ\t0\t0 đ\t5.000.000 đ\nYT001\tHuỳnh Phương Long\t5.000.000 đ\t1\t200.000 đ\t5.200.000 đ\nYT002\tHoàng Hữu Quân\t5.000.000 đ\t3\t600.000 đ\t5.600.000 đ\nYT003\tLê Văn Châu\t5.000.000 đ\t3\t600.000 đ\t5.600.000 đ\nYT004\tĐỗ Văn Vy\t5.000.000 đ\t2\t400.000 đ\t5.400.000 đ\nYT005\tVũ Thanh Hùng\t5.000.000 đ\t2\t400.000 đ\t5.400.000 đ\nYT006\tDương Văn Tâm\t5.000.000 đ\t4\t800.000 đ\t5.800.000 đ\nYT007\tVũ Văn Hạnh\t5.000.000 đ\t2\t400.000 đ\t5.400.000 đ\nYT008\tĐỗ Thị Khánh\t5.000.000 đ\t1\t200.000 đ\t5.200.000 đ\nYT009\tVõ Văn Tâm\t5.000.000 đ\t0\t0 đ\t5.000.000 đ\nYT010\tVõ Ngọc Trang\t5.000.000 đ\t3\t600.000 đ\t5.600.000 đ\nYT011\tNguyễn Hoài Yến\t5.000.000 đ\t6\t1.200.000 đ\t6.200.000 đ\nYT012\tLê Hữu Minh\t5.000.000 đ\t1\t200.000 đ\t5.200.000 đ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:52.630Z",
+    "url": "http://127.0.0.1:64505/reports/salaries",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T08-T09-T14-Q2-2001-09",
+    "input": "Lọc lương 2001-09",
+    "expected": "09: BS7tr/YT1 5.6tr/YT2 5tr;10:BS8tr/YT1 5.4tr/YT2 5.2tr; kỳ rỗng chỉ lương cơ bản",
+    "actual": [
+      "U3BSBác sĩ giả UI tuần 37.000.000 đ00 đ7.000.000 đ",
+      "U3YT1Y tá giả UI 15.000.000 đ3600.000 đ5.600.000 đ",
+      "U3YT2Y tá giả UI 25.000.000 đ00 đ5.000.000 đ"
+    ],
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:53.133Z",
+    "url": "http://127.0.0.1:64505/reports/salaries?month=2001-09",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T08-T09-T14-Q2-2001-10",
+    "input": "Lọc lương 2001-10",
+    "expected": "09: BS7tr/YT1 5.6tr/YT2 5tr;10:BS8tr/YT1 5.4tr/YT2 5.2tr; kỳ rỗng chỉ lương cơ bản",
+    "actual": [
+      "U3BSBác sĩ giả UI tuần 37.000.000 đ11.000.000 đ8.000.000 đ",
+      "U3YT1Y tá giả UI 15.000.000 đ2400.000 đ5.400.000 đ",
+      "U3YT2Y tá giả UI 25.000.000 đ1200.000 đ5.200.000 đ"
+    ],
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:53.397Z",
+    "url": "http://127.0.0.1:64505/reports/salaries?month=2001-10",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "16-custom-salaries.jpg"
+  },
+  {
+    "id": "T08-T09-T14-Q2-2000-12",
+    "input": "Lọc lương 2000-12",
+    "expected": "09: BS7tr/YT1 5.6tr/YT2 5tr;10:BS8tr/YT1 5.4tr/YT2 5.2tr; kỳ rỗng chỉ lương cơ bản",
+    "actual": [
+      "U3BSBác sĩ giả UI tuần 37.000.000 đ00 đ7.000.000 đ",
+      "U3YT1Y tá giả UI 15.000.000 đ00 đ5.000.000 đ",
+      "U3YT2Y tá giả UI 25.000.000 đ00 đ5.000.000 đ"
+    ],
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:46:54.866Z",
+    "url": "http://127.0.0.1:64505/reports/salaries?month=2000-12",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "Q4-seed-Oct",
+    "input": "Doanh thu2026-10",
+    "expected": "4680000+5820800=10500800 theo expected_results.md",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nDoanh thu phòng khám\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2026-10. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nTiền khám theo ngày khám; tiền thuốc theo ngày lập đơn và đơn giá đã lưu. Đây là doanh thu ghi nhận, chưa phải sổ thu tiền thực tế.\n\nTiền khám/chữa\n\n4.680.000 đ\n\nTiền thuốc\n\n5.820.800 đ\n\nTổng doanh thu\n\n10.500.800 đ\n\nCác khoản doanh thu tháng 2026-10\nKhoản doanh thu\tSố tiền\nTiền khám/chữa\t4.680.000 đ\nTiền thuốc\t5.820.800 đ\nTổng doanh thu\t10.500.800 đ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:47:08.225Z",
+    "url": "http://127.0.0.1:64505/reports/revenue",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T10-T11-T14-Q4-2001-09",
+    "input": "Lọc doanh thu 2001-09",
+    "expected": "09:300000/0/300000;10:250000/8000/258000;kỳ rỗng0",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nDoanh thu phòng khám\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2001-09. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nTiền khám theo ngày khám; tiền thuốc theo ngày lập đơn và đơn giá đã lưu. Đây là doanh thu ghi nhận, chưa phải sổ thu tiền thực tế.\n\nTiền khám/chữa\n\n300.000 đ\n\nTiền thuốc\n\n0 đ\n\nTổng doanh thu\n\n300.000 đ\n\nCác khoản doanh thu tháng 2001-09\nKhoản doanh thu\tSố tiền\nTiền khám/chữa\t300.000 đ\nTiền thuốc\t0 đ\nTổng doanh thu\t300.000 đ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:47:08.889Z",
+    "url": "http://127.0.0.1:64505/reports/revenue?month=2001-09",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T10-T11-T14-Q4-2001-10",
+    "input": "Lọc doanh thu 2001-10",
+    "expected": "09:300000/0/300000;10:250000/8000/258000;kỳ rỗng0",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nDoanh thu phòng khám\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2001-10. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nTiền khám theo ngày khám; tiền thuốc theo ngày lập đơn và đơn giá đã lưu. Đây là doanh thu ghi nhận, chưa phải sổ thu tiền thực tế.\n\nTiền khám/chữa\n\n250.000 đ\n\nTiền thuốc\n\n8.000 đ\n\nTổng doanh thu\n\n258.000 đ\n\nCác khoản doanh thu tháng 2001-10\nKhoản doanh thu\tSố tiền\nTiền khám/chữa\t250.000 đ\nTiền thuốc\t8.000 đ\nTổng doanh thu\t258.000 đ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:47:09.148Z",
+    "url": "http://127.0.0.1:64505/reports/revenue?month=2001-10",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "17-custom-revenue.jpg"
+  },
+  {
+    "id": "T10-T11-T14-Q4-2000-12",
+    "input": "Lọc doanh thu 2000-12",
+    "expected": "09:300000/0/300000;10:250000/8000/258000;kỳ rỗng0",
+    "actual": "← Tất cả báo cáo\n\nBÁO CÁO THEO THÁNG\n\nDoanh thu phòng khám\nTháng báo cáo *\nChọn tháng/năm từ 1900 đến 9998. Khi nhập dạng văn bản, dùng YYYY-MM.\nXem báo cáo\n\nKỳ báo cáo: 2000-12. Tháng hiện tại chỉ tính đến hết hôm nay theo giờ Việt Nam; tháng khác tính trọn tháng.\n\nTiền khám theo ngày khám; tiền thuốc theo ngày lập đơn và đơn giá đã lưu. Đây là doanh thu ghi nhận, chưa phải sổ thu tiền thực tế.\n\nTiền khám/chữa\n\n0 đ\n\nTiền thuốc\n\n0 đ\n\nTổng doanh thu\n\n0 đ\n\nKhông có doanh thu ghi nhận trong tháng (tổng 0 đ).\n\nCác khoản doanh thu tháng 2000-12\nKhoản doanh thu\tSố tiền\nTiền khám/chữa\t0 đ\nTiền thuốc\t0 đ\nTổng doanh thu\t0 đ",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:47:10.496Z",
+    "url": "http://127.0.0.1:64505/reports/revenue?month=2000-12",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T15-Q3-UI",
+    "input": "Lọc U3BN1 bằng form báo cáo lịch sử",
+    "expected": "5 lượt/3 đợt/6 lần khám/2 thuốc/6 hỗ trợ/2 đang điều trị; U3D1 STT4; khám550000,thuốc8000",
+    "actual": "← Tất cả báo cáo\nHồ sơ bệnh nhân\n\nLỊCH SỬ VÀ TÌNH TRẠNG BỆNH NHÂN\n\nBệnh nhân giả UI tuần 3\n\nMã bệnh nhân: U3BN1 · Điện thoại: 0900000301\n\nMã bệnh nhân *\nGõ mã và chọn gợi ý, hoặc tìm theo tên trong danh sách bệnh nhân. Lịch sử bao gồm mọi tháng.\nXem lịch sử\nTìm bệnh nhân\n\nToàn bộ lịch sử đã lưu của bệnh nhân, không giới hạn theo tháng. Bệnh đang điều trị được xác định theo trạng thái đợt.\n\nLượt / đợt / lần khám\n\n5 / 3 / 6\n\nTổng tiền khám\n\n550.000 đ\n\nTổng tiền thuốc\n\n8.000 đ\n\nBệnh đang điều trị\nĐang điều trị\nBệnh giả kiểm thử UI tuần 3 A\nMã đợt\nU3D2\nBác sĩ phụ trách\nBác sĩ giả UI tuần 3\nLần khám hiện tại\n1\nNgày bắt đầu\n02/10/2001\nĐang điều trị\nBệnh giả kiểm thử UI tuần 3 B\nMã đợt\nU3D3\nBác sĩ phụ trách\nBác sĩ giả UI tuần 3\nLần khám hiện tại\n1\nNgày bắt đầu\n02/10/2001\nToàn bộ đợt điều trị\nCả đợt đã khỏi và đang điều trị — cuộn ngang để xem đủ\nMã đợt\tBệnh\tBác sĩ\tNgày bắt đầu\tNgày khỏi\tTrạng thái\tLần khám hiện tại\nU3D2\tBệnh giả kiểm thử UI tuần 3 A\tBác sĩ giả UI tuần 3\t02/10/2001\t—\tĐang điều trị\t1\nU3D3\tBệnh giả kiểm thử UI tuần 3 B\tBác sĩ giả UI tuần 3\t02/10/2001\t—\tĐang điều trị\t1\nU3D1\tBệnh giả kiểm thử UI tuần 3 A\tBác sĩ giả UI tuần 3\t28/09/2001\t01/10/2001\tĐã khỏi\t4\nCác lần khám\n\nCác lần khám được xếp từ mới đến cũ. Cuộn ngang hoặc chọn bảng và dùng phím mũi tên để xem đầy đủ.\n\nCác lần khám của Bệnh nhân giả UI tuần 3\nNgày khám\tLượt / Đợt\tBệnh\tSTT trong đợt\tBác sĩ\tKết luận\tTiền khám\tĐơn thuốc\tTiền thuốc\n02/10/2001\tU3L5 / U3D2\tBệnh giả kiểm thử UI tuần 3 A\t1\tBác sĩ giả UI tuần 3\tTheo dõi giả lập UI tuần 3\t100.000 đ\tU3RX1\t8.000 đ\n02/10/2001\tU3L5 / U3D3\tBệnh giả kiểm thử UI tuần 3 B\t1\tBác sĩ giả UI tuần 3\tKhám bệnh thứ hai giả lập\t50.000 đ\tKhông kê đơn\t0 đ\n01/10/2001\tU3L4 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\t4\tBác sĩ giả UI tuần 3\tTái khám giả lần 4\t100.000 đ\tKhông kê đơn\t0 đ\n30/09/2001\tU3L3 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\t3\tBác sĩ giả UI tuần 3\tTái khám giả lần 3\t100.000 đ\tKhông kê đơn\t0 đ\n29/09/2001\tU3L2 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\t2\tBác sĩ giả UI tuần 3\tTái khám giả lần 2\t100.000 đ\tKhông kê đơn\t0 đ\n28/09/2001\tU3L1 / U3D1\tBệnh giả kiểm thử UI tuần 3 A\t1\tBác sĩ giả UI tuần 3\tTheo dõi giả lập UI tuần 3\t100.000 đ\tKhông kê đơn\t0 đ\nLượt đến khám\nCác lượt đến khám — cuộn ngang để xem đủ\nMã lượt\tNgày vào\tNgày ra\tTiền khám / chữa\nU3L5\t02/10/2001\t02/10/2001\t150.000 đ\nU3L4\t01/10/2001\tChưa kết thúc\t100.000 đ\nU3L3\t30/09/2001\tChưa kết thúc\t100.000 đ\nU3L2\t29/09/2001\tChưa kết thúc\t100.000 đ\nU3L1\t28/09/2001\tChưa kết thúc\t100.000 đ\nThuốc đã kê\nChi tiết thuốc theo đơn giá lịch sử — cuộn ngang để xem đủ\nNgày đơn\tĐơn / lần khám\tThuốc\tĐơn vị\tSố lượng\tLiều dùng\tĐơn giá đã lưu\tThành tiền\n02/10/2001\tU3RX1 / U3K5\tThuốc giả UI 1\tviên\t2\tSáng - dữ liệu giả\t1.000 đ\t2.000 đ\n02/10/2001\tU3RX1 / U3K5\tThuốc giả UI 2\tviên\t3\tTối - dữ liệu giả\t2.000 đ\t6.000 đ\nY tá hỗ trợ\nMỗi cặp lượt–y tá xuất hiện một lần — cuộn ngang để xem đủ\nLượt\tY tá\tNgày bắt đầu\tCông việc\nU3L1\tY tá giả UI 1 · U3YT1\t28/09/2001\tTiếp đón giả lập\nU3L2\tY tá giả UI 1 · U3YT1\t29/09/2001\tTiếp đón và theo dõi giả\nU3L3\tY tá giả UI 1 · U3YT1\t30/09/2001\tTiếp đón và theo dõi giả\nU3L4\tY tá giả UI 1 · U3YT1\t01/10/2001\tTiếp đón và theo dõi giả\nU3L5\tY tá giả UI 1 · U3YT1\t02/10/2001\tTiếp đón, đo huyết áp, theo dõi giả\nU3L5\tY tá giả UI 2 · U3YT2\t02/10/2001\tY tá thứ hai hỗ trợ giả",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:47:22.385Z",
+    "url": "http://127.0.0.1:64505/reports/history?patient_id=U3BN1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "18-custom-history.jpg"
+  },
+  {
+    "id": "T12-UI-negative-fee",
+    "input": "Phí -1; các trường khác hợp lệ",
+    "expected": "Native validation chặn âm trước submit; không thay thế test server",
+    "actual": {
+      "message": "Value must be greater than or equal to 0.",
+      "rangeUnderflow": true,
+      "valid": false,
+      "value": "-1"
+    },
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:49:39.256Z",
+    "url": "http://127.0.0.1:64505/visits/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "T07-UI-active-duplicate",
+    "input": "U3L6/U3K7/U3D4 tạo thêm đợt U3B1 đang điều trị",
+    "expected": "Bị từ chối, không sinh lượt/đợt/lần khám mới",
+    "actual": "- link \"Chuyển đến nội dung\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"PHÒNG KHÁM Quản lý phòng khám tư nhân\":\n    - /url: /\n    - generic: +\n    - text: PHÒNG KHÁM\n    - generic: Quản lý phòng khám tư nhân\n  - generic: Dữ liệu giả lập\n  - navigation \"Điều hướng chính\":\n    - link \"Bệnh nhân\":\n      - /url: /patients\n    - link \"Bác sĩ\":\n      - /url: /doctors\n    - link \"Y tá\":\n      - /url: /nurses\n    - link \"Tiếp nhận / khám\":\n      - /url: /visits/new\n    - link \"Lượt khám\":\n      - /url: /visits\n    - link \"Đợt điều trị\":\n      - /url: /treatments\n    - link \"Báo cáo\":\n      - /url: /reports\n- main:\n  - link \"← Danh sách lượt khám\":\n    - /url: /visits\n  - paragraph: KHÁM VÀ ĐIỀU TRỊ\n  - heading \"Tiếp nhận và khám bệnh\" [level=1]\n  - paragraph: Các trường có dấu * là bắt buộc. Kiểm tra thông tin trước khi lưu.\n  - alert [active]:\n    - heading \"Chưa lưu được thông tin\" [level=2]\n    - paragraph: Bệnh đã có đợt đang điều trị hoặc trùng khoảng điều trị. Chọn tái khám; tái mắc phải sau ngày khỏi.\n    - paragraph: Dữ liệu bạn nhập được giữ lại để sửa. Chưa có thay đổi nào được lưu từ lần gửi này.\n    - link \"Kiểm tra lại biểu mẫu\":\n      - /url: \"#clinical-form\"\n  - group \"1. Tiếp nhận bệnh nhân\":\n    - generic: 1. Tiếp nhận bệnh nhân\n    - generic: Mã lượt mới *\n    - textbox \"Mã lượt mới\": U3L6\n    - generic: \"Tối đa 12 ký tự: chữ không dấu, số, gạch ngang hoặc gạch dưới. Không dùng new.\"\n    - generic: Bệnh nhân *\n    - combobox \"Bệnh nhân\":\n      - option \"— Chọn —\"\n      - option \"BN001 · Đỗ Ngọc Phương\"\n      - option \"BN002 · Lê Minh Hải\"\n      - option \"BN003 · Hoàng Văn Châu\"\n      - option \"BN004 · Phan Gia Phong\"\n      - option \"BN005 · Ngô Ngọc Quỳnh\"\n      - option \"BN006 · Đặng Hoài Thảo\"\n      - option \"BN007 · Đỗ Văn Nam\"\n      - option \"BN008 · Phạm Văn Ngân\"\n      - option \"BN009 · Lê Ngọc Trang\"\n      - option \"BN010 · Bùi Hoài Tú\"\n      - option \"BN011 · Ngô Thanh Minh\"\n      - option \"BN012 · Ngô Ngọc Hương\"\n      - option \"BN013 · Dương Thanh An\"\n      - option \"BN014 · Đỗ Thanh Hạnh\"\n      - option \"BN015 · Dương Thanh Trang\"\n      - option \"BN016 · Võ Thị Khánh\"\n      - option \"BN017 · Trần Thanh Phong\"\n      - option \"BN018 · Hồ Quốc Dũng\"\n      - option \"BN019 · Nguyễn Thị Hà\"\n      - option \"BN020 · Đỗ Văn Hương\"\n      - option \"BN021 · Đặng Gia Hương\"\n      - option \"BN022 · Hoàng Quốc Nga\"\n      - option \"BN023 · Trần Thị Hoa\"\n      - option \"BN024 · Bùi Anh Hạnh\"\n      - option \"BN025 · Đặng Anh Ngân\"\n      - option \"BN026 · Dương Thanh Nga\"\n      - option \"BN027 · Đặng Hoài Dũng\"\n      - option \"BN028 · Phạm Phương Phúc\"\n      - option \"BN029 · Hồ Quốc Nam\"\n      - option \"BN030 · Phạm Phương Giang\"\n      - option \"BN031 · Lê Minh Hùng\"\n      - option \"BN032 · Hồ Thanh Dũng\"\n      - option \"BN033 · Lê Minh Tuấn\"\n      - option \"BN034 · Dương Văn Hoa\"\n      - option \"BN035 · Hồ Gia Sơn\"\n      - option \"BN036 · Đỗ Anh Phong\"\n      - option \"BN037 · Trần Văn Hương\"\n      - option \"BN038 · Lê Hữu Thảo\"\n      - option \"BN039 · Huỳnh Minh Phương\"\n      - option \"BN040 · Hồ Thanh Bình\"\n      - option \"U3BN1 · Bệnh nhân giả UI tuần 3\" [selected]\n    - generic: Ngày vào viện *\n    - textbox \"Ngày vào viện\": 2001-10-03\n  - group \"2. Lần khám đầu tiên\":\n    - generic: 2. Lần khám đầu tiên\n    - paragraph: Đợt mới dùng khi khám bệnh lần đầu hoặc tái mắc sau ngày khỏi. Tái khám tiếp tục đợt đang điều trị, giữ nguyên bác sĩ; số thứ tự do hệ thống cấp.\n    - generic: Loại khám *\n    - combobox \"Loại khám *\":\n      - option \"Đợt mới / tái mắc\" [selected]\n      - option \"Tái khám trong đợt đang điều trị\"\n    - generic: Mã đợt mới hoặc mã đợt tái khám *\n    - textbox \"Mã đợt mới hoặc mã đợt tái khám\": U3D4\n    - generic: \"Đợt mới: tự đặt mã chưa sử dụng. Tái khám: chọn đợt của đúng bệnh nhân.\"\n    - generic: Bệnh *\n    - combobox \"Bệnh\":\n      - option \"— Chọn —\"\n      - option \"B001 · Viêm họng cấp\"\n      - option \"B002 · Viêm mũi dị ứng\"\n      - option \"B003 · Viêm phế quản\"\n      - option \"B004 · Cảm cúm\"\n      - option \"B005 · Tăng huyết áp\"\n      - option \"B006 · Đái tháo đường type 2\"\n      - option \"B007 · Viêm dạ dày\"\n      - option \"B008 · Trào ngược dạ dày thực quản\"\n      - option \"B009 · Đau nửa đầu\"\n      - option \"B010 · Thoái hóa cột sống cổ\"\n      - option \"B011 · Viêm da tiếp xúc\"\n      - option \"B012 · Viêm kết mạc\"\n      - option \"B013 · Nhiễm khuẩn tiết niệu\"\n      - option \"B014 · Rối loạn lipid máu\"\n      - option \"B015 · Đau cơ xương khớp\"\n      - option \"U3B1 · Bệnh giả kiểm thử UI tuần 3 A\" [selected]\n      - option \"U3B2 · Bệnh giả kiểm thử UI tuần 3 B\"\n    - generic: Bác sĩ phụ trách *\n    - combobox \"Bác sĩ phụ trách\":\n      - option \"— Chọn —\"\n      - option \"BS001 · Dương Ngọc Khánh\"\n      - option \"BS002 · Vũ Hoài An\"\n      - option \"BS003 · Ngô Văn Bình\"\n      - option \"BS004 · Đặng Ngọc Tuấn\"\n      - option \"BS005 · Ngô Thanh Quân\"\n      - option \"BS006 · Đặng Phương Quân\"\n      - option \"BS007 · Ngô Ngọc Trinh\"\n      - option \"BS008 · Bùi Văn Linh\"\n      - option \"BS009 · Võ Minh Dũng\"\n      - option \"BS010 · Bùi Anh Giang\"\n      - option \"U3BS · Bác sĩ giả UI tuần 3\" [selected]\n    - generic: Mã lần khám mới *\n    - textbox \"Mã lần khám mới\": U3K7\n    - generic: Mỗi lần khám có một mã riêng, tối đa 12 ký tự.\n    - generic: Ngày khám *\n    - textbox \"Ngày khám\": 2001-10-03\n    - generic: Tiền khám/chữa (đồng) *\n    - spinbutton \"Tiền khám/chữa (đồng)\": \"100000\"\n    - generic: Chưa gồm tiền thuốc. Nhập số nguyên, không có dấu phân cách.\n    - generic: Kết luận *\n    - textbox \"Kết luận\": Theo dõi giả lập UI tuần 3\n    - generic \"Tra mã đợt đang điều trị\"\n  - group \"3. Y tá hỗ trợ\":\n    - generic: 3. Y tá hỗ trợ\n    - paragraph: Chọn y tá đã hỗ trợ để sửa nội dung và giữ ngày bắt đầu. Chọn người khác để thêm hỗ trợ; mỗi y tá/lượt tính thưởng một lần.\n    - generic: Y tá *\n    - combobox \"Y tá\":\n      - option \"— Chọn —\"\n      - option \"U3YT1 · Y tá giả UI 1\" [selected]\n      - option \"U3YT2 · Y tá giả UI 2\"\n      - option \"YT001 · Huỳnh Phương Long\"\n      - option \"YT002 · Hoàng Hữu Quân\"\n      - option \"YT003 · Lê Văn Châu\"\n      - option \"YT004 · Đỗ Văn Vy\"\n      - option \"YT005 · Vũ Thanh Hùng\"\n      - option \"YT006 · Dương Văn Tâm\"\n      - option \"YT007 · Vũ Văn Hạnh\"\n      - option \"YT008 · Đỗ Thị Khánh\"\n      - option \"YT009 · Võ Văn Tâm\"\n      - option \"YT010 · Võ Ngọc Trang\"\n      - option \"YT011 · Nguyễn Hoài Yến\"\n      - option \"YT012 · Lê Hữu Minh\"\n    - generic: Ngày bắt đầu hỗ trợ *\n    - textbox \"Ngày bắt đầu hỗ trợ\": 2001-10-03\n    - generic: Nội dung công việc *\n    - textbox \"Nội dung công việc\": Tiếp đón giả lập\n    - paragraph\n  - button \"Lưu\"\n  - link \"Hủy\":\n    - /url: /visits\n- contentinfo:\n  - generic: Phòng khám tư nhân · Project 1\n  - generic: Dữ liệu giả lập phục vụ học tập",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:49:49.763Z",
+    "url": "http://127.0.0.1:64505/visits/new",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+    "image": "25-active-episode-rejected.jpg"
+  },
+  {
+    "id": "Q3-missing",
+    "input": "U3MISSING không tồn tại",
+    "expected": "Thông báo Không tìm thấy hồ sơ, giữ mã lọc",
+    "actual": "← Tất cả báo cáo\n\nLỊCH SỬ VÀ TÌNH TRẠNG\n\nLịch sử và tình trạng bệnh nhân\nMã bệnh nhân *\nGõ mã và chọn gợi ý, hoặc tìm theo tên trong danh sách bệnh nhân. Lịch sử bao gồm mọi tháng.\n\nKhông tìm thấy hồ sơ.\n\nXem lịch sử\nTìm bệnh nhân\nChưa xem được lịch sử\n\nKiểm tra lại mã bệnh nhân ở bộ lọc.",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:50:18.548Z",
+    "url": "http://127.0.0.1:64505/reports/history?patient_id=U3MISSING",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  },
+  {
+    "id": "UI-navigation",
+    "input": "Từ lỗi Q3missing sửa mã và xem lại U3BN1",
+    "expected": "Quay lại luồng hợp lệ không cần thao tác ngoài app",
+    "actual": "Bệnh nhân giả UI tuần 3",
+    "method": "Trình duyệt tương tác qua cua_repl; trợ lý thay mặt Vương",
+    "at": "2026-10-21T04:50:33.091Z",
+    "url": "http://127.0.0.1:64505/reports/history?patient_id=U3BN1",
+    "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44"
+  }
+]

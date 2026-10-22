@@ -1,0 +1,8 @@
+{
+  "source_dirty": true,
+  "new_execution_files": [
+    "clinic_app/static/number-validation.js",
+    "tests/test_vuong_week3_numeric_validation.py"
+  ],
+  "identity": "base SHA + execution_source_sha256.json + source.diff"
+}

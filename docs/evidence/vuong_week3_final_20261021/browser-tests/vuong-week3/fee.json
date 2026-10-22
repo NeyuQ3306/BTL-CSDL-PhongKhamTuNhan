@@ -1,0 +1,29 @@
+{
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "kind": "fee",
+  "browser_locale": "en-US",
+  "actual": [
+    {
+      "input": "-1",
+      "expected": "Giá trị phải lớn hơn hoặc bằng 0.",
+      "actual": "Giá trị phải lớn hơn hoặc bằng 0.",
+      "posts": 0
+    },
+    {
+      "input": "1000000000000",
+      "expected": "Giá trị không được lớn hơn 999999999999.",
+      "actual": "Giá trị không được lớn hơn 999999999999.",
+      "posts": 0
+    },
+    {
+      "input": "1.5",
+      "expected": "Vui lòng nhập số nguyên.",
+      "actual": "Vui lòng nhập số nguyên.",
+      "posts": 0
+    }
+  ],
+  "error_recovery": true,
+  "input_preserved": true,
+  "posts": [],
+  "js_errors": []
+}

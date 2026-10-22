@@ -1,0 +1,22 @@
+{
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "method": "cua_repl locator.press, không dùng JS để sửa DOM/scroll",
+  "prescription": {
+    "action": "Enter thêm dòng4, focus sang select mới, Enter xóa dòng4 và3",
+    "rows_after_add": 4,
+    "focus_after_add": {
+      "id": "drug-3-0",
+      "tag": "SELECT"
+    },
+    "rows_after_delete": 2,
+    "input_preserved": true,
+    "evidence": "ui-observations.json: UI-keyboard-medicine"
+  },
+  "history_320": {
+    "action": "5 lần ArrowRight trên region Các lần khám của bệnh nhân",
+    "scrollLeft_before": 0,
+    "scrollLeft_after": 24.23301124572754,
+    "whole_page_overflow": false,
+    "image": "21-history-table-keyboard-320.jpg"
+  }
+}

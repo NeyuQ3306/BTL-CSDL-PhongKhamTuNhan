@@ -2,7 +2,13 @@
 
 Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**, múi giờ Việt Nam.
 
-## Bản bàn giao tuần 2 của Vương
+## Bắt đầu với bản tích hợp hiện hành
+
+Dùng [hướng dẫn cài/chạy Windows](docs/SETUP.md), [hướng dẫn sử dụng](docs/USER_GUIDE.md), [biên bản tuần 3](docs/VUONG_WEEK3_ACCEPTANCE.md), [kịch bản demo](docs/VUONG_WEEK3_DEMO.md) và [bàn giao review cuối](docs/VUONG_WEEK3_HANDOFF.md). Vương xác nhận đã hoàn thành bước 6 trong yêu cầu bàn giao ngày 21/10/2026; bằng chứng kỹ thuật và giới hạn của biên bản tập chung được ghi riêng trong kịch bản. Ngày 21/10/2026 đã fetch và xác minh main remote tại `f4869299c25fdfd0b711597e30b60ab277120f44` (PR #11), tích hợp backend/UI/bốn báo cáo. Chưa có release cuối được chốt.
+
+Ứng viên tuần 3 trên nhánh `vuong/week-3` có sửa UI/test, khác main ở trên. Kết quả local 179 test đạt, không failure/error/skip thuộc SHA nền **cộng candidate**, không gán cho riêng main: [đối chiếu source và kiểm tra bàn giao](docs/evidence/vuong_week3_handoff_20261021/verification.json), [đối chiếu hướng dẫn bước 5](docs/VUONG_WEEK3_STEP5_VERIFICATION.md), [bằng chứng ứng viên](docs/evidence/vuong_week3_final_20261021/README.md). T16 **Không thực hiện theo quyết định nhóm**, actual **Chưa chạy**; không tính PASS hoặc điều kiện còn thiếu. W3-RUN-01 về cleanup runner vẫn mở, có workaround trong SETUP. Bước 7 còn chờ review, nghiệm thu Quyền, merge và kiểm tra sau merge.
+
+## Bản bàn giao tuần 2 của Vương (lịch sử)
 
 Bản trên nhánh `vuong/week-2` có UI tiếp nhận/khám/tái khám, hỗ trợ y tá, đơn thuốc, đóng lượt/xác nhận khỏi và bốn báo cáo MySQL thật. Phụ thuộc backend [#5](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5) tại `10c8082` và oracle [#10](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/10) tại `1bf9f8b`; hai PR chưa merge lúc đóng gói.
 
@@ -10,7 +16,7 @@ Bắt đầu từ [bàn giao](docs/VUONG_WEEK2_HANDOFF.md), [hướng dẫn sử
 
 ## Nền tích hợp tuần 1 (lịch sử)
 
-Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md) cho nền tuần 1. #4/#6/#7/#8/#9 đã merge vào main `20cd47a`; dùng bộ SQL chuẩn trên nhánh đang chạy. Import schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
+[Hướng dẫn Windows thống nhất](docs/SETUP.md) hiện đã cập nhật cho bản tích hợp. Mốc lịch sử tuần 1: #4/#6/#7/#8/#9 đã merge vào main `20cd47a`. Thứ tự import hiện hành vẫn là schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
 
 ## Trạng thái nền tuần 1 (lịch sử)
 
@@ -20,9 +26,9 @@ Dùng [hướng dẫn Windows thống nhất](docs/SETUP.md) cho nền tuần 1.
 - Xem [bàn giao tuần 1](docs/TRUNG_WEEK1_HANDOFF.md), [cách chạy](docs/SETUP.md), và [hợp đồng route/form](docs/INTEGRATION.md).
 - Chưa coi nghiệm thu hoàn tất trước khi nhóm review và merge PR theo RULES.md.
 
-## Bắt đầu từ đây
+## Tài liệu dự án và lịch sử tuần 1
 
-Tài liệu lịch sử UI tuần 1 của Vương: [bàn giao](docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](docs/VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](docs/VUONG_WEEK1_CHECKLIST.md). Mô tả khung báo cáo trong tài liệu tuần 1 chỉ áp dụng cho bản tuần 1; nhánh tuần 2 hiện dùng báo cáo thật theo các liên kết phía trên.
+Tài liệu lịch sử UI tuần 1 của Vương: [bàn giao](docs/VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](docs/VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](docs/VUONG_WEEK1_CHECKLIST.md). Mô tả khung báo cáo tuần 1 chỉ áp dụng bản cũ; bản tích hợp hiện hành dùng đủ bốn báo cáo thật.
 
 1. Đọc [phân công 3 tuần](docs/PHAN_CONG_3_TUAN.md) hoặc [bản PDF](docs/Phan_cong_Project1_3_tuan.pdf).
 2. Đọc [RULES.md](RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.

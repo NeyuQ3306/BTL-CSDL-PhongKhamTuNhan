@@ -1,0 +1,67 @@
+{
+  "started_at": "2026-10-21T12:51:30.755496+07:00",
+  "mode": "automated rehearsal",
+  "executor": "Trợ lý Codex thay mặt Vương",
+  "source_sha": "f4869299c25fdfd0b711597e30b60ab277120f44",
+  "branch": "vuong/week-3",
+  "source_dirty": true,
+  "application_candidate": "sha256:045a7c42b12390bc5a1cb911a1ec648215cf66df679b6576a7b22464bb398894",
+  "demo_tool_sha256": "f2c2d853ed6eb7b18ad15afc1818baf2ddb5694bccfbef8081fd68aa30f2bf6b",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-runtime\\Scripts\\python.exe",
+  "mysql_executable": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-tools\\mysql84\\mysql-8.4.7-winx64\\bin\\mysqld.exe",
+  "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\week3-demo-20261021_125130_401438\\mysql-data",
+  "mysql_port": 58982,
+  "database": "clinic_week3_demo_test",
+  "group_rehearsal": false,
+  "success": false,
+  "mysql": "8.4.7",
+  "import": [
+    {
+      "file": "schema.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "seed.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "constraints.sql",
+      "result_sets": 0
+    },
+    {
+      "file": "audit.sql",
+      "result_sets": 10
+    },
+    {
+      "file": "queries.sql",
+      "result_sets": 11
+    }
+  ],
+  "reserved_codes_absent": true,
+  "url": "http://127.0.0.1:58986",
+  "steps": [
+    {
+      "step": "01-introduction",
+      "elapsed_seconds": 0.436,
+      "actual": "Private MySQL health OK; no group presentation",
+      "status": "PASS"
+    }
+  ],
+  "chromium": "156.0.8078.4",
+  "screenshots": [],
+  "failure": {
+    "type": "TimeoutError",
+    "message": "Locator.evaluate: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[name=\\\"tham_nien\\\"]\")\n"
+  },
+  "finished_at": "2026-10-21T12:52:07.815471+07:00",
+  "mysql_port_closed": true,
+  "app_port_closed": true,
+  "checkout_env_unchanged": true,
+  "source_unchanged": true,
+  "old_evidence_unchanged": true
+}
