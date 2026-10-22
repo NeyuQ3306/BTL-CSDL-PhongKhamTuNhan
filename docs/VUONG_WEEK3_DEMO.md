@@ -1,5 +1,7 @@
 # Kịch bản demo tuần 3 — Vương
 
+> **Cập nhật tích hợp 22/10/2026:** trạng thái hiện hành, danh sách file nộp và quyết định lỗi được ghi tại [WEEK3_FINAL_STATUS.md](WEEK3_FINAL_STATUS.md). Các đoạn mô tả #17 chưa merge, #16 chưa tích hợp hoặc W3-RUN-01 chờ đóng bên dưới là snapshot bàn giao trước cập nhật này; giữ để truy vết, không dùng làm checklist hiện hành.
+
 Cập nhật source/đường chạy **22/10/2026**, UTC+07:00; dữ liệu/kịch bản và các phiên diễn tập ngày21/10 giữ riêng. Mục tiêu **13 phút**, có khoảng đệm đến 15 phút. **Cập nhật khi bàn giao bước 7: Vương xác nhận đã hoàn thành bước 6 trong yêu cầu ngày 21/10/2026.** Đây là xác nhận của người dùng; trợ lý không quan sát buổi tập chung, chưa có ngày giờ/thành phần/thời lượng/vướng mắc cụ thể để điền biên bản. Giữ checklist và kết quả tự động bên dưới làm ghi nhận kỹ thuật tại thời điểm chuẩn bị; không tự điền hoặc nhận đó là bằng chứng tập chung. Phân vai bên dưới là phương án trong kịch bản, cần đối chiếu với phân vai thực tế của nhóm.
 
 ## 1. Đúng source và môi trường

@@ -1,5 +1,7 @@
 # Sổ lỗi tuần 3 của Vương
 
+> **Cập nhật tích hợp 22/10/2026:** trạng thái hiện hành, danh sách file nộp và quyết định lỗi được ghi tại [WEEK3_FINAL_STATUS.md](WEEK3_FINAL_STATUS.md). Các đoạn mô tả #17 chưa merge, #16 chưa tích hợp hoặc W3-RUN-01 chờ đóng bên dưới là snapshot bàn giao trước cập nhật này; giữ để truy vết, không dùng làm checklist hiện hành.
+
 Cập nhật **22/10/2026 theo #17 head1964a4a**: #13 đã được Trung approve/resolve cleanup; W3-UX-01 và W3-DEMO-02 đã sửa/retest, W3-RUN-01 đã có sửa tích hợp nhưng vẫn mở chờ Trung/Quyền quyết định đóng. **W3-DB-01 (HTTP503/MySQL2003) còn theo dõi**, chưa kết luận nguyên nhân/đã sửa. [Bàn giao hiện hành](VUONG_WEEK3_HANDOFF.md) phân biệt Windows của Quyền, CI và các phiên lịch sử. T16 không thực hiện, actual chưa chạy, không tính PASS. Các câu chưa commit/gửi/chờ sửa ở mốc21/10 bên dưới chỉ áp dụng phiên cũ.
 
 Liên kết [hồ sơ nghiệm thu](VUONG_WEEK3_ACCEPTANCE.md). Chỉ ghi lỗi/quan sát có bằng chứng Bước 2–3; ưu tiên cài/chạy, dữ liệu, tiền/báo cáo và demo trước hiển thị/câu chữ. Người thực hiện công cụ: trợ lý Codex thay mặt Vương.

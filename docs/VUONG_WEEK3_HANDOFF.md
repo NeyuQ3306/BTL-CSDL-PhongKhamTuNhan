@@ -1,5 +1,7 @@
 # Bàn giao tuần 3 theo ứng viên tích hợp #17 — Vương
 
+> **Cập nhật tích hợp 22/10/2026:** trạng thái hiện hành, danh sách file nộp và quyết định lỗi được ghi tại [WEEK3_FINAL_STATUS.md](WEEK3_FINAL_STATUS.md). Các đoạn mô tả #17 chưa merge, #16 chưa tích hợp hoặc W3-RUN-01 chờ đóng bên dưới là snapshot bàn giao trước cập nhật này; giữ để truy vết, không dùng làm checklist hiện hành.
+
 Cập nhật **22/10/2026**, UTC+07:00, dựa trên trạng thái GitHub và hồ sơ đã có. **Chưa merge vào main, chưa chốt nghiệm thu toàn nhóm hoặc release.** Trợ lý cập nhật tài liệu thay mặt Vương; không chạy lại suite/app/MySQL hoặc xác nhận buổi tập chung trong lần này.
 
 ## 1. Source và phạm vi hiện hành

@@ -1,5 +1,7 @@
 # Kiểm thử nghiệm thu Project 1
 
+> **Cập nhật tích hợp 22/10/2026:** trạng thái hiện hành, danh sách file nộp và quyết định lỗi được ghi tại [WEEK3_FINAL_STATUS.md](WEEK3_FINAL_STATUS.md). Các đoạn mô tả #17 chưa merge, #16 chưa tích hợp hoặc W3-RUN-01 chờ đóng bên dưới là snapshot bàn giao trước cập nhật này; giữ để truy vết, không dùng làm checklist hiện hành.
+
 **Cập nhật22/10/2026:** [hồ sơ tuần3](VUONG_WEEK3_ACCEPTANCE.md) và [bàn giao #17](VUONG_WEEK3_HANDOFF.md) phân biệt ma trận Vương ngày21/10, Windows Quyền tại source`dd1f41e` và CI head`1964a4a`. #13 đã được Trung approve/resolve; #17 được Trung approve và CI xanh, chưa merge hoặc chốt nghiệm thu toàn nhóm/release. Phiên Windows đầu194pass/1fail (HTTP503/MySQL2003), hai phiên sau195/236tests không failure/error/skip; lỗi còn theo dõi. W3-RUN-01 chờ Trung/Quyền quyết định đóng dù bản sửa đã tích hợp. #16 chưa tích hợp. Không tự đổi bảng kỳ vọng bên dưới thành kết quả PASS toàn nhóm.
 
 Vương quản lý kết quả; Quyền tính đáp án mẫu; Trung bổ sung test tự động cho backend. Chưa có ca nào được đánh dấu chạy đạt tại thời điểm khởi tạo.

@@ -1,12 +1,16 @@
 # Cài đặt và chạy bản tích hợp trên Windows
 
+> **Cập nhật tích hợp 22/10/2026:** trạng thái hiện hành, danh sách file nộp và quyết định lỗi được ghi tại [WEEK3_FINAL_STATUS.md](WEEK3_FINAL_STATUS.md). Các đoạn mô tả #17 chưa merge, #16 chưa tích hợp hoặc W3-RUN-01 chờ đóng bên dưới là snapshot bàn giao trước cập nhật này; giữ để truy vết, không dùng làm checklist hiện hành.
+
+Snapshot mã triển khai được pin dưới đây là `3c5fa8759967484fad61c59db54fb07584a56c86`, đã có #16 và #18. Các số test Windows vẫn gắn với source `dd1f41e`, không gán lại cho SHA tài liệu/cleanup.
+
 Cập nhật **22/10/2026**, UTC+07:00, cho ứng viên tích hợp #17; chưa phải release. Chỉ dùng dữ liệu giả và DB thử riêng. Tài liệu tuần 1–2 và các phiên ngày 21/10 là lịch sử.
 
 ## 1. Phiên bản và source
 
 Chuẩn nhóm: Git, **Python 3.11**, **MySQL Server 8.4**, PowerShell và MySQL Workbench để nhập SQL. Workbench không thay MySQL Server. Cài thư viện từ `requirements.txt`; kiểm thử/công cụ demo cần `requirements-dev.txt`, Playwright và Chromium. Phiên Windows của Quyền ở #17 dùng Python **3.11.9**, MySQL **8.4.11**, Chromium **156.0.8078.4**. Không coi mọi bản trong khoảng dependency đều đã kiểm thử.
 
-[PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) đang mở tại head **`1964a4a10e8634384ce2ebf5951bc66e5525f755`**, nhánh `quyen/week3-integration`; main vẫn `f4869299c25fdfd0b711597e30b60ab277120f44` ở lần kiểm tra GitHub ngày 22/10. Source Windows thực chạy là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head trên chỉ thêm bằng chứng. #16 chưa nằm trong bản này. Xem [bàn giao tích hợp](VUONG_WEEK3_HANDOFF.md) để phân biệt source/local/CI và việc còn chờ.
+[PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) đang mở tại head **`3c5fa8759967484fad61c59db54fb07584a56c86`**, nhánh `quyen/week3-integration`; main vẫn `f4869299c25fdfd0b711597e30b60ab277120f44` ở lần kiểm tra GitHub ngày 22/10. Source Windows thực chạy là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head trên chỉ thêm bằng chứng. #16 và tài liệu #18 đã được tích hợp; xem trạng thái hiện hành ở đầu tài liệu. Xem [bàn giao tích hợp](VUONG_WEEK3_HANDOFF.md) để phân biệt source/local/CI và việc còn chờ.
 
 Mở PowerShell, tạo clone mới; nếu thư mục đã tồn tại, chọn tên khác, không xóa checkout cũ:
 
@@ -17,12 +21,12 @@ py -3.11 -m pip --version
 Set-Location $env:USERPROFILE
 git clone --branch quyen/week3-integration https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-week3-integration-demo
 Set-Location clinic-week3-integration-demo
-git switch --detach 1964a4a10e8634384ce2ebf5951bc66e5525f755
+git switch --detach 3c5fa8759967484fad61c59db54fb07584a56c86
 git rev-parse HEAD
 git status --short
 ```
 
-Clone phải sạch và HEAD đúng SHA đã pin trước khi cấu hình. `main` chưa chứa đầy đủ thay đổi #17; không dùng clone main cũ rồi nhận đã chạy ứng viên này. Các manifest candidate ngày 21/10 chỉ truy vết phiên lịch sử, không phải định danh bản tích hợp mới. Không tự ghép các nhánh bàn giao. Sau merge, ghi SHA main thực tế và smoke trên DB riêng; chỉ kiểm thử thêm phần bị ảnh hưởng khi hành vi/source thực thi thay đổi hoặc có dấu hiệu lỗi, không chạy lại toàn suite chỉ vì đổi SHA/tài liệu.
+Clone phải sạch và HEAD đúng SHA đã pin trước khi cấu hình. Trạng thái merge vào `main` xem PR #17; lệnh detach ở trên luôn tái hiện đúng snapshot đã chỉ định. Các manifest candidate ngày 21/10 chỉ truy vết phiên lịch sử, không phải định danh bản tích hợp mới. Không tự ghép các nhánh bàn giao. Sau merge, ghi SHA main thực tế và smoke trên DB riêng; chỉ kiểm thử thêm phần bị ảnh hưởng khi hành vi/source thực thi thay đổi hoặc có dấu hiệu lỗi, không chạy lại toàn suite chỉ vì đổi SHA/tài liệu.
 
 ## 2. Venv và .env
 

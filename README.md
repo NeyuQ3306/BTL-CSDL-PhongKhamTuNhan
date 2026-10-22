@@ -4,15 +4,13 @@
 
 Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**, múi giờ Việt Nam.
 
-## Bắt đầu với ứng viên tích hợp #17
+## Bắt đầu với bản tích hợp tuần 3
 
-Trạng thái ngày **22/10/2026**: [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17), nhánh `quyen/week3-integration`, head `1964a4a10e8634384ce2ebf5951bc66e5525f755`, tích hợp #12/#13/#14/#15 từ main `f4869299c25fdfd0b711597e30b60ab277120f44`. Trung đã approve #17; PR vẫn mở, chưa merge/release. [PR #13](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/13#pullrequestreview-5602549788) của Vương đã được Trung approve tại `4f68099` và resolve thread cleanup.
+Bản tích hợp gồm #12/#13/#14/#15, tài liệu #18 và phần dọn upstream #16. Xem [trạng thái hiện hành và bộ nộp](docs/WEEK3_FINAL_STATUS.md), [cài/chạy Windows](docs/SETUP.md), [sử dụng](docs/USER_GUIDE.md) và [kịch bản demo](docs/VUONG_WEEK3_DEMO.md). Trạng thái merge/CI mới nhất xem [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17); không dùng các phần lịch sử bên dưới làm hướng dẫn phiên bản hiện tại.
 
-Dùng [hướng dẫn cài/chạy Windows](docs/SETUP.md) để checkout đúng snapshot #17, [hướng dẫn sử dụng](docs/USER_GUIDE.md), [hồ sơ nghiệm thu](docs/VUONG_WEEK3_ACCEPTANCE.md), [kịch bản demo](docs/VUONG_WEEK3_DEMO.md) và [bàn giao tích hợp/bằng chứng](docs/VUONG_WEEK3_HANDOFF.md). Source chạy Windows trên laptop Quyền là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head `1964a4a` chỉ bổ sung 12 file bằng chứng. Phiên cuối có **236 test, 0 failure/error/skipped**; bốn workflow CI của head tích hợp đều success. Kết quả local, CI và các phiên Vương ngày 21/10 được phân biệt trong hồ sơ, không gán lại cho main hoặc bản tài liệu mới.
+Quyền đã kiểm thử source `dd1f41e` trên laptop Windows: **236/236 test đạt**, audit sạch 11 bảng/9 trigger/1.144 dòng và cleanup thành công. Các thay đổi tiếp theo chỉ đồng bộ tài liệu và gỡ 7 file upstream không dùng; CI của bản cuối được xác nhận riêng trước merge. Nguồn và giới hạn bằng chứng được giữ trong hồ sơ.
 
-**Còn chờ chốt:** W3-RUN-01 đã có bản sửa #12 được tích hợp và Trung review ở #17, nhưng chưa có quyết định đóng sổ lỗi của Trung/Quyền. Lỗi **HTTP 503/MySQL 2003** ở phiên Windows đầu vẫn theo dõi; hai phiên sau không tái hiện, chưa chứng minh đã sửa. T16 không thực hiện, actual chưa chạy, không tính PASS. Quyền còn quyết định phạm vi cuối, rà PDF–SQL–app/bộ nộp, merge và kiểm tra main sau merge. Chưa có xác nhận đầy đủ về phân vai/thời lượng tập chung.
-
-[PR #16](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/16#pullrequestreview-5608581327) đã được Vương approve phần dọn upstream nhưng **chưa tích hợp vào #17**; 7 file cũ vẫn có trong snapshot đang hướng dẫn.
+**W3-RUN-01:** chấp nhận đóng lỗi cleanup theo bằng chứng sửa/source, review và retest thành công/lỗi Windows. **W3-DB-01 (503/MySQL 2003):** vẫn theo dõi, chưa xác định nguyên nhân hoặc nhận đã sửa. **T16:** không thực hiện, không tính PASS. Chưa xác nhận nhóm đã tập demo đủ thời lượng hoặc đã phát hành tag/release.
 
 ## Bản bàn giao tuần 2 của Vương (lịch sử)
 

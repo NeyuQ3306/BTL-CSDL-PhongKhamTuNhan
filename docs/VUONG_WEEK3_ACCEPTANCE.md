@@ -1,5 +1,7 @@
 # Hồ sơ nghiệm thu tuần 3 của Vương
 
+> **Cập nhật tích hợp 22/10/2026:** trạng thái hiện hành, danh sách file nộp và quyết định lỗi được ghi tại [WEEK3_FINAL_STATUS.md](WEEK3_FINAL_STATUS.md). Các đoạn mô tả #17 chưa merge, #16 chưa tích hợp hoặc W3-RUN-01 chờ đóng bên dưới là snapshot bàn giao trước cập nhật này; giữ để truy vết, không dùng làm checklist hiện hành.
+
 Lập ngày **21/10/2026**, múi giờ UTC+07:00 (Asia/Bangkok, cùng giờ Việt Nam). Người lập: **trợ lý Codex thay mặt Vương**, không phải xác nhận Vương đã tự thao tác kiểm thử.
 
 **Cập nhật hiện hành 22/10/2026:** ứng viên [#17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) tại `1964a4a10e8634384ce2ebf5951bc66e5525f755` đã tích hợp #12–#15 và được Trung approve; #13 của Vương đã được Trung approve/resolve cleanup. Chưa merge hoặc chốt nghiệm thu toàn nhóm/release. #16 đã được Vương approve nhưng chưa tích hợp. [Bàn giao #17](VUONG_WEEK3_HANDOFF.md) ghi source, review, Windows/CI, lỗi và việc còn chờ.
