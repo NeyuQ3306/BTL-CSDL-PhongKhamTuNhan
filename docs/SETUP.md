@@ -8,11 +8,11 @@ Cập nhật **22/10/2026**, UTC+07:00, cho ứng viên tích hợp #17; chưa p
 
 ## 1. Phiên bản và source
 
-Chuẩn nhóm: Git, **Python 3.11**, **MySQL Server 8.4**, PowerShell và MySQL Workbench để nhập SQL. Workbench không thay MySQL Server. Cài thư viện từ `requirements.txt`; kiểm thử/công cụ demo cần `requirements-dev.txt`, Playwright và Chromium. Phiên Windows của Quyền ở #17 dùng Python **3.11.9**, MySQL **8.4.11**, Chromium **156.0.8078.4**. Không coi mọi bản trong khoảng dependency đều đã kiểm thử.
+Chuẩn nhóm: Git, Python 3.11, MySQL Server 8.4, PowerShell và MySQL Workbench. Workbench không thay MySQL Server. Cài requirements.txt; kiểm thử/demo cần requirements-dev.txt, Playwright và Chromium. Windows của Quyền dùng Python3.11.9/MySQL8.4.11/Chromium156.0.8078.4.
 
-[PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) đang mở tại head **`3c5fa8759967484fad61c59db54fb07584a56c86`**, nhánh `quyen/week3-integration`; main vẫn `f4869299c25fdfd0b711597e30b60ab277120f44` ở lần kiểm tra GitHub ngày 22/10. Source Windows thực chạy là `dd1f41e4b1459bb82b5d288eb2a02d85de0d81b3`; head trên chỉ thêm bằng chứng. #16 và tài liệu #18 đã được tích hợp; xem trạng thái hiện hành ở đầu tài liệu. Xem [bàn giao tích hợp](VUONG_WEEK3_HANDOFF.md) để phân biệt source/local/CI và việc còn chờ.
+Snapshot triển khai được pin là `3c5fa8759967484fad61c59db54fb07584a56c86`: đã tích hợp #12/#13/#14/#15/#18 và dọn upstream #16. So với source Windows `dd1f41e`, mã thực thi trong clinic_app, SQL chuẩn, tests và workflow giữ nguyên; chỉ tài liệu/evidence và 7 file upstream không sử dụng thay đổi. Không gán số test của source cũ cho SHA mới. Trạng thái merge/CI hiện tại xem [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) và [hồ sơ tổng kết](WEEK3_FINAL_STATUS.md).
 
-Mở PowerShell, tạo clone mới; nếu thư mục đã tồn tại, chọn tên khác, không xóa checkout cũ:
+Mở PowerShell, tạo clone mới; nếu thư mục tồn tại, chọn tên khác, không xóa checkout cũ:
 
 ```powershell
 git --version
@@ -26,7 +26,7 @@ git rev-parse HEAD
 git status --short
 ```
 
-Clone phải sạch và HEAD đúng SHA đã pin trước khi cấu hình. Trạng thái merge vào `main` xem PR #17; lệnh detach ở trên luôn tái hiện đúng snapshot đã chỉ định. Các manifest candidate ngày 21/10 chỉ truy vết phiên lịch sử, không phải định danh bản tích hợp mới. Không tự ghép các nhánh bàn giao. Sau merge, ghi SHA main thực tế và smoke trên DB riêng; chỉ kiểm thử thêm phần bị ảnh hưởng khi hành vi/source thực thi thay đổi hoặc có dấu hiệu lỗi, không chạy lại toàn suite chỉ vì đổi SHA/tài liệu.
+HEAD phải đúng SHA được pin và checkout sạch. Nhánh tích hợp được giữ sau merge để tái hiện; cũng có thể clone main sau khi xác nhận PR #17 đã merge, ghi SHA thực tế. Các manifest ngày21/10 chỉ truy vết phiên lịch sử. Sau merge, kiểm tra CI trên main và smoke phần ảnh hưởng khi cần; không chạy lại toàn suite trên laptop chỉ vì đổi SHA/tài liệu.
 
 ## 2. Venv và .env
 
