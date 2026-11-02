@@ -1,32 +1,18 @@
-# Cài đặt và chạy bản tích hợp trên Windows
+# Cài đặt và chạy trên Windows
 
-> **Cập nhật tích hợp 22/10/2026:** trạng thái hiện hành, danh sách file nộp và quyết định lỗi được ghi tại [WEEK3_FINAL_STATUS.md](WEEK3_FINAL_STATUS.md). Các đoạn mô tả #17 chưa merge, #16 chưa tích hợp hoặc W3-RUN-01 chờ đóng bên dưới là snapshot bàn giao trước cập nhật này; giữ để truy vết, không dùng làm checklist hiện hành.
+Dùng bản main đã tích hợp. Chuẩn: Git, Python 3.11, MySQL Server 8.4 và Workbench. Hạn và bộ nộp xem [SUBMISSION](SUBMISSION.md).
 
-Snapshot mã triển khai được pin dưới đây là `3c5fa8759967484fad61c59db54fb07584a56c86`, đã có #16 và #18. Các số test Windows vẫn gắn với source `dd1f41e`, không gán lại cho SHA tài liệu/cleanup.
+## 1. Lấy mã nguồn
 
-Cập nhật **22/10/2026**, UTC+07:00, cho ứng viên tích hợp #17; chưa phải release. Chỉ dùng dữ liệu giả và DB thử riêng. Tài liệu tuần 1–2 và các phiên ngày 21/10 là lịch sử.
-
-## 1. Phiên bản và source
-
-Chuẩn nhóm: Git, Python 3.11, MySQL Server 8.4, PowerShell và MySQL Workbench. Workbench không thay MySQL Server. Cài requirements.txt; kiểm thử/demo cần requirements-dev.txt, Playwright và Chromium. Windows của Quyền dùng Python3.11.9/MySQL8.4.11/Chromium156.0.8078.4.
-
-Snapshot triển khai được pin là `3c5fa8759967484fad61c59db54fb07584a56c86`: đã tích hợp #12/#13/#14/#15/#18 và dọn upstream #16. So với source Windows `dd1f41e`, mã thực thi trong clinic_app, SQL chuẩn, tests và workflow giữ nguyên; chỉ tài liệu/evidence và 7 file upstream không sử dụng thay đổi. Không gán số test của source cũ cho SHA mới. Trạng thái merge/CI hiện tại xem [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17) và [hồ sơ tổng kết](WEEK3_FINAL_STATUS.md).
-
-Mở PowerShell, tạo clone mới; nếu thư mục tồn tại, chọn tên khác, không xóa checkout cũ:
+Repo private: tài khoản clone phải được cấp quyền. Chọn thư mục mới, chạy PowerShell:
 
 ```powershell
-git --version
-py -3.11 --version
-py -3.11 -m pip --version
-Set-Location $env:USERPROFILE
-git clone --branch quyen/week3-integration https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-week3-integration-demo
-Set-Location clinic-week3-integration-demo
-git switch --detach 3c5fa8759967484fad61c59db54fb07584a56c86
+git clone --branch main https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-project1
+Set-Location clinic-project1
 git rev-parse HEAD
-git status --short
 ```
 
-HEAD phải đúng SHA được pin và checkout sạch. Nhánh tích hợp được giữ sau merge để tái hiện; cũng có thể clone main sau khi xác nhận PR #17 đã merge, ghi SHA thực tế. Các manifest ngày21/10 chỉ truy vết phiên lịch sử. Sau merge, kiểm tra CI trên main và smoke phần ảnh hưởng khi cần; không chạy lại toàn suite trên laptop chỉ vì đổi SHA/tài liệu.
+Ghi SHA thực tế khi kiểm thử/nộp. Bản tích hợp kỹ thuật gốc là 98bd2675bfffc64be09c87dd2897148f8b02b440; lịch sử bằng chứng xem [WEEK3_FINAL_STATUS](WEEK3_FINAL_STATUS.md).
 
 ## 2. Venv và .env
 
@@ -123,7 +109,7 @@ Dùng clone/bản sao kiểm thử riêng vì test ghi `test-artifacts/`. Cài t
 
 Tên runner tuần 2 là lịch sử; runner chạy source checkout hiện tại, tạo instance MySQL bind loopback/datadir mới dưới `.venv/` và DB `_test`, không dùng DB làm việc trong `.env`. Runner bật MySQL/browser/oracle, nhập đúng thứ tự mục 3; ghi JUnit/audit/ảnh tại `docs/evidence/vuong_week2_prepare_<timestamp>/`. Nếu MySQL ngoài Program Files/PATH, thêm `--mysqld "D:/duong-dan/bin/mysqld.exe"`; cache browser tùy chọn `--browsers-path "D:/duong-dan/browsers"`. Mở URL/cổng runner in sau khi test đạt, không mặc định cổng 5000. Đọc JUnit/failure/error/skip và audit; số test phụ thuộc source, không lấy 168/179 làm điều kiện cứng.
 
-**W3-RUN-01 vẫn mở trong sổ lỗi, chờ Trung/Quyền quyết định đóng:** #17 đã chứa bản sửa runner/helper từ #12; Trung đã review tích hợp và bằng chứng Windows success/error. Sau Ctrl+C, đọc `mysql_cleanup`, `cleanup_errors`, `preparation_success` trong results; xác minh PID/cổng/launcher của instance private đã thoát. Không còn dùng mô tả “chưa sửa source” cho snapshot #17. Nếu còn process/cổng, giữ log và đối chiếu đúng executable/datadir trước khi xử lý; không dừng MySQL hệ thống/theo tên chung, nhờ Trung nếu không xác minh được. [Trạng thái và bằng chứng](VUONG_WEEK3_ISSUES.md#w3-run-01--runner-còn-mysql-con-sau-khi-kết-thúc-trên-windows).
+**W3-RUN-01 đã đóng kỹ thuật theo hồ sơ tích hợp:** #17 đã chứa bản sửa runner/helper từ #12; Trung đã review tích hợp và bằng chứng Windows success/error. Sau Ctrl+C, đọc `mysql_cleanup`, `cleanup_errors`, `preparation_success` trong results; xác minh PID/cổng/launcher của instance private đã thoát. Không còn dùng mô tả “chưa sửa source” cho snapshot #17. Nếu còn process/cổng, giữ log và đối chiếu đúng executable/datadir trước khi xử lý; không dừng MySQL hệ thống/theo tên chung, nhờ Trung nếu không xác minh được. [Trạng thái và bằng chứng](VUONG_WEEK3_ISSUES.md#w3-run-01--runner-còn-mysql-con-sau-khi-kết-thúc-trên-windows).
 
 ## 6. Lỗi thường gặp
 
@@ -141,7 +127,7 @@ Tên runner tuần 2 là lịch sử; runner chạy source checkout hiện tại
 | `/health` đạt, `/health/db` 503 | Flask đã lên nhưng DB chưa kết nối; kiểm tra cấu hình/server |
 | Cổng 5000 bận | Dừng đúng app của bạn bằng Ctrl+C. Có thể chạy `.\.venv\Scripts\python.exe -m flask --app app run --host 127.0.0.1 --port 5001` rồi đổi URL tương ứng |
 | CSRF lỗi sau đổi khóa | Tải lại form rồi gửi lại |
-| Ô số báo tiếng Anh | Kiểm tra đúng SHA #17, JavaScript được nạp và loại ô number; #17 đã có bản sửa UI #13. Main cũ chưa có bản sửa; validation server vẫn áp dụng |
+| Ô số báo tiếng Anh | Kiểm tra đúng SHA #17, JavaScript được nạp và loại ô number; #17 đã có bản sửa UI #13. validation server vẫn áp dụng |
 | Count khác 1144 sau CRUD | Chỉ dọn hồ sơ giả không có lịch sử; không xóa seed/lịch sử hoặc import lại |
 | Báo cáo khác đáp án | Kiểm tra kỳ lọc/dữ liệu thêm; Q2 vẫn cộng lương cơ bản nhân sự mới |
 | Runner exit nhưng cổng còn mở | Xử lý W3-RUN-01 theo mục 5 |
