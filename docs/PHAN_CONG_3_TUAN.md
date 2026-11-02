@@ -129,7 +129,7 @@ Tạo nhánh mới từ main đã cập nhật; không tái sử dụng nhánh t
 
 - [ ] R01–R07 có SQL thật, giao diện bộ lọc, bảng và biểu đồ, lời giải thích mục đích/giới hạn; không ghi là đã hoàn thành chỉ vì có mockup.
 - [ ] Bảng và biểu đồ cùng dữ liệu/cùng bộ lọc, đúng đơn vị/số mẫu; tiền dùng DECIMAL, không nhân tiền do JOIN nhiều thuốc/y tá; không cộng DISTINCT từng nhóm thành tổng người duy nhất.
-- [ ] Seed hiện có 07–14/10/2026 (tháng 7 đến 14/10); dùng phạm vi quan sát đó, không khẳng định mùa vụ hoặc dự báo. Không so nửa tháng với cả tháng. MIN/MAX không chứng minh đầy đủ; không tự biến thiếu dữ liệu thành số 0.
+- [ ] Seed hiện có từ tháng 7 đến ngày 14/10/2026; dùng phạm vi quan sát đó, không khẳng định mùa vụ hoặc dự báo. Không so nửa tháng với cả tháng. MIN/MAX không chứng minh đầy đủ; không tự biến thiếu dữ liệu thành số 0.
 - [ ] R03 không xếp hạng chất lượng bác sĩ; R04 không trộn viên/chai hoặc khẳng định lượng cần nhập khi thiếu tồn kho; R05 không coi thiếu lịch sử là chưa từng mắc; R06 không suy ra bỏ điều trị; R07 không cam kết giá điều trị.
 - [ ] Dữ liệu kiểm thử riêng/rollback; giữ seed chuẩn và các đáp án Q1–Q4, không đổi schema 11 bảng trong phạm vi này. Nếu cần đổi phải review riêng.
 - [ ] Có expected/actual, SHA, log/ảnh, review và kiểm tra tích hợp; chạy demo bản cuối trên laptop Quyền. Không tự đánh dấu buổi tập hay nộp bài đã xong.
