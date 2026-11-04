@@ -25,6 +25,8 @@ def create_app(test_config=None):
     app.register_blueprint(bp)
     from .clinical_routes import bp as clinical_bp
     app.register_blueprint(clinical_bp)
+    from .analytics_routes import bp as analytics_bp
+    app.register_blueprint(analytics_bp)
 
     @app.errorhandler(HTTPException)
     def http_error(exc):

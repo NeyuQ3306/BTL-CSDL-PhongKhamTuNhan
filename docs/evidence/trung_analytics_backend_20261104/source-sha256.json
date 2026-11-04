@@ -1,0 +1,7 @@
+{
+  "clinic_app/analytics.py": "cbf21c34216b7d79db5d4cb2d8974a0580a3440f1ee42b03f21d189375b60be5",
+  "clinic_app/analytics_routes.py": "bffff899410dd908ae6d108844a2a618f46e4e122d7e5ea54270faa78f3263be",
+  "clinic_app/__init__.py": "32f6044eaab4f928996c3975ce0a98e08be7fe1f89c4955523120ea115736081",
+  "tests/test_trung_analytics_backend.py": "09627f3b7c0d09d2ece48e3d10618fac52ea5d835dc898cc9ccfeeb366ce0e00",
+  "database/analytics_queries.sql": "13e7ae019aa06968031637547c1817873d1ecfa49560e5b373284e88f37315ce"
+}
