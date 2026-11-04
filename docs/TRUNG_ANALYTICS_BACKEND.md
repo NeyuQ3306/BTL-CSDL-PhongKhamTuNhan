@@ -116,3 +116,38 @@ kiểm responsive/rỗng/NULL và cập nhật DOCX/ảnh. Quyền review SQL/ba
 nghiệm thu end-to-end trên bản tích hợp. Trung cập nhật slide bằng ảnh kết quả
 của giao diện sau tích hợp; các slide đang có SQL chưa phải chứng nhận UI mới.
 Không đánh dấu đủ 7 chức năng hay đóng issue #3 ở bước bàn giao backend.
+
+## Trung xác nhận với review UI của Vương — 04/11/2026
+
+Đối chiếu review [5763153761](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/22#pullrequestreview-5763153761)
+tại head e4353a9. Trung xác nhận giữ nguyên cấu trúc response và bộ lọc nêu trong review.
+
+- Adapter form thuộc phần tích hợp UI của Vương chịu trách nhiệm duy nhất chuyển
+  ngày cuối **bao gồm** thành `end` **không bao gồm**. Adapter có thể nằm ở lớp
+  giao diện phía server hoặc client; API analytics không tự chuyển và không cộng ngày.
+  Luôn tính từ giá trị ngày cuối gốc của form mỗi lần gửi, tránh cộng lại khi retry/reload.
+- Ví dụ form từ 01/07/2026 đến hết 14/10/2026 gửi
+  `start=2026-07-01&end=2026-10-15`.
+  Một ngày duy nhất 29/02/2004 gửi `start=2004-02-29&end=2004-03-01`.
+  Phép cộng là ngày lịch, không chuyển múi giờ làm lệch ngày.
+- Ngày cuối bao gồm tối đa là **9999-12-30** vì API chỉ nhận ISO bốn chữ số năm,
+  nên `9999-12-31` không có ngày kế tiếp biểu diễn được trong hợp đồng này.
+  Adapter báo lỗi dễ hiểu trước khi gọi API nếu chọn ngày cuối 9999-12-31,
+  không tràn năm, không kẹp ngày âm thầm. `as_of` của R06 không cộng ngày nên
+  vẫn nhận 9999-12-31.
+- Nếu UI dùng ngay nhãn “Ngày kết thúc không bao gồm”, gửi trực tiếp ngày đó,
+  không áp dụng bước chuyển ngày cuối bao gồm. Không thêm cờ ngầm vào API.
+- Endpoint tổng trả `{reports, filters}`; endpoint lẻ trả một payload có
+  `report_id/title/filters/interval/rows/row_count/chart_groups/money_unit/data_notice`.
+  `row_count` là số dòng. Bảng/biểu đồ lấy cùng response; tiền chuỗi/null,
+  ngày ISO/null, nhóm R05/R06 và các giới hạn diễn giải giữ nguyên hợp đồng.
+- Câu “backend đổi” trong ANALYTICS_HANDOFF của #21 được hiểu là bước adapter
+  chuẩn hóa đầu vào **trước** API; nó không yêu cầu API #22 cộng lần nữa.
+  Ghi rõ ranh giới tại đây, giữ nguyên dependency #21 để Quyền điều phối
+  thống nhất câu chữ tài liệu chung khi tích hợp, không sửa công thức SQL.
+
+Đã nhận nit dòng trống tại EOF clinic_app/__init__.py và dọn trong bản tiếp theo;
+không đổi logic backend. Xác nhận này chỉ chốt hợp đồng triển khai từ phía Trung,
+không tự ghi UI/biểu đồ/nghiệm thu đã xong, không resolve thay reviewer.
+#21 và #22 chưa merge; chờ Quyền điều phối #21, sau đó Trung đồng bộ main,
+kiểm tra diff/CI #22 trước tích hợp.

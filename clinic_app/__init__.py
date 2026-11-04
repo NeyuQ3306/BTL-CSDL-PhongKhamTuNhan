@@ -51,4 +51,3 @@ def create_app(test_config=None):
                                message='Có lỗi xử lý. Thao tác ghi chưa hoàn tất đã được hủy.'), 500
 
     return app
-
