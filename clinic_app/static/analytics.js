@@ -1,4 +1,4 @@
-/* R01/R02 presentation adapters. Counts and ordering come from the same API response. */
+/* R01–R03 presentation adapters. Counts and ordering come from the same API response. */
 (() => {
   'use strict';
   const panel = document.querySelector('#analytics');
@@ -13,6 +13,8 @@
       headers: ['Mã bệnh', 'Tên bệnh', 'Mã nhóm', 'Nhóm tuổi', 'Số đợt', 'Số bệnh nhân']},
     R02: {title: 'Tiếp nhận và khám theo ngày', fields: ['ngay', 'so_luot', 'so_benh_nhan_tiep_nhan', 'so_lan_kham'],
       headers: ['Ngày', 'Lượt tiếp nhận (lượt)', 'Bệnh nhân tiếp nhận (người/ngày)', 'Lần khám (lần)']},
+    R03: {title: 'Khối lượng khám theo bác sĩ', fields: ['ma_bac_si', 'ho_ten', 'chuyen_mon', 'so_lan_kham', 'so_dot', 'so_benh_nhan'],
+      headers: ['Mã bác sĩ', 'Họ tên', 'Chuyên môn', 'Lần khám (lần)', 'Đợt điều trị (đợt)', 'Bệnh nhân (người)']},
   };
   const chart = panel.querySelector('#r01-chart');
   const legend = panel.querySelector('#r01-legend');
@@ -30,17 +32,67 @@
   const detailHint = 'Trỏ hoặc dùng Tab đến một phần cột để xem chi tiết.';
   const r02Chart = panel.querySelector('#r02-chart');
   const r02Detail = panel.querySelector('#r02-chart-detail');
+  const r03Chart = panel.querySelector('#r03-chart');
+  const r03Detail = panel.querySelector('#r03-chart-detail');
 
   function selectReport() {
     const id = form.elements.report.value;
     const isR01 = id === 'R01';
     panel.querySelector('#analytics-age-field').hidden = !isR01;
     form.elements.age_group.disabled = !isR01;
-    panel.querySelector('#r01-description').hidden = !isR01;
-    panel.querySelector('#r02-description').hidden = isR01;
-    panel.querySelector('#r01-chart-section').hidden = !isR01;
-    panel.querySelector('#r02-chart-section').hidden = isR01;
+    Object.keys(reports).forEach(report => {
+      const prefix = report.toLowerCase();
+      panel.querySelector(`#${prefix}-description`).hidden = report !== id;
+      panel.querySelector(`#${prefix}-chart-section`).hidden = report !== id;
+    });
     form.querySelector('button').textContent = `Xem ${id}`;
+  }
+
+  function renderR03(data, period) {
+    r03Chart.replaceChildren();
+    r03Detail.textContent = 'Trỏ hoặc dùng Tab đến một thanh để xem chi tiết.';
+    panel.querySelector('#r03-chart-period').textContent = `Kỳ thực trả về: ${period}. Số bác sĩ trả về: ${data.row_count}. Không loại bác sĩ có 0 hoạt động. Đơn vị thanh: lần khám; số đợt và bệnh nhân riêng trong bảng/chi tiết.`;
+    panel.querySelector('#r03-chart-empty').hidden = data.rows.length !== 0;
+    panel.querySelector('#r03-chart-scroll').hidden = data.rows.length === 0;
+    r03Detail.hidden = data.rows.length === 0;
+    if (!data.rows.length) return;
+    const maximum = data.rows.reduce((n, row) => Math.max(n, row.so_lan_kham), 1);
+    const step = Math.max(1, Math.ceil(maximum / 5));
+    const axisMaximum = Math.ceil(maximum / step) * step;
+    const width = 960, left = 250, plotWidth = 620, top = 50, rowHeight = 56;
+    const bottom = top + data.rows.length * rowHeight;
+    const height = bottom + 70;
+    r03Chart.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    r03Chart.style.width = `${width}px`;
+    r03Chart.style.height = `${height}px`;
+    r03Chart.append(svgNode('title', {id: 'r03-svg-title'}, 'R03 — Khối lượng khám theo bác sĩ'));
+    r03Chart.append(svgNode('desc', {id: 'r03-svg-desc'}, `${period}. Thanh ngang là số lần khám, giữ bác sĩ 0 hoạt động và thứ tự API. Không xếp hạng chất lượng. Tên đầy đủ, chuyên môn, số đợt và bệnh nhân có trong chi tiết và bảng.`));
+    r03Chart.append(svgNode('text', {x: 20, y: 24}, 'Bác sĩ (mã / họ tên)'));
+    for (let tick = 0; tick <= axisMaximum; tick += step) {
+      const x = left + tick / axisMaximum * plotWidth;
+      r03Chart.append(svgNode('line', {x1: x, x2: x, y1: top - 10, y2: bottom, stroke: '#dbe3e8'}));
+      r03Chart.append(svgNode('text', {x, y: bottom + 24, 'text-anchor': 'middle'}, tick));
+    }
+    data.rows.forEach((row, index) => {
+      const y = top + index * rowHeight;
+      const detail = `${row.ma_bac_si} — ${row.ho_ten}; chuyên môn: ${row.chuyen_mon}; ${row.so_lan_kham} lần khám, ${row.so_dot} đợt điều trị, ${row.so_benh_nhan} bệnh nhân khác nhau của bác sĩ trong kỳ. Không đánh giá chất lượng bác sĩ.`;
+      r03Chart.append(svgNode('text', {x: left - 16, y: y + 10, 'text-anchor': 'end'}, row.ma_bac_si));
+      const shortName = Array.from(row.ho_ten).slice(0, 27).join('');
+      const label = svgNode('text', {x: left - 16, y: y + 30, 'text-anchor': 'end'}, shortName + (shortName === row.ho_ten ? '' : '…'));
+      label.append(svgNode('title', {}, row.ho_ten));
+      r03Chart.append(label);
+      const length = row.so_lan_kham / axisMaximum * plotWidth;
+      const rect = svgNode('rect', {x: left, y, width: length, height: 34, fill: '#2563a6',
+        class: 'chart-segment', tabindex: 0, role: 'img', 'aria-label': detail,
+        'data-doctor': row.ma_bac_si, 'data-examinations': row.so_lan_kham,
+        'data-episodes': row.so_dot, 'data-patients': row.so_benh_nhan});
+      rect.append(svgNode('title', {}, detail));
+      rect.addEventListener('mouseenter', () => { r03Detail.textContent = detail; });
+      rect.addEventListener('focus', () => { r03Detail.textContent = detail; });
+      r03Chart.append(rect);
+      r03Chart.append(svgNode('text', {x: left + length + 8, y: y + 23}, row.so_lan_kham));
+    });
+    r03Chart.append(svgNode('text', {x: left + plotWidth / 2, y: height - 12, 'text-anchor': 'middle'}, 'Số lần khám (lần)'));
   }
 
   function renderR02(data, period) {
@@ -198,6 +250,7 @@
     body.replaceChildren();
     chart.replaceChildren();
     r02Chart.replaceChildren();
+    r03Chart.replaceChildren();
     legend.replaceChildren();
     chartDetail.textContent = detailHint;
     error.hidden = true;
@@ -205,6 +258,20 @@
   }
 
   function validate(data, params, id) {
+    if (id === 'R03') {
+      const doctors = new Set();
+      const validRows = Array.isArray(data?.rows) && data.rows.every(row => {
+        if (!row || !['ma_bac_si', 'ho_ten', 'chuyen_mon'].every(key => typeof row[key] === 'string') ||
+            doctors.has(row.ma_bac_si) || !['so_lan_kham', 'so_dot', 'so_benh_nhan'].every(key => Number.isSafeInteger(row[key]) && row[key] >= 0)) return false;
+        doctors.add(row.ma_bac_si);
+        return true;
+      });
+      if (!data || data.report_id !== id || data.interval !== 'end_exclusive' || !validRows ||
+          data.row_count !== data.rows.length || typeof data.data_notice !== 'string' ||
+          data.filters?.start !== params.get('start') || data.filters?.end !== params.get('end') ||
+          data.filters?.age_group !== undefined) throw new Error('Dữ liệu trả về không đúng hợp đồng R03. Chưa thể hiển thị kết quả.');
+      return;
+    }
     if (id === 'R02') {
       let previous = '';
       const validRows = Array.isArray(data?.rows) && data.rows.every(row => {
@@ -260,7 +327,7 @@
       timer = setTimeout(() => { timedOut = true; requestController.abort(); }, 20000);
       panel.setAttribute('aria-busy', 'true');
       status.textContent = `Đang tải ${id}…`;
-      const endpoint = id === 'R01' ? panel.dataset.endpoint : panel.dataset.r02Endpoint;
+      const endpoint = {R01: panel.dataset.endpoint, R02: panel.dataset.r02Endpoint, R03: panel.dataset.r03Endpoint}[id];
       const response = await fetch(`${endpoint}?${params}`, {signal: controller.signal, headers: {Accept: 'application/json'}});
       if (current !== generation) return;
       if (!response.ok) {
@@ -294,17 +361,20 @@
         tr.append(cell); fragment.append(tr);
       }
       body.replaceChildren(fragment);
-      const group = id === 'R01' ? (data.filters.age_group === undefined ? 'Tất cả nhóm' : `Nhóm ${data.filters.age_group}`) : 'Lượt theo ngày vào; lần khám theo ngày khám';
+      const group = id === 'R01' ? (data.filters.age_group === undefined ? 'Tất cả nhóm' : `Nhóm ${data.filters.age_group}`) :
+        id === 'R02' ? 'Lượt theo ngày vào; lần khám theo ngày khám' : 'Lần khám theo ngày khám; phân bố công việc, không xếp hạng chất lượng';
       const period = `${data.filters.start} ≤ ${id === 'R01' ? 'ngày khám' : 'ngày'} < ${data.filters.end}`;
       if (id === 'R01') renderChart(data, `${period}. ${group}`);
-      else renderR02(data, period);
+      else if (id === 'R02') renderR02(data, period);
+      else renderR03(data, period);
       panel.querySelector('#analytics-applied').textContent = `Kỳ thực trả về: ${period}. ${group}. Số dòng: ${data.row_count} (không phải tổng bệnh nhân).`;
       panel.querySelector('#analytics-caption').textContent = `${id} — ${spec.title} · ${period} · ${group}`;
       panel.querySelector('.clinical-table').setAttribute('aria-label', `Bảng ${id}`);
       panel.querySelector('#analytics-table').dataset.report = id;
       panel.querySelector('#analytics-table-hint').textContent = id === 'R01' ?
-        'Giữ thứ tự từ API. Mã nhóm -1 là ngày sinh không hợp lệ; 0/1/2/3 tương ứng 0–5/6–17/18–59/60+. Cuộn ngang để xem đủ cột.' :
-        'Giữ thứ tự ngày tăng từ API; chỉ những ngày được trả về. Lượt, người tiếp nhận trong ngày và lần khám là ba đơn vị riêng. Không cộng người theo ngày thành tổng người duy nhất. Cuộn ngang để xem đủ cột.';
+        'Giữ thứ tự từ API. Mã nhóm -1 là ngày sinh không hợp lệ; 0/1/2/3 tương ứng 0–5/6–17/18–59/60+. Cuộn ngang để xem đủ cột.' : id === 'R02' ?
+        'Giữ thứ tự ngày tăng từ API; chỉ những ngày được trả về. Lượt, người tiếp nhận trong ngày và lần khám là ba đơn vị riêng. Không cộng người theo ngày thành tổng người duy nhất. Cuộn ngang để xem đủ cột.' :
+        'Giữ đủ bác sĩ và thứ tự API, gồm bác sĩ 0 hoạt động. Lần khám, đợt và bệnh nhân là ba đơn vị riêng; không cộng bệnh nhân giữa bác sĩ thành tổng người duy nhất. Không diễn giải thành chất lượng bác sĩ. Cuộn ngang để xem đủ cột.';
       panel.querySelector('#analytics-data-notice').textContent = data.data_notice;
       result.hidden = false;
       status.textContent = data.rows.length ? `Đã tải ${data.row_count} dòng ${id}.` : `Đã tải ${id}: không có dữ liệu phù hợp.`;
@@ -314,6 +384,7 @@
       body.replaceChildren();
       chart.replaceChildren();
       r02Chart.replaceChildren();
+      r03Chart.replaceChildren();
       legend.replaceChildren();
       status.textContent = 'Chưa có kết quả cho bộ lọc này.';
       error.textContent = timedOut ? 'Tải báo cáo quá lâu. Kiểm tra kết nối rồi thử lại.' :
