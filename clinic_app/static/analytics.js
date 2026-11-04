@@ -1,4 +1,4 @@
-/* R01–R04 presentation adapters. Counts and ordering come from the same API response. */
+/* R01–R05 presentation adapters. Counts and ordering come from the same API response. */
 (() => {
   'use strict';
   const panel = document.querySelector('#analytics');
@@ -17,6 +17,8 @@
       headers: ['Mã bác sĩ', 'Họ tên', 'Chuyên môn', 'Lần khám (lần)', 'Đợt điều trị (đợt)', 'Bệnh nhân (người)']},
     R04: {title: 'Thuốc được kê', fields: ['ma_thuoc', 'ten_thuoc', 'don_vi_tinh', 'so_don', 'tong_so_luong'],
       headers: ['Mã thuốc', 'Tên thuốc', 'Đơn vị tính', 'Số đơn có thuốc (đơn)', 'Tổng lượng kê (theo đơn vị thuốc)']},
+    R05: {title: 'Đợt tái mắc có tiền sử ghi nhận', fields: ['ma_dot', 'ma_benh_nhan', 'ho_ten', 'ma_benh', 'ten_benh', 'ngay_bat_dau', 'ngay_khoi_truoc', 'so_ngay_tu_lan_khoi_truoc'],
+      headers: ['Mã đợt', 'Mã bệnh nhân', 'Họ tên', 'Mã bệnh', 'Tên bệnh', 'Ngày bắt đầu đợt mới', 'Ngày khỏi trước', 'Khoảng cách từ lần khỏi trước (ngày)']},
   };
   const chart = panel.querySelector('#r01-chart');
   const legend = panel.querySelector('#r01-legend');
@@ -36,6 +38,7 @@
   const r02Detail = panel.querySelector('#r02-chart-detail');
   const r03Chart = panel.querySelector('#r03-chart');
   const r04Chart = panel.querySelector('#r04-chart');
+  const r05Chart = panel.querySelector('#r05-chart');
 
   function selectReport() {
     const id = form.elements.report.value;
@@ -110,6 +113,53 @@
       chartNode.append(svgNode('text', {x: left + length + 8, y: y + 23}, row[metric]));
     });
     chartNode.append(svgNode('text', {x: left + plotWidth / 2, y: height - 12, 'text-anchor': 'middle'}, isDoctor ? 'Số lần khám (lần)' : 'Số đơn có thuốc (đơn)'));
+  }
+
+  function renderR05(data, period) {
+    const detailNode = panel.querySelector('#r05-chart-detail');
+    const groups = data.chart_groups;
+    r05Chart.replaceChildren();
+    detailNode.textContent = 'Trỏ hoặc dùng Tab đến một cột để xem chi tiết.';
+    panel.querySelector('#r05-chart-period').textContent = `Kỳ thực trả về: ${period}. Số dòng hồ sơ: ${data.row_count}. Biểu đồ theo nhóm API, đơn vị đợt tái mắc; không phải số bệnh nhân.`;
+    panel.querySelector('#r05-chart-empty').hidden = groups.length !== 0;
+    panel.querySelector('#r05-chart-scroll').hidden = groups.length === 0;
+    detailNode.hidden = groups.length === 0;
+    if (!groups.length) return;
+    const maximum = groups.reduce((n, row) => Math.max(n, row.so_dot), 1);
+    const step = Math.max(1, Math.ceil(maximum / 5));
+    const axisMaximum = Math.ceil(maximum / step) * step;
+    const width = Math.max(760, 110 + groups.length * 160);
+    const left = 80, baseline = 328, plotHeight = 290;
+    const slot = (width - left - 24) / groups.length;
+    r05Chart.setAttribute('viewBox', `0 0 ${width} 460`);
+    r05Chart.style.width = `${width}px`;
+    r05Chart.append(svgNode('title', {id: 'r05-svg-title'}, 'R05 — Đợt tái mắc theo bệnh'));
+    r05Chart.append(svgNode('desc', {id: 'r05-svg-desc'}, `${period}. Cột lấy số đợt tái mắc từ chart_groups của API, cùng response với bảng hồ sơ. Không phải số bệnh nhân; thiếu lịch sử không có nghĩa chưa từng mắc.`));
+    r05Chart.append(svgNode('text', {x: left, y: 20}, 'Số đợt tái mắc (đợt)'));
+    for (let tick = 0; tick <= axisMaximum; tick += step) {
+      const y = baseline - tick / axisMaximum * plotHeight;
+      r05Chart.append(svgNode('line', {x1: left, x2: width - 24, y1: y, y2: y, stroke: '#dbe3e8'}));
+      r05Chart.append(svgNode('text', {x: left - 10, y: y + 4, 'text-anchor': 'end'}, tick));
+    }
+    groups.forEach((group, index) => {
+      const x = left + index * slot + slot * 0.2;
+      const height = group.so_dot / axisMaximum * plotHeight;
+      const detail = `${group.ma_benh} — ${group.ten_benh}: ${group.so_dot} đợt tái mắc được ghi nhận, không phải số bệnh nhân. Thiếu lịch sử không có nghĩa chưa từng mắc.`;
+      const rect = svgNode('rect', {x, y: baseline - height, width: slot * 0.6, height, fill: '#2563a6',
+        class: 'chart-segment', tabindex: 0, role: 'img', 'aria-label': detail,
+        'data-disease': group.ma_benh, 'data-episodes': group.so_dot});
+      rect.append(svgNode('title', {}, detail));
+      rect.addEventListener('mouseenter', () => { detailNode.textContent = detail; });
+      rect.addEventListener('focus', () => { detailNode.textContent = detail; });
+      r05Chart.append(rect);
+      r05Chart.append(svgNode('text', {x: x + slot * 0.3, y: baseline - height - 8, 'text-anchor': 'middle'}, group.so_dot));
+      r05Chart.append(svgNode('text', {x: x + slot * 0.3, y: baseline + 24, 'text-anchor': 'middle'}, group.ma_benh));
+      const shortName = Array.from(group.ten_benh).slice(0, 19).join('');
+      const label = svgNode('text', {x: x + slot * 0.3, y: baseline + 46, 'text-anchor': 'middle'}, shortName + (shortName === group.ten_benh ? '' : '…'));
+      label.append(svgNode('title', {}, group.ten_benh));
+      r05Chart.append(label);
+    });
+    r05Chart.append(svgNode('text', {x: width / 2, y: 435, 'text-anchor': 'middle'}, 'Bệnh (mã / tên; đầy đủ trong bảng và chi tiết)'));
   }
 
   function renderR02(data, period) {
@@ -269,6 +319,7 @@
     r02Chart.replaceChildren();
     r03Chart.replaceChildren();
     r04Chart.replaceChildren();
+    r05Chart.replaceChildren();
     legend.replaceChildren();
     chartDetail.textContent = detailHint;
     error.hidden = true;
@@ -276,6 +327,31 @@
   }
 
   function validate(data, params, id) {
+    if (id === 'R05') {
+      const episodes = new Set();
+      const diseases = new Set();
+      const validRows = Array.isArray(data?.rows) && data.rows.every(row => {
+        if (!row || !['ma_dot', 'ma_benh_nhan', 'ho_ten', 'ma_benh', 'ten_benh'].every(key => typeof row[key] === 'string') ||
+            episodes.has(row.ma_dot) || !Number.isSafeInteger(row.so_ngay_tu_lan_khoi_truoc) || row.so_ngay_tu_lan_khoi_truoc <= 0) return false;
+        try { parseDate(row.ngay_bat_dau); parseDate(row.ngay_khoi_truoc); } catch (_) { return false; }
+        if (row.ngay_bat_dau < params.get('start') || row.ngay_bat_dau >= params.get('end') || row.ngay_khoi_truoc >= row.ngay_bat_dau) return false;
+        episodes.add(row.ma_dot);
+        return true;
+      });
+      const validGroups = Array.isArray(data?.chart_groups) && data.chart_groups.every(group => {
+        if (!group || typeof group.ma_benh !== 'string' || typeof group.ten_benh !== 'string' ||
+            diseases.has(group.ma_benh) || !Number.isSafeInteger(group.so_dot) || group.so_dot < 0) return false;
+        diseases.add(group.ma_benh);
+        return true;
+      });
+      if (!data || data.report_id !== id || data.interval !== 'end_exclusive' || !validRows || !validGroups ||
+          data.row_count !== data.rows.length || typeof data.data_notice !== 'string' ||
+          data.filters?.start !== params.get('start') || data.filters?.end !== params.get('end') ||
+          data.filters?.age_group !== undefined || (data.rows.length === 0) !== (data.chart_groups.length === 0)) {
+        throw new Error('Dữ liệu trả về không đúng hợp đồng R05. Chưa thể hiển thị kết quả.');
+      }
+      return;
+    }
     if (id === 'R04') {
       const drugs = new Set();
       const validRows = Array.isArray(data?.rows) && data.rows.every(row => {
@@ -359,7 +435,7 @@
       timer = setTimeout(() => { timedOut = true; requestController.abort(); }, 20000);
       panel.setAttribute('aria-busy', 'true');
       status.textContent = `Đang tải ${id}…`;
-      const endpoint = {R01: panel.dataset.endpoint, R02: panel.dataset.r02Endpoint, R03: panel.dataset.r03Endpoint, R04: panel.dataset.r04Endpoint}[id];
+      const endpoint = {R01: panel.dataset.endpoint, R02: panel.dataset.r02Endpoint, R03: panel.dataset.r03Endpoint, R04: panel.dataset.r04Endpoint, R05: panel.dataset.r05Endpoint}[id];
       const response = await fetch(`${endpoint}?${params}`, {signal: controller.signal, headers: {Accept: 'application/json'}});
       if (current !== generation) return;
       if (!response.ok) {
@@ -394,10 +470,11 @@
       }
       body.replaceChildren(fragment);
       const group = id === 'R01' ? (data.filters.age_group === undefined ? 'Tất cả nhóm' : `Nhóm ${data.filters.age_group}`) :
-        id === 'R02' ? 'Lượt theo ngày vào; lần khám theo ngày khám' : id === 'R03' ? 'Lần khám theo ngày khám; phân bố công việc, không xếp hạng chất lượng' : 'Đơn theo ngày lập; lượng kê theo đơn vị riêng từng thuốc';
-      const period = `${data.filters.start} ≤ ${id === 'R01' ? 'ngày khám' : 'ngày'} < ${data.filters.end}`;
+        id === 'R02' ? 'Lượt theo ngày vào; lần khám theo ngày khám' : id === 'R03' ? 'Lần khám theo ngày khám; phân bố công việc, không xếp hạng chất lượng' : id === 'R04' ? 'Đơn theo ngày lập; lượng kê theo đơn vị riêng từng thuốc' : 'Đợt tái mắc theo ngày bắt đầu; không phải số bệnh nhân';
+      const period = `${data.filters.start} ≤ ${id === 'R01' ? 'ngày khám' : id === 'R05' ? 'ngày bắt đầu' : 'ngày'} < ${data.filters.end}`;
       if (id === 'R01') renderChart(data, `${period}. ${group}`);
       else if (id === 'R02') renderR02(data, period);
+      else if (id === 'R05') renderR05(data, period);
       else renderHorizontal(data, period);
       panel.querySelector('#analytics-applied').textContent = `Kỳ thực trả về: ${period}. ${group}. Số dòng: ${data.row_count} (${id === 'R04' ? 'số thuốc, không phải tổng đơn hoặc tổng lượng' : 'không phải tổng bệnh nhân'}).`;
       panel.querySelector('#analytics-caption').textContent = `${id} — ${spec.title} · ${period} · ${group}`;
@@ -406,8 +483,9 @@
       panel.querySelector('#analytics-table-hint').textContent = id === 'R01' ?
         'Giữ thứ tự từ API. Mã nhóm -1 là ngày sinh không hợp lệ; 0/1/2/3 tương ứng 0–5/6–17/18–59/60+. Cuộn ngang để xem đủ cột.' : id === 'R02' ?
         'Giữ thứ tự ngày tăng từ API; chỉ những ngày được trả về. Lượt, người tiếp nhận trong ngày và lần khám là ba đơn vị riêng. Không cộng người theo ngày thành tổng người duy nhất. Cuộn ngang để xem đủ cột.' : id === 'R03' ?
-        'Giữ đủ bác sĩ và thứ tự API, gồm bác sĩ 0 hoạt động. Lần khám, đợt và bệnh nhân là ba đơn vị riêng; không cộng bệnh nhân giữa bác sĩ thành tổng người duy nhất. Không diễn giải thành chất lượng bác sĩ. Cuộn ngang để xem đủ cột.' :
-        'Giữ thứ tự API và lượng kê/đơn vị riêng từng thuốc. Số đơn có thuốc khác tổng lượng kê; không cộng lượng khác đơn vị hoặc suy ra lượng cần nhập. Cuộn ngang để xem đủ cột.';
+        'Giữ đủ bác sĩ và thứ tự API, gồm bác sĩ 0 hoạt động. Lần khám, đợt và bệnh nhân là ba đơn vị riêng; không cộng bệnh nhân giữa bác sĩ thành tổng người duy nhất. Không diễn giải thành chất lượng bác sĩ. Cuộn ngang để xem đủ cột.' : id === 'R04' ?
+        'Giữ thứ tự API và lượng kê/đơn vị riêng từng thuốc. Số đơn có thuốc khác tổng lượng kê; không cộng lượng khác đơn vị hoặc suy ra lượng cần nhập. Cuộn ngang để xem đủ cột.' :
+        'Giữ đủ hồ sơ và thứ tự API: bệnh/ngày bắt đầu/mã đợt. Mỗi dòng là một đợt tái mắc, không phải một người duy nhất. Thiếu lịch sử không có nghĩa chưa từng mắc. Cuộn ngang để xem đủ cột.';
       panel.querySelector('#analytics-data-notice').textContent = data.data_notice;
       result.hidden = false;
       status.textContent = data.rows.length ? `Đã tải ${data.row_count} dòng ${id}.` : `Đã tải ${id}: không có dữ liệu phù hợp.`;
@@ -419,6 +497,7 @@
       r02Chart.replaceChildren();
       r03Chart.replaceChildren();
       r04Chart.replaceChildren();
+      r05Chart.replaceChildren();
       legend.replaceChildren();
       status.textContent = 'Chưa có kết quả cho bộ lọc này.';
       error.textContent = timedOut ? 'Tải báo cáo quá lâu. Kiểm tra kết nối rồi thử lại.' :

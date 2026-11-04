@@ -1,0 +1,10 @@
+{
+  "parent": "e13a9e6612b60b95fc498da14891c582f03ad472",
+  "files": {
+    "clinic_app/static/analytics.js": "3cad9f37c3487931fd43e322d6bce9c133c1f242a5d47e6e9ff57101a9c468ce",
+    "clinic_app/static/analytics.css": "1d592592dedee1fe9aedd9236afd62d9cce2a55e46f836fc0b3a9693146c14b0",
+    "tests/test_vuong_r05_ui.py": "261be1810d14cd20271b77ee665b8f6dcc297638fb65bbc13cfaf86546faf2fd",
+    "tests/test_vuong_analytics_ui.py": "8241a348173360563ca90be3d8e4c542b32d1159a2348df7f0bc9c96828f484c",
+    "clinic_app/templates/analytics/panel.html": "ffa0d21280496c2eb30b1b669ad99eeb7f0f8fc5a4f895a335a1507bd209edf3"
+  }
+}

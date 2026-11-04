@@ -1,4 +1,4 @@
-"""R01–R04 desktop browser checks with a real Flask API and stubbed SQL service.
+"""R01–R05 desktop browser checks with a real Flask API and stubbed SQL service.
 
 RUN_BROWSER_TESTS=1, optional BROWSER_CHANNEL=chrome; no MySQL or writes.
 These tests do not establish SQL parity or integrated acceptance.
@@ -17,6 +17,7 @@ SEED = json.loads(Path('database/analytics_expected.json').read_text(encoding='u
 R02_SEED = json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R02']
 R03_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R03'], key=lambda row: (-row['so_lan_kham'], row['ma_bac_si']))
 R04_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R04'], key=lambda row: (-row['so_don'], row['ma_thuoc']))
+R05_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R05'], key=lambda row: (row['ma_benh'], row['ngay_bat_dau'], row['ma_dot']))
 
 
 @pytest.fixture
@@ -29,7 +30,7 @@ def ui(monkeypatch):
     def build(values, report_id=None):
         calls.append(dict(values, report_id=report_id))
         # The server's existing payload serializer/filter executes; SQL is stubbed.
-        source = {'R01': SEED, 'R02': R02_SEED, 'R03': R03_SEED, 'R04': R04_SEED}[report_id]
+        source = {'R01': SEED, 'R02': R02_SEED, 'R03': R03_SEED, 'R04': R04_SEED, 'R05': R05_SEED}[report_id]
         rows = source if (values['start'], values['end']) == ('2026-07-01', '2026-10-15') else []
         if report_id == 'R03' and not rows:
             rows = [dict(row, so_lan_kham=0, so_dot=0, so_benh_nhan=0) for row in sorted(source, key=lambda r: r['ma_bac_si'])]
