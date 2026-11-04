@@ -1,4 +1,4 @@
-/* R01 presentation adapter. Business counts and ordering come from the API. */
+/* R01/R02 presentation adapters. Counts and ordering come from the same API response. */
 (() => {
   'use strict';
   const panel = document.querySelector('#analytics');
@@ -8,7 +8,12 @@
   const error = panel.querySelector('#analytics-error');
   const result = panel.querySelector('#analytics-result');
   const body = panel.querySelector('tbody');
-  const fields = ['ma_benh', 'ten_benh', 'thu_tu_nhom', 'nhom_tuoi', 'so_dot', 'so_benh_nhan'];
+  const reports = {
+    R01: {title: 'Bệnh theo nhóm tuổi', fields: ['ma_benh', 'ten_benh', 'thu_tu_nhom', 'nhom_tuoi', 'so_dot', 'so_benh_nhan'],
+      headers: ['Mã bệnh', 'Tên bệnh', 'Mã nhóm', 'Nhóm tuổi', 'Số đợt', 'Số bệnh nhân']},
+    R02: {title: 'Tiếp nhận và khám theo ngày', fields: ['ngay', 'so_luot', 'so_benh_nhan_tiep_nhan', 'so_lan_kham'],
+      headers: ['Ngày', 'Lượt tiếp nhận (lượt)', 'Bệnh nhân tiếp nhận (người/ngày)', 'Lần khám (lần)']},
+  };
   const chart = panel.querySelector('#r01-chart');
   const legend = panel.querySelector('#r01-legend');
   const chartDetail = panel.querySelector('#r01-chart-detail');
@@ -23,6 +28,64 @@
     {id: -1, label: 'Ngày sinh không hợp lệ (nhóm riêng)', color: '#58616e'},
   ];
   const detailHint = 'Trỏ hoặc dùng Tab đến một phần cột để xem chi tiết.';
+  const r02Chart = panel.querySelector('#r02-chart');
+  const r02Detail = panel.querySelector('#r02-chart-detail');
+
+  function selectReport() {
+    const id = form.elements.report.value;
+    const isR01 = id === 'R01';
+    panel.querySelector('#analytics-age-field').hidden = !isR01;
+    form.elements.age_group.disabled = !isR01;
+    panel.querySelector('#r01-description').hidden = !isR01;
+    panel.querySelector('#r02-description').hidden = isR01;
+    panel.querySelector('#r01-chart-section').hidden = !isR01;
+    panel.querySelector('#r02-chart-section').hidden = isR01;
+    form.querySelector('button').textContent = `Xem ${id}`;
+  }
+
+  function renderR02(data, period) {
+    r02Chart.replaceChildren();
+    r02Detail.textContent = 'Trỏ hoặc dùng Tab đến một cột để xem chi tiết.';
+    panel.querySelector('#r02-chart-period').textContent = `Kỳ thực trả về: ${period}. Số ngày có bản ghi trả về: ${data.row_count}. Đơn vị cột: lượt tiếp nhận / lần khám; bệnh nhân tiếp nhận (người/ngày) trong bảng và chi tiết.`;
+    panel.querySelector('#r02-chart-empty').hidden = data.rows.length !== 0;
+    panel.querySelector('#r02-chart-scroll').hidden = data.rows.length === 0;
+    r02Detail.hidden = data.rows.length === 0;
+    if (!data.rows.length) return;
+    const maximum = data.rows.reduce((n, row) => Math.max(n, row.so_luot, row.so_lan_kham), 1);
+    const step = Math.max(1, Math.ceil(maximum / 5));
+    const axisMaximum = Math.ceil(maximum / step) * step;
+    const width = Math.max(760, 110 + data.rows.length * 100);
+    const left = 80, baseline = 328, plotHeight = 290;
+    const slot = (width - left - 24) / data.rows.length;
+    r02Chart.setAttribute('viewBox', `0 0 ${width} 460`);
+    r02Chart.style.width = `${width}px`;
+    r02Chart.append(svgNode('title', {id: 'r02-svg-title'}, 'R02 — Tiếp nhận và khám theo ngày'));
+    r02Chart.append(svgNode('desc', {id: 'r02-svg-desc'}, `${period}. Hai cột riêng: lượt tiếp nhận và lần khám cho từng ngày API trả về. Không chèn ngày thiếu. Bệnh nhân tiếp nhận trong chi tiết là số người khác nhau trong ngày.`));
+    r02Chart.append(svgNode('text', {x: left, y: 20}, 'Số lượt / số lần khám'));
+    for (let tick = 0; tick <= axisMaximum; tick += step) {
+      const y = baseline - tick / axisMaximum * plotHeight;
+      r02Chart.append(svgNode('line', {x1: left, x2: width - 24, y1: y, y2: y, stroke: '#dbe3e8'}));
+      r02Chart.append(svgNode('text', {x: left - 10, y: y + 4, 'text-anchor': 'end'}, tick));
+    }
+    data.rows.forEach((row, index) => {
+      const x = left + index * slot;
+      const detail = `${row.ngay}: ${row.so_luot} lượt tiếp nhận; ${row.so_lan_kham} lần khám; ${row.so_benh_nhan_tiep_nhan} bệnh nhân tiếp nhận (người khác nhau trong ngày).`;
+      [['so_luot', '#2563a6', 'Lượt tiếp nhận'], ['so_lan_kham', '#ad5710', 'Lần khám']].forEach(([key, color, label], series) => {
+        const height = row[key] / axisMaximum * plotHeight;
+        const rect = svgNode('rect', {x: x + slot * (0.15 + series * 0.32), y: baseline - height,
+          width: slot * 0.28, height, fill: color, class: 'chart-segment', tabindex: 0, role: 'img',
+          'aria-label': `${label}. ${detail}`, 'data-date': row.ngay, 'data-series': key,
+          'data-count': row[key], 'data-patients': row.so_benh_nhan_tiep_nhan});
+        rect.append(svgNode('title', {}, `${label}. ${detail}`));
+        rect.addEventListener('mouseenter', () => { r02Detail.textContent = `${label}. ${detail}`; });
+        rect.addEventListener('focus', () => { r02Detail.textContent = `${label}. ${detail}`; });
+        r02Chart.append(rect);
+      });
+      const labelX = x + slot / 2;
+      r02Chart.append(svgNode('text', {x: labelX, y: baseline + 20, transform: `rotate(-45 ${labelX} ${baseline + 20})`, 'text-anchor': 'end'}, row.ngay));
+    });
+    r02Chart.append(svgNode('text', {x: width / 2, y: 445, 'text-anchor': 'middle'}, 'Ngày có bản ghi (YYYY-MM-DD; không chèn ngày thiếu)'));
+  }
 
   function svgNode(name, attrs = {}, text) {
     const node = document.createElementNS('http://www.w3.org/2000/svg', name);
@@ -110,7 +173,7 @@
     return date;
   }
 
-  function query() {
+  function query(id) {
     const start = form.elements.start.value;
     const through = form.elements.through.value;
     parseDate(start);
@@ -121,7 +184,7 @@
     end.setUTCDate(end.getUTCDate() + 1);
     const params = new URLSearchParams({start, end: end.toISOString().slice(0, 10)});
     const age = form.elements.age_group.value;
-    if (age !== '') {
+    if (id === 'R01' && age !== '') {
       if (!['-1', '0', '1', '2', '3'].includes(age)) throw new Error('Nhóm tuổi không hợp lệ.');
       params.set('age_group', age);
     }
@@ -134,13 +197,29 @@
     result.hidden = true;
     body.replaceChildren();
     chart.replaceChildren();
+    r02Chart.replaceChildren();
     legend.replaceChildren();
     chartDetail.textContent = detailHint;
     error.hidden = true;
     panel.setAttribute('aria-busy', 'false');
   }
 
-  function validate(data, params) {
+  function validate(data, params, id) {
+    if (id === 'R02') {
+      let previous = '';
+      const validRows = Array.isArray(data?.rows) && data.rows.every(row => {
+        if (!row || typeof row.ngay !== 'string' || row.ngay <= previous ||
+            row.ngay < params.get('start') || row.ngay >= params.get('end')) return false;
+        try { parseDate(row.ngay); } catch (_) { return false; }
+        previous = row.ngay;
+        return ['so_luot', 'so_lan_kham', 'so_benh_nhan_tiep_nhan'].every(key => Number.isSafeInteger(row[key]) && row[key] >= 0);
+      });
+      if (!data || data.report_id !== id || data.interval !== 'end_exclusive' || !validRows ||
+          data.row_count !== data.rows.length || typeof data.data_notice !== 'string' ||
+          data.filters?.start !== params.get('start') || data.filters?.end !== params.get('end') ||
+          data.filters?.age_group !== undefined) throw new Error('Dữ liệu trả về không đúng hợp đồng R02. Chưa thể hiển thị kết quả.');
+      return;
+    }
     const age = params.get('age_group');
     const keys = new Set();
     if (!data || data.report_id !== 'R01' || data.interval !== 'end_exclusive' ||
@@ -161,7 +240,8 @@
 
   form.addEventListener('input', () => {
     clear();
-    status.textContent = 'Bộ lọc đã đổi. Bấm Xem R01 để tải kết quả tương ứng.';
+    selectReport();
+    status.textContent = `Bộ lọc đã đổi. Bấm Xem ${form.elements.report.value} để tải kết quả tương ứng.`;
   });
   form.addEventListener('submit', async event => {
     event.preventDefault();
@@ -170,21 +250,31 @@
     let timer;
     let timedOut = false;
     try {
-      const params = query();
+      const id = form.elements.report.value;
+      if (!Object.hasOwn(reports, id)) throw new Error('Báo cáo chưa được hỗ trợ trong giao diện.');
+      const spec = reports[id];
+      const fields = spec.fields;
+      const params = query(id);
       controller = new AbortController();
       const requestController = controller;
       timer = setTimeout(() => { timedOut = true; requestController.abort(); }, 20000);
       panel.setAttribute('aria-busy', 'true');
-      status.textContent = 'Đang tải R01…';
-      const response = await fetch(`${panel.dataset.endpoint}?${params}`, {signal: controller.signal, headers: {Accept: 'application/json'}});
+      status.textContent = `Đang tải ${id}…`;
+      const endpoint = id === 'R01' ? panel.dataset.endpoint : panel.dataset.r02Endpoint;
+      const response = await fetch(`${endpoint}?${params}`, {signal: controller.signal, headers: {Accept: 'application/json'}});
       if (current !== generation) return;
       if (!response.ok) {
-        const messages = {400: 'Bộ lọc bị API từ chối. Kiểm tra ngày và nhóm tuổi.', 404: 'Không tìm thấy API R01.', 500: 'Máy chủ chưa xử lý được báo cáo.', 503: 'Chưa kết nối được MySQL. Kiểm tra kết nối rồi thử lại.'};
+        const messages = {400: 'Bộ lọc bị API từ chối. Kiểm tra ngày và bộ lọc đã chọn.', 404: `Không tìm thấy API ${id}.`, 500: 'Máy chủ chưa xử lý được báo cáo.', 503: 'Chưa kết nối được MySQL. Kiểm tra kết nối rồi thử lại.'};
         throw new Error(`Lỗi ${response.status}: ${messages[response.status] || 'Không thể tải báo cáo.'}`);
       }
       const data = await response.json();
       if (current !== generation) return;
-      validate(data, params);
+      validate(data, params, id);
+      const head = panel.querySelector('#analytics-table thead tr');
+      head.replaceChildren();
+      spec.headers.forEach(label => {
+        const cell = document.createElement('th'); cell.scope = 'col'; cell.textContent = label; head.append(cell);
+      });
       const fragment = document.createDocumentFragment();
       for (const row of data.rows) {
         const tr = document.createElement('tr');
@@ -204,19 +294,26 @@
         tr.append(cell); fragment.append(tr);
       }
       body.replaceChildren(fragment);
-      const group = data.filters.age_group === undefined ? 'Tất cả nhóm' : `Nhóm ${data.filters.age_group}`;
-      const period = `${data.filters.start} ≤ ngày khám < ${data.filters.end}`;
-      renderChart(data, `${period}. ${group}`);
+      const group = id === 'R01' ? (data.filters.age_group === undefined ? 'Tất cả nhóm' : `Nhóm ${data.filters.age_group}`) : 'Lượt theo ngày vào; lần khám theo ngày khám';
+      const period = `${data.filters.start} ≤ ${id === 'R01' ? 'ngày khám' : 'ngày'} < ${data.filters.end}`;
+      if (id === 'R01') renderChart(data, `${period}. ${group}`);
+      else renderR02(data, period);
       panel.querySelector('#analytics-applied').textContent = `Kỳ thực trả về: ${period}. ${group}. Số dòng: ${data.row_count} (không phải tổng bệnh nhân).`;
-      panel.querySelector('#analytics-caption').textContent = `R01 — Bệnh theo nhóm tuổi · ${period} · ${group}`;
+      panel.querySelector('#analytics-caption').textContent = `${id} — ${spec.title} · ${period} · ${group}`;
+      panel.querySelector('.clinical-table').setAttribute('aria-label', `Bảng ${id}`);
+      panel.querySelector('#analytics-table').dataset.report = id;
+      panel.querySelector('#analytics-table-hint').textContent = id === 'R01' ?
+        'Giữ thứ tự từ API. Mã nhóm -1 là ngày sinh không hợp lệ; 0/1/2/3 tương ứng 0–5/6–17/18–59/60+. Cuộn ngang để xem đủ cột.' :
+        'Giữ thứ tự ngày tăng từ API; chỉ những ngày được trả về. Lượt, người tiếp nhận trong ngày và lần khám là ba đơn vị riêng. Không cộng người theo ngày thành tổng người duy nhất. Cuộn ngang để xem đủ cột.';
       panel.querySelector('#analytics-data-notice').textContent = data.data_notice;
       result.hidden = false;
-      status.textContent = data.rows.length ? `Đã tải ${data.row_count} dòng R01.` : 'Đã tải R01: không có dữ liệu phù hợp.';
+      status.textContent = data.rows.length ? `Đã tải ${data.row_count} dòng ${id}.` : `Đã tải ${id}: không có dữ liệu phù hợp.`;
     } catch (exc) {
       if (current !== generation) return;
       result.hidden = true;
       body.replaceChildren();
       chart.replaceChildren();
+      r02Chart.replaceChildren();
       legend.replaceChildren();
       status.textContent = 'Chưa có kết quả cho bộ lọc này.';
       error.textContent = timedOut ? 'Tải báo cáo quá lâu. Kiểm tra kết nối rồi thử lại.' :
@@ -227,4 +324,5 @@
       if (current === generation) panel.setAttribute('aria-busy', 'false');
     }
   });
+  selectReport();
 })();

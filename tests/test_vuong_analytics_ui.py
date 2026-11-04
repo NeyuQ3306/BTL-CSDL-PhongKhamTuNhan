@@ -1,4 +1,4 @@
-"""R01 browser adapter checks with a real Flask API and stubbed SQL service.
+"""R01/R02 browser adapter checks with a real Flask API and stubbed SQL service.
 
 RUN_BROWSER_TESTS=1, optional BROWSER_CHANNEL=chrome; no MySQL or writes.
 These tests do not establish SQL parity or integrated acceptance.
@@ -14,6 +14,7 @@ from clinic_app import create_app, analytics
 
 OUT = Path('test-artifacts/vuong-analytics-ui')
 SEED = json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R01']
+R02_SEED = json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R02']
 
 
 @pytest.fixture
@@ -24,9 +25,10 @@ def ui(monkeypatch):
     calls = []
 
     def build(values, report_id=None):
-        calls.append(values.copy())
+        calls.append(dict(values, report_id=report_id))
         # The server's existing payload serializer/filter executes; SQL is stubbed.
-        rows = SEED if (values['start'], values['end']) == ('2026-07-01', '2026-10-15') else []
+        source = R02_SEED if report_id == 'R02' else SEED
+        rows = source if (values['start'], values['end']) == ('2026-07-01', '2026-10-15') else []
         return analytics.payload(report_id, rows, values)
 
     monkeypatch.setattr(analytics, 'build', build)

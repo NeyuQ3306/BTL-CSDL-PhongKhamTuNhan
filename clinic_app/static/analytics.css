@@ -8,17 +8,19 @@
 .analytics-panel table { min-width: 650px; }
 .analytics-panel td, .analytics-panel th { overflow-wrap: anywhere; }
 .analytics-panel td:nth-last-child(-n+2) { text-align: right; font-variant-numeric: tabular-nums; }
+.analytics-panel table[data-report="R02"] td { text-align: right; font-variant-numeric: tabular-nums; }
 .analytics-panel [role="alert"] { overflow-wrap: anywhere; }
 .analytics-legend { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 0; list-style: none; }
 .analytics-legend li { display: inline-flex; align-items: center; gap: 8px; }
 .analytics-swatch { width: 18px; height: 18px; display: inline-block; border: 1px solid #34495e; flex-shrink: 0; }
 .analytics-chart-scroll { max-width: 100%; overflow-x: auto; background: white; border: 1px solid #ccd8d8; border-radius: 8px; }
 .analytics-chart-scroll:focus-visible { outline: 3px solid #075e60; outline-offset: 2px; }
-#r01-chart { display: block; height: 420px; font: 13px system-ui, sans-serif; color: #234652; }
-#r01-chart text { fill: currentColor; }
-#r01-chart .chart-segment { stroke: white; stroke-width: 1; }
-#r01-chart .chart-segment:focus { outline: none; stroke: #111827; stroke-width: 3; }
-#r01-chart-detail { overflow-wrap: anywhere; min-height: 3em; }
+#r01-chart, #r02-chart { display: block; height: 420px; font: 13px system-ui, sans-serif; color: #234652; }
+#r02-chart { height: 460px; }
+#r01-chart text, #r02-chart text { fill: currentColor; }
+.analytics-panel .chart-segment { stroke: white; stroke-width: 1; }
+.analytics-panel .chart-segment:focus { outline: none; stroke: #111827; stroke-width: 3; }
+#r01-chart-detail, #r02-chart-detail { overflow-wrap: anywhere; min-height: 3em; }
 @media (max-width: 560px) {
   .analytics-panel .report-filters { display: flex; flex-direction: column; align-items: stretch; }
   .analytics-panel .filter-field { flex: auto; width: 100%; }
