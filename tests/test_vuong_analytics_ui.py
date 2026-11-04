@@ -1,4 +1,4 @@
-"""R01–R06 desktop browser checks with a real Flask API and stubbed SQL service.
+"""R01–R07 desktop browser checks with a real Flask API and stubbed SQL service.
 
 RUN_BROWSER_TESTS=1, optional BROWSER_CHANNEL=chrome; no MySQL or writes.
 These tests do not establish SQL parity or integrated acceptance.
@@ -6,6 +6,7 @@ These tests do not establish SQL parity or integrated acceptance.
 import json
 import os
 import threading
+from decimal import Decimal
 from pathlib import Path
 
 import pytest
@@ -19,6 +20,7 @@ R03_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(
 R04_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R04'], key=lambda row: (-row['so_don'], row['ma_thuoc']))
 R05_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R05'], key=lambda row: (row['ma_benh'], row['ngay_bat_dau'], row['ma_dot']))
 R06_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R06'], key=lambda row: (-row['so_ngay_chua_ghi_nhan'], row['ma_dot']))
+R07_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R07'], key=lambda row: (row['tb_tong'] is None, -Decimal(str(row['tb_tong'])) if row['tb_tong'] is not None else Decimal(0), row['ma_benh']))
 
 
 @pytest.fixture
@@ -31,7 +33,7 @@ def ui(monkeypatch):
     def build(values, report_id=None):
         calls.append(dict(values, report_id=report_id))
         # The server's existing payload serializer/filter executes; SQL is stubbed.
-        source = {'R01': SEED, 'R02': R02_SEED, 'R03': R03_SEED, 'R04': R04_SEED, 'R05': R05_SEED, 'R06': R06_SEED}[report_id]
+        source = {'R01': SEED, 'R02': R02_SEED, 'R03': R03_SEED, 'R04': R04_SEED, 'R05': R05_SEED, 'R06': R06_SEED, 'R07': R07_SEED}[report_id]
         if report_id == 'R06':
             rows = source if (values['as_of'], values['threshold']) == ('2026-10-14',14) else []
         else:

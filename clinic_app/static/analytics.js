@@ -1,4 +1,4 @@
-/* R01–R06 presentation adapters. Counts and ordering come from the same API response. */
+/* R01–R07 presentation adapters. Counts and ordering come from the same API response. */
 (() => {
   'use strict';
   const panel = document.querySelector('#analytics');
@@ -21,6 +21,8 @@
       headers: ['Mã đợt', 'Mã bệnh nhân', 'Họ tên', 'Mã bệnh', 'Tên bệnh', 'Ngày bắt đầu đợt mới', 'Ngày khỏi trước', 'Khoảng cách từ lần khỏi trước (ngày)']},
     R06: {title: 'Lâu chưa ghi nhận khám', fields: ['ma_dot', 'ma_benh_nhan', 'ho_ten', 'so_dien_thoai', 'ma_benh', 'ten_benh', 'ma_bac_si', 'ten_bac_si', 'ngay_bat_dau', 'ngay_kham_cuoi', 'chua_co_lan_kham', 'so_ngay_chua_ghi_nhan', 'nhom_ngay'],
       headers: ['Mã đợt', 'Mã bệnh nhân', 'Họ tên', 'Số điện thoại', 'Mã bệnh', 'Tên bệnh', 'Mã bác sĩ', 'Tên bác sĩ', 'Ngày bắt đầu', 'Ngày khám cuối', 'Chưa có lần khám (1=chưa khám, 0=đã có khám)', 'Số ngày chưa ghi nhận khám', 'Nhóm ngày']},
+    R07: {title: 'Chi phí đợt đã khỏi theo bệnh', fields: ['ma_benh', 'ten_benh', 'so_dot_tinh', 'so_dot_loai', 'tb_tien_kham', 'tb_tien_thuoc', 'tb_tong', 'min_tong', 'max_tong'],
+      headers: ['Mã bệnh', 'Tên bệnh', 'Số đợt tính (mẫu)', 'Số đợt loại', 'TB tiền khám (VND)', 'TB tiền thuốc (VND)', 'TB tổng (VND)', 'Tổng thấp nhất (VND)', 'Tổng cao nhất (VND)']},
   };
   const chart = panel.querySelector('#r01-chart');
   const legend = panel.querySelector('#r01-legend');
@@ -42,7 +44,14 @@
   const r04Chart = panel.querySelector('#r04-chart');
   const r05Chart = panel.querySelector('#r05-chart');
   const r06Chart = panel.querySelector('#r06-chart');
+  const r07Chart = panel.querySelector('#r07-chart');
   const dayGroups = ['0–6', '7–13', '14–29', '30+'];
+  const moneyFields = ['tb_tien_kham', 'tb_tien_thuoc', 'tb_tong', 'min_tong', 'max_tong'];
+
+  function moneyText(value) {
+    // Preserve the exact API decimal string: no float or locale formatter round-trip.
+    return value === null ? 'Không có mẫu' : `${value} VND`;
+  }
 
   function selectReport() {
     const id = form.elements.report.value;
@@ -185,6 +194,79 @@
       }
     });
     chartNode.append(svgNode('text', {x: width / 2, y: 435, 'text-anchor': 'middle'}, isR06 ? 'Nhóm số ngày chưa ghi nhận khám (ngày)' : 'Bệnh (mã / tên; đầy đủ trong bảng và chi tiết)'));
+  }
+
+  function renderR07(data, period) {
+    const detailNode = panel.querySelector('#r07-chart-detail');
+    const hasRows = data.rows.length > 0;
+    const hasSamples = data.rows.some(row => row.so_dot_tinh > 0);
+    r07Chart.replaceChildren();
+    detailNode.textContent = 'Trỏ hoặc dùng Tab đến một phần cột để xem chi tiết.';
+    panel.querySelector('#r07-chart-period').textContent = `Kỳ thực trả về: ${period}. Số bệnh/dòng nguồn: ${data.row_count}. Đơn vị: VND trung bình toàn đợt đã khỏi; số mẫu/đợt loại trong bảng và chi tiết. Không phải báo giá hoặc doanh thu Q4.`;
+    const noSamples = panel.querySelector('#r07-chart-empty');
+    noSamples.textContent = hasRows && !hasSamples ?
+      'Không có mẫu tính chi phí trong các nhóm trả về. Giữ hồ sơ và NULL ở bảng; không vẽ cột tiền.' :
+      'Không có dữ liệu phù hợp để vẽ biểu đồ.';
+    noSamples.hidden = hasRows && hasSamples;
+    panel.querySelector('#r07-chart-scroll').hidden = !hasRows;
+    detailNode.hidden = !hasSamples;
+    if (!hasRows) return;
+    // Only chart geometry uses Number. Table, titles and details retain source strings.
+    const plotted = data.rows.filter(row => row.so_dot_tinh > 0).map(row => ({row,
+      consultation: Number(row.tb_tien_kham), medicine: Number(row.tb_tien_thuoc)}));
+    if (!plotted.every(item => Number.isFinite(item.consultation) && Number.isFinite(item.medicine) && Number.isFinite(item.consultation + item.medicine))) {
+      throw new Error('Số tiền vượt khả năng biểu diễn của biểu đồ. Chưa thể hiển thị kết quả R07.');
+    }
+    const maximum = plotted.reduce((n, item) => Math.max(n, item.consultation + item.medicine), 1);
+    const step = Math.max(1, Math.ceil(maximum / 5));
+    const tickCount = Math.ceil(maximum / step);
+    const axisMaximum = tickCount * step;
+    if (!Number.isFinite(step) || !Number.isFinite(axisMaximum) || step <= 0 || tickCount < 1 || tickCount > 6) {
+      throw new Error('Số tiền vượt khả năng biểu diễn của biểu đồ. Chưa thể hiển thị kết quả R07.');
+    }
+    const width = Math.max(760, 110 + data.rows.length * 160);
+    const left = 100, baseline = 328, plotHeight = 290;
+    const slot = (width - left - 24) / data.rows.length;
+    r07Chart.setAttribute('viewBox', `0 0 ${width} 460`);
+    r07Chart.style.width = `${width}px`;
+    r07Chart.append(svgNode('title', {id: 'r07-svg-title'}, 'R07 — Chi phí trung bình đợt đã khỏi theo bệnh'));
+    r07Chart.append(svgNode('desc', {id: 'r07-svg-desc'}, `${period}. Cột chồng tiền khám và thuốc trung bình từ cùng rows với bảng; số tiền gốc trong chi tiết. Nhóm không có mẫu không có cột tiền, khác 0 VND thật. Không tính lại tổng và không phải cam kết giá điều trị.`));
+    r07Chart.append(svgNode('text', {x: left, y: 20}, 'Chi phí trung bình (VND)'));
+    for (let index = 0; index <= tickCount; index += 1) {
+      const tick = index * step;
+      const y = baseline - tick / axisMaximum * plotHeight;
+      r07Chart.append(svgNode('line', {x1: left, x2: width - 24, y1: y, y2: y, stroke: '#dbe3e8'}));
+      r07Chart.append(svgNode('text', {x: left - 10, y: y + 4, 'text-anchor': 'end'}, tick));
+    }
+    data.rows.forEach((row, index) => {
+      const x = left + index * slot + slot * 0.2;
+      const detail = `${row.ma_benh} — ${row.ten_benh}; số đợt tính: ${row.so_dot_tinh}, số đợt loại: ${row.so_dot_loai}; trung bình tiền khám: ${moneyText(row.tb_tien_kham)}; trung bình tiền thuốc: ${moneyText(row.tb_tien_thuoc)}; trung bình tổng: ${moneyText(row.tb_tong)}; thấp nhất: ${moneyText(row.min_tong)}; cao nhất: ${moneyText(row.max_tong)}. Không phải báo giá điều trị.`;
+      if (row.so_dot_tinh > 0) {
+        let stacked = 0;
+        [['tb_tien_kham', '#2563a6', 'Trung bình tiền khám'], ['tb_tien_thuoc', '#ad5710', 'Trung bình tiền thuốc']].forEach(([key, color, label]) => {
+          const value = Number(row[key]);
+          const height = value / axisMaximum * plotHeight;
+          stacked += value;
+          const rect = svgNode('rect', {x, y: baseline - stacked / axisMaximum * plotHeight, width: slot * 0.6, height,
+            fill: color, class: 'chart-segment', tabindex: 0, role: 'img', 'aria-label': `${label}. ${detail}`,
+            'data-disease': row.ma_benh, 'data-series': key, 'data-money': row[key]});
+          rect.append(svgNode('title', {}, `${label}. ${detail}`));
+          rect.addEventListener('mouseenter', () => { detailNode.textContent = `${label}. ${detail}`; });
+          rect.addEventListener('focus', () => { detailNode.textContent = `${label}. ${detail}`; });
+          r07Chart.append(rect);
+        });
+      } else {
+        const noSample = svgNode('text', {x: x + slot * 0.3, y: baseline - 16, 'text-anchor': 'middle'}, 'Không có mẫu');
+        noSample.append(svgNode('title', {}, detail));
+        r07Chart.append(noSample);
+      }
+      r07Chart.append(svgNode('text', {x: x + slot * 0.3, y: baseline + 24, 'text-anchor': 'middle'}, row.ma_benh));
+      const shortName = Array.from(row.ten_benh).slice(0, 19).join('');
+      const label = svgNode('text', {x: x + slot * 0.3, y: baseline + 46, 'text-anchor': 'middle'}, shortName + (shortName === row.ten_benh ? '' : '…'));
+      label.append(svgNode('title', {}, row.ten_benh));
+      r07Chart.append(label);
+    });
+    r07Chart.append(svgNode('text', {x: width / 2, y: 435, 'text-anchor': 'middle'}, 'Bệnh (mã / tên; số mẫu và tiền gốc trong bảng)'));
   }
 
   function renderR02(data, period) {
@@ -353,6 +435,7 @@
     r04Chart.replaceChildren();
     r05Chart.replaceChildren();
     r06Chart.replaceChildren();
+    r07Chart.replaceChildren();
     legend.replaceChildren();
     chartDetail.textContent = detailHint;
     error.hidden = true;
@@ -360,6 +443,23 @@
   }
 
   function validate(data, params, id) {
+    if (id === 'R07') {
+      const diseases = new Set();
+      const validRows = Array.isArray(data?.rows) && data.rows.every(row => {
+        if (!row || !['ma_benh', 'ten_benh'].every(key => typeof row[key] === 'string') || diseases.has(row.ma_benh) ||
+            !['so_dot_tinh', 'so_dot_loai'].every(key => Number.isSafeInteger(row[key]) && row[key] >= 0)) return false;
+        const validMoney = row.so_dot_tinh === 0 ? moneyFields.every(key => row[key] === null) :
+          moneyFields.every(key => typeof row[key] === 'string' && /^[0-9]+\.[0-9]{2}$/.test(row[key]));
+        if (!validMoney) return false;
+        diseases.add(row.ma_benh);
+        return true;
+      });
+      if (!data || data.report_id !== id || data.interval !== 'end_exclusive' || !validRows ||
+          data.money_unit !== 'VND' || data.row_count !== data.rows.length || typeof data.data_notice !== 'string' ||
+          data.filters?.start !== params.get('start') || data.filters?.end !== params.get('end') ||
+          data.filters?.age_group !== undefined) throw new Error('Dữ liệu trả về không đúng hợp đồng R07. Chưa thể hiển thị kết quả.');
+      return;
+    }
     if (id === 'R06') {
       const episodes = new Set();
       const labels = new Set();
@@ -497,7 +597,7 @@
       timer = setTimeout(() => { timedOut = true; requestController.abort(); }, 20000);
       panel.setAttribute('aria-busy', 'true');
       status.textContent = `Đang tải ${id}…`;
-      const endpoint = {R01: panel.dataset.endpoint, R02: panel.dataset.r02Endpoint, R03: panel.dataset.r03Endpoint, R04: panel.dataset.r04Endpoint, R05: panel.dataset.r05Endpoint, R06: panel.dataset.r06Endpoint}[id];
+      const endpoint = {R01: panel.dataset.endpoint, R02: panel.dataset.r02Endpoint, R03: panel.dataset.r03Endpoint, R04: panel.dataset.r04Endpoint, R05: panel.dataset.r05Endpoint, R06: panel.dataset.r06Endpoint, R07: panel.dataset.r07Endpoint}[id];
       const response = await fetch(`${endpoint}?${params}`, {signal: controller.signal, headers: {Accept: 'application/json'}});
       if (current !== generation) return;
       if (!response.ok) {
@@ -518,7 +618,12 @@
         fields.forEach((key, index) => {
           const cell = document.createElement(index === 0 ? 'th' : 'td');
           if (index === 0) cell.scope = 'row';
-          cell.textContent = id === 'R06' && key === 'ngay_kham_cuoi' && row[key] === null ? 'Chưa có lần khám' : String(row[key]);
+          if (id === 'R07' && moneyFields.includes(key)) {
+            cell.textContent = moneyText(row[key]);
+            cell.dataset.money = row[key] === null ? 'null' : row[key];
+          } else {
+            cell.textContent = id === 'R06' && key === 'ngay_kham_cuoi' && row[key] === null ? 'Chưa có lần khám' : String(row[key]);
+          }
           tr.append(cell);
         });
         fragment.append(tr);
@@ -532,14 +637,15 @@
       }
       body.replaceChildren(fragment);
       const group = id === 'R01' ? (data.filters.age_group === undefined ? 'Tất cả nhóm' : `Nhóm ${data.filters.age_group}`) :
-        id === 'R02' ? 'Lượt theo ngày vào; lần khám theo ngày khám' : id === 'R03' ? 'Lần khám theo ngày khám; phân bố công việc, không xếp hạng chất lượng' : id === 'R04' ? 'Đơn theo ngày lập; lượng kê theo đơn vị riêng từng thuốc' : id === 'R05' ? 'Đợt tái mắc theo ngày bắt đầu; không phải số bệnh nhân' : 'Đợt đang điều trị tại ngày đối chiếu; không kết luận trễ hẹn hoặc bỏ điều trị';
+        id === 'R02' ? 'Lượt theo ngày vào; lần khám theo ngày khám' : id === 'R03' ? 'Lần khám theo ngày khám; phân bố công việc, không xếp hạng chất lượng' : id === 'R04' ? 'Đơn theo ngày lập; lượng kê theo đơn vị riêng từng thuốc' : id === 'R05' ? 'Đợt tái mắc theo ngày bắt đầu; không phải số bệnh nhân' : id === 'R06' ? 'Đợt đang điều trị tại ngày đối chiếu; không kết luận trễ hẹn hoặc bỏ điều trị' : 'Đợt theo ngày khỏi; chi phí toàn đợt, không phải báo giá hoặc doanh thu Q4';
       const period = id === 'R06' ? `Ngày đối chiếu: ${data.filters.as_of} (cuối ngày); ngưỡng ≥ ${data.filters.threshold} ngày` :
-        `${data.filters.start} ≤ ${id === 'R01' ? 'ngày khám' : id === 'R05' ? 'ngày bắt đầu' : 'ngày'} < ${data.filters.end}`;
+        `${data.filters.start} ≤ ${id === 'R01' ? 'ngày khám' : id === 'R05' ? 'ngày bắt đầu' : id === 'R07' ? 'ngày khỏi' : 'ngày'} < ${data.filters.end}`;
       if (id === 'R01') renderChart(data, `${period}. ${group}`);
       else if (id === 'R02') renderR02(data, period);
       else if (id === 'R05' || id === 'R06') renderGroupedEpisodes(data, period);
+      else if (id === 'R07') renderR07(data, period);
       else renderHorizontal(data, period);
-      panel.querySelector('#analytics-applied').textContent = `Kỳ thực trả về: ${period}. ${group}. Số dòng: ${data.row_count} (${id === 'R04' ? 'số thuốc, không phải tổng đơn hoặc tổng lượng' : 'không phải tổng bệnh nhân'}).`;
+      panel.querySelector('#analytics-applied').textContent = `Kỳ thực trả về: ${period}. ${group}. Số dòng: ${data.row_count} (${id === 'R04' ? 'số thuốc, không phải tổng đơn hoặc tổng lượng' : id === 'R07' ? 'số bệnh, không phải số mẫu; tiền VND giữ chuỗi gốc' : 'không phải tổng bệnh nhân'}).`;
       panel.querySelector('#analytics-caption').textContent = `${id} — ${spec.title} · ${period} · ${group}`;
       panel.querySelector('.clinical-table').setAttribute('aria-label', `Bảng ${id}`);
       panel.querySelector('#analytics-table').dataset.report = id;
@@ -548,8 +654,9 @@
         'Giữ thứ tự ngày tăng từ API; chỉ những ngày được trả về. Lượt, người tiếp nhận trong ngày và lần khám là ba đơn vị riêng. Không cộng người theo ngày thành tổng người duy nhất. Cuộn ngang để xem đủ cột.' : id === 'R03' ?
         'Giữ đủ bác sĩ và thứ tự API, gồm bác sĩ 0 hoạt động. Lần khám, đợt và bệnh nhân là ba đơn vị riêng; không cộng bệnh nhân giữa bác sĩ thành tổng người duy nhất. Không diễn giải thành chất lượng bác sĩ. Cuộn ngang để xem đủ cột.' : id === 'R04' ?
         'Giữ thứ tự API và lượng kê/đơn vị riêng từng thuốc. Số đơn có thuốc khác tổng lượng kê; không cộng lượng khác đơn vị hoặc suy ra lượng cần nhập. Cuộn ngang để xem đủ cột.' : id === 'R05' ?
-        'Giữ đủ hồ sơ và thứ tự API: bệnh/ngày bắt đầu/mã đợt. Mỗi dòng là một đợt tái mắc, không phải một người duy nhất. Thiếu lịch sử không có nghĩa chưa từng mắc. Cuộn ngang để xem đủ cột.' :
-        'Giữ thứ tự ưu tiên từ API: số ngày giảm, mã đợt tăng. NULL ngày khám cuối hiển thị “Chưa có lần khám”, không giả tạo ngày khám. Số điện thoại chỉ ở bảng dữ liệu giả lập. Không gọi trễ hẹn hoặc bỏ điều trị. Cuộn ngang để xem đủ 13 cột.';
+        'Giữ đủ hồ sơ và thứ tự API: bệnh/ngày bắt đầu/mã đợt. Mỗi dòng là một đợt tái mắc, không phải một người duy nhất. Thiếu lịch sử không có nghĩa chưa từng mắc. Cuộn ngang để xem đủ cột.' : id === 'R06' ?
+        'Giữ thứ tự ưu tiên từ API: số ngày giảm, mã đợt tăng. NULL ngày khám cuối hiển thị “Chưa có lần khám”, không giả tạo ngày khám. Số điện thoại chỉ ở bảng dữ liệu giả lập. Không gọi trễ hẹn hoặc bỏ điều trị. Cuộn ngang để xem đủ 13 cột.' :
+        'Giữ thứ tự API, tiền VND dạng chuỗi gốc hai chữ số thập phân; NULL hiển thị “Không có mẫu”, khác 0.00 VND. Số đợt tính/bị loại giữ riêng; không tính lại tổng. Chọn theo ngày khỏi nhưng chi phí tính toàn đợt. Cuộn ngang để xem đủ 9 cột.';
       panel.querySelector('#analytics-data-notice').textContent = data.data_notice;
       result.hidden = false;
       status.textContent = data.rows.length ? `Đã tải ${data.row_count} dòng ${id}.` : `Đã tải ${id}: không có dữ liệu phù hợp.`;
@@ -563,6 +670,7 @@
       r04Chart.replaceChildren();
       r05Chart.replaceChildren();
       r06Chart.replaceChildren();
+      r07Chart.replaceChildren();
       legend.replaceChildren();
       status.textContent = 'Chưa có kết quả cho bộ lọc này.';
       error.textContent = timedOut ? 'Tải báo cáo quá lâu. Kiểm tra kết nối rồi thử lại.' :

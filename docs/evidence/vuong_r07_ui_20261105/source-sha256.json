@@ -1,0 +1,17 @@
+{
+  "parent": "34406f5c3ad63239cea58fc88237cc3fefc21f07",
+  "main": "a0d6c300be631cea404672ade548a67c20fea1c1",
+  "files": {
+    "tests/test_vuong_r02_ui.py": "f29ab8c69652442d42b5119937fccaec1b8f517700750d339564253504c6c4cc",
+    "database/analytics_expected.json": "8fa428561a8abd1067f257cd1e490f53e1dc6e5592897a49ad7ddaf12ff6fc75",
+    "tests/test_vuong_r07_ui.py": "cf5afaf17a10e3524c71f7983436c277e01eaafd5ff3b396ed5d1418cd2756f5",
+    "clinic_app/templates/analytics/panel.html": "a38d056d52f2d2932fa6fc430dfc9d6d32e5e3ec6cf2db4a00328865f7eaae2c",
+    "clinic_app/static/analytics.js": "db982689d2e4b7af88c40030d0a83a1d93609276fa707b14479410e0df7ecaf2",
+    "tests/test_vuong_r06_ui.py": "29dff83fe722e36a985172470760d4a62fd766631170e000dd77ff15fb292610",
+    "clinic_app/static/analytics.css": "2b0afe4b7aa7a521e1ae6808c7cf2ac30dee1059ebc86c32307678da9a6b8e59",
+    "tests/test_vuong_r05_ui.py": "261be1810d14cd20271b77ee665b8f6dcc297638fb65bbc13cfaf86546faf2fd",
+    "tests/test_vuong_r04_ui.py": "25ae4905cabca9c720ea167ecfc2eb62e22c25b4aa24a213464a15b213b3778e",
+    "tests/test_vuong_r03_ui.py": "a46865eb9ddde44dba766d44a14a68ff22b7a9e3895b2253e80454a1f24e7cbf",
+    "tests/test_vuong_analytics_ui.py": "f69c744c2766ae0b5118fca6c0ea2fe836632c5b0dba432887ba0fc5b0177246"
+  }
+}
