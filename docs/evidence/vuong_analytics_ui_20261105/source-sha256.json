@@ -1,0 +1,10 @@
+{
+  "base": "a0d6c300be631cea404672ade548a67c20fea1c1",
+  "files": {
+    "clinic_app/templates/analytics/panel.html": "b83c7610506c59ea5545e055c3cc3bcd49f29303b745f481fd0850ce6ed9ae3b",
+    "clinic_app/static/analytics.js": "35f77371a4b1c7ceee322f3582b8723dc27e988886e469ceb266d1ad2e4dffd0",
+    "clinic_app/templates/week1/reports.html": "12a3f8e33d7274ddc8d61bff011fca261e0241650539ef75cbf963ad7ac60914",
+    "tests/test_vuong_analytics_ui.py": "8194e21ed27baf6e6ed58fbbafe4eacce2b2a862d2f0ecd185f1c9feeae0b3a4",
+    "clinic_app/static/analytics.css": "c947fb32991ad0a5516c0efa8d5e2e4fe26ef833cd448c7d36058c26b0203924"
+  }
+}

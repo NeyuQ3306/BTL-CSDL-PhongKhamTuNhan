@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='analytics.css') }}">
+<script src="{{ url_for('static', filename='analytics.js') }}" defer></script>
+<section id="analytics" class="analytics-panel" aria-labelledby="analytics-title" data-endpoint="{{ url_for('analytics.one_report', report_id='R01') }}">
+  <p class="eyebrow">PHÂN TÍCH HỒ SƠ ĐÃ LƯU</p>
+  <h2 id="analytics-title">Báo cáo mở rộng</h2>
+  <p>R01 có bộ lọc và bảng dữ liệu. Biểu đồ và giao diện R02–R07 đang chờ triển khai.</p>
+  <noscript><p class="notice">Bật JavaScript để lấy bảng báo cáo mở rộng.</p></noscript>
+  <form id="analytics-filters" class="report-filters" aria-label="Bộ lọc báo cáo mở rộng">
+    <div class="filter-field"><label for="analytics-report">Báo cáo</label>
+      <select id="analytics-report" name="report"><option value="R01">R01 — Bệnh theo nhóm tuổi</option>
+        {% for code, label in [('R02','Tiếp nhận theo ngày'),('R03','Khối lượng khám bác sĩ'),('R04','Thuốc được kê'),('R05','Tái mắc cùng bệnh'),('R06','Lâu chưa ghi nhận khám'),('R07','Chi phí đợt đã khỏi')] %}
+        <option value="{{ code }}" disabled>{{ code }} — {{ label }} (chưa có giao diện)</option>{% endfor %}
+      </select>
+    </div>
+    <div class="filter-field"><label for="analytics-start">Từ ngày *</label><input id="analytics-start" name="start" type="date" value="2026-07-01" min="0001-01-01" max="9999-12-30" required></div>
+    <div class="filter-field"><label for="analytics-through">Đến hết ngày *</label><input id="analytics-through" name="through" type="date" value="2026-10-14" min="0001-01-01" max="9999-12-30" required aria-describedby="analytics-date-hint"><small id="analytics-date-hint" class="field-hint">Bao gồm ngày cuối; tối đa 30/12/9999.</small></div>
+    <div class="filter-field"><label for="analytics-age">Nhóm tuổi</label><select id="analytics-age" name="age_group"><option value="">Tất cả nhóm</option><option value="0">0–5</option><option value="1">6–17</option><option value="2">18–59</option><option value="3">60+</option><option value="-1">Ngày sinh không hợp lệ</option></select></div>
+    <button type="submit">Xem R01</button>
+  </form>
+  <p>Đếm đợt có ít nhất một lần khám trong kỳ; tuổi tại lần khám đầu của đợt trong kỳ. Đơn vị: đợt và bệnh nhân trong từng nhóm. Không cộng số bệnh nhân giữa các nhóm thành tổng người duy nhất.</p>
+  <p>Nhóm tuổi là quy ước demo. Kết quả mô tả hồ sơ, không phải tỷ lệ mắc bệnh trong cộng đồng hoặc dự báo mùa vụ.</p>
+  <p id="analytics-status" role="status" aria-live="polite">Chọn bộ lọc rồi bấm Xem R01 để tải dữ liệu.</p>
+  <p id="analytics-error" class="error-text" role="alert" hidden></p>
+  <div id="analytics-result" hidden>
+    <p id="analytics-applied" class="notice"></p>
+    <p id="analytics-data-notice"></p>
+    <p class="table-hint" id="analytics-table-hint">Giữ thứ tự từ API. Mã nhóm -1 là ngày sinh không hợp lệ; 0/1/2/3 tương ứng 0–5/6–17/18–59/60+. Cuộn ngang để xem đủ cột.</p>
+    <div class="table-wrap clinical-table" role="region" aria-label="Bảng R01" aria-describedby="analytics-table-hint" tabindex="0">
+      <table id="analytics-table"><caption id="analytics-caption">R01 — Bệnh theo nhóm tuổi</caption><thead><tr><th scope="col">Mã bệnh</th><th scope="col">Tên bệnh</th><th scope="col">Mã nhóm</th><th scope="col">Nhóm tuổi</th><th scope="col">Số đợt</th><th scope="col">Số bệnh nhân</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+</section>

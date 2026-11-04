@@ -1,0 +1,15 @@
+.analytics-panel { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #ccd8d8; min-width: 0; }
+.analytics-panel .report-filters { flex-wrap: wrap; align-items: end; }
+.analytics-panel .filter-field { flex: 1 1 11rem; min-width: 0; }
+.analytics-panel select, .analytics-panel input { width: 100%; min-width: 0; box-sizing: border-box; }
+.analytics-panel select { min-height: 44px; padding: 10px 8px; border: 1px solid #b6c8d2; border-radius: 6px; font: inherit; color: inherit; background: white; }
+.analytics-panel select:focus-visible { outline: 3px solid #b9e4e2; outline-offset: 1px; }
+.analytics-panel [hidden] { display: none !important; }
+.analytics-panel table { min-width: 650px; }
+.analytics-panel td, .analytics-panel th { overflow-wrap: anywhere; }
+.analytics-panel td:nth-last-child(-n+2) { text-align: right; font-variant-numeric: tabular-nums; }
+.analytics-panel [role="alert"] { overflow-wrap: anywhere; }
+@media (max-width: 560px) {
+  .analytics-panel .report-filters { display: flex; flex-direction: column; align-items: stretch; }
+  .analytics-panel .filter-field { flex: auto; width: 100%; }
+}
