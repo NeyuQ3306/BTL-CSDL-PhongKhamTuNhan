@@ -142,6 +142,7 @@ def test_mysql_api_all_columns_match_independent_seed_oracle(client,start,end,as
     response = client.get('/api/analytics',query_string=dict(start=start,end=end,as_of=as_of,threshold=threshold))
     assert response.status_code == 200
     result = response.json['reports']
+    reference_all = {}
     for report_id, rows in wanted.items():
         # Explicit contract serializer: unlike SQL oracle canonical(), money stays string.
         reference = []
@@ -158,12 +159,34 @@ def test_mysql_api_all_columns_match_independent_seed_oracle(client,start,end,as
                 else:
                     item[key] = value
             reference.append(item)
+        order_keys = {
+            'R01': lambda r: (r['ma_benh'],r['thu_tu_nhom']),
+            'R02': lambda r: r['ngay'],
+            'R03': lambda r: (-r['so_lan_kham'],r['ma_bac_si']),
+            'R04': lambda r: (-r['so_don'],r['ma_thuoc']),
+            'R05': lambda r: (r['ma_benh'],r['ngay_bat_dau'],r['ma_dot']),
+            'R06': lambda r: (-r['so_ngay_chua_ghi_nhan'],r['ma_dot']),
+            'R07': lambda r: (r['tb_tong'] is None,-Decimal(r['tb_tong'] or 0),r['ma_benh']),
+        }
+        reference.sort(key=order_keys[report_id])
+        reference_all[report_id] = reference
         assert result[report_id]['rows'] == reference, report_id
         assert result[report_id]['row_count'] == len(reference)
         params = dict(as_of=as_of,threshold=threshold) if report_id=='R06' else dict(start=start,end=end)
         single = client.get('/api/analytics/'+report_id,query_string=params)
         assert single.status_code == 200
         assert single.json == result[report_id]
+
+    # Persist expected/actual beside existing CI artifacts; no credentials or real data.
+    import json, os
+    from pathlib import Path
+    destination = Path('test-artifacts/trung-analytics')
+    destination.mkdir(parents=True, exist_ok=True)
+    document = dict(source_sha=os.getenv('GITHUB_SHA'),
+                    filters=dict(start=start,end=end,as_of=as_of,threshold=threshold),
+                    expected=reference_all,actual=result)
+    (destination / f'{start}_{end}_{as_of}_{threshold}.json').write_text(
+        json.dumps(document,ensure_ascii=False,indent=2),encoding='utf-8')
 
 
 def test_mysql_age_group_filters_result_and_preserves_all_columns(client):

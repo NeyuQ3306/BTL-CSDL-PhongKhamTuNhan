@@ -105,7 +105,8 @@ python -m tools.audit_seed
 Cấu hình DB theo SETUP, không đưa .env/mật khẩu vào log. Bộ mới kiểm API một/tất cả,
 đối chiếu mọi cột của bảy kỳ với oracle seed độc lập, các ca biên SQL của Quyền,
 nhóm tuổi/rỗng, số tiền lớn/NULL, tham số sai, bind, read snapshot/rollback và lỗi 503.
-Kết quả chạy thật, phiên bản và giới hạn được ghi tại
+Mỗi kỳ đối chiếu còn lưu expected/actual JSON tại `test-artifacts/trung-analytics/`,
+được workflow hiện có upload cùng artifact. Kết quả chạy thật, phiên bản và giới hạn được ghi tại
 `docs/evidence/trung_analytics_backend_20261104/README.md`.
 
 ## Việc còn phụ thuộc
