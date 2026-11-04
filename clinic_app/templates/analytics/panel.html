@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='analytics.css') }}">
 <script src="{{ url_for('static', filename='analytics.js') }}" defer></script>
-<section id="analytics" class="analytics-panel" aria-labelledby="analytics-title" data-endpoint="{{ url_for('analytics.one_report', report_id='R01') }}" data-r02-endpoint="{{ url_for('analytics.one_report', report_id='R02') }}" data-r03-endpoint="{{ url_for('analytics.one_report', report_id='R03') }}" data-r04-endpoint="{{ url_for('analytics.one_report', report_id='R04') }}" data-r05-endpoint="{{ url_for('analytics.one_report', report_id='R05') }}">
+<section id="analytics" class="analytics-panel" aria-labelledby="analytics-title" data-endpoint="{{ url_for('analytics.one_report', report_id='R01') }}" data-r02-endpoint="{{ url_for('analytics.one_report', report_id='R02') }}" data-r03-endpoint="{{ url_for('analytics.one_report', report_id='R03') }}" data-r04-endpoint="{{ url_for('analytics.one_report', report_id='R04') }}" data-r05-endpoint="{{ url_for('analytics.one_report', report_id='R05') }}" data-r06-endpoint="{{ url_for('analytics.one_report', report_id='R06') }}">
   <p class="eyebrow">PHÂN TÍCH HỒ SƠ ĐÃ LƯU</p>
   <h2 id="analytics-title">Báo cáo mở rộng</h2>
-  <p>R01–R05 có bộ lọc, bảng và biểu đồ offline. Giao diện R06–R07 đang chờ triển khai.</p>
+  <p>R01–R06 có bộ lọc, bảng và biểu đồ offline. Giao diện R07 đang chờ triển khai.</p>
   <noscript><p class="notice">Bật JavaScript để lấy bảng báo cáo mở rộng.</p></noscript>
   <form id="analytics-filters" class="report-filters" aria-label="Bộ lọc báo cáo mở rộng">
     <div class="filter-field"><label for="analytics-report">Báo cáo</label>
@@ -12,12 +12,14 @@
         <option value="R03">R03 — Khối lượng khám theo bác sĩ</option>
         <option value="R04">R04 — Thuốc được kê</option>
         <option value="R05">R05 — Đợt tái mắc có tiền sử ghi nhận</option>
-        {% for code, label in [('R06','Lâu chưa ghi nhận khám'),('R07','Chi phí đợt đã khỏi')] %}
-        <option value="{{ code }}" disabled>{{ code }} — {{ label }} (chưa có giao diện)</option>{% endfor %}
+        <option value="R06">R06 — Lâu chưa ghi nhận khám</option>
+        <option value="R07" disabled>R07 — Chi phí đợt đã khỏi (chưa có giao diện)</option>
       </select>
     </div>
-    <div class="filter-field"><label for="analytics-start">Từ ngày *</label><input id="analytics-start" name="start" type="date" value="2026-07-01" min="0001-01-01" max="9999-12-30" required></div>
-    <div class="filter-field"><label for="analytics-through">Đến hết ngày *</label><input id="analytics-through" name="through" type="date" value="2026-10-14" min="0001-01-01" max="9999-12-30" required aria-describedby="analytics-date-hint"><small id="analytics-date-hint" class="field-hint">Bao gồm ngày cuối; tối đa 30/12/9999.</small></div>
+    <div class="filter-field" id="analytics-start-field"><label for="analytics-start">Từ ngày *</label><input id="analytics-start" name="start" type="date" value="2026-07-01" min="0001-01-01" max="9999-12-30" required></div>
+    <div class="filter-field" id="analytics-through-field"><label for="analytics-through">Đến hết ngày *</label><input id="analytics-through" name="through" type="date" value="2026-10-14" min="0001-01-01" max="9999-12-30" required aria-describedby="analytics-date-hint"><small id="analytics-date-hint" class="field-hint">Bao gồm ngày cuối; tối đa 30/12/9999.</small></div>
+    <div class="filter-field" id="analytics-as-of-field" hidden><label for="analytics-as-of">Ngày đối chiếu *</label><input id="analytics-as-of" name="as_of" type="date" value="2026-10-14" min="0001-01-01" max="9999-12-31" required disabled aria-describedby="analytics-as-of-hint"><small id="analytics-as-of-hint" class="field-hint">Xét cuối ngày này; gửi nguyên ngày, không cộng thêm ngày.</small></div>
+    <div class="filter-field" id="analytics-threshold-field" hidden><label for="analytics-threshold">Ngưỡng số ngày *</label><input id="analytics-threshold" name="threshold" type="number" min="0" max="36500" step="1" value="14" required disabled aria-describedby="analytics-threshold-hint"><small id="analytics-threshold-hint" class="field-hint">Số nguyên 0–36500; khoảng cách đạt ngưỡng (≥).</small></div>
     <div class="filter-field" id="analytics-age-field"><label for="analytics-age">Nhóm tuổi</label><select id="analytics-age" name="age_group"><option value="">Tất cả nhóm</option><option value="0">0–5</option><option value="1">6–17</option><option value="2">18–59</option><option value="3">60+</option><option value="-1">Ngày sinh không hợp lệ</option></select></div>
     <button type="submit">Xem R01</button>
   </form>
@@ -27,6 +29,7 @@
   <div id="r03-description" hidden><p>Số lần khám trong kỳ theo bác sĩ cố định của đợt; số đợt và số bệnh nhân khác nhau được giữ riêng. Bác sĩ không có hoạt động ghi nhận vẫn hiển thị với 0, không tự loại khỏi bảng hoặc biểu đồ.</p><p>Phục vụ rà soát phân bố công việc và lịch theo chuyên môn, không xếp hạng chất lượng bác sĩ. Không cộng số bệnh nhân giữa các bác sĩ thành tổng người duy nhất; dữ liệu giả lập không đủ để kết luận chất lượng khám.</p></div>
   <div id="r04-description" hidden><p>Đơn thuốc theo ngày lập: số đơn khác nhau có chứa từng thuốc và tổng lượng kê theo đơn vị của chính thuốc đó. Biểu đồ vẽ số đơn, bảng giữ lượng kê và đơn vị riêng từng thuốc.</p><p>Không cộng lượng của thuốc khác đơn vị hoặc suy ra lượng cần nhập khi chưa có dữ liệu tồn kho. Đây là lượng kê, không phải đã bán hoặc đã uống và không phải chỉ định tự dùng thuốc.</p></div>
   <div id="r05-description" hidden><p>Mỗi dòng là một đợt mới cùng bệnh sau một đợt đã khỏi được ghi nhận; kỳ lọc theo ngày bắt đầu đợt mới, lịch sử trước đó có thể ngoài kỳ. Bảng giữ hồ sơ để đối chiếu, biểu đồ dùng số đợt theo bệnh từ API.</p><p>Số đợt tái mắc không phải số bệnh nhân: một người có thể có nhiều đợt. Thiếu lịch sử không có nghĩa chưa từng mắc. Đây là định nghĩa của mô hình bài tập, không tự phân biệt tái phát/tái nhiễm.</p></div>
+  <div id="r06-description" hidden><p>Đợt đang điều trị tại cuối ngày đối chiếu và lâu chưa ghi nhận lần khám, xét theo ngưỡng ngày đã chọn. Nếu chưa có lần khám, khoảng cách được backend tính từ ngày bắt đầu và bảng ghi rõ “Chưa có lần khám”.</p><p>Biểu đồ giữ đủ bốn nhóm số ngày từ API sau lọc ngưỡng, đơn vị đợt. Đây là danh sách rà soát hồ sơ, không gọi là trễ hẹn hoặc bỏ điều trị vì dữ liệu không lưu lịch hẹn. Thông tin liên hệ chỉ ở bảng dữ liệu giả lập, không lên biểu đồ.</p></div>
   <p id="analytics-status" role="status" aria-live="polite">Chọn bộ lọc rồi bấm Xem R01 để tải dữ liệu.</p>
   <p id="analytics-error" class="error-text" role="alert" hidden></p>
   <div id="analytics-result" hidden>
@@ -75,6 +78,14 @@
       <p id="r05-chart-empty" hidden>Không có đợt tái mắc phù hợp để vẽ biểu đồ; thiếu lịch sử không có nghĩa chưa từng mắc.</p>
       <div id="r05-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ cột R05, cuộn ngang" aria-describedby="r05-chart-hint" tabindex="0"><svg id="r05-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r05-svg-title r05-svg-desc"></svg></div>
       <p id="r05-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một cột để xem chi tiết.</p>
+    </section>
+    <section id="r06-chart-section" aria-labelledby="r06-chart-heading" hidden>
+      <h3 id="r06-chart-heading">R06 — Lâu chưa ghi nhận khám</h3>
+      <p id="r06-chart-period"></p>
+      <p id="r06-chart-hint" class="table-hint">Cột từ chart_groups của cùng response với bảng, sau lọc ngưỡng. Giữ đủ nhóm 0–6, 7–13, 14–29, 30+ ngày kể cả số đợt bằng 0; nhóm không có đợt có cột cao 0 nhưng vẫn xem được chi tiết bằng Tab. Đơn vị: đợt điều trị, không phải số bệnh nhân. Không kết luận trễ hẹn hoặc bỏ điều trị.</p>
+      <p id="r06-chart-empty" hidden></p>
+      <div id="r06-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ cột R06, cuộn ngang" aria-describedby="r06-chart-hint" tabindex="0"><svg id="r06-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r06-svg-title r06-svg-desc"></svg></div>
+      <p id="r06-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một cột để xem chi tiết.</p>
     </section>
     <p class="table-hint" id="analytics-table-hint">Giữ thứ tự từ API. Mã nhóm -1 là ngày sinh không hợp lệ; 0/1/2/3 tương ứng 0–5/6–17/18–59/60+. Cuộn ngang để xem đủ cột.</p>
     <div class="table-wrap clinical-table" role="region" aria-label="Bảng R01" aria-describedby="analytics-table-hint" tabindex="0">
