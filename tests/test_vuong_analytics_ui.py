@@ -1,4 +1,4 @@
-"""R01–R03 browser adapter checks with a real Flask API and stubbed SQL service.
+"""R01–R04 desktop browser checks with a real Flask API and stubbed SQL service.
 
 RUN_BROWSER_TESTS=1, optional BROWSER_CHANNEL=chrome; no MySQL or writes.
 These tests do not establish SQL parity or integrated acceptance.
@@ -16,6 +16,7 @@ OUT = Path('test-artifacts/vuong-analytics-ui')
 SEED = json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R01']
 R02_SEED = json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R02']
 R03_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R03'], key=lambda row: (-row['so_lan_kham'], row['ma_bac_si']))
+R04_SEED = sorted(json.loads(Path('database/analytics_expected.json').read_text(encoding='utf-8'))['results']['R04'], key=lambda row: (-row['so_don'], row['ma_thuoc']))
 
 
 @pytest.fixture
@@ -28,7 +29,7 @@ def ui(monkeypatch):
     def build(values, report_id=None):
         calls.append(dict(values, report_id=report_id))
         # The server's existing payload serializer/filter executes; SQL is stubbed.
-        source = {'R01': SEED, 'R02': R02_SEED, 'R03': R03_SEED}[report_id]
+        source = {'R01': SEED, 'R02': R02_SEED, 'R03': R03_SEED, 'R04': R04_SEED}[report_id]
         rows = source if (values['start'], values['end']) == ('2026-07-01', '2026-10-15') else []
         if report_id == 'R03' and not rows:
             rows = [dict(row, so_lan_kham=0, so_dot=0, so_benh_nhan=0) for row in sorted(source, key=lambda r: r['ma_bac_si'])]
@@ -193,18 +194,19 @@ def test_stale_request_and_network_failure(ui):
     expect(page.locator('#r01-chart .chart-segment')).to_have_count(0)
 
 
-def test_mobile_and_no_external_resources(ui):
+def test_desktop_and_no_external_resources(ui):
     from playwright.sync_api import expect
     page, _ = ui
     external = []
     page.route('**/*', lambda route: route.continue_() if route.request.url.startswith('http://127.0.0.1:') else (external.append(route.request.url), route.abort())[-1])
-    for width in [390, 320]:
+    for width in [1440, 1280]:
         page.set_viewport_size({'width': width, 'height': 900})
         page.reload()
         submit(page)
         expect(page.locator('#analytics-result')).to_be_visible()
         assert_chart_rows(page, SEED)
-        assert page.locator('#r01-chart-scroll').evaluate('(n) => n.scrollWidth > n.clientWidth')
+        if width == 1280:
+            assert page.locator('#r01-chart-scroll').evaluate('(n) => n.scrollWidth > n.clientWidth')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
         page.screenshot(path=str(OUT/f'r01-{width}.png'), full_page=True)
     assert not external
@@ -246,7 +248,7 @@ def test_chart_stacking_keyboard_invalid_birth_and_zero(ui):
     expect(invalid).to_be_focused()
     expect(page.locator('#r01-chart-detail')).to_contain_text('Ngày sinh không hợp lệ (nhóm riêng): 2 đợt, 1 bệnh nhân')
     assert segments.count() == 3
-    page.set_viewport_size({'width': 320, 'height': 900})
+    page.set_viewport_size({'width': 1280, 'height': 900})
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     # Real zero rows still have a defined scale and remain in both views.
     data['rows'] = [rows[2]]

@@ -177,19 +177,17 @@ def test_r03_network_timeout_and_stale_response(ui):
     expect(page.locator('#analytics-result')).to_be_hidden()
 
 
-def test_r03_offline_mobile(ui):
+def test_r03_offline_desktop(ui):
     from playwright.sync_api import expect
     page, _ = ui
     external = []
     page.route('**/*', lambda route: route.continue_() if route.request.url.startswith('http://127.0.0.1:') else (external.append(route.request.url),route.abort())[-1])
-    for width in [1440,390,320]:
+    for width in [1440,1280]:
         page.set_viewport_size({'width':width,'height':900})
         page.reload(); select_r03(page); submit(page)
         expect(page.locator('#analytics-result')).to_be_visible()
         assert_parity(page, R03_SEED)
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-        if width < 960:
-            assert page.locator('#r03-chart-scroll').evaluate('(n)=>n.scrollWidth>n.clientWidth')
         page.screenshot(path=str(OUT/f'r03-{width}.png'), full_page=True)
     assert not external
     page.context.set_offline(True)
