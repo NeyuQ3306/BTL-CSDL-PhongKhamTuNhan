@@ -23,7 +23,10 @@ File chuẩn đối chiếu: `database/analytics_expected.json` (tính bằng Py
 ## Hợp đồng chung cho Trung và Vương
 
 - Bộ lọc R01–R05/R07: `start`, `end` kiểu ISO `YYYY-MM-DD`, kỳ `[start, end)`.
-  Nếu UI cho chọn ngày kết thúc bao gồm ngày đó, backend đổi thành ngày kế tiếp đúng một lần.
+  Nếu UI cho chọn ngày kết thúc bao gồm ngày đó, adapter form của Vương đổi thành ngày kế tiếp
+  đúng một lần trước khi gọi API. API analytics nhận `end` không bao gồm và không cộng thêm ngày.
+  Tính từ ngày gốc của form mỗi lần gửi; ngày cuối bao gồm tối đa 9999-12-30.
+  R06 gửi `as_of` trực tiếp, không cộng ngày. Quy ước này đã được Trung/Vương thống nhất tại PR #22.
   Mặc định `2026-07-01` đến **hết** `2026-10-14` (`end=2026-10-15`).
 - R06 độc lập với kỳ trên: `as_of=2026-10-14`, `threshold=14`; xét cuối ngày đó,
   ngưỡng nguyên 0–36500, điều kiện `>=`. UI phải phân biệt hai nhóm bộ lọc.

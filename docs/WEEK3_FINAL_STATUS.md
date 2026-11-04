@@ -1,5 +1,7 @@
 # Bàn giao kỹ thuật tuần 3 và bộ nộp
 
+Cập nhật chuẩn bị nộp 02/11/2026: xem [SUBMISSION](SUBMISSION.md) cho hạn chính thức 15/11, điểm và trạng thái DOCX/PPTX/quyền truy cập. Phần dưới là hồ sơ kỹ thuật ngày 22/10; PR #17 đã merge vào main 98bd267. Những cập nhật này không xác nhận một phiên kiểm thử mới.
+
 Cập nhật 22/10/2026, giờ Việt Nam. Quyền đã yêu cầu tự động kiểm tra và hoàn thiện phần còn lại. Bản này ghi quyết định tích hợp; không tạo bằng chứng tập nhóm, không nhận giảng viên đã duyệt. Trạng thái merge/CI mới nhất: [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17).
 
 ## Phạm vi và source
