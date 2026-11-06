@@ -1,0 +1,50 @@
+{
+  "source_hashes_match": true,
+  "seed_rows_identical": true,
+  "seed_total": 1144,
+  "distinct_test_cases": 485,
+  "phases": {
+    "regression": {
+      "tests": 453,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 453
+    },
+    "windows-cleanup": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    "mysql-ui": {
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 30
+    }
+  },
+  "private_ports_closed": true,
+  "windows_instances": [
+    {
+      "mode": "success",
+      "port": 50588,
+      "port_closed": true
+    },
+    {
+      "mode": "error",
+      "port": 50597,
+      "port_closed": true
+    }
+  ],
+  "working_service": {
+    "Name": "MySQL84",
+    "Status": "Running"
+  },
+  "env_still_absent": true,
+  "tracked_application_sql_tests_unchanged": true,
+  "private_password_literal_detected": false,
+  "screenshot_count": 161
+}

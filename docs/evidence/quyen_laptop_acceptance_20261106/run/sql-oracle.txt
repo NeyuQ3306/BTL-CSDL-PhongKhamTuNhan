@@ -1,0 +1,1 @@
+{"mysql_version": "8.4.11", "oracle_match": true, "seed_unchanged": true, "result_rows": {"R01": 29, "R02": 83, "R03": 10, "R04": 29, "R05": 6, "R06": 19, "R07": 15}, "output": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\BTL-CSDL-PhongKhamTuNhan\\docs\\evidence\\quyen_laptop_acceptance_20261106\\run\\sql-expected-actual.json"}

@@ -1,0 +1,129 @@
+{
+  "run_at": "20261106_150750_599880",
+  "source_sha": "2c01db2fe1d2d424f7dfe5b0a8192188d2c5fdc0",
+  "origin_main": "2c01db2fe1d2d424f7dfe5b0a8192188d2c5fdc0",
+  "branch": "feat/quyen-laptop-acceptance-20261106",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "private_datadir": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\BTL-CSDL-PhongKhamTuNhan\\.venv\\quyen_analytics_20261106_150750_599880\\mysql-data",
+  "mysql_port": 63879,
+  "database": "clinic_vuong_analytics_test",
+  "scope": "Technical acceptance on Quyen Windows laptop; no group rehearsal claim",
+  "database_name_reason": "Retained solely for the existing committed NULL fixture guard; new private instance/datadir",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "mysqld": "C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\mysqld.exe",
+  "mysql_binary_version": "C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\mysqld.exe  Ver 8.4.11 for Win64 on x86_64 (MySQL Community Server - GPL)",
+  "packages": {
+    "Flask": "3.1.3",
+    "PyMySQL": "1.2.3",
+    "python-dotenv": "1.2.4",
+    "pytest": "8.4.2",
+    "cryptography": "50.0.2",
+    "psutil": "7.2.2",
+    "playwright": "1.64.1",
+    "tzdata": "2026.6"
+  },
+  "git_status": "?? docs/evidence/quyen_laptop_acceptance_20261106/\n?? tests/test_quyen_laptop_analytics.py",
+  "env_before": null,
+  "success": true,
+  "phases": [
+    {
+      "name": "sql-oracle",
+      "exit_code": 0,
+      "seed_unchanged": true
+    },
+    {
+      "name": "regression",
+      "exit_code": 0,
+      "seed_unchanged": true,
+      "counts": {
+        "tests": 453,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 453
+      }
+    },
+    {
+      "name": "windows-cleanup",
+      "exit_code": 0,
+      "seed_unchanged": true,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 2
+      }
+    },
+    {
+      "name": "mysql-ui",
+      "exit_code": 0,
+      "seed_unchanged": true,
+      "counts": {
+        "tests": 30,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 30
+      }
+    }
+  ],
+  "browser": {
+    "name": "chromium",
+    "version": "156.0.8078.4",
+    "executable": "C:\\Users\\LENOVO\\AppData\\Local\\ms-playwright\\chromium-1248\\chrome-win64\\chrome.exe"
+  },
+  "mysql": {
+    "version": "8.4.11",
+    "datadir": "C:\\Users\\LENOVO\\OneDrive\\Desktop\\BTL-CSDL-PhongKhamTuNhan\\.venv\\quyen_analytics_20261106_150750_599880\\mysql-data\\",
+    "port": 63879
+  },
+  "excluded_mobile": [],
+  "audit": {
+    "mysql_version": "8.4.11",
+    "counts": {
+      "bac_si": 10,
+      "y_ta": 12,
+      "benh_nhan": 40,
+      "benh": 15,
+      "thuoc": 30,
+      "dot_dieu_tri": 137,
+      "luot_den_kham": 140,
+      "lan_kham_benh": 173,
+      "don_thuoc": 140,
+      "chi_tiet_don_thuoc": 267,
+      "ho_tro": 180
+    },
+    "total": 1144,
+    "matches_expected_counts": true,
+    "findings": {
+      "different_patient": [],
+      "exam_outside_visit_or_treatment": [],
+      "duplicate_active_episode": [],
+      "nonconsecutive_exam_numbers": [],
+      "empty_visit": [],
+      "empty_prescription": [],
+      "support_outside_visit": [],
+      "prescription_date_mismatch": [],
+      "overlapping_episodes": []
+    }
+  },
+  "w3_db_01": {
+    "checks": 60,
+    "unexpected": [],
+    "mysql_2003_observed": false,
+    "conclusion": "This laptop run only; no root cause or fix claimed for the historical connection failure"
+  },
+  "seed_unchanged": true,
+  "cleanup": {
+    "shutdown_requested": true,
+    "fallback_pids": [],
+    "errors": [],
+    "remaining_pids": [],
+    "port_closed": true,
+    "launcher_exited": true,
+    "success": true
+  },
+  "env_after": null,
+  "env_unchanged": true
+}

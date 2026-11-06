@@ -1,0 +1,9 @@
+Running sql-oracle
+{'name': 'sql-oracle', 'exit_code': 0, 'seed_unchanged': True}
+Running regression
+{'name': 'regression', 'exit_code': 0, 'seed_unchanged': True, 'counts': {'tests': 453, 'failures': 0, 'errors': 0, 'skipped': 0, 'passed': 453}}
+Running windows-cleanup
+{'name': 'windows-cleanup', 'exit_code': 0, 'seed_unchanged': True, 'counts': {'tests': 2, 'failures': 0, 'errors': 0, 'skipped': 0, 'passed': 2}}
+Running mysql-ui
+{'name': 'mysql-ui', 'exit_code': 0, 'seed_unchanged': True, 'counts': {'tests': 30, 'failures': 0, 'errors': 0, 'skipped': 0, 'passed': 30}}
+Evidence: C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan\docs\evidence\quyen_laptop_acceptance_20261106\run; success=True
