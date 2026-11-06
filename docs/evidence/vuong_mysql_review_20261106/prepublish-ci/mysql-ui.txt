@@ -1,0 +1,5 @@
+.............................s                                           [100%]
+- generated xml file: D:\BTL\CSDL\BTL-CSDL-PhongKhamTuNhan\docs\evidence\vuong_mysql_review_20261106\prepublish-ci\mysql-ui.xml -
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_vuong_analytics_mysql_ui.py:196: Committed NULL fixture runs only in clinic_vuong_analytics_test; use run_private.py
+29 passed, 1 skipped in 12.91s

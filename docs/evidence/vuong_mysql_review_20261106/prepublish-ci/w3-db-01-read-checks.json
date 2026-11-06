@@ -1,0 +1,422 @@
+[
+  {
+    "iteration": 1,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.280043+00:00"
+  },
+  {
+    "iteration": 1,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.346399+00:00"
+  },
+  {
+    "iteration": 1,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.387416+00:00"
+  },
+  {
+    "iteration": 1,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.442845+00:00"
+  },
+  {
+    "iteration": 2,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.480665+00:00"
+  },
+  {
+    "iteration": 2,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.515910+00:00"
+  },
+  {
+    "iteration": 2,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.554249+00:00"
+  },
+  {
+    "iteration": 2,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.595369+00:00"
+  },
+  {
+    "iteration": 3,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.607864+00:00"
+  },
+  {
+    "iteration": 3,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.629366+00:00"
+  },
+  {
+    "iteration": 3,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.648835+00:00"
+  },
+  {
+    "iteration": 3,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.694522+00:00"
+  },
+  {
+    "iteration": 4,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.730008+00:00"
+  },
+  {
+    "iteration": 4,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.764089+00:00"
+  },
+  {
+    "iteration": 4,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.805667+00:00"
+  },
+  {
+    "iteration": 4,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.832055+00:00"
+  },
+  {
+    "iteration": 5,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.864196+00:00"
+  },
+  {
+    "iteration": 5,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.881262+00:00"
+  },
+  {
+    "iteration": 5,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.916597+00:00"
+  },
+  {
+    "iteration": 5,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.952982+00:00"
+  },
+  {
+    "iteration": 6,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:54.976756+00:00"
+  },
+  {
+    "iteration": 6,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.012230+00:00"
+  },
+  {
+    "iteration": 6,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.054656+00:00"
+  },
+  {
+    "iteration": 6,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.090792+00:00"
+  },
+  {
+    "iteration": 7,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.102850+00:00"
+  },
+  {
+    "iteration": 7,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.129106+00:00"
+  },
+  {
+    "iteration": 7,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.171870+00:00"
+  },
+  {
+    "iteration": 7,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.197223+00:00"
+  },
+  {
+    "iteration": 8,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.209903+00:00"
+  },
+  {
+    "iteration": 8,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.231363+00:00"
+  },
+  {
+    "iteration": 8,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.268770+00:00"
+  },
+  {
+    "iteration": 8,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.308541+00:00"
+  },
+  {
+    "iteration": 9,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.346206+00:00"
+  },
+  {
+    "iteration": 9,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.379194+00:00"
+  },
+  {
+    "iteration": 9,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.400318+00:00"
+  },
+  {
+    "iteration": 9,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.439894+00:00"
+  },
+  {
+    "iteration": 10,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.461631+00:00"
+  },
+  {
+    "iteration": 10,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.500695+00:00"
+  },
+  {
+    "iteration": 10,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.534256+00:00"
+  },
+  {
+    "iteration": 10,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.576275+00:00"
+  },
+  {
+    "iteration": 11,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.614454+00:00"
+  },
+  {
+    "iteration": 11,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.633220+00:00"
+  },
+  {
+    "iteration": 11,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.649947+00:00"
+  },
+  {
+    "iteration": 11,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.675775+00:00"
+  },
+  {
+    "iteration": 12,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.696370+00:00"
+  },
+  {
+    "iteration": 12,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.733134+00:00"
+  },
+  {
+    "iteration": 12,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.770360+00:00"
+  },
+  {
+    "iteration": 12,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.810157+00:00"
+  },
+  {
+    "iteration": 13,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.830170+00:00"
+  },
+  {
+    "iteration": 13,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.844852+00:00"
+  },
+  {
+    "iteration": 13,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.867972+00:00"
+  },
+  {
+    "iteration": 13,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.905776+00:00"
+  },
+  {
+    "iteration": 14,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.926433+00:00"
+  },
+  {
+    "iteration": 14,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.961435+00:00"
+  },
+  {
+    "iteration": 14,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:55.998112+00:00"
+  },
+  {
+    "iteration": 14,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:56.041368+00:00"
+  },
+  {
+    "iteration": 15,
+    "route": "/health/db",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:56.063872+00:00"
+  },
+  {
+    "iteration": 15,
+    "route": "/reports/diseases?month=2026-10",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:56.100496+00:00"
+  },
+  {
+    "iteration": 15,
+    "route": "/reports/history?patient_id=BN001",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:56.135571+00:00"
+  },
+  {
+    "iteration": 15,
+    "route": "/api/analytics",
+    "expected": 200,
+    "actual": 200,
+    "time": "2026-11-06T06:07:56.165034+00:00"
+  }
+]

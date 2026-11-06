@@ -1,0 +1,11 @@
+{
+  "pytest": "8.4.2",
+  "playwright": "1.64.1",
+  "Flask": "3.1.3",
+  "PyMySQL": "1.2.3",
+  "psutil": "7.2.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "browser_cache": "chromium-1248 / chromium_headless_shell-1248",
+  "source_sha": "596b38b8508fa79e5bc27d1e1e8a1c86f5cb7d5b",
+  "new_test_sha256": "6a0640819615c1aeced91e2c7f48ce3d8a2def53222ff523a1d96f1af2df6c8b"
+}

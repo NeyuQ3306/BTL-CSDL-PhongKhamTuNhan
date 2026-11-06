@@ -1,0 +1,91 @@
+{
+  "params": {
+    "start": "2026-07-01",
+    "end": "2026-10-15",
+    "as_of": "2026-10-14",
+    "threshold": 14
+  },
+  "age_group": null,
+  "rows": [
+    {
+      "ma_bac_si": "BS004",
+      "ho_ten": "Đặng Ngọc Tuấn",
+      "chuyen_mon": "Da liễu",
+      "so_lan_kham": 28,
+      "so_dot": 19,
+      "so_benh_nhan": 16
+    },
+    {
+      "ma_bac_si": "BS007",
+      "ho_ten": "Ngô Ngọc Trinh",
+      "chuyen_mon": "Nội tổng quát",
+      "so_lan_kham": 27,
+      "so_dot": 17,
+      "so_benh_nhan": 14
+    },
+    {
+      "ma_bac_si": "BS001",
+      "ho_ten": "Dương Ngọc Khánh",
+      "chuyen_mon": "Nội tổng quát",
+      "so_lan_kham": 19,
+      "so_dot": 18,
+      "so_benh_nhan": 15
+    },
+    {
+      "ma_bac_si": "BS002",
+      "ho_ten": "Vũ Hoài An",
+      "chuyen_mon": "Tai mũi họng",
+      "so_lan_kham": 19,
+      "so_dot": 15,
+      "so_benh_nhan": 14
+    },
+    {
+      "ma_bac_si": "BS010",
+      "ho_ten": "Bùi Anh Giang",
+      "chuyen_mon": "Da liễu",
+      "so_lan_kham": 18,
+      "so_dot": 15,
+      "so_benh_nhan": 14
+    },
+    {
+      "ma_bac_si": "BS006",
+      "ho_ten": "Đặng Phương Quân",
+      "chuyen_mon": "Đa khoa",
+      "so_lan_kham": 15,
+      "so_dot": 12,
+      "so_benh_nhan": 9
+    },
+    {
+      "ma_bac_si": "BS008",
+      "ho_ten": "Bùi Văn Linh",
+      "chuyen_mon": "Tai mũi họng",
+      "so_lan_kham": 14,
+      "so_dot": 13,
+      "so_benh_nhan": 10
+    },
+    {
+      "ma_bac_si": "BS009",
+      "ho_ten": "Võ Minh Dũng",
+      "chuyen_mon": "Tim mạch",
+      "so_lan_kham": 13,
+      "so_dot": 12,
+      "so_benh_nhan": 9
+    },
+    {
+      "ma_bac_si": "BS005",
+      "ho_ten": "Ngô Thanh Quân",
+      "chuyen_mon": "Nội tiết",
+      "so_lan_kham": 11,
+      "so_dot": 9,
+      "so_benh_nhan": 9
+    },
+    {
+      "ma_bac_si": "BS003",
+      "ho_ten": "Ngô Văn Bình",
+      "chuyen_mon": "Tim mạch",
+      "so_lan_kham": 9,
+      "so_dot": 7,
+      "so_benh_nhan": 7
+    }
+  ]
+}

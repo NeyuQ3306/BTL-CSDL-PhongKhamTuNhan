@@ -1,0 +1,513 @@
+{
+  "chart_groups": [],
+  "data_notice": "Dữ liệu giả lập, mô tả hồ sơ đã lưu.",
+  "filters": {
+    "end": "2026-10-15",
+    "start": "2026-07-01"
+  },
+  "interval": "end_exclusive",
+  "money_unit": "VND",
+  "report_id": "R02",
+  "row_count": 83,
+  "rows": [
+    {
+      "ngay": "2026-07-01",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-02",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-03",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-04",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-07-05",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-06",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-07",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-08",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-09",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-10",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-11",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-12",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-13",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-14",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-15",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-16",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-17",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-07-19",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-20",
+      "so_benh_nhan_tiep_nhan": 5,
+      "so_lan_kham": 6,
+      "so_luot": 5
+    },
+    {
+      "ngay": "2026-07-21",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-07-22",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-23",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-24",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-25",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-26",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-27",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-07-28",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 4,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-07-30",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-01",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-02",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-08-03",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-04",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 4,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-06",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-07",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-08",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-09",
+      "so_benh_nhan_tiep_nhan": 5,
+      "so_lan_kham": 5,
+      "so_luot": 5
+    },
+    {
+      "ngay": "2026-08-10",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-11",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-12",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-13",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-14",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-16",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-18",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-19",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-21",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-24",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-08-25",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-26",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 4,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-08-27",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-08-29",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-08-31",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-02",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-03",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-09-06",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-09-07",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-08",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-09",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-09-14",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-15",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-09-17",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-09-18",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-19",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-09-20",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-21",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-22",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-23",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-25",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-09-26",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-09-27",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-09-29",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-10-01",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-10-02",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-10-03",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-10-04",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-10-05",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-10-06",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-10-07",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-10-09",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-10-10",
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3,
+      "so_luot": 2
+    },
+    {
+      "ngay": "2026-10-11",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    },
+    {
+      "ngay": "2026-10-12",
+      "so_benh_nhan_tiep_nhan": 5,
+      "so_lan_kham": 5,
+      "so_luot": 5
+    },
+    {
+      "ngay": "2026-10-13",
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 5,
+      "so_luot": 3
+    },
+    {
+      "ngay": "2026-10-14",
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1,
+      "so_luot": 1
+    }
+  ],
+  "title": "Tiếp nhận và khám theo ngày"
+}

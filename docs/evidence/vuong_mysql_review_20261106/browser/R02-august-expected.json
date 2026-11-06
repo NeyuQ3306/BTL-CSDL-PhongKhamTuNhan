@@ -1,0 +1,149 @@
+{
+  "params": {
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "as_of": "2026-08-31",
+    "threshold": 7
+  },
+  "age_group": null,
+  "rows": [
+    {
+      "ngay": "2026-08-01",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3
+    },
+    {
+      "ngay": "2026-08-02",
+      "so_luot": 3,
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3
+    },
+    {
+      "ngay": "2026-08-03",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2
+    },
+    {
+      "ngay": "2026-08-04",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 4
+    },
+    {
+      "ngay": "2026-08-06",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2
+    },
+    {
+      "ngay": "2026-08-07",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1
+    },
+    {
+      "ngay": "2026-08-08",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1
+    },
+    {
+      "ngay": "2026-08-09",
+      "so_luot": 5,
+      "so_benh_nhan_tiep_nhan": 5,
+      "so_lan_kham": 5
+    },
+    {
+      "ngay": "2026-08-10",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1
+    },
+    {
+      "ngay": "2026-08-11",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3
+    },
+    {
+      "ngay": "2026-08-12",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2
+    },
+    {
+      "ngay": "2026-08-13",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1
+    },
+    {
+      "ngay": "2026-08-14",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1
+    },
+    {
+      "ngay": "2026-08-16",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2
+    },
+    {
+      "ngay": "2026-08-18",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2
+    },
+    {
+      "ngay": "2026-08-19",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 1
+    },
+    {
+      "ngay": "2026-08-21",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 3
+    },
+    {
+      "ngay": "2026-08-24",
+      "so_luot": 3,
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3
+    },
+    {
+      "ngay": "2026-08-25",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 2
+    },
+    {
+      "ngay": "2026-08-26",
+      "so_luot": 2,
+      "so_benh_nhan_tiep_nhan": 2,
+      "so_lan_kham": 4
+    },
+    {
+      "ngay": "2026-08-27",
+      "so_luot": 3,
+      "so_benh_nhan_tiep_nhan": 3,
+      "so_lan_kham": 3
+    },
+    {
+      "ngay": "2026-08-29",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2
+    },
+    {
+      "ngay": "2026-08-31",
+      "so_luot": 1,
+      "so_benh_nhan_tiep_nhan": 1,
+      "so_lan_kham": 2
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "chart_groups": [],
+  "data_notice": "Dữ liệu giả lập, mô tả hồ sơ đã lưu.",
+  "filters": {
+    "end": "2026-10-15",
+    "start": "2026-07-01"
+  },
+  "interval": "end_exclusive",
+  "money_unit": "VND",
+  "report_id": "R07",
+  "row_count": 15,
+  "rows": [
+    {
+      "ma_benh": "B003",
+      "max_tong": "2606200.00",
+      "min_tong": "80000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 7,
+      "tb_tien_kham": "265714.29",
+      "tb_tien_thuoc": "999485.71",
+      "tb_tong": "1265200.00",
+      "ten_benh": "Viêm phế quản"
+    },
+    {
+      "ma_benh": "B011",
+      "max_tong": "1953000.00",
+      "min_tong": "100000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 11,
+      "tb_tien_kham": "216363.64",
+      "tb_tien_thuoc": "739390.91",
+      "tb_tong": "955754.55",
+      "ten_benh": "Viêm da tiếp xúc"
+    },
+    {
+      "ma_benh": "B010",
+      "max_tong": "785600.00",
+      "min_tong": "667000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 2,
+      "tb_tien_kham": "225000.00",
+      "tb_tien_thuoc": "501300.00",
+      "tb_tong": "726300.00",
+      "ten_benh": "Thoái hóa cột sống cổ"
+    },
+    {
+      "ma_benh": "B015",
+      "max_tong": "787000.00",
+      "min_tong": "510000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 3,
+      "tb_tien_kham": "260000.00",
+      "tb_tien_thuoc": "430333.33",
+      "tb_tong": "690333.33",
+      "ten_benh": "Đau cơ xương khớp"
+    },
+    {
+      "ma_benh": "B012",
+      "max_tong": "1011000.00",
+      "min_tong": "315000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 6,
+      "tb_tien_kham": "193333.33",
+      "tb_tien_thuoc": "422833.33",
+      "tb_tong": "616166.67",
+      "ten_benh": "Viêm kết mạc"
+    },
+    {
+      "ma_benh": "B008",
+      "max_tong": "2270900.00",
+      "min_tong": "93000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 10,
+      "tb_tien_kham": "277000.00",
+      "tb_tien_thuoc": "260080.00",
+      "tb_tong": "537080.00",
+      "ten_benh": "Trào ngược dạ dày thực quản"
+    },
+    {
+      "ma_benh": "B007",
+      "max_tong": "856200.00",
+      "min_tong": "196000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 7,
+      "tb_tien_kham": "347142.86",
+      "tb_tien_thuoc": "84000.00",
+      "tb_tong": "431142.86",
+      "ten_benh": "Viêm dạ dày"
+    },
+    {
+      "ma_benh": "B014",
+      "max_tong": "676500.00",
+      "min_tong": "203700.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 4,
+      "tb_tien_kham": "220000.00",
+      "tb_tien_thuoc": "196550.00",
+      "tb_tong": "416550.00",
+      "ten_benh": "Rối loạn lipid máu"
+    },
+    {
+      "ma_benh": "B013",
+      "max_tong": "620000.00",
+      "min_tong": "171000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 10,
+      "tb_tien_kham": "264000.00",
+      "tb_tien_thuoc": "144250.00",
+      "tb_tong": "408250.00",
+      "ten_benh": "Nhiễm khuẩn tiết niệu"
+    },
+    {
+      "ma_benh": "B002",
+      "max_tong": "778000.00",
+      "min_tong": "100000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 9,
+      "tb_tien_kham": "177777.78",
+      "tb_tien_thuoc": "185711.11",
+      "tb_tong": "363488.89",
+      "ten_benh": "Viêm mũi dị ứng"
+    },
+    {
+      "ma_benh": "B001",
+      "max_tong": "673500.00",
+      "min_tong": "150000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 6,
+      "tb_tien_kham": "220000.00",
+      "tb_tien_thuoc": "60450.00",
+      "tb_tong": "280450.00",
+      "ten_benh": "Viêm họng cấp"
+    },
+    {
+      "ma_benh": "B005",
+      "max_tong": "397400.00",
+      "min_tong": "80000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 8,
+      "tb_tien_kham": "170000.00",
+      "tb_tien_thuoc": "63225.00",
+      "tb_tong": "233225.00",
+      "ten_benh": "Tăng huyết áp"
+    },
+    {
+      "ma_benh": "B009",
+      "max_tong": "355300.00",
+      "min_tong": "150000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 7,
+      "tb_tien_kham": "207142.86",
+      "tb_tien_thuoc": "24442.86",
+      "tb_tong": "231585.71",
+      "ten_benh": "Đau nửa đầu"
+    },
+    {
+      "ma_benh": "B004",
+      "max_tong": "354000.00",
+      "min_tong": "106000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 5,
+      "tb_tien_kham": "118000.00",
+      "tb_tien_thuoc": "51180.00",
+      "tb_tong": "169180.00",
+      "ten_benh": "Cảm cúm"
+    },
+    {
+      "ma_benh": "B006",
+      "max_tong": "216000.00",
+      "min_tong": "80000.00",
+      "so_dot_loai": 0,
+      "so_dot_tinh": 5,
+      "tb_tien_kham": "122000.00",
+      "tb_tien_thuoc": "16920.00",
+      "tb_tong": "138920.00",
+      "ten_benh": "Đái tháo đường type 2"
+    }
+  ],
+  "title": "Chi phí đợt đã khỏi theo bệnh"
+}

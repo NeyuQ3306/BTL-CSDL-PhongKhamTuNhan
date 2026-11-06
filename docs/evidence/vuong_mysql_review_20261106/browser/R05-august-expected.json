@@ -1,0 +1,31 @@
+{
+  "params": {
+    "start": "2026-08-01",
+    "end": "2026-09-01",
+    "as_of": "2026-08-31",
+    "threshold": 7
+  },
+  "age_group": null,
+  "rows": [
+    {
+      "ma_dot": "D0076",
+      "ma_benh_nhan": "BN011",
+      "ho_ten": "Ngô Thanh Minh",
+      "ma_benh": "B005",
+      "ten_benh": "Tăng huyết áp",
+      "ngay_bat_dau": "2026-08-19",
+      "ngay_khoi_truoc": "2026-07-04",
+      "so_ngay_tu_lan_khoi_truoc": 46
+    },
+    {
+      "ma_dot": "D0090",
+      "ma_benh_nhan": "BN001",
+      "ho_ten": "Đỗ Ngọc Phương",
+      "ma_benh": "B011",
+      "ten_benh": "Viêm da tiếp xúc",
+      "ngay_bat_dau": "2026-08-29",
+      "ngay_khoi_truoc": "2026-08-05",
+      "so_ngay_tu_lan_khoi_truoc": 24
+    }
+  ]
+}

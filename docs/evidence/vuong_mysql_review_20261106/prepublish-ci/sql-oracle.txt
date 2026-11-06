@@ -1,0 +1,1 @@
+{"mysql_version": "8.0.46", "oracle_match": true, "seed_unchanged": true, "result_rows": {"R01": 29, "R02": 83, "R03": 10, "R04": 29, "R05": 6, "R06": 19, "R07": 15}, "output": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\docs\\evidence\\vuong_mysql_review_20261106\\prepublish-ci\\sql-expected-actual.json"}

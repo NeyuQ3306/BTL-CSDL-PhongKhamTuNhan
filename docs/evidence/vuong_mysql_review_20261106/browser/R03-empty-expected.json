@@ -1,0 +1,91 @@
+{
+  "params": {
+    "start": "1999-01-01",
+    "end": "1999-02-01",
+    "as_of": "1999-01-31",
+    "threshold": 0
+  },
+  "age_group": null,
+  "rows": [
+    {
+      "ma_bac_si": "BS001",
+      "ho_ten": "Dương Ngọc Khánh",
+      "chuyen_mon": "Nội tổng quát",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS002",
+      "ho_ten": "Vũ Hoài An",
+      "chuyen_mon": "Tai mũi họng",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS003",
+      "ho_ten": "Ngô Văn Bình",
+      "chuyen_mon": "Tim mạch",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS004",
+      "ho_ten": "Đặng Ngọc Tuấn",
+      "chuyen_mon": "Da liễu",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS005",
+      "ho_ten": "Ngô Thanh Quân",
+      "chuyen_mon": "Nội tiết",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS006",
+      "ho_ten": "Đặng Phương Quân",
+      "chuyen_mon": "Đa khoa",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS007",
+      "ho_ten": "Ngô Ngọc Trinh",
+      "chuyen_mon": "Nội tổng quát",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS008",
+      "ho_ten": "Bùi Văn Linh",
+      "chuyen_mon": "Tai mũi họng",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS009",
+      "ho_ten": "Võ Minh Dũng",
+      "chuyen_mon": "Tim mạch",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    },
+    {
+      "ma_bac_si": "BS010",
+      "ho_ten": "Bùi Anh Giang",
+      "chuyen_mon": "Da liễu",
+      "so_lan_kham": 0,
+      "so_dot": 0,
+      "so_benh_nhan": 0
+    }
+  ]
+}

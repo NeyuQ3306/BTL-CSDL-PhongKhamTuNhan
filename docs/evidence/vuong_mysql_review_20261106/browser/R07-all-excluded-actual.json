@@ -1,0 +1,26 @@
+{
+  "chart_groups": [],
+  "data_notice": "Dữ liệu giả lập, mô tả hồ sơ đã lưu.",
+  "filters": {
+    "end": "2004-03-02",
+    "start": "2004-03-01"
+  },
+  "interval": "end_exclusive",
+  "money_unit": "VND",
+  "report_id": "R07",
+  "row_count": 1,
+  "rows": [
+    {
+      "ma_benh": "VQANULL",
+      "max_tong": null,
+      "min_tong": null,
+      "so_dot_loai": 1,
+      "so_dot_tinh": 0,
+      "tb_tien_kham": null,
+      "tb_tien_thuoc": null,
+      "tb_tong": null,
+      "ten_benh": "Vuong QA empty prescription disease"
+    }
+  ],
+  "title": "Chi phí đợt đã khỏi theo bệnh"
+}

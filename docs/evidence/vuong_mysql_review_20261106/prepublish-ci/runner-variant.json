@@ -1,0 +1,6 @@
+{
+  "base_runner_sha256": "00db432057cc635b83bb1c6ea24bf696a9ae13d6c14c1dbbea8cf36519046df2",
+  "executed_variant_sha256": "a210ed0de474d23114e7604c1a23d93f92dcdc846dc8809f8bc1c51a995b7994",
+  "omit_unchanged_regression": true,
+  "ci_database_name": true
+}

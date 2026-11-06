@@ -1,0 +1,14 @@
+{
+  "chart_groups": [],
+  "data_notice": "Dữ liệu giả lập, mô tả hồ sơ đã lưu.",
+  "filters": {
+    "end": "1999-02-01",
+    "start": "1999-01-01"
+  },
+  "interval": "end_exclusive",
+  "money_unit": "VND",
+  "report_id": "R07",
+  "row_count": 0,
+  "rows": [],
+  "title": "Chi phí đợt đã khỏi theo bệnh"
+}

@@ -1,0 +1,95 @@
+{
+  "chart_groups": [],
+  "data_notice": "Dữ liệu giả lập, mô tả hồ sơ đã lưu.",
+  "filters": {
+    "end": "1999-02-01",
+    "start": "1999-01-01"
+  },
+  "interval": "end_exclusive",
+  "money_unit": "VND",
+  "report_id": "R03",
+  "row_count": 10,
+  "rows": [
+    {
+      "chuyen_mon": "Nội tổng quát",
+      "ho_ten": "Dương Ngọc Khánh",
+      "ma_bac_si": "BS001",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Tai mũi họng",
+      "ho_ten": "Vũ Hoài An",
+      "ma_bac_si": "BS002",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Tim mạch",
+      "ho_ten": "Ngô Văn Bình",
+      "ma_bac_si": "BS003",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Da liễu",
+      "ho_ten": "Đặng Ngọc Tuấn",
+      "ma_bac_si": "BS004",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Nội tiết",
+      "ho_ten": "Ngô Thanh Quân",
+      "ma_bac_si": "BS005",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Đa khoa",
+      "ho_ten": "Đặng Phương Quân",
+      "ma_bac_si": "BS006",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Nội tổng quát",
+      "ho_ten": "Ngô Ngọc Trinh",
+      "ma_bac_si": "BS007",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Tai mũi họng",
+      "ho_ten": "Bùi Văn Linh",
+      "ma_bac_si": "BS008",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Tim mạch",
+      "ho_ten": "Võ Minh Dũng",
+      "ma_bac_si": "BS009",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    },
+    {
+      "chuyen_mon": "Da liễu",
+      "ho_ten": "Bùi Anh Giang",
+      "ma_bac_si": "BS010",
+      "so_benh_nhan": 0,
+      "so_dot": 0,
+      "so_lan_kham": 0
+    }
+  ],
+  "title": "Khối lượng khám theo bác sĩ"
+}

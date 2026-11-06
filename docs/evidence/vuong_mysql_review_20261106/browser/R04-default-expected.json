@@ -1,0 +1,214 @@
+{
+  "params": {
+    "start": "2026-07-01",
+    "end": "2026-10-15",
+    "as_of": "2026-10-14",
+    "threshold": 14
+  },
+  "age_group": null,
+  "rows": [
+    {
+      "ma_thuoc": "T018",
+      "ten_thuoc": "ORS bù nước",
+      "don_vi_tinh": "Gói",
+      "so_don": 18,
+      "tong_so_luong": 276
+    },
+    {
+      "ma_thuoc": "T019",
+      "ten_thuoc": "Nước muối sinh lý 0,9%",
+      "don_vi_tinh": "Chai",
+      "so_don": 18,
+      "tong_so_luong": 266
+    },
+    {
+      "ma_thuoc": "T001",
+      "ten_thuoc": "Paracetamol 500 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 17,
+      "tong_so_luong": 199
+    },
+    {
+      "ma_thuoc": "T024",
+      "ten_thuoc": "Domperidone 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 17,
+      "tong_so_luong": 245
+    },
+    {
+      "ma_thuoc": "T029",
+      "ten_thuoc": "Ciprofloxacin 500 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 17,
+      "tong_so_luong": 177
+    },
+    {
+      "ma_thuoc": "T027",
+      "ten_thuoc": "Hydrocortisone cream 1%",
+      "don_vi_tinh": "Tuýp",
+      "so_don": 14,
+      "tong_so_luong": 261
+    },
+    {
+      "ma_thuoc": "T028",
+      "ten_thuoc": "Clotrimazole cream 1%",
+      "don_vi_tinh": "Tuýp",
+      "so_don": 12,
+      "tong_so_luong": 124
+    },
+    {
+      "ma_thuoc": "T005",
+      "ten_thuoc": "Cetirizine 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 11,
+      "tong_so_luong": 148
+    },
+    {
+      "ma_thuoc": "T020",
+      "ten_thuoc": "Thuốc nhỏ mắt Natri clorid 0,9%",
+      "don_vi_tinh": "Lọ",
+      "so_don": 11,
+      "tong_so_luong": 123
+    },
+    {
+      "ma_thuoc": "T026",
+      "ten_thuoc": "Gaviscon hỗn dịch",
+      "don_vi_tinh": "Gói",
+      "so_don": 11,
+      "tong_so_luong": 197
+    },
+    {
+      "ma_thuoc": "T016",
+      "ten_thuoc": "Dextromethorphan 15 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 10,
+      "tong_so_luong": 177
+    },
+    {
+      "ma_thuoc": "T010",
+      "ten_thuoc": "Losartan 50 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 9,
+      "tong_so_luong": 125
+    },
+    {
+      "ma_thuoc": "T002",
+      "ten_thuoc": "Ibuprofen 400 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 8,
+      "tong_so_luong": 86
+    },
+    {
+      "ma_thuoc": "T003",
+      "ten_thuoc": "Amoxicillin 500 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 8,
+      "tong_so_luong": 136
+    },
+    {
+      "ma_thuoc": "T008",
+      "ten_thuoc": "Esomeprazole 20 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 8,
+      "tong_so_luong": 62
+    },
+    {
+      "ma_thuoc": "T009",
+      "ten_thuoc": "Amlodipine 5 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 8,
+      "tong_so_luong": 151
+    },
+    {
+      "ma_thuoc": "T012",
+      "ten_thuoc": "Atorvastatin 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 7,
+      "tong_so_luong": 123
+    },
+    {
+      "ma_thuoc": "T014",
+      "ten_thuoc": "Salbutamol xịt 100 mcg",
+      "don_vi_tinh": "Bình",
+      "so_don": 7,
+      "tong_so_luong": 112
+    },
+    {
+      "ma_thuoc": "T021",
+      "ten_thuoc": "Diclofenac gel 1%",
+      "don_vi_tinh": "Tuýp",
+      "so_don": 7,
+      "tong_so_luong": 86
+    },
+    {
+      "ma_thuoc": "T022",
+      "ten_thuoc": "Meloxicam 7,5 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 6,
+      "tong_so_luong": 56
+    },
+    {
+      "ma_thuoc": "T006",
+      "ten_thuoc": "Loratadine 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 5,
+      "tong_so_luong": 67
+    },
+    {
+      "ma_thuoc": "T007",
+      "ten_thuoc": "Omeprazole 20 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 5,
+      "tong_so_luong": 114
+    },
+    {
+      "ma_thuoc": "T011",
+      "ten_thuoc": "Metformin 500 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 5,
+      "tong_so_luong": 81
+    },
+    {
+      "ma_thuoc": "T013",
+      "ten_thuoc": "Rosuvastatin 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 5,
+      "tong_so_luong": 39
+    },
+    {
+      "ma_thuoc": "T015",
+      "ten_thuoc": "Acetylcysteine 200 mg",
+      "don_vi_tinh": "Gói",
+      "so_don": 5,
+      "tong_so_luong": 76
+    },
+    {
+      "ma_thuoc": "T017",
+      "ten_thuoc": "Vitamin C 500 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 5,
+      "tong_so_luong": 90
+    },
+    {
+      "ma_thuoc": "T025",
+      "ten_thuoc": "Simethicone 80 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 5,
+      "tong_so_luong": 61
+    },
+    {
+      "ma_thuoc": "T023",
+      "ten_thuoc": "Baclofen 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 4,
+      "tong_so_luong": 60
+    },
+    {
+      "ma_thuoc": "T030",
+      "ten_thuoc": "Montelukast 10 mg",
+      "don_vi_tinh": "Viên",
+      "so_don": 4,
+      "tong_so_luong": 75
+    }
+  ]
+}

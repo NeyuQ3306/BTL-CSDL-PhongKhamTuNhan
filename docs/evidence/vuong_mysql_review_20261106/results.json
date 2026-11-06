@@ -1,0 +1,100 @@
+{
+  "run_at": "20261106_125907_567156",
+  "source_sha": "596b38b8508fa79e5bc27d1e1e8a1c86f5cb7d5b",
+  "origin_main": "a0d6c300be631cea404672ade548a67c20fea1c1",
+  "branch": "feat/vuong-analytics-ui",
+  "python": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+  "private_datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\vuong_analytics_20261106_125907_567156\\mysql-data",
+  "mysql_port": 63289,
+  "database": "clinic_vuong_analytics_test",
+  "scope": "Local desktop MySQL review; not Quyen laptop/group acceptance",
+  "success": true,
+  "phases": [
+    {
+      "name": "sql-oracle",
+      "exit_code": 0,
+      "seed_unchanged": true
+    },
+    {
+      "name": "regression",
+      "exit_code": 0,
+      "seed_unchanged": true,
+      "counts": {
+        "tests": 442,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 442
+      }
+    },
+    {
+      "name": "mysql-ui",
+      "exit_code": 0,
+      "seed_unchanged": true,
+      "counts": {
+        "tests": 30,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 30
+      }
+    }
+  ],
+  "mysql": {
+    "version": "8.0.46",
+    "datadir": "D:\\BTL\\CSDL\\BTL-CSDL-PhongKhamTuNhan\\.venv\\vuong_analytics_20261106_125907_567156\\mysql-data\\",
+    "port": 63289
+  },
+  "excluded_mobile": [
+    "tests/test_browser_vuong_week2.py",
+    "tests/test_vuong_week3_numeric_validation.py",
+    "tests/test_browser_vuong_reports.py::test_seed_reports_ui_json_sql_expected",
+    "tests/test_vuong_acceptance.py::test_acceptance_browser_t01_t04_t08_t12_t14_t15"
+  ],
+  "audit": {
+    "mysql_version": "8.0.46",
+    "counts": {
+      "bac_si": 10,
+      "y_ta": 12,
+      "benh_nhan": 40,
+      "benh": 15,
+      "thuoc": 30,
+      "dot_dieu_tri": 137,
+      "luot_den_kham": 140,
+      "lan_kham_benh": 173,
+      "don_thuoc": 140,
+      "chi_tiet_don_thuoc": 267,
+      "ho_tro": 180
+    },
+    "total": 1144,
+    "matches_expected_counts": true,
+    "findings": {
+      "different_patient": [],
+      "exam_outside_visit_or_treatment": [],
+      "duplicate_active_episode": [],
+      "nonconsecutive_exam_numbers": [],
+      "empty_visit": [],
+      "empty_prescription": [],
+      "support_outside_visit": [],
+      "prescription_date_mismatch": [],
+      "overlapping_episodes": []
+    }
+  },
+  "w3_db_01": {
+    "checks": 60,
+    "unexpected": [],
+    "mysql_2003_observed": false,
+    "conclusion": "Not reproduced locally; remains open pending original laptop verification"
+  },
+  "seed_unchanged": true,
+  "cleanup": {
+    "shutdown_requested": true,
+    "fallback_pids": [],
+    "errors": [],
+    "remaining_pids": [],
+    "port_closed": true,
+    "launcher_exited": true,
+    "success": true
+  },
+  "env_unchanged": true
+}
