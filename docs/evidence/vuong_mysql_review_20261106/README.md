@@ -1,53 +1,43 @@
-# Kiểm MySQL và gói review phần Vương — 06/11/2026
+# Bằng chứng review R01–R07 của Vương — 06/11/2026
 
-## Kết quả
+Source sản phẩm được kiểm: `596b38b8508fa79e5bc27d1e1e8a1c86f5cb7d5b`; test sau sửa guard được đóng gói tại `80157b5`. Nhánh `feat/vuong-analytics-ui`, nền main `a0d6c300`. [PR #23](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/23) đang chờ Trung/Quyền review; chưa merge/đóng #3 hoặc nghiệm thu nhóm.
 
-Source sản phẩm `596b38b8508fa79e5bc27d1e1e8a1c86f5cb7d5b`, nhánh `feat/vuong-analytics-ui`; `origin/main` sau fetch vẫn `a0d6c300be631cea404672ade548a67c20fea1c1`. Các file test/runner/bằng chứng mới của phiên này chưa commit. Không push, tạo PR, merge, gửi issue hoặc sửa tài liệu chung.
+## Kết quả thực chạy
 
-| Lượt thực chạy | Passed | Skipped | Failed/errors | Nội dung |
+| Lượt local | Passed | Skipped | Failed/errors | Biên nhận |
 | --- | ---: | ---: | ---: | --- |
-| Hồi quy `tests` + `week3_checks` | 442 | 0 | 0 | SQL/API/oracle, Q1–Q4, luồng cũ và desktop UI stub; 176,03 giây |
-| MySQL → API → desktop UI | 30 | 0 | 0 | 28 ca oracle/filter, 1 ca hai trang cũ, 1 ca R07 NULL; 13,53 giây |
+| Hồi quy SQL/API/Q1–Q4/desktop | 442 | 0 | 0 | [JUnit](regression.xml), [log tóm tắt](regression.txt), [môi trường/audit](results.json) |
+| Browser MySQL sau sửa guard | 30 | 0 | 0 | [JUnit](prepublish/mysql-ui.xml), [log tóm tắt](prepublish/mysql-ui.txt), [audit](prepublish/results.json) |
+| DB private tên khác: kiểm đường skip | 29 | 1 | 0 | [log tóm tắt](prepublish-ci/mysql-ui.txt), [audit](prepublish-ci/results.json) |
 
-Hai lượt trên không chồng ca; SQL oracle chạy thêm bằng công cụ riêng, không cộng thành pytest passed. Hai module có kiểm điện thoại bị ignore, hai ca trộn desktop/điện thoại bị deselect; danh sách đầy đủ trong `results.json`, không tính chúng là skipped/PASS. Không kiểm điện thoại theo phạm vi đã thống nhất.
+Lượt đầu còn có 30 browser passed trước sửa guard; không cộng chồng với lượt recheck. Hai module mobile và hai ca trộn desktop/mobile bị loại rõ trong results.json, không tính PASS. CI đúng head `80157b5` có cả ba workflow success: [Backend/MySQL](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/42172643037), [Database](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/42172642994), [Tích hợp](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/actions/runs/42172642924). Không suy ra CI head sau commit thu gọn đã đạt.
 
-## Môi trường và cách chạy
+Windows/Python 3.14.6/MySQL 8.0.46, Chromium cục bộ; chi tiết thư viện trong [environment.json](environment.json). SQL/oracle R01–R07 đạt, seed đủ 1.144 dòng, audit cuối sạch. [Hash seed trước](seed-before.json)/[sau](seed-after.json) bằng nhau; .env không đổi, cleanup instance private sạch. [Hash nguồn đã kiểm](tested-source-sha256.json) chỉ giữ các file liên quan.
 
-Windows, Python 3.14.6, MySQL 8.0.46, Playwright Chromium từ cache cục bộ. Runtime/port/datadir/run_at thực tế nằm trong `results.json`. DB mới `clinic_vuong_analytics_test`, cổng loopback 63289 trong lượt này, datadir mới dưới `.venv/vuong_analytics_20261106_125907_567156/`; không dùng service/DB làm việc đã cấu hình trong `.env`. Mật khẩu ngẫu nhiên chỉ ở bộ nhớ, không có trong bằng chứng.
+## Phạm vi và mẫu đại diện
+
+Test `tests/test_vuong_analytics_mysql_ui.py` đi qua MySQL thật → Flask → mọi ô bảng/SVG, không stub analytics.build: kỳ mặc định/tháng 8/rỗng, nhóm tuổi R01, ngưỡng/ngày R06, nhóm R05/R06 và chuỗi tiền R07.
+
+Giữ ba ảnh đại diện: [R01](browser/R01-default.png), [R06](browser/R06-default.png), [R07 NULL](browser/R07-all-excluded.png). Ca R07 có [expected](browser/R07-all-excluded-expected.json)/[actual](browser/R07-all-excluded-actual.json): 0 mẫu, 1 đợt loại, năm số tiền NULL; bảng không đổi NULL thành 0 và không vẽ cột tiền. Fixture chỉ commit trong DB private đúng tên rồi xóa theo FK; seed phục hồi. DB tên khác skip đúng ca có ghi này.
+
+60 GET/lượt và hai trang cũ qua browser đều HTTP 200, không tái hiện W3-DB-01 local; **vẫn theo dõi, chưa xác định nguyên nhân/đã sửa**. Laptop Quyền có môi trường khác (MySQL 8.4.11/Python 3.11.9), cần kiểm bản tích hợp riêng.
+
+## Tái lập
 
 ```powershell
 & .venv\Scripts\python.exe docs/evidence/vuong_mysql_review_20261106/run_private.py
+# Chỉ kiểm lại SQL/oracle + 30 ca MySQL browser:
+& .venv\Scripts\python.exe docs/evidence/vuong_mysql_review_20261106/check_publish.py
+# Kiểm đường skip với DB private khác tên:
+& .venv\Scripts\python.exe docs/evidence/vuong_mysql_review_20261106/check_publish.py --ci-db
 ```
 
-Runner dựng schema → seed → constraints đúng một lần vào DB trống; sau khi xong dừng instance bằng đúng executable/datadir/port. Cleanup thực tế: SHUTDOWN thành công, không còn process, cổng đã đóng, không dùng fallback kill. `.env` không đổi. Log MySQL gốc giữ cục bộ dưới datadir private (không commit DB dump/datadir).
+Cần MySQL Server 8.0 tại đường dẫn ghi trong runner, pytest/PyMySQL/Playwright/psutil và Chromium. Runner tạo datadir/cổng loopback/DB mới, mật khẩu trong bộ nhớ, không lấy credentials hoặc kết nối DB làm việc từ .env; dừng đúng instance khi xong. Toàn bộ output lần chạy mới nằm trong `test-artifacts/vuong-mysql-review/` (Git ignore), tránh đưa log sinh tự động trở lại PR.
 
-## Phạm vi đối chiếu và bằng chứng
+Bản bằng chứng đầy đủ trước thu gọn giữ local tại `test-artifacts/vuong-review-full-20261106/`; repo chỉ giữ biên nhận, audit/hash liên quan và mẫu đại diện. Các lượt raw mới có thể tái tạo bằng lệnh trên; không nhận bản local archive đã được upload thành artifact GitHub.
 
-- `sql-expected-actual.json`: toàn bộ R01–R07 kỳ mặc định so SQL với oracle Python độc lập, tất cả 1.144 dòng so canonical trước/sau. Trường `base_commit` trong công cụ cũ là nền SQL lịch sử `98bd267`, **không phải source thực chạy**; source thực ở `results.json` và manifest.
-- `api-oracle/`: expected/actual của bảy bộ lọc API một/tất cả báo cáo; generated bởi kiểm backend với MySQL thật, không stub. SHA được truyền đúng source của lượt chạy.
-- `browser/*-expected.json` và `*-actual.json`: từng báo cáo kỳ mặc định/tháng 8/kỳ rỗng; R01 đủ nhóm -1/0/1/2/3; R06 ngưỡng 0/14/30 và ngày đối chiếu mặc định/tháng 8/kỳ rỗng. Kiểm mọi ô/thứ tự và dataset SVG; R05/R06 kiểm chart_groups độc lập từ oracle rows, R06 giữ đủ bốn nhóm 0. Không monkeypatch analytics.build.
-- R07 NULL: tạo fixture có đợt đã khỏi nhưng đơn thuốc rỗng chỉ trong DB private nói trên, có commit để kết nối HTTP nhìn thấy. Expected 0 mẫu/1 đợt loại, năm số tiền NULL; bảng ghi Không có mẫu, không có money segment. Xóa đúng fixture theo FK trong finally; snapshot seed trước/sau vẫn bằng nhau. Đây là dữ liệu ca biên, không thay seed nguồn.
-- `browser/*.png`: ảnh mặc định R01–R07, R07 không có mẫu và hai trang cũ. Đã xem trực tiếp ảnh R01/R06/R07 không có mẫu; không thấy lỗi bố cục trong các ảnh này. Các bảng rộng có cuộn ngang theo thiết kế.
-- `seed-before.json` / `seed-after.json`: hash canonical từng bảng bằng nhau; audit cuối đủ 1.144 dòng, tất cả 9 kiểm liên bảng rỗng. Không thay schema/seed/SQL sản phẩm.
-- `regression.xml/.txt`, `mysql-ui.xml/.txt`, `sql-oracle.txt`: kết quả và câu lệnh do `run_private.py` tạo.
-- `source-sha256.json` chụp lúc bắt đầu; subagent bổ sung hai ca cuối trước khi chạy mysql-ui. `source-sha256-final.json` nhận diện chính xác file test đã chạy sau khi subagent dừng sửa. Không đồng nhất source HEAD sản phẩm với phần kiểm thử mới chưa commit.
+## Review còn lại
 
-## W3-DB-01
+Trung (`ptt172`): hợp đồng API/UI, adapter ngày, nhóm R05/R06, tiền/NULL. Quyền (`NeyuQ3306`): seed/SQL, chạy bản tích hợp desktop trên laptop Quyền, lưu SHA/môi trường/expected/actual và log nếu gặp 503/MySQL 2003. Chờ review và CI đúng head trước Quyền điều phối merge; DOCX/PPTX/demo/bộ nộp vẫn chưa nghiệm thu.
 
-60 GET chỉ đọc (15 lượt × health, thống kê bệnh tháng 10, lịch sử BN001 và analytics tổng) đều HTTP 200; không thấy MySQL 2003 trong log của lượt kiểm này. Hai trang từng liên quan lỗi cũng HTTP 200 qua trình duyệt desktop. Xem `w3-db-01-read-checks.json`, `app-read-checks.txt`, ảnh và status JSON legacy trong `browser/`. Không retry thao tác ghi.
-
-Kết luận: **không tái hiện local, vẫn theo dõi, chưa xác định nguyên nhân/đã sửa**. Môi trường này MySQL 8.0.46/Python 3.14.6, khác MySQL 8.4.11/Python 3.11.9 ở phiên lỗi cũ trên laptop Quyền; cần Quyền chạy lại bản tích hợp. Không tự nghiệm thu laptop Quyền hoặc toàn nhóm.
-
-## Review và việc tiếp theo
-
-Subagent 6.1 Terra đã rà hợp đồng và bổ sung kiểm browser MySQL; orchestrator rà mã test, chạy thực, kiểm ảnh và bằng chứng. Không tìm thấy lỗi sản phẩm cần sửa trong phạm vi đã chạy. Nghi vấn chart_groups chưa đối chiếu rows tại client là gợi ý hardening, không phải mismatch thực tế; test mới đối chiếu nhóm backend độc lập và đã đạt, không tự đổi hợp đồng/backend.
-
-`REVIEW_PACKET.md` có tiêu đề/nội dung PR dự kiến, cách chạy, giới hạn và điểm Trung/Quyền cần review; chỉ là hồ sơ cục bộ. Chưa có review độc lập của thành viên nhóm, CI cho phần mới, push/PR/merge hay nghiệm thu nhóm. Bước tiếp: rà và commit phần mới đúng phạm vi, sau khi được người dùng cho phép mới push/tạo PR; Trung review API, Quyền review tích hợp và chạy laptop Quyền. Sau đó cập nhật DOCX/PPTX/demo/bộ nộp.
-
-## Rà trước publish
-
-Ca R07 NULL có ghi fixture chỉ chạy khi DB_NAME đúng `clinic_vuong_analytics_test`. Khi CI dùng DB `_test` khác, ca này được skip rõ lý do; 29 ca read-only còn lại vẫn có thể chạy. Không mở rộng quyền ghi fixture sang DB khác, không sửa workflow dùng chung. Lượt private trước publish được lưu riêng trong `prepublish/`; kết quả gốc 442/30 phía trên được giữ nguyên.
-
-Lượt `prepublish`: SQL oracle đạt, 30 browser passed/0 skipped/0 failed; seed và `.env` không đổi, cleanup sạch. Source test sau chỉnh guard được ghi tại `prepublish/source-sha256.json`. Cách tái lập phần recheck: `python docs/evidence/vuong_mysql_review_20261106/check_publish.py`; thêm `--ci-db` để kiểm guard với DB private tên khác. Các lượt recheck không cộng chồng vào 442/30 của lượt gốc. Người dùng đã cho phép publish PR, yêu cầu Trung/Quyền review; không merge hoặc đóng #3.
-
-Lượt `prepublish-ci`: DB private khác tên đạt 29 passed/1 skipped/0 failed; đúng ca fixture R07 được skip, seed/`.env` không đổi và cleanup sạch. Guard đã được kiểm cả đường chạy và đường skip.
+Kiểm runner sau thu gọn: SQL/oracle đạt, 30 browser passed/0 skipped/0 failed; seed/.env không đổi, cleanup sạch. Output local: `test-artifacts/vuong-mysql-review/prepublish_20261106_061737_967296/`. Không chạy lại 442 ca hồi quy vì không đổi source sản phẩm hoặc test; không cộng chồng lượt smoke này.

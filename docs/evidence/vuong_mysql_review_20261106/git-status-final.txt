@@ -1,6 +1,0 @@
-?? .codex-qa/
-?? .qa_field_warning/
-?? .qa_report_v2/
-?? docs/evidence/vuong_mysql_review_20261106/
-?? docs/evidence/vuong_week2_prepare_20261019_225048/
-?? tests/test_vuong_analytics_mysql_ui.py

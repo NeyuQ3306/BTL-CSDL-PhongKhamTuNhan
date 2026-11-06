@@ -1,0 +1,10 @@
+{
+  "clinic_app/static/analytics.js": "db982689d2e4b7af88c40030d0a83a1d93609276fa707b14479410e0df7ecaf2",
+  "clinic_app/static/analytics.css": "2b0afe4b7aa7a521e1ae6808c7cf2ac30dee1059ebc86c32307678da9a6b8e59",
+  "clinic_app/templates/analytics/panel.html": "a38d056d52f2d2932fa6fc430dfc9d6d32e5e3ec6cf2db4a00328865f7eaae2c",
+  "clinic_app/templates/week1/reports.html": "12a3f8e33d7274ddc8d61bff011fca261e0241650539ef75cbf963ad7ac60914",
+  "clinic_app/analytics.py": "cbf21c34216b7d79db5d4cb2d8974a0580a3440f1ee42b03f21d189375b60be5",
+  "database/analytics_queries.sql": "13e7ae019aa06968031637547c1817873d1ecfa49560e5b373284e88f37315ce",
+  "database/seed.sql": "e51a8548787abc1dcd71c22fb224517d39f37da5ddb09daf109ea8ab6fd03147",
+  "tests/test_vuong_analytics_mysql_ui.py": "f526bba5f91c85d7db280f3f6c01c7f0dbaccd82afeaaae229893b71f2d18f01"
+}

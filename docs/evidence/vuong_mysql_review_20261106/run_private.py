@@ -7,7 +7,8 @@ from pathlib import Path
 from datetime import datetime, timezone, timedelta
 import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[3]
-OUT = Path(__file__).resolve().parent
+OUT = Path(os.environ.get('VUONG_EVIDENCE_OUTPUT', ROOT / 'test-artifacts' / 'vuong-mysql-review' / datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_%f')))
+OUT.mkdir(parents=True, exist_ok=True)
 os.chdir(ROOT)
 sys.path.insert(0, str(ROOT))
 def save(name, data):
