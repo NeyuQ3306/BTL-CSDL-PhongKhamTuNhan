@@ -1,0 +1,11 @@
+{
+  "parent": "0bf291687b8e80674531363aa1ea6b32b4dad388",
+  "main": "a0d6c300be631cea404672ade548a67c20fea1c1",
+  "files": {
+    "tests/test_vuong_r02_ui.py": "eda9884e29e971e97e2fb70f4555d72626c8a13902ff80acb603a379ff488197",
+    "clinic_app/static/analytics.js": "e98b644808ea2336f674135388fb218cf8bd5c1ea6251ba509f00794b01e874c",
+    "clinic_app/static/analytics.css": "0bacf3e1281bba8ddaa50861f646681d065efeab68a53900c716a6c04ef41b7c",
+    "tests/test_vuong_analytics_ui.py": "e7ae06b63b9ee1d5488cff65c8d6d74121aedf1361de5590f6817f04464c9434",
+    "clinic_app/templates/analytics/panel.html": "cecba666f1ad5b942269365e2626fd0ed1b3e9c6ab02928d0b2eb420648e012a"
+  }
+}

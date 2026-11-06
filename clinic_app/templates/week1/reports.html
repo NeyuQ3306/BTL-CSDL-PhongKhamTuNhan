@@ -3,4 +3,5 @@
 {% block content %}
 <p class="eyebrow">TRA CỨU VÀ THỐNG KÊ</p><h1>Báo cáo phòng khám</h1><p class="report-intro">Tra cứu kết quả từ cơ sở dữ liệu phòng khám. Ba báo cáo thống kê dùng tháng/năm; lịch sử bệnh nhân bao gồm mọi tháng.</p>
 <div class="report-grid">{% for key,item in report_pages.items() %}<section class="report-card"><span class="report-number">BÁO CÁO {{ '%02d'|format(loop.index) }}</span><h2>{{ item.title }}</h2><span class="status-label status-available">Dữ liệu đã lưu</span><p>{{ item.description }}</p><a class="button button-secondary" href="{{ url_for('clinic.reports',report=key) }}">Mở {{ item.title|lower }}</a></section>{% endfor %}</div>
+{% include 'analytics/panel.html' %}
 {% endblock %}

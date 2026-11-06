@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='analytics.css') }}">
+<script src="{{ url_for('static', filename='analytics.js') }}" defer></script>
+<section id="analytics" class="analytics-panel" aria-labelledby="analytics-title" data-endpoint="{{ url_for('analytics.one_report', report_id='R01') }}" data-r02-endpoint="{{ url_for('analytics.one_report', report_id='R02') }}" data-r03-endpoint="{{ url_for('analytics.one_report', report_id='R03') }}" data-r04-endpoint="{{ url_for('analytics.one_report', report_id='R04') }}" data-r05-endpoint="{{ url_for('analytics.one_report', report_id='R05') }}" data-r06-endpoint="{{ url_for('analytics.one_report', report_id='R06') }}" data-r07-endpoint="{{ url_for('analytics.one_report', report_id='R07') }}">
+  <p class="eyebrow">PHÂN TÍCH HỒ SƠ ĐÃ LƯU</p>
+  <h2 id="analytics-title">Báo cáo mở rộng</h2>
+  <p>R01–R07 có bộ lọc, bảng và biểu đồ offline từ dữ liệu báo cáo.</p>
+  <noscript><p class="notice">Bật JavaScript để lấy bảng báo cáo mở rộng.</p></noscript>
+  <form id="analytics-filters" class="report-filters" aria-label="Bộ lọc báo cáo mở rộng">
+    <div class="filter-field"><label for="analytics-report">Báo cáo</label>
+      <select id="analytics-report" name="report"><option value="R01">R01 — Bệnh theo nhóm tuổi</option>
+        <option value="R02">R02 — Tiếp nhận và khám theo ngày</option>
+        <option value="R03">R03 — Khối lượng khám theo bác sĩ</option>
+        <option value="R04">R04 — Thuốc được kê</option>
+        <option value="R05">R05 — Đợt tái mắc có tiền sử ghi nhận</option>
+        <option value="R06">R06 — Lâu chưa ghi nhận khám</option>
+        <option value="R07">R07 — Chi phí đợt đã khỏi theo bệnh</option>
+      </select>
+    </div>
+    <div class="filter-field" id="analytics-start-field"><label for="analytics-start">Từ ngày *</label><input id="analytics-start" name="start" type="date" value="2026-07-01" min="0001-01-01" max="9999-12-30" required></div>
+    <div class="filter-field" id="analytics-through-field"><label for="analytics-through">Đến hết ngày *</label><input id="analytics-through" name="through" type="date" value="2026-10-14" min="0001-01-01" max="9999-12-30" required aria-describedby="analytics-date-hint"><small id="analytics-date-hint" class="field-hint">Bao gồm ngày cuối; tối đa 30/12/9999.</small></div>
+    <div class="filter-field" id="analytics-as-of-field" hidden><label for="analytics-as-of">Ngày đối chiếu *</label><input id="analytics-as-of" name="as_of" type="date" value="2026-10-14" min="0001-01-01" max="9999-12-31" required disabled aria-describedby="analytics-as-of-hint"><small id="analytics-as-of-hint" class="field-hint">Xét cuối ngày này; gửi nguyên ngày, không cộng thêm ngày.</small></div>
+    <div class="filter-field" id="analytics-threshold-field" hidden><label for="analytics-threshold">Ngưỡng số ngày *</label><input id="analytics-threshold" name="threshold" type="number" min="0" max="36500" step="1" value="14" required disabled aria-describedby="analytics-threshold-hint"><small id="analytics-threshold-hint" class="field-hint">Số nguyên 0–36500; khoảng cách đạt ngưỡng (≥).</small></div>
+    <div class="filter-field" id="analytics-age-field"><label for="analytics-age">Nhóm tuổi</label><select id="analytics-age" name="age_group"><option value="">Tất cả nhóm</option><option value="0">0–5</option><option value="1">6–17</option><option value="2">18–59</option><option value="3">60+</option><option value="-1">Ngày sinh không hợp lệ</option></select></div>
+    <button type="submit">Xem R01</button>
+  </form>
+  <div id="r01-description"><p>Đếm đợt có ít nhất một lần khám trong kỳ; tuổi tại lần khám đầu của đợt trong kỳ. Đơn vị: đợt và bệnh nhân trong từng nhóm. Không cộng số bệnh nhân giữa các nhóm thành tổng người duy nhất.</p>
+  <p>Nhóm tuổi là quy ước demo. Kết quả mô tả hồ sơ, không phải tỷ lệ mắc bệnh trong cộng đồng hoặc dự báo mùa vụ.</p></div>
+  <div id="r02-description" hidden><p>Lượt tiếp nhận theo ngày vào; lần khám theo ngày khám, kể cả lần khám thuộc lượt cũ. Bệnh nhân tiếp nhận là số người khác nhau trong từng ngày, không cộng thành tổng người duy nhất cả kỳ.</p><p>Chỉ hiển thị ngày API trả về. Không chèn ngày thiếu thành 0; số 0 có sẵn chỉ là không có bản ghi loại đó trong DB, không kết luận phòng khám ngừng hoạt động. Dữ liệu giả lập không dùng để suy ra giờ cao điểm, mùa vụ hoặc dự báo.</p></div>
+  <div id="r03-description" hidden><p>Số lần khám trong kỳ theo bác sĩ cố định của đợt; số đợt và số bệnh nhân khác nhau được giữ riêng. Bác sĩ không có hoạt động ghi nhận vẫn hiển thị với 0, không tự loại khỏi bảng hoặc biểu đồ.</p><p>Phục vụ rà soát phân bố công việc và lịch theo chuyên môn, không xếp hạng chất lượng bác sĩ. Không cộng số bệnh nhân giữa các bác sĩ thành tổng người duy nhất; dữ liệu giả lập không đủ để kết luận chất lượng khám.</p></div>
+  <div id="r04-description" hidden><p>Đơn thuốc theo ngày lập: số đơn khác nhau có chứa từng thuốc và tổng lượng kê theo đơn vị của chính thuốc đó. Biểu đồ vẽ số đơn, bảng giữ lượng kê và đơn vị riêng từng thuốc.</p><p>Không cộng lượng của thuốc khác đơn vị hoặc suy ra lượng cần nhập khi chưa có dữ liệu tồn kho. Đây là lượng kê, không phải đã bán hoặc đã uống và không phải chỉ định tự dùng thuốc.</p></div>
+  <div id="r05-description" hidden><p>Mỗi dòng là một đợt mới cùng bệnh sau một đợt đã khỏi được ghi nhận; kỳ lọc theo ngày bắt đầu đợt mới, lịch sử trước đó có thể ngoài kỳ. Bảng giữ hồ sơ để đối chiếu, biểu đồ dùng số đợt theo bệnh từ API.</p><p>Số đợt tái mắc không phải số bệnh nhân: một người có thể có nhiều đợt. Thiếu lịch sử không có nghĩa chưa từng mắc. Đây là định nghĩa của mô hình bài tập, không tự phân biệt tái phát/tái nhiễm.</p></div>
+  <div id="r06-description" hidden><p>Đợt đang điều trị tại cuối ngày đối chiếu và lâu chưa ghi nhận lần khám, xét theo ngưỡng ngày đã chọn. Nếu chưa có lần khám, khoảng cách được backend tính từ ngày bắt đầu và bảng ghi rõ “Chưa có lần khám”.</p><p>Biểu đồ giữ đủ bốn nhóm số ngày từ API sau lọc ngưỡng, đơn vị đợt. Đây là danh sách rà soát hồ sơ, không gọi là trễ hẹn hoặc bỏ điều trị vì dữ liệu không lưu lịch hẹn. Thông tin liên hệ chỉ ở bảng dữ liệu giả lập, không lên biểu đồ.</p></div>
+  <div id="r07-description" hidden><p>Chọn các đợt đã khỏi theo ngày khỏi trong kỳ, tính toàn bộ chi phí ghi nhận của đợt kể cả trước đầu kỳ. Bảng giữ số đợt được tính/bị loại, năm giá trị tiền và NULL từ API; biểu đồ chồng tiền khám và thuốc trung bình cùng response.</p><p>Nhóm không có mẫu tính chi phí không vẽ cột tiền; thiếu dữ liệu không phải tiền 0. Các thành phần đã làm tròn riêng có thể lệch tổng trung bình 0,01 VND. Đây không phải báo giá hoặc cam kết chi phí điều trị; không đồng nhất với doanh thu Q4 theo ngày phát sinh.</p></div>
+  <p id="analytics-status" role="status" aria-live="polite">Chọn bộ lọc rồi bấm Xem R01 để tải dữ liệu.</p>
+  <p id="analytics-error" class="error-text" role="alert" hidden></p>
+  <div id="analytics-result" hidden>
+    <p id="analytics-applied" class="notice"></p>
+    <p id="analytics-data-notice"></p>
+    <section id="r01-chart-section" aria-labelledby="r01-chart-heading">
+      <h3 id="r01-chart-heading">R01 — Số đợt theo bệnh và nhóm tuổi</h3>
+      <p id="r01-chart-period"></p>
+      <p id="r01-chart-hint" class="table-hint">Cột chồng: mỗi phần là số đợt của một nhóm tuổi. Mã bệnh trên trục ngang; tên bệnh đầy đủ trong bảng và chi tiết khi trỏ hoặc dùng Tab đến từng phần cột. Cuộn ngang để xem đủ bệnh. Không cộng số bệnh nhân giữa các nhóm. Giá trị 0 không có chiều cao; nhóm không xuất hiện không được bổ sung thành dữ liệu 0.</p>
+      <ul id="r01-legend" class="analytics-legend" aria-label="Chú giải nhóm tuổi"></ul>
+      <p id="r01-chart-empty" hidden>Không có dữ liệu phù hợp để vẽ biểu đồ.</p>
+      <div id="r01-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ cột chồng R01, cuộn ngang" aria-describedby="r01-chart-hint" tabindex="0">
+        <svg id="r01-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r01-svg-title r01-svg-desc"></svg>
+      </div>
+      <p id="r01-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một phần cột để xem chi tiết.</p>
+    </section>
+    <section id="r02-chart-section" aria-labelledby="r02-chart-heading" hidden>
+      <h3 id="r02-chart-heading">R02 — Tiếp nhận và khám theo ngày</h3>
+      <p id="r02-chart-period"></p>
+      <p id="r02-chart-hint" class="table-hint">Hai cột cạnh nhau cho mỗi ngày: lượt tiếp nhận và lần khám, không chồng hoặc cộng hai loại. Trục ngang chỉ gồm ngày API trả về; khoảng cách cột không biểu diễn số ngày cách nhau. Cuộn ngang, trỏ hoặc dùng Tab đến cột để xem đủ ngày, ba số đếm và đơn vị. Ngày thiếu không được chèn thành 0; bảng giữ số bệnh nhân tiếp nhận riêng.</p>
+      <ul class="analytics-legend" aria-label="Chú giải R02"><li><span class="analytics-swatch" style="background-color:#2563a6" aria-hidden="true"></span>Lượt tiếp nhận (lượt)</li><li><span class="analytics-swatch" style="background-color:#ad5710" aria-hidden="true"></span>Lần khám (lần)</li></ul>
+      <p id="r02-chart-empty" hidden>Không có dữ liệu phù hợp để vẽ biểu đồ.</p>
+      <div id="r02-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ cột R02, cuộn ngang" aria-describedby="r02-chart-hint" tabindex="0"><svg id="r02-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r02-svg-title r02-svg-desc"></svg></div>
+      <p id="r02-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một cột để xem chi tiết.</p>
+    </section>
+    <section id="r03-chart-section" aria-labelledby="r03-chart-heading" hidden>
+      <h3 id="r03-chart-heading">R03 — Khối lượng khám theo bác sĩ</h3>
+      <p id="r03-chart-period"></p>
+      <p id="r03-chart-hint" class="table-hint">Thanh ngang biểu diễn số lần khám (lần), không phải số đợt hoặc số bệnh nhân. Giữ thứ tự API: lần khám giảm dần, mã bác sĩ tăng khi bằng nhau. Bác sĩ có 0 lần khám vẫn có nhãn và chi tiết; thanh có chiều dài 0. Trỏ hoặc dùng Tab đến thanh để xem tên đầy đủ, chuyên môn và ba số đếm; bảng giữ toàn bộ dữ liệu. Cuộn ngang nếu cần. Phân bố công việc không phải xếp hạng chất lượng bác sĩ.</p>
+      <p id="r03-chart-empty" hidden>Không có dữ liệu phù hợp để vẽ biểu đồ.</p>
+      <div id="r03-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ thanh ngang R03, cuộn ngang" aria-describedby="r03-chart-hint" tabindex="0"><svg id="r03-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r03-svg-title r03-svg-desc"></svg></div>
+      <p id="r03-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một thanh để xem chi tiết.</p>
+    </section>
+    <section id="r04-chart-section" aria-labelledby="r04-chart-heading" hidden>
+      <h3 id="r04-chart-heading">R04 — Thuốc được kê</h3>
+      <p id="r04-chart-period"></p>
+      <p id="r04-chart-hint" class="table-hint">Thanh ngang là số đơn có chứa thuốc (đơn), không phải lượng kê. Giữ thứ tự API: số đơn giảm dần, mã thuốc tăng khi bằng nhau. Trỏ hoặc dùng Tab đến thanh để xem tên đầy đủ, số đơn, lượng kê và đơn vị riêng của thuốc. Bảng giữ toàn bộ dữ liệu. Cuộn ngang nếu cần; không cộng lượng khác đơn vị hoặc suy ra lượng cần nhập.</p>
+      <p id="r04-chart-empty" hidden>Không có dữ liệu phù hợp để vẽ biểu đồ.</p>
+      <div id="r04-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ thanh ngang R04, cuộn ngang" aria-describedby="r04-chart-hint" tabindex="0"><svg id="r04-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r04-svg-title r04-svg-desc"></svg></div>
+      <p id="r04-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một thanh để xem chi tiết.</p>
+    </section>
+    <section id="r05-chart-section" aria-labelledby="r05-chart-heading" hidden>
+      <h3 id="r05-chart-heading">R05 — Đợt tái mắc có tiền sử ghi nhận</h3>
+      <p id="r05-chart-period"></p>
+      <p id="r05-chart-hint" class="table-hint">Cột theo bệnh dùng chart_groups của cùng response với bảng. Đơn vị: đợt tái mắc, không phải bệnh nhân. Giữ thứ tự nhóm API; trỏ hoặc dùng Tab đến cột để xem tên bệnh và số đợt. Cuộn ngang nếu cần. Thiếu lịch sử không có nghĩa chưa từng mắc.</p>
+      <p id="r05-chart-empty" hidden>Không có đợt tái mắc phù hợp để vẽ biểu đồ; thiếu lịch sử không có nghĩa chưa từng mắc.</p>
+      <div id="r05-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ cột R05, cuộn ngang" aria-describedby="r05-chart-hint" tabindex="0"><svg id="r05-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r05-svg-title r05-svg-desc"></svg></div>
+      <p id="r05-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một cột để xem chi tiết.</p>
+    </section>
+    <section id="r06-chart-section" aria-labelledby="r06-chart-heading" hidden>
+      <h3 id="r06-chart-heading">R06 — Lâu chưa ghi nhận khám</h3>
+      <p id="r06-chart-period"></p>
+      <p id="r06-chart-hint" class="table-hint">Cột từ chart_groups của cùng response với bảng, sau lọc ngưỡng. Giữ đủ nhóm 0–6, 7–13, 14–29, 30+ ngày kể cả số đợt bằng 0; nhóm không có đợt có cột cao 0 nhưng vẫn xem được chi tiết bằng Tab. Đơn vị: đợt điều trị, không phải số bệnh nhân. Không kết luận trễ hẹn hoặc bỏ điều trị.</p>
+      <p id="r06-chart-empty" hidden></p>
+      <div id="r06-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ cột R06, cuộn ngang" aria-describedby="r06-chart-hint" tabindex="0"><svg id="r06-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r06-svg-title r06-svg-desc"></svg></div>
+      <p id="r06-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một cột để xem chi tiết.</p>
+    </section>
+    <section id="r07-chart-section" aria-labelledby="r07-chart-heading" hidden>
+      <h3 id="r07-chart-heading">R07 — Chi phí đợt đã khỏi theo bệnh</h3>
+      <p id="r07-chart-period"></p>
+      <p id="r07-chart-hint" class="table-hint">Cột chồng trung bình tiền khám/thuốc, đơn vị VND. Giữ thứ tự API và số tiền gốc trong bảng/chi tiết; số vẽ chỉ phục vụ hình học, không tính lại tổng nghiệp vụ. Trỏ hoặc dùng Tab đến từng phần cột để xem bệnh, số mẫu/đợt loại, tổng trung bình và min/max. Nhóm không có mẫu giữ ở bảng và nhãn nhưng không vẽ cột tiền; 0 VND thật vẫn có chi tiết. Cuộn ngang nếu cần.</p>
+      <ul class="analytics-legend" aria-label="Chú giải R07"><li><span class="analytics-swatch" style="background-color:#2563a6" aria-hidden="true"></span>Trung bình tiền khám (VND)</li><li><span class="analytics-swatch" style="background-color:#ad5710" aria-hidden="true"></span>Trung bình tiền thuốc (VND)</li></ul>
+      <p id="r07-chart-empty" hidden>Không có dữ liệu phù hợp để vẽ biểu đồ.</p>
+      <div id="r07-chart-scroll" class="analytics-chart-scroll" role="region" aria-label="Biểu đồ cột chồng chi phí R07, cuộn ngang" aria-describedby="r07-chart-hint" tabindex="0"><svg id="r07-chart" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="r07-svg-title r07-svg-desc"></svg></div>
+      <p id="r07-chart-detail" class="notice" aria-live="polite">Trỏ hoặc dùng Tab đến một phần cột để xem chi tiết.</p>
+    </section>
+    <p class="table-hint" id="analytics-table-hint">Giữ thứ tự từ API. Mã nhóm -1 là ngày sinh không hợp lệ; 0/1/2/3 tương ứng 0–5/6–17/18–59/60+. Cuộn ngang để xem đủ cột.</p>
+    <div class="table-wrap clinical-table" role="region" aria-label="Bảng R01" aria-describedby="analytics-table-hint" tabindex="0">
+      <table id="analytics-table"><caption id="analytics-caption">R01 — Bệnh theo nhóm tuổi</caption><thead><tr><th scope="col">Mã bệnh</th><th scope="col">Tên bệnh</th><th scope="col">Mã nhóm</th><th scope="col">Nhóm tuổi</th><th scope="col">Số đợt</th><th scope="col">Số bệnh nhân</th></tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+</section>
