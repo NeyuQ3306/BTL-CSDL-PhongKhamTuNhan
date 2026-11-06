@@ -1,0 +1,15 @@
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 47%]
+........................................................................ [ 63%]
+........................................................................ [ 79%]
+........................................................................ [ 95%]
+.....................                                                    [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\_pytest\cacheprovider.py:475
+  C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan\.venv\Lib\site-packages\_pytest\cacheprovider.py:475: PytestCacheWarning: could not create cache path C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan\.pytest_cache\v\cache\nodeids: [WinError 5] Access is denied: 'C:\\Users\\LENOVO\\OneDrive\\Desktop\\BTL-CSDL-PhongKhamTuNhan\\pytest-cache-files-ob1w1x44' -> 'C:\\Users\\LENOVO\\OneDrive\\Desktop\\BTL-CSDL-PhongKhamTuNhan\\.pytest_cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan\docs\evidence\quyen_laptop_acceptance_20261106\run\regression.xml -
+453 passed, 1 warning in 262.02s (0:04:22)

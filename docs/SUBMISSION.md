@@ -5,7 +5,7 @@ Theo thông báo giảng viên do Quyền cung cấp ngày 02/11/2026. Hạn: h�
 | Thành phần | Điểm học phần | Vị trí/trạng thái |
 |---|---:|---|
 | PDF thiết kế | 8% | Hai PDF trong docs/design/ |
-| SQL | 6% | database/project1_submission.sql |
+| SQL | 6% | database/project1_submission.sql (YC2) và database/analytics_queries.sql (R01–R07 bổ sung) |
 | Link GitHub app | 6% | https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan |
 | DOCX mô tả chi tiết | 3% | Vương chỉnh sửa; chờ kiểm tra bản cuối |
 | PPTX thuyết trình | 2% | Trung chỉnh sửa; chờ kiểm tra bản cuối |
@@ -16,6 +16,12 @@ Tạo thư mục Google Drive mang đúng số hiệu nhóm (chưa xác nhận; 
 ## Truy cập GitHub
 
 Repo giữ private. Quyền chưa có tài khoản GitHub của giảng viên. Khi có tài khoản, cấp quyền và xác nhận giảng viên mở được repo. Nếu chưa có trước hạn, trao đổi với giảng viên về cách nhận source; có thể chuẩn bị ZIP source kèm Drive theo hướng dẫn của thầy, nhưng ZIP không tự thay yêu cầu link GitHub. Không tự chuyển repo public.
+
+## Báo cáo mở rộng và bằng chứng laptop
+
+PR #23 đã tích hợp bộ lọc/bảng/biểu đồ offline R01–R07 trên main tại `2c01db2`. Kèm `database/analytics_queries.sql` trong bộ nộp để giảng viên đối chiếu các chức năng bổ sung; chạy sau khi tạo/nạp CSDL bằng file YC2. Không thay bốn truy vấn bắt buộc bằng bảy báo cáo mới. Hợp đồng và ý nghĩa: [ANALYTICS_HANDOFF](ANALYTICS_HANDOFF.md).
+
+[Bằng chứng laptop Quyền ngày06/11](evidence/quyen_laptop_acceptance_20261106/README.md):485test đạt,0lỗi/skip, MySQL8.4.11; nguồn ứng dụng2c01db2 cộng test/runner bổ sung được ghi hash riêng. Đây không thay xác nhận import file SQL gộp cuối hoặc buổi tập demo. DOCX/PPTX cập nhật theo UI thực chạy vẫn chờ kiểm tra.
 
 ## Kiểm tra bản SQL nộp
 
