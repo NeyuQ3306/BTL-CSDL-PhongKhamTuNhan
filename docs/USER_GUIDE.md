@@ -1,8 +1,6 @@
-# Hướng dẫn sử dụng bản tích hợp
+# Hướng dẫn sử dụng
 
-Hướng dẫn hiện hành ngày 21/10/2026. Cài/chạy và nhận diện source theo [SETUP.md](SETUP.md). Main đã xác minh: `f4869299c25fdfd0b711597e30b60ab277120f44`; ứng viên tuần 3 trên nhánh `vuong/week-3` có sửa UI và được đối chiếu với bằng chứng trong [bàn giao cuối](VUONG_WEEK3_HANDOFF.md). Không dùng hướng dẫn chọn nhánh tuần 2 để bắt đầu.
-
-Chuẩn bị trình bày: [kịch bản demo tuần 3](VUONG_WEEK3_DEMO.md), gồm dữ liệu, expected, phân vai và lệnh tạo phiên demo mới. Diễn tập kỹ thuật đã có bằng chứng; Vương xác nhận hoàn thành bước 6 ngày 21/10/2026, chưa cung cấp chi tiết biên bản tập chung.
+Cài đặt và khởi chạy theo [SETUP](SETUP.md). Mở website trên trình duyệt; dữ liệu mẫu phục vụ thực hành. Các thao tác thêm/sửa làm thay đổi dữ liệu, vì vậy dùng DB thử riêng khi cần đối chiếu lại kết quả mẫu.
 
 ## 1. Kết nối và hồ sơ
 
@@ -28,9 +26,9 @@ Ngày khám phải nằm trong thời gian lượt và đợt. Dùng mã chưa t
 - **Kết thúc lượt**: nhập ngày ra hợp lệ, khóa thêm lần khám/sửa hỗ trợ cho lượt đó; thao tác này không tự xác nhận khỏi đợt.
 - **Xác nhận khỏi** ở đợt: kết thúc đợt, không tự đóng các lượt. Tái mắc sau ngày khỏi tạo đợt mới. Không thử sửa/xóa lịch sử bằng SQL để diễn tập lại.
 
-Khi lỗi, kiểm tra thông báo tiếng Việt và dữ liệu còn trên form. Với ô số, main có thể hiển thị thông báo native theo ngôn ngữ browser; ứng viên tuần 3 bổ sung thông báo tiếng Việt khi JavaScript bật. Không nhầm trạng thái bản sửa chưa merge với main. Không tắt validation để tiếp tục.
+Khi lỗi, đọc thông báo và sửa dữ liệu còn trên form. Giữ JavaScript bật để dùng hỗ trợ nhập liệu và kiểm tra phía giao diện; server tiếp tục kiểm tra dữ liệu khi lưu.
 
-## 4. Bốn báo cáo
+## 4. Báo cáo nghiệp vụ
 
 Vào **Báo cáo**; Q1/Q2/Q4 chọn tháng/năm rồi **Xem báo cáo**. Q3 chọn/nhập mã bệnh nhân rồi **Xem lịch sử**; dùng liên kết **Tìm bệnh nhân** nếu chưa biết mã. Q3 trả toàn bộ lịch sử, không cắt theo tháng.
 
@@ -45,10 +43,36 @@ Trên seed nguyên trạng, chọn **10/2026**: tổng Q1 **24 đợt**; Q2 bác
 
 Các số trên chỉ áp dụng seed chưa thêm/sửa dữ liệu. Nhân viên giả mới vẫn nhận lương cơ bản nên tổng Q2 sẽ thay đổi dù không khám. Dùng DB thử mới để đối chiếu seed nếu DB demo đã có lịch sử bổ sung; không nhập đè.
 
-## 5. Thao tác và xử lý lỗi
+## 5. Báo cáo phân tích R01–R07
+
+Tại **Báo cáo**, tìm mục **Báo cáo mở rộng**:
+
+1. Chọn báo cáo cần xem.
+2. Với R01–R05/R07, chọn **Từ ngày** và **Đến hết ngày**; R01 có thêm nhóm tuổi. Với R06, chọn **Ngày đối chiếu** và **Ngưỡng số ngày**.
+3. Bấm **Xem**. Đọc khoảng lọc thực trả về, đơn vị và số dòng bên trên kết quả.
+4. Đối chiếu biểu đồ với bảng; cuộn ngang trong vùng biểu đồ/bảng khi cần. Trỏ chuột hoặc dùng Tab để xem chi tiết cột.
+5. Khi đổi bộ lọc, bấm **Xem** lại để tải kết quả tương ứng.
+
+| Báo cáo | Cách đọc và sử dụng |
+|---|---|
+| R01 — Bệnh theo nhóm tuổi | Cột chồng là số đợt, bảng giữ số bệnh nhân từng nhóm; hỗ trợ chọn nhóm đối tượng truyền thông |
+| R02 — Tiếp nhận/khám theo ngày | Hai cột riêng cho lượt tiếp nhận và lần khám; tham khảo phân bố công việc theo ngày |
+| R03 — Khối lượng theo bác sĩ | Thanh là số lần khám; bảng giữ số đợt/bệnh nhân, gồm bác sĩ 0 hoạt động; dùng rà lịch và phân công |
+| R04 — Thuốc được kê | Thanh là số đơn có thuốc; lượng kê giữ đơn vị riêng để rà nhu cầu, cần thêm tồn kho nếu dự trù nhập |
+| R05 — Đợt tái mắc | Bảng là hồ sơ đợt mới có đợt cùng bệnh đã khỏi trước đó; biểu đồ nhóm theo bệnh để rà hồ sơ theo dõi |
+| R06 — Lâu chưa ghi nhận khám | Danh sách đợt đang điều trị theo ngày đối chiếu, chia nhóm số ngày; hỗ trợ rà soát hồ sơ/liên hệ |
+| R07 — Chi phí đợt đã khỏi | Cột chồng tiền khám/thuốc trung bình toàn đợt, bảng giữ số mẫu/min/max; dùng giải thích chi phí tham khảo |
+
+Mặc định từ 01/07 đến hết 14/10/2026; R06 đối chiếu 14/10/2026, ngưỡng 14 ngày. Dữ liệu giả chỉ mô tả khoảng quan sát; không kết luận mùa vụ. Số người DISTINCT ở các nhóm không cộng thành tổng người duy nhất. R03 không đánh giá chất lượng bác sĩ; R05 không chứng minh người bệnh chưa từng mắc khi thiếu lịch sử; R06 không có dữ liệu lịch hẹn để kết luận trễ hẹn; R07 không phải báo giá.
+
+Kết quả rỗng được thông báo trên màn hình. R03 vẫn giữ bác sĩ có 0 hoạt động; R06 giữ bốn nhóm ngày với số 0 khi phù hợp. R07 phân biệt **Không có mẫu** (NULL) và **0.00 VND**. Xem [quy ước chi tiết](ANALYTICS_HANDOFF.md) khi đối chiếu SQL.
+
+Biểu đồ dùng tài nguyên tại máy. Dữ liệu đã tải vẫn đọc được khi trình duyệt offline; chọn bộ lọc hoặc tải kết quả mới cần kết nối server.
+
+## 6. Thao tác và xử lý lỗi
 
 Trên màn hình nhỏ, bảng rộng cuộn ngang trong vùng riêng; Tab tới vùng bảng rồi dùng phím mũi tên. Tab/Enter thao tác nút thêm/xóa dòng thuốc; sau lỗi sửa dữ liệu và gửi lại. Dùng menu/đường quay lại/hủy để tiếp tục đúng luồng.
 
-Nếu `/health/db` 503, lỗi secret, CSRF, cổng bận hoặc import không đủ trigger: xem [bảng xử lý lỗi](SETUP.md#6-lỗi-thường-gặp). Với runner private, phải kiểm tra cleanup theo W3-RUN-01, không dừng MySQL hệ thống.
+Nếu `/health/db` 503, lỗi secret, CSRF, cổng bận hoặc import không đủ trigger: xem [bảng xử lý lỗi](SETUP.md#6-lỗi-thường-gặp). Với runner thử riêng, kiểm tra kết quả cleanup theo hướng dẫn runner.
 
-[Bằng chứng đúng phiên bản và giới hạn](VUONG_WEEK3_STEP5_VERIFICATION.md) · [T01–T15 và quyết định không chạy T16](VUONG_WEEK3_ACCEPTANCE.md). T16 chưa chạy, không tính PASS và không thuộc cổng nghiệm thu bắt buộc.
+[Quay lại mục lục tài liệu](README.md).

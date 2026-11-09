@@ -1,21 +1,34 @@
-# CSDL chuẩn — Quyền tuần 1
+# Cơ sở dữ liệu phòng khám
 
-Bộ SQL kế thừa schema/1.144 dòng dữ liệu giả Vũ Đại Vương qua adapter Trung `c44238498d11971fd101a02982b2e98054b2e225`; Quyền rà soát thiết kế, tách file, bổ sung ràng buộc và truy vấn. Không sửa file `database/week1/clinic_seed.sql` trên nhánh Trung và không đổi giá trị seed.
+Bộ SQL MySQL 8.4 gồm 11 bảng, 9 trigger và 1.144 dòng dữ liệu giả. Thiết kế: [ER](../docs/design/ER_Phong_kham_Ban_chot.pdf), [lược đồ quan hệ](../docs/design/Luoc_do_quan_he_Phong_kham_Ban_chot.pdf) và [từ điển dữ liệu](../docs/design/DATA_DICTIONARY.md).
 
-## Import trên MySQL 8.4
+## Các file chính
 
-Hướng dẫn hiện hành duy nhất: [docs/SETUP.md](../docs/SETUP.md).
+| File | Nội dung |
+|---|---|
+| `project1_submission.sql` | File gộp: schema → seed → audit → constraints → audit → bốn nhóm truy vấn nghiệp vụ |
+| `schema.sql`, `seed.sql` | Tạo bảng và nạp dữ liệu mẫu |
+| `constraints.sql` | Chỉ mục và trigger bảo vệ quy tắc nghiệp vụ |
+| `audit.sql` | Đối chiếu tính nhất quán dữ liệu |
+| `queries.sql` | Q1 thống kê bệnh, Q2 lương, Q3 lịch sử bệnh nhân, Q4 doanh thu |
+| `expected_results.md` | Tham số và kết quả mẫu Q1–Q4 |
+| `analytics_queries.sql` | Bảy báo cáo phân tích R01–R07 |
+| `analytics_expected.json` | Đáp án độc lập dùng đối chiếu seed trong kiểm thử |
 
-Thứ tự chuẩn cho DB mới trống: **schema.sql → seed.sql → audit.sql → constraints.sql → audit.sql → queries.sql**. Mọi truy vấn audit phải trả 0 dòng; đối chiếu queries.sql với expected_results.md. Seed phải nhập trước trigger.
+## Nhập và chạy truy vấn
 
-Không dùng tools.import_seed, database/week1/clinic_seed.sql hoặc hospital_db.sql cho quy trình này. tools.quyen_db là tiện ích kiểm thử cũ, không đọc .env và chưa audit trước constraints; không dùng làm đường cài chuẩn. Không import chồng hoặc tự DROP dữ liệu. Xem SETUP về Windows, cổng 3306/3307 và cấu hình DB_NAME.
+Theo [SETUP](../docs/SETUP.md), tạo schema mới trống, chọn làm default schema trong MySQL Workbench rồi chạy toàn bộ `project1_submission.sql` một lần. File không tự tạo/chọn database; giữ nguyên các khối `DELIMITER`.
 
-## Phạm vi ràng buộc
+Nếu dùng bộ file rời, chạy đúng thứ tự **schema → seed → audit → constraints → audit → queries**. Chọn một trong hai cách nhập. Mỗi lần audit SQL phải có 10 tập kết quả rỗng; sau import có 11 bảng và 9 trigger. Seed chứa lịch sử đã hoàn tất nên được nạp trước trigger.
 
-- PK/FK/UQ/CHECK: toàn bộ khóa theo sơ đồ, số tiền không âm, số lượng dương, trạng thái/ngày khỏi nhất quán.
-- Chỉ mục hàm: tối đa một đợt đang điều trị cho mỗi bệnh nhân/bệnh, kể cả ghi đồng thời.
-- Trigger: cùng bệnh nhân lượt/đợt, thứ tự khám liên tiếp khi INSERT, không thêm khám vào đợt đã khỏi/lượt đã đóng; không thay bác sĩ/khóa/ngày lịch sử; hỗ trợ đúng lượt/ngày; ngày lập đơn bằng ngày khám; ngày kết thúc không trước dữ liệu con; đóng lượt phải có khám và y tá.
-- Transaction/backend + audit: đơn hoàn tất phải có chi tiết, đợt/lượt hoàn tất phải đủ bản ghi con; không commit nghiệp vụ dang dở. MySQL không có deferred constraint để kiểm tra số con vào thời điểm COMMIT. Truy cập SQL quản trị trực tiếp vẫn có thể xóa hết chi tiết hoặc commit đợt rỗng; **không tuyên bố trigger bảo vệ mọi cận dưới**. Không mở API xóa lịch sử; sửa dữ liệu lịch sử cần audit lại.
-- Quy trình ghi: khóa bệnh nhân `FOR UPDATE` trước các bản ghi nghiệp vụ, đồng nhất backend Trung; xử lý rollback/retry toàn giao dịch nếu deadlock. Các test đồng thời của backend được chạy trong CI tương thích.
+Sau khi nhập CSDL, có thể chạy `analytics_queries.sql` trên cùng schema. Phạm vi mặc định: từ 01/07 đến hết 14/10/2026; R06 đối chiếu 14/10, ngưỡng 14 ngày. Quy ước cột, bộ lọc, đơn vị và NULL ở [ANALYTICS_HANDOFF](../docs/ANALYTICS_HANDOFF.md).
 
-Q1/Q2/Q4 đã có truy vấn độc lập; Q3 trả nhiều tập kết quả cho hồ sơ, lượt, đợt/tình trạng, khám, thuốc, y tá để tránh nhân bản JOIN. Đây là bàn giao tuần 1, chưa là script nộp cuối YC2 hay nghiệm thu UI.
+## Quy tắc dữ liệu
+
+- Khóa chính, khóa ngoại, UNIQUE và CHECK bảo vệ liên kết, số tiền/số lượng và trạng thái/ngày.
+- Chỉ mục hàm giới hạn một đợt đang điều trị cho mỗi bệnh nhân/bệnh.
+- Trigger kiểm ngày, bệnh nhân của lượt/đợt, thứ tự lần khám, hỗ trợ và đơn thuốc.
+- Backend dùng transaction và khóa bản ghi cho các thao tác nhiều bước; audit kiểm dữ liệu sau nhập/kiểm thử. MySQL không có deferred constraint để kiểm mọi điều kiện về số bản ghi con lúc COMMIT.
+- Doanh thu cộng tiền khám và thuốc riêng để tránh nhân tiền khi JOIN. Chi tiết đơn lưu giá bán lịch sử bằng DECIMAL.
+
+`week1/clinic_seed.sql` và `tools/normalize_vuong.py` giữ nguồn chuyển đổi dữ liệu giai đoạn đầu; `tools/import_seed.py` còn cung cấp bộ tách câu SQL cho công cụ kiểm thử. Dùng quy trình SETUP để cài ứng dụng.

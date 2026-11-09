@@ -1,40 +1,75 @@
 # Quản lý phòng khám tư nhân
 
-Bài tập lớn Cơ sở dữ liệu — Project 1. Nhóm: Nguyễn Minh Quyền, Phan Trọng Trung, Vũ Đại Vương.
+Website hỗ trợ quản lý hồ sơ và hoạt động khám chữa bệnh tại một phòng khám tư nhân. Người dùng có thể tiếp nhận bệnh nhân, ghi nhận lần khám, theo dõi đợt điều trị, kê đơn và xem báo cáo trên trình duyệt.
 
-Ứng dụng Flask và MySQL quản lý hồ sơ bệnh nhân, bác sĩ, y tá; tiếp nhận, tái khám, điều trị và kê đơn. Bốn báo cáo bắt buộc: thống kê bệnh theo đợt trong tháng, lương bác sĩ/y tá, lịch sử bệnh nhân và doanh thu khám/thuốc. Dữ liệu hoàn toàn giả lập.
+Dự án được thực hiện trong học phần **Cơ sở dữ liệu — Project 1**, sử dụng Flask và MySQL. Dữ liệu trong ứng dụng là dữ liệu giả lập phục vụ học tập.
 
-## Dành cho người chấm
+## Chức năng
 
-- [Hướng dẫn cài đặt và chạy](docs/SETUP.md)
-- [Hướng dẫn sử dụng](docs/USER_GUIDE.md)
-- [Bộ nộp và yêu cầu của giảng viên](docs/SUBMISSION.md)
-- [Mô hình ER](docs/design/ER_Phong_kham_Ban_chot.pdf) và [lược đồ quan hệ](docs/design/Luoc_do_quan_he_Phong_kham_Ban_chot.pdf)
-- [SQL nộp](database/project1_submission.sql) và [kết quả kỳ vọng](database/expected_results.md)
+- **Quản lý hồ sơ:** tìm kiếm, thêm, sửa và xóa hồ sơ bệnh nhân, bác sĩ, y tá theo các ràng buộc dữ liệu.
+- **Khám và điều trị:** tiếp nhận lượt khám, mở đợt điều trị, tái khám, ghi hỗ trợ y tá, kê đơn nhiều thuốc, kết thúc lượt và xác nhận khỏi.
+- **Báo cáo nghiệp vụ:** thống kê bệnh theo tháng, tính lương bác sĩ/y tá, tra cứu lịch sử bệnh nhân và thống kê doanh thu khám/thuốc.
+- **Báo cáo phân tích:** chọn bộ lọc, xem bảng kết quả và biểu đồ cho R01–R07.
 
-Dùng nhánh main. Bản tích hợp kỹ thuật hiện tại: 98bd2675bfffc64be09c87dd2897148f8b02b440 (PR #17). Python 3.11, Flask 3, PyMySQL, MySQL Server 8.4, HTML/CSS/Jinja. Workbench là công cụ nhập SQL, không thay MySQL Server.
+| Báo cáo phân tích | Nội dung |
+|---|---|
+| R01 | Phân bố bệnh theo nhóm tuổi |
+| R02 | Lượt tiếp nhận và lần khám theo ngày |
+| R03 | Khối lượng khám theo bác sĩ |
+| R04 | Thuốc được kê: số đơn và lượng kê theo đơn vị |
+| R05 | Đợt tái mắc cùng bệnh có tiền sử đã khỏi |
+| R06 | Đợt đang điều trị lâu chưa ghi nhận khám |
+| R07 | Chi phí các đợt đã khỏi theo bệnh |
 
-SQL gộp chạy một lần trên schema mới trống, sau khi chọn default schema. Không nhập thêm bộ SQL rời lên cùng schema. Chi tiết cấu hình và kiểm tra ở SETUP.
+Bảng và biểu đồ dùng cùng kết quả truy vấn. Biểu đồ được vẽ bằng SVG, không cần tải thư viện từ Internet; lấy dữ liệu mới vẫn cần Flask và MySQL hoạt động.
 
-## Kết quả kiểm chứng
+## Công nghệ và cơ sở dữ liệu
 
-11 bảng, 9 trigger, 1.144 dòng seed. Tháng 10/2026: tiền khám 4.680.000đ + thuốc 5.820.800đ = 10.500.800đ. CI trên main ghi 195 test đạt; bộ tích hợp trước merge ghi 236 Linux và 2 Windows cleanup test. Windows trên laptop Quyền ghi 236 test ở source dd1f41e. Xem [hồ sơ kỹ thuật](docs/WEEK3_FINAL_STATUS.md) để phân biệt phiên bản và phạm vi từng lần chạy.
+- **Backend:** Python, Flask, PyMySQL.
+- **Giao diện:** Jinja, HTML, CSS, JavaScript và SVG.
+- **Cơ sở dữ liệu:** MySQL 8.4; 11 bảng, khóa và ràng buộc nghiệp vụ, 9 trigger.
+- **Kiểm thử:** pytest và Playwright.
 
-Lỗi kết nối gián đoạn HTTP503/MySQL2003 vẫn theo dõi, chưa xác định nguyên nhân. Nghiệm thu/demo trên laptop Quyền; T16 máy thứ hai không thực hiện. Chưa coi kiểm thử tự động là xác nhận diễn tập hay đã nộp bài.
+Dữ liệu mẫu gồm 1.144 dòng, với hoạt động khám từ tháng 7 đến ngày 14/10/2026. Các báo cáo mô tả dữ liệu đã lưu; kết quả được dùng để minh họa phân tích, không suy ra mùa vụ hoặc dự báo.
 
-## Bộ nộp
+## Cài đặt và sử dụng
 
-Hạn chính thức: hết ngày **15/11/2026**, giờ Việt Nam. Mốc 03/11 là kế hoạch nội bộ. DOCX do Vương chỉnh sửa, PPTX do Trung chỉnh sửa; chờ kiểm tra bản cuối. Repo hiện private; đang chờ tài khoản GitHub giảng viên để cấp quyền, chưa xác nhận người chấm truy cập được.
+1. Chuẩn bị Git, Python 3.11 hoặc 3.12 và MySQL Server 8.4.
+2. Clone repo, tạo môi trường Python và cấu hình kết nối theo [hướng dẫn cài đặt](docs/SETUP.md).
+3. Nhập [bộ SQL](database/project1_submission.sql) vào một schema mới trống.
+4. Chạy ứng dụng và mở `http://127.0.0.1:5000`.
 
-## Mã nguồn và làm việc nhóm
+[Hướng dẫn sử dụng](docs/USER_GUIDE.md) mô tả các thao tác hồ sơ, khám, kê đơn và báo cáo. Chi tiết file SQL và cách chạy truy vấn xem [database/README.md](database/README.md).
 
-- clinic_app/: backend, templates và static đang chạy; app.py là entry point.
-- database/: schema, seed, constraints, audit, truy vấn và SQL gộp.
-- tests/, week3_checks/: kiểm thử; docs/: thiết kế, hướng dẫn và bằng chứng.
-- Quyền phụ trách CSDL/SQL và tích hợp; Trung phụ trách backend; Vương phụ trách UI và kiểm thử người dùng.
+## Cấu trúc mã nguồn
 
-Thay đổi qua PR và review theo [RULES](RULES.md). [Phân công](docs/PHAN_CONG_3_TUAN.md). [Lịch sử README trước đóng gói](docs/README_HISTORY.md).
+| Đường dẫn | Nội dung |
+|---|---|
+| `app.py` | Điểm khởi chạy ứng dụng |
+| `clinic_app/` | Route, nghiệp vụ, kết nối DB, giao diện và tài nguyên tĩnh |
+| `database/` | Schema, dữ liệu mẫu, ràng buộc, audit và truy vấn SQL |
+| `tests/`, `week3_checks/`, `windows_checks/` | Kiểm thử ứng dụng và công cụ chạy thử |
+| `tools/` | Công cụ nhập, đối chiếu dữ liệu và chạy kiểm thử |
+| `docs/` | Thiết kế CSDL và hướng dẫn kỹ thuật |
+
+## Tài liệu
+
+- [Mô hình ER](docs/design/ER_Phong_kham_Ban_chot.pdf), [lược đồ quan hệ](docs/design/Luoc_do_quan_he_Phong_kham_Ban_chot.pdf) và [từ điển dữ liệu](docs/design/DATA_DICTIONARY.md).
+- [Bốn nhóm truy vấn nghiệp vụ](database/queries.sql) và [kết quả mẫu](database/expected_results.md).
+- [SQL R01–R07](database/analytics_queries.sql) và [quy ước báo cáo phân tích](docs/ANALYTICS_HANDOFF.md).
+- [Hướng dẫn kiểm thử](tests/README.md).
+- [Mục lục tài liệu](docs/README.md).
+
+## Thành viên
+
+| Thành viên | Phần việc chính |
+|---|---|
+| Nguyễn Minh Quyền | Thiết kế CSDL, SQL và tích hợp |
+| Phan Trọng Trung | Backend và xử lý nghiệp vụ |
+| Vũ Đại Vương | Giao diện, biểu đồ và kiểm thử người dùng |
+
+Quy trình gửi thay đổi được mô tả trong [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Nguồn tham khảo
 
-Dựa trên [scmeyer41/hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system). Giữ lịch sử và [ghi nhận nguồn](docs/ATTRIBUTION.md); không tự gán giấy phép cho mã tham khảo.
+Dự án tham khảo [hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system) của scmeyer41 và Richard Tashjian. Phạm vi phát triển của nhóm và thông tin nguồn được ghi tại [ATTRIBUTION.md](docs/ATTRIBUTION.md).
