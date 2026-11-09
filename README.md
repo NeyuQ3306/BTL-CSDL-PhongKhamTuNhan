@@ -21,6 +21,16 @@ Dự án được thực hiện trong học phần **Cơ sở dữ liệu — Pr
 | R06 | Đợt đang điều trị lâu chưa ghi nhận khám |
 | R07 | Chi phí các đợt đã khỏi theo bệnh |
 
+### Chức năng nghiệp vụ R08–R10
+
+| Mã | Chức năng |
+|---|---|
+| R08 | Sửa và xóa hồ sơ |
+| R09 | Tìm kiếm và phân trang |
+| R10 | Kê đơn và lưu giá lịch sử |
+
+Danh mục R01–R10, đầu vào/kết quả và vị trí mã nguồn được mô tả tại [FEATURES.md](docs/FEATURES.md). Chức năng thêm hồ sơ và các luồng tiếp nhận/điều trị vẫn có trong ứng dụng; thao tác thêm hồ sơ không nằm trong phạm vi R08.
+
 Bảng và biểu đồ dùng cùng kết quả truy vấn. Biểu đồ được vẽ bằng SVG, không cần tải thư viện từ Internet; lấy dữ liệu mới vẫn cần Flask và MySQL hoạt động.
 
 ## Công nghệ và cơ sở dữ liệu
@@ -58,6 +68,7 @@ Dữ liệu mẫu gồm 1.144 dòng, với hoạt động khám từ tháng 7 đ
 - [Bốn nhóm truy vấn nghiệp vụ](database/queries.sql) và [kết quả mẫu](database/expected_results.md).
 - [SQL R01–R07](database/analytics_queries.sql) và [quy ước báo cáo phân tích](docs/ANALYTICS_HANDOFF.md).
 - [Hướng dẫn kiểm thử](tests/README.md).
+- [Danh mục chức năng R01–R10](docs/FEATURES.md).
 - [Mục lục tài liệu](docs/README.md).
 
 ## Thành viên

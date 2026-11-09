@@ -23,6 +23,8 @@ Nếu dùng bộ file rời, chạy đúng thứ tự **schema → seed → audi
 
 Sau khi nhập CSDL, có thể chạy `analytics_queries.sql` trên cùng schema. Phạm vi mặc định: từ 01/07 đến hết 14/10/2026; R06 đối chiếu 14/10, ngưỡng 14 ngày. Quy ước cột, bộ lọc, đơn vị và NULL ở [ANALYTICS_HANDOFF](../docs/ANALYTICS_HANDOFF.md).
 
+R08–R10 là sửa/xóa hồ sơ, tìm kiếm/phân trang và kê đơn/lưu giá lịch sử, dùng SQL trong ứng dụng. Xem [danh mục và vị trí code](../docs/FEATURES.md) để đối chiếu Phụ lục C; `analytics_queries.sql` chỉ trả bảy báo cáo R01–R07. SQL có `%s` phải đi qua PyMySQL cùng tham số, không chạy nguyên dạng đó trong Workbench.
+
 ## Quy tắc dữ liệu
 
 - Khóa chính, khóa ngoại, UNIQUE và CHECK bảo vệ liên kết, số tiền/số lượng và trạng thái/ngày.

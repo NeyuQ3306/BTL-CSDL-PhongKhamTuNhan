@@ -7,8 +7,8 @@ Theo thông báo giảng viên do Quyền cung cấp ngày 02/11/2026. Hạn: h�
 | PDF thiết kế | 8% | Hai PDF trong docs/design/ |
 | SQL | 6% | database/project1_submission.sql (YC2) và database/analytics_queries.sql (R01–R07 bổ sung) |
 | Link GitHub app | 6% | https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan |
-| DOCX mô tả chi tiết | 3% | Vương chỉnh sửa; chờ kiểm tra bản cuối |
-| PPTX thuyết trình | 2% | Trung chỉnh sửa; chờ kiểm tra bản cuối |
+| DOCX mô tả chi tiết | 3% | Theo cập nhật Trung: đã chỉnh sửa R01–R10; chờ kiểm tra file cuối |
+| PPTX thuyết trình | 2% | Trung báo đã sửa: 13 slide chính + 12 phụ lục; chờ kiểm tra file cuối |
 | Thuyết trình | 5% | Chưa xác nhận hoàn thành |
 
 Tạo thư mục Google Drive mang đúng số hiệu nhóm (chưa xác nhận; không tự lấy nhóm lớp 05 làm số hiệu). Đặt PDF, SQL, DOCX, PPTX và một tệp ghi link GitHub trong thư mục. Kiểm tra quyền xem/tải rồi gửi link tại https://forms.gle/7zy3YPksCrKtbNqr5 . Chưa xác nhận đã tạo Drive hoặc gửi form.
@@ -16,6 +16,12 @@ Tạo thư mục Google Drive mang đúng số hiệu nhóm (chưa xác nhận; 
 ## Truy cập GitHub
 
 Repo giữ private. Quyền chưa có tài khoản GitHub của giảng viên. Khi có tài khoản, cấp quyền và xác nhận giảng viên mở được repo. Nếu chưa có trước hạn, trao đổi với giảng viên về cách nhận source; có thể chuẩn bị ZIP source kèm Drive theo hướng dẫn của thầy, nhưng ZIP không tự thay yêu cầu link GitHub. Không tự chuyển repo public.
+
+## Đối chiếu nội dung báo cáo và slide
+
+Dùng [danh mục R01–R10](FEATURES.md): R01–R07 là báo cáo phân tích; R08 sửa/xóa hồ sơ (không tính thêm), R09 tìm kiếm/phân trang, R10 kê đơn/lưu giá lịch sử. Q1–Q4 giữ tên riêng cho yêu cầu 2. Phụ lục C phải phân biệt SQL Workbench và SQL PyMySQL có `%s`; R08–R10 đối chiếu với mã ứng dụng thay vì đổi bộ analytics thành 10 báo cáo.
+
+Theo thông báo Trung, DOCX/slide đã cập nhật danh mục, ảnh và nội dung thuyết trình. Chưa có bản file cuối trong lần đối chiếu này để kiểm tra 13 slide chính/12 phụ lục, nguồn từng ảnh, mục lục hoặc liên kết commit thực tế. Chưa xác nhận số hiệu nhóm và link Drive.
 
 ## Báo cáo mở rộng và bằng chứng laptop
 

@@ -8,6 +8,8 @@
 
 ## Thiết kế và truy vấn
 
+- [Danh mục chức năng R01–R10 và vị trí code](FEATURES.md).
+
 - [Mô hình ER](design/ER_Phong_kham_Ban_chot.pdf) và [lược đồ quan hệ](design/Luoc_do_quan_he_Phong_kham_Ban_chot.pdf).
 - [Từ điển dữ liệu](design/DATA_DICTIONARY.md).
 - [Bộ SQL](../database/README.md) và [đáp án nghiệp vụ](../database/expected_results.md).

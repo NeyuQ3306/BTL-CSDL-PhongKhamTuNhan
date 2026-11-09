@@ -1,12 +1,14 @@
 # Hướng dẫn sử dụng
 
-Cài đặt và khởi chạy theo [SETUP](SETUP.md). Mở website trên trình duyệt; dữ liệu mẫu phục vụ thực hành. Các thao tác thêm/sửa làm thay đổi dữ liệu, vì vậy dùng DB thử riêng khi cần đối chiếu lại kết quả mẫu.
+Cài đặt và khởi chạy theo [SETUP](SETUP.md). Mở website trên trình duyệt; dữ liệu mẫu phục vụ thực hành. Các thao tác thêm/sửa làm thay đổi dữ liệu, vì vậy dùng DB thử riêng khi cần đối chiếu lại kết quả mẫu. Mã chức năng trong báo cáo/slide xem [danh mục R01–R10](FEATURES.md).
 
-## 1. Kết nối và hồ sơ
+## 1. Hồ sơ, tìm kiếm và phân trang — R08/R09
 
 Mở `/health` và `/health/db`, cả hai phải HTTP 200/status ok; sau đó vào **Bệnh nhân**, **Bác sĩ**, **Y tá** trên menu. Mỗi nhóm có danh sách/tìm kiếm, thêm, chi tiết, sửa và xóa. Dùng mã giả chưa tồn tại (tối đa 12 ký tự: chữ không dấu, số, `_`, `-`; tránh `new`), CMT/CCCD không trùng và ngày sinh hợp lệ.
 
 Ví dụ CRUD bệnh nhân trên DB thử: mã `W3GUIDEBN`, tên “Bệnh nhân thử hướng dẫn”, CMT `999000005001`, ngày sinh `2000-01-01`, địa chỉ “Hà Nội”, điện thoại `0900000001`. Nếu mã/CMT đã có thì chọn bộ mới. Thêm → mở chi tiết → sửa địa chỉ → tải lại xác nhận đã lưu. Thử mã trùng/ngày sinh tương lai phải bị từ chối; kiểm tra giữ dữ liệu form. Bác sĩ/y tá: điền các trường bắt buộc trên form, thâm niên là số nguyên trong giới hạn hiển thị.
+
+R08 gồm **sửa và xóa hồ sơ**; thao tác thêm hồ sơ vẫn có trong ứng dụng nhưng không tính vào mã này. R09 tìm theo họ tên hoặc mã, mỗi trang tối đa 20 dòng; giữ từ khóa khi chuyển trang.
 
 Chỉ xóa hồ sơ giả không có lịch sử do bạn vừa tạo. Hồ sơ bệnh nhân/nhân viên đã có lịch sử sẽ bị chặn xóa; không sửa SQL để vượt chặn. Seed là dữ liệu giả dùng chung cho báo cáo, không xóa để dọn demo.
 
@@ -22,7 +24,7 @@ Ngày khám phải nằm trong thời gian lượt và đợt. Dùng mã chưa t
 ## 3. Hỗ trợ y tá, đơn thuốc và kết thúc
 
 - **Ghi hỗ trợ y tá**: thêm y tá/công việc; liên kết cập nhật của y tá sửa công việc và giữ ngày hỗ trợ đã ghi. Nhiều công việc trên cùng cặp lượt–y tá không nhân đôi dòng thưởng.
-- **Kê đơn** từ lần khám: mã đơn mới, ngày đơn bằng ngày khám, chọn thuốc/số lượng/liều dùng. **Thêm dòng thuốc**/**Xóa dòng** để tạo đơn nhiều thuốc; mỗi thuốc một dòng. Giá/tổng do server tính. Xem đơn sau lưu để kiểm tra số lượng, giá bán lịch sử và tổng. Lần khám không có đơn vẫn hợp lệ.
+- **R10 — Kê đơn và lưu giá lịch sử:** từ lần khám, mã đơn mới, ngày đơn bằng ngày khám, chọn thuốc/số lượng/liều dùng. **Thêm dòng thuốc**/**Xóa dòng** để tạo đơn nhiều thuốc; mỗi thuốc một dòng. Server lấy giá thuốc tại lúc kê và lưu vào `don_gia_ban`; khi đọc lại đơn dùng giá đã lưu. Xem đơn sau lưu để kiểm tra số lượng, giá bán lịch sử và tổng. Lần khám không có đơn vẫn hợp lệ.
 - **Kết thúc lượt**: nhập ngày ra hợp lệ, khóa thêm lần khám/sửa hỗ trợ cho lượt đó; thao tác này không tự xác nhận khỏi đợt.
 - **Xác nhận khỏi** ở đợt: kết thúc đợt, không tự đóng các lượt. Tái mắc sau ngày khỏi tạo đợt mới. Không thử sửa/xóa lịch sử bằng SQL để diễn tập lại.
 
@@ -39,7 +41,7 @@ Vào **Báo cáo**; Q1/Q2/Q4 chọn tháng/năm rồi **Xem báo cáo**. Q3 ch�
 | Q3 — Lịch sử và tình trạng | Hồ sơ, lượt, đợt/tình trạng, khám, đơn/thuốc và hỗ trợ; mã không tồn tại báo lỗi |
 | Q4 — Doanh thu | Tiền khám + tiền thuốc theo giá bán đã lưu trong chi tiết đơn, không dùng giá danh mục hiện tại |
 
-Trên seed nguyên trạng, chọn **10/2026**: tổng Q1 **24 đợt**; Q2 bác sĩ **78.000.000 đ**, y tá **65.600.000 đ**; Q4 khám **4.680.000 đ**, thuốc **5.820.800 đ**, tổng **10.500.800 đ**. Q3 thử `BN001` và đối chiếu các tập trong [đáp án SQL](../database/expected_results.md). Tháng **12/2025**: Q1/Q4 bằng 0, Q2 vẫn lương cơ bản bác sĩ **70.000.000 đ**, y tá **60.000.000 đ**.
+Trên seed nguyên trạng, chọn **10/2026**: tổng Q1 **24 đợt**; Q2 bác sĩ **78.000.000 đ**, y tá **65.600.000 đ**, tổng hai nhóm **143.600.000 đ**; Q4 khám **4.680.000 đ**, thuốc **5.820.800 đ**, tổng **10.500.800 đ**. Q3 thử `BN001` và đối chiếu các tập trong [đáp án SQL](../database/expected_results.md). Tháng **12/2025**: Q1/Q4 bằng 0, Q2 vẫn lương cơ bản bác sĩ **70.000.000 đ**, y tá **60.000.000 đ**.
 
 Các số trên chỉ áp dụng seed chưa thêm/sửa dữ liệu. Nhân viên giả mới vẫn nhận lương cơ bản nên tổng Q2 sẽ thay đổi dù không khám. Dùng DB thử mới để đối chiếu seed nếu DB demo đã có lịch sử bổ sung; không nhập đè.
 
