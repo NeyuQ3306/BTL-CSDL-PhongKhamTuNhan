@@ -19,3 +19,7 @@ Không dùng tools.import_seed, database/week1/clinic_seed.sql hoặc hospital_d
 - Quy trình ghi: khóa bệnh nhân `FOR UPDATE` trước các bản ghi nghiệp vụ, đồng nhất backend Trung; xử lý rollback/retry toàn giao dịch nếu deadlock. Các test đồng thời của backend được chạy trong CI tương thích.
 
 Q1/Q2/Q4 đã có truy vấn độc lập; Q3 trả nhiều tập kết quả cho hồ sơ, lượt, đợt/tình trạng, khám, thuốc, y tá để tránh nhân bản JOIN. Đây là bàn giao tuần 1, chưa là script nộp cuối YC2 hay nghiệm thu UI.
+
+## Cập nhật cột CCCD
+
+Bản hiện tại dùng `cccd` cho hồ sơ bác sĩ, y tá và bệnh nhân. Database cũ có cột `cmt` phải dừng app, sao lưu và chạy migration trước khi khởi động backend mới. Xem [hướng dẫn đổi cột](../docs/CCCD_MIGRATION.md). Không nhập lại seed trên database đang có dữ liệu.

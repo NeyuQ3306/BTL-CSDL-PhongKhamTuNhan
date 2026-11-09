@@ -19,7 +19,7 @@ class Entity:
     fields: tuple
 
 
-COMMON = (Field('cmt', 'CMT / CCCD', 'cmt', 20), Field('ho_ten', 'Họ tên'),
+COMMON = (Field('cccd', 'CCCD', 'cccd', 20), Field('ho_ten', 'Họ tên'),
           Field('ngay_sinh', 'Ngày sinh', 'date'), Field('dia_chi', 'Địa chỉ', 'text', 255))
 PHONE = Field('so_dien_thoai', 'Số điện thoại', 'phone', 20)
 YEARS = Field('tham_nien', 'Thâm niên (năm)', 'integer')

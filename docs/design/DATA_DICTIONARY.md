@@ -1,13 +1,13 @@
 # Từ điển dữ liệu vật lý — Quyền tuần 1
 
-Bản bàn giao 17/10/2026. Giữ 11 bảng và tên cột tương thích adapter của Trung tại `c442384`. Mã VARCHAR(12), CMT/điện thoại là chuỗi, tiền VND DECIMAL(12,0), ngày DATE theo Việt Nam. FK đều NOT NULL; chỉ ngày ra viện và ngày khỏi được NULL. Collation utf8mb4_0900_ai_ci không phân biệt hoa/thường và dấu; không dùng mã chỉ khác hoa/thường hoặc dấu. Không lưu tổng tiền suy diễn.
+Cập nhật đổi tên cột định danh thành `cccd` ngày 09/11/2026. Giữ nguyên 11 bảng, kiểu dữ liệu và ràng buộc; database cũ cần chạy migration trước khi dùng backend mới. Mã VARCHAR(12), CCCD/điện thoại là chuỗi, tiền VND DECIMAL(12,0), ngày DATE theo Việt Nam. FK đều NOT NULL; chỉ ngày ra viện và ngày khỏi được NULL. Collation utf8mb4_0900_ai_ci không phân biệt hoa/thường và dấu; không dùng mã chỉ khác hoa/thường hoặc dấu. Không lưu tổng tiền suy diễn.
 
 ## bac_si
 
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_bac_si | VARCHAR(12) | Không | PK |
-| cmt | VARCHAR(20) | Không | UQ |
+| cccd | VARCHAR(20) | Không | UQ |
 | ho_ten | VARCHAR(100) | Không | Họ tên |
 | ngay_sinh | DATE | Không | Ngày sinh |
 | dia_chi | VARCHAR(255) | Không | Địa chỉ |
@@ -26,7 +26,7 @@ tham_nien INT NOT NULL CHECK (tham_nien >= 0), chuyen_mon VARCHAR(100) NOT NULL,
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_y_ta | VARCHAR(12) | Không | PK |
-| cmt | VARCHAR(20) | Không | UQ |
+| cccd | VARCHAR(20) | Không | UQ |
 | ho_ten | VARCHAR(100) | Không | Họ tên |
 | ngay_sinh | DATE | Không | Ngày sinh |
 | dia_chi | VARCHAR(255) | Không | Địa chỉ |
@@ -44,7 +44,7 @@ trinh_do VARCHAR(100) NOT NULL, tham_nien INT NOT NULL CHECK (tham_nien >= 0)
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_benh_nhan | VARCHAR(12) | Không | PK |
-| cmt | VARCHAR(20) | Không | UQ |
+| cccd | VARCHAR(20) | Không | UQ |
 | ho_ten | VARCHAR(100) | Không | Họ tên |
 | ngay_sinh | DATE | Không | Ngày sinh |
 | dia_chi | VARCHAR(255) | Không | Địa chỉ |

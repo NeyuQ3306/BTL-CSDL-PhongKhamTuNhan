@@ -10,12 +10,12 @@ from tools.import_seed import import_seed, statements
 def payload(slug, key='TEST001'):
     e = ENTITIES[slug]
     values = {f.name: 'Thử nghiệm' for f in e.fields}
-    values.update({e.pk: key, 'cmt': '000999888777', 'ngay_sinh': '2000-02-29',
+    values.update({e.pk: key, 'cccd': '000999888777', 'ngay_sinh': '2000-02-29',
                    'so_dien_thoai': '0901234567', 'tham_nien': '4'})
     return values
 
 
-@pytest.mark.parametrize('field,value', [('cmt','abc'),('so_dien_thoai','12'),
+@pytest.mark.parametrize('field,value', [('cccd','abc'),('so_dien_thoai','12'),
     ('ngay_sinh','2001-02-29'),('ngay_sinh','2999-01-01'),('ho_ten',''),
     ('ma_benh_nhan','a/b'),('dia_chi','x'*256)])
 def test_validation(field, value):

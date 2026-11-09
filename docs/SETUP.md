@@ -137,3 +137,7 @@ Tên runner tuần 2 là lịch sử; runner chạy source checkout hiện tại
 [Bàn giao #17](VUONG_WEEK3_HANDOFF.md) tổng hợp Windows trên máy Quyền, CI đúng head và phiên lỗi còn theo dõi; không nhận trợ lý đã chạy lại trong lần cập nhật tài liệu. [Biên bản bước 5](VUONG_WEEK3_STEP5_VERIFICATION.md) và [bằng chứng bước 4](evidence/vuong_week3_final_20261021/README.md) chỉ áp dụng candidate ngày 21/10; không gán kết quả cho main/release hay commit tài liệu mới.
 
 T16 **không thực hiện theo quyết định nhóm ngày 21/10/2026**, actual **chưa chạy**, không tính PASS hoặc việc còn thiếu. Clone/DB khác trên cùng máy không chứng minh chạy trên thiết bị khác.
+
+## Cập nhật cột CCCD
+
+Bản hiện tại dùng `cccd` cho hồ sơ bác sĩ, y tá và bệnh nhân. Database cũ có cột `cmt` phải dừng app, sao lưu và chạy migration trước khi khởi động backend mới. Xem [hướng dẫn đổi cột](CCCD_MIGRATION.md). Không nhập lại seed trên database đang có dữ liệu.

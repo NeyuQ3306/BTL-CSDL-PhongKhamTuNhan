@@ -31,7 +31,7 @@ def test_referenced_record_delete_shows_conflict(monkeypatch, code):
 @pytest.mark.parametrize('url_code', ['BN001', 'bn001'])
 def test_invalid_edit_keeps_original_navigation_and_readonly_code(monkeypatch, url_code):
     app = create_app({'TESTING': True, 'SECRET_KEY': 'ui-test-session'})
-    record = dict(ma_benh_nhan='BN001', cmt='000123456789', ho_ten='Hồ sơ mẫu',
+    record = dict(ma_benh_nhan='BN001', cccd='000123456789', ho_ten='Hồ sơ mẫu',
                   ngay_sinh='2000-01-01', dia_chi='Địa chỉ mẫu', so_dien_thoai='0901234567')
     monkeypatch.setattr(services, 'get_record', lambda *args: record)
     client = app.test_client()
