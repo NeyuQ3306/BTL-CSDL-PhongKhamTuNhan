@@ -54,13 +54,13 @@ Với `slug` thuộc `patients`, `doctors`, `nurses`:
 
 ### Form field
 
-- Chung: `cmt`, `ho_ten`, `ngay_sinh`, `dia_chi`.
+- Chung: `cccd`, `ho_ten`, `ngay_sinh`, `dia_chi`.
 - Bệnh nhân: `ma_benh_nhan`, `so_dien_thoai`.
 - Bác sĩ: `ma_bac_si`, `bac_nghe`, `tham_nien`, `chuyen_mon`, `trinh_do_dao_tao`.
 - Y tá: `ma_y_ta`, `so_dien_thoai`, `trinh_do`, `tham_nien`.
 - Mọi POST: hidden `csrf_token` bằng `{{ csrf_token() }}`. Dùng url_for endpoint trong `clinic_app/routes.py`; không đổi tên field riêng ở HTML.
 
-Ngày nhập `YYYY-MM-DD`; CMT/điện thoại là chuỗi giữ số 0 đầu. Tiền đọc từ DB là Decimal, hiển thị `{{ value|money }}`; không dùng float. Lỗi validation trả HTTP422, giữ values và errors[field]. Trùng PK/CMT hoặc xóa hồ sơ có tham chiếu trả409. Thành công POST redirect303. Hồ sơ không tồn tại404, token thiếu/sai400. Không có JSON CRUD API trong tuần 1.
+Ngày nhập `YYYY-MM-DD`; CCCD/điện thoại là chuỗi giữ số 0 đầu. Tiền đọc từ DB là Decimal, hiển thị `{{ value|money }}`; không dùng float. Lỗi validation trả HTTP422, giữ values và errors[field]. Trùng PK/CCCD hoặc xóa hồ sơ có tham chiếu trả409. Thành công POST redirect303. Hồ sơ không tồn tại404, token thiếu/sai400. Không có JSON CRUD API trong tuần 1.
 
 UI hồ sơ của Vương hiển thị ngày ở danh sách/chi tiết theo `dd/mm/yyyy`; giá trị gửi từ input date vẫn là `YYYY-MM-DD`. Lỗi xóa tham chiếu xử lý cả mã MySQL 1217 và 1451 để cùng trả 409, giữ nguyên quy tắc FK. Form sửa dùng mã trên route cho điều hướng hủy và input readonly; backend vẫn kiểm tra chống sửa mã trong POST.
 

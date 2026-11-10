@@ -9,3 +9,5 @@ Giữ bản chốt 13/10/2026:
 Phòng khám lưu hồ sơ bệnh nhân, bác sĩ, y tá; bệnh nhân có nhiều lượt đến khám và nhiều đợt theo bệnh. Một lượt có nhiều lần khám cho các bệnh khác nhau. Tái khám chưa khỏi nối cùng đợt, tái mắc sau khỏi mở đợt mới. Mỗi đợt do một bác sĩ cố định phụ trách; mỗi lần khám tối đa một đơn. Hỗ trợ y tá gắn lượt và lưu ngày bắt đầu; chi tiết đơn lưu số lượng, liều dùng, giá bán lịch sử. Tổng tiền là giá trị tính từ dữ liệu gốc.
 
 Trước nộp cuối: đối chiếu tên/khóa và các quy ước trong SQL với hai PDF, kiểm tra đủ trang rõ nét, ghi nguồn tham khảo. Trạng thái thiết kế đã chốt theo nhóm; chưa khẳng định giảng viên đã duyệt hoặc toàn project hoàn tất.
+
+Cập nhật tên vật lý 09/11/2026: thuộc tính CMT trong PDF gốc tương ứng cột `cccd` trong SQL hiện hành. Không thay đổi ý nghĩa, kiểu hoặc lực lượng tham gia. Xem [migration](../CCCD_MIGRATION.md); bằng chứng lịch sử vẫn giữ tên cũ.

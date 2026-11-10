@@ -81,7 +81,7 @@ def main():
         with app.app_context():
             require(fetch_one(f'SELECT {entity.pk} FROM {entity.table} WHERE {entity.pk}=%s', (key,)) is None, 'Generated code collision')
         data = {f.name: 'Dữ liệu thử tuần 1' for f in entity.fields}
-        data.update({entity.pk: key, 'cmt': str(uuid4().int)[:19], 'ho_ten': 'Hồ sơ kiểm thử Vương',
+        data.update({entity.pk: key, 'cccd': str(uuid4().int)[:19], 'ho_ten': 'Hồ sơ kiểm thử Vương',
                      'ngay_sinh': '2000-02-29', 'dia_chi': 'Địa chỉ giả lập',
                      'so_dien_thoai': '0901234567', 'tham_nien': '0'})
         client.get(f'/{slug}/new')
@@ -100,8 +100,8 @@ def main():
                 require('Đã thêm hồ sơ thành công.' in html, 'Missing success message')
                 with app.app_context():
                     saved = fetch_one(f'SELECT * FROM {entity.table} WHERE {entity.pk}=%s', (key,))
-                    require(saved and saved['ho_ten'] == data['ho_ten'] and saved['cmt'] == data['cmt'], 'Saved MySQL record mismatch')
-                return f'POST 303; thông báo thành công; MySQL lưu đúng mã {key}, họ tên và số 0 đầu CMT'
+                    require(saved and saved['ho_ten'] == data['ho_ten'] and saved['cccd'] == data['cccd'], 'Saved MySQL record mismatch')
+                return f'POST 303; thông báo thành công; MySQL lưu đúng mã {key}, họ tên và số 0 đầu CCCD'
 
             case(prefix+'01', f'Thêm {entity.title.lower()} và lưu MySQL', f'POST /{slug}/new; GET chi tiết; SELECT theo mã', '303, thông báo thành công, lưu đúng dữ liệu', create)
 
@@ -127,7 +127,7 @@ def main():
             case(prefix+'03', 'Sửa hồ sơ', 'POST sửa tên; GET lại; SELECT MySQL', '303, thông báo cập nhật, dữ liệu mới được lưu', edit)
 
             def errors():
-                probes = [('ho_ten', ''), ('cmt', 'abc'), ('ngay_sinh', '2999-01-01'), ('ngay_sinh', '2001-02-29')]
+                probes = [('ho_ten', ''), ('cccd', 'abc'), ('ngay_sinh', '2999-01-01'), ('ngay_sinh', '2001-02-29')]
                 if slug != 'doctors':
                     probes.append(('so_dien_thoai', '12'))
                 if slug != 'patients':

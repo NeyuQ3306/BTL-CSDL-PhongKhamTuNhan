@@ -4,17 +4,17 @@
 -- MySQL 8.0+, utf8mb4; DU LIEU GIA LAP - KHONG DUNG CHO BENH AN THUC
 
 CREATE TABLE bac_si (
- ma_bac_si VARCHAR(12) PRIMARY KEY, cmt VARCHAR(20) NOT NULL UNIQUE, ho_ten VARCHAR(100) NOT NULL,
+ ma_bac_si VARCHAR(12) PRIMARY KEY, cccd VARCHAR(20) NOT NULL UNIQUE, ho_ten VARCHAR(100) NOT NULL,
  ngay_sinh DATE NOT NULL, dia_chi VARCHAR(255) NOT NULL, bac_nghe VARCHAR(40) NOT NULL,
  tham_nien INT NOT NULL CHECK (tham_nien >= 0), chuyen_mon VARCHAR(100) NOT NULL, trinh_do_dao_tao VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 CREATE TABLE y_ta (
- ma_y_ta VARCHAR(12) PRIMARY KEY, cmt VARCHAR(20) NOT NULL UNIQUE, ho_ten VARCHAR(100) NOT NULL,
+ ma_y_ta VARCHAR(12) PRIMARY KEY, cccd VARCHAR(20) NOT NULL UNIQUE, ho_ten VARCHAR(100) NOT NULL,
  ngay_sinh DATE NOT NULL, dia_chi VARCHAR(255) NOT NULL, so_dien_thoai VARCHAR(20) NOT NULL,
  trinh_do VARCHAR(100) NOT NULL, tham_nien INT NOT NULL CHECK (tham_nien >= 0)
 ) ENGINE=InnoDB;
 CREATE TABLE benh_nhan (
- ma_benh_nhan VARCHAR(12) PRIMARY KEY, cmt VARCHAR(20) NOT NULL UNIQUE, ho_ten VARCHAR(100) NOT NULL,
+ ma_benh_nhan VARCHAR(12) PRIMARY KEY, cccd VARCHAR(20) NOT NULL UNIQUE, ho_ten VARCHAR(100) NOT NULL,
  ngay_sinh DATE NOT NULL, dia_chi VARCHAR(255) NOT NULL, so_dien_thoai VARCHAR(20) NOT NULL
 ) ENGINE=InnoDB;
 CREATE TABLE benh (
@@ -70,7 +70,7 @@ CREATE TABLE ho_tro (
 START TRANSACTION;
 
 -- BAC_SI: 10 bản ghi
-INSERT INTO bac_si (ma_bac_si, cmt, ho_ten, ngay_sinh, dia_chi, bac_nghe, tham_nien, chuyen_mon, trinh_do_dao_tao) VALUES
+INSERT INTO bac_si (ma_bac_si, cccd, ho_ten, ngay_sinh, dia_chi, bac_nghe, tham_nien, chuyen_mon, trinh_do_dao_tao) VALUES
  ('BS001', '000000100001', 'Dương Ngọc Khánh', '1989-07-22', 'Số 15, đường Láng Hạ, Hà Nội', 'Bậc 3', 8, 'Nội tổng quát', 'Thạc sĩ'),
  ('BS002', '000000100002', 'Vũ Hoài An', '1969-09-02', 'Số 18, đường Nguyễn Trãi, Hà Nội', 'Bậc 5', 26, 'Tai mũi họng', 'Chuyên khoa I'),
  ('BS003', '000000100003', 'Ngô Văn Bình', '1987-02-13', 'Số 21, đường Trần Duy Hưng, Hà Nội', 'Bậc 1', 13, 'Tim mạch', 'Chuyên khoa II'),
@@ -83,7 +83,7 @@ INSERT INTO bac_si (ma_bac_si, cmt, ho_ten, ngay_sinh, dia_chi, bac_nghe, tham_n
  ('BS010', '000000100010', 'Bùi Anh Giang', '1970-01-17', 'Số 42, đường Hoàng Quốc Việt, Hà Nội', 'Bậc 2', 28, 'Da liễu', 'Chuyên khoa I');
 
 -- Y_TA: 12 bản ghi
-INSERT INTO y_ta (ma_y_ta, cmt, ho_ten, ngay_sinh, dia_chi, so_dien_thoai, trinh_do, tham_nien) VALUES
+INSERT INTO y_ta (ma_y_ta, cccd, ho_ten, ngay_sinh, dia_chi, so_dien_thoai, trinh_do, tham_nien) VALUES
  ('YT001', '000000200001', 'Huỳnh Phương Long', '1989-05-01', 'Số 75, đường Nguyễn Xiển, Hà Nội', '0900000101', 'Đại học', 2),
  ('YT002', '000000200002', 'Hoàng Hữu Quân', '1987-01-26', 'Số 78, đường Hoàng Quốc Việt, Hà Nội', '0900000102', 'Trung cấp', 10),
  ('YT003', '000000200003', 'Lê Văn Châu', '2001-09-05', 'Số 81, đường Thái Hà, Hà Nội', '0900000103', 'Cao đẳng', 9),
@@ -98,7 +98,7 @@ INSERT INTO y_ta (ma_y_ta, cmt, ho_ten, ngay_sinh, dia_chi, so_dien_thoai, trinh
  ('YT012', '000000200012', 'Lê Hữu Minh', '2001-02-12', 'Số 108, đường Minh Khai, Hà Nội', '0900000112', 'Cao đẳng', 8);
 
 -- BENH_NHAN: 40 bản ghi
-INSERT INTO benh_nhan (ma_benh_nhan, cmt, ho_ten, ngay_sinh, dia_chi, so_dien_thoai) VALUES
+INSERT INTO benh_nhan (ma_benh_nhan, cccd, ho_ten, ngay_sinh, dia_chi, so_dien_thoai) VALUES
  ('BN001', '000000300001', 'Đỗ Ngọc Phương', '2002-09-04', 'Số 165, đường Trần Duy Hưng, Hà Nội', '0900000201'),
  ('BN002', '000000300002', 'Lê Minh Hải', '1968-04-22', 'Số 168, đường Giải Phóng, Hà Nội', '0900000202'),
  ('BN003', '000000300003', 'Hoàng Văn Châu', '1959-08-06', 'Số 171, đường Xuân Thủy, Hà Nội', '0900000203'),

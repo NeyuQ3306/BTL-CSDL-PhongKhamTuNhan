@@ -15,7 +15,7 @@ def test_browser_week1_crud(app, slug):
     entity=ENTITIES[slug]
     key='UiW1'+slug[:3]
     fields={f.name:'Kiểm thử giao diện' for f in entity.fields}
-    fields.update({entity.pk:key,'cmt':'000999777666','ngay_sinh':'2000-01-01',
+    fields.update({entity.pk:key,'cccd':'000999777666','ngay_sinh':'2000-01-01',
                    'so_dien_thoai':'0901234567','tham_nien':'4'})
     server=make_server('127.0.0.1',0,app,threaded=True)
     thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()

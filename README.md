@@ -38,3 +38,7 @@ Thay đổi qua PR và review theo [RULES](RULES.md). [Phân công](docs/PHAN_CO
 ## Nguồn tham khảo
 
 Dựa trên [scmeyer41/hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system). Giữ lịch sử và [ghi nhận nguồn](docs/ATTRIBUTION.md); không tự gán giấy phép cho mã tham khảo.
+
+## Cập nhật cột CCCD
+
+Bản hiện tại dùng `cccd` cho hồ sơ bác sĩ, y tá và bệnh nhân. Database cũ có cột `cmt` phải dừng app, sao lưu và chạy migration trước khi khởi động backend mới. Xem [hướng dẫn đổi cột](docs/CCCD_MIGRATION.md). Không nhập lại seed trên database đang có dữ liệu.

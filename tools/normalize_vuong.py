@@ -13,6 +13,9 @@ COLUMNS = ('MaBacSi CMT HoTen NgaySinh DiaChi BacNghe ThamNien ChuyenMon TrinhDo
            'MaLanKham SoThuTuTrongDot NgayKham TienKhamChua KetLuan MaDon NgayLapDon '
            'SoLuong LieuDung DonGiaBan NoiDungHoTro NgayHoTro').split()
 MAPPING = {x: re.sub(r'(?<!^)(?=[A-Z][a-z])', '_', x).lower() for x in COLUMNS}
+MAPPING['CMT'] = 'cccd'
+MAPPING['cmt'] = 'cccd'
+MAPPING['CCCD'] = 'cccd'
 MAPPING['MaYTa'] = 'ma_y_ta'
 MAPPING.update({x: x.lower() for x in TABLES})
 

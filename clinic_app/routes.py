@@ -56,7 +56,7 @@ def entity_for(slug):
 
 def database_form_error(exc):
     if exc.args[0] == 1062:
-        return 'Mã hồ sơ hoặc CMT/CCCD đã tồn tại. Vui lòng kiểm tra lại.'
+        return 'Mã hồ sơ hoặc CCCD đã tồn tại. Vui lòng kiểm tra lại.'
     return 'Dữ liệu vi phạm ràng buộc của cơ sở dữ liệu.'
 
 
