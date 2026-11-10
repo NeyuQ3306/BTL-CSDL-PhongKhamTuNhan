@@ -4,9 +4,9 @@ Cài đặt và khởi chạy theo [SETUP](SETUP.md). Mở website trên trình 
 
 ## 1. Hồ sơ, tìm kiếm và phân trang — R08/R09
 
-Mở `/health` và `/health/db`, cả hai phải HTTP 200/status ok; sau đó vào **Bệnh nhân**, **Bác sĩ**, **Y tá** trên menu. Mỗi nhóm có danh sách/tìm kiếm, thêm, chi tiết, sửa và xóa. Dùng mã giả chưa tồn tại (tối đa 12 ký tự: chữ không dấu, số, `_`, `-`; tránh `new`), CMT/CCCD không trùng và ngày sinh hợp lệ.
+Mở `/health` và `/health/db`, cả hai phải HTTP 200/status ok; sau đó vào **Bệnh nhân**, **Bác sĩ**, **Y tá** trên menu. Mỗi nhóm có danh sách/tìm kiếm, thêm, chi tiết, sửa và xóa. Dùng mã giả chưa tồn tại (tối đa 12 ký tự: chữ không dấu, số, `_`, `-`; tránh `new`), CCCD không trùng và ngày sinh hợp lệ.
 
-Ví dụ CRUD bệnh nhân trên DB thử: mã `W3GUIDEBN`, tên “Bệnh nhân thử hướng dẫn”, CMT `999000005001`, ngày sinh `2000-01-01`, địa chỉ “Hà Nội”, điện thoại `0900000001`. Nếu mã/CMT đã có thì chọn bộ mới. Thêm → mở chi tiết → sửa địa chỉ → tải lại xác nhận đã lưu. Thử mã trùng/ngày sinh tương lai phải bị từ chối; kiểm tra giữ dữ liệu form. Bác sĩ/y tá: điền các trường bắt buộc trên form, thâm niên là số nguyên trong giới hạn hiển thị.
+Ví dụ CRUD bệnh nhân trên DB thử: mã `W3GUIDEBN`, tên “Bệnh nhân thử hướng dẫn”, CCCD `999000005001`, ngày sinh `2000-01-01`, địa chỉ “Hà Nội”, điện thoại `0900000001`. Nếu mã/CCCD đã có thì chọn bộ mới. Thêm → mở chi tiết → sửa địa chỉ → tải lại xác nhận đã lưu. Thử mã trùng/ngày sinh tương lai phải bị từ chối; kiểm tra giữ dữ liệu form. Bác sĩ/y tá: điền các trường bắt buộc trên form, thâm niên là số nguyên trong giới hạn hiển thị.
 
 R08 gồm **sửa và xóa hồ sơ**; thao tác thêm hồ sơ vẫn có trong ứng dụng nhưng không tính vào mã này. R09 tìm theo họ tên hoặc mã, mỗi trang tối đa 20 dòng; giữ từ khóa khi chuyển trang.
 

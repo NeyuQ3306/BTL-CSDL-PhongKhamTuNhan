@@ -23,7 +23,7 @@ def validate(entity, form, fixed_id=None):
         if field.kind == 'code' and not re.fullmatch(r'[A-Za-z0-9_-]{1,12}', value):
             errors[field.name] = 'Mã chỉ gồm chữ không dấu, số, gạch ngang hoặc gạch dưới.'
         elif field.kind == 'cmt' and not re.fullmatch(r'[0-9]{9,20}', value):
-            errors[field.name] = 'CMT/CCCD phải có từ 9 đến 20 chữ số.'
+            errors[field.name] = 'CCCD phải có từ 9 đến 20 chữ số.'
         elif field.kind == 'phone' and not re.fullmatch(r'\+?[0-9]{9,15}', value):
             errors[field.name] = 'Số điện thoại gồm 9–15 chữ số, có thể bắt đầu bằng +.'
         elif field.kind == 'date':

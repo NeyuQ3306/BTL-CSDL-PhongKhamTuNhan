@@ -20,7 +20,7 @@
 <div class="table-wrap" role="region" aria-label="Danh sách {{ entity.title|lower }}" aria-describedby="table-hint" tabindex="0">
   <table>
     <caption class="visually-hidden">Danh sách {{ entity.title|lower }}, trang {{ page }}</caption>
-    <thead><tr><th scope="col">Mã hồ sơ</th><th scope="col">Họ tên</th><th scope="col">CMT / CCCD</th><th scope="col">Ngày sinh</th>
+    <thead><tr><th scope="col">Mã hồ sơ</th><th scope="col">Họ tên</th><th scope="col">CCCD</th><th scope="col">Ngày sinh</th>
       <th scope="col">{{ 'Chuyên môn' if entity.slug == 'doctors' else 'Trình độ' if entity.slug == 'nurses' else 'Số điện thoại' }}</th>
       <th scope="col">Thao tác</th></tr></thead>
     <tbody>
