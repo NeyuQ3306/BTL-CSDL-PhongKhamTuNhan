@@ -6,7 +6,7 @@
 <div class="heading"><div><p class="eyebrow">HỒ SƠ {{ entity.title|upper }}</p><h1>{{ record.ho_ten }}</h1><p>Mã hồ sơ: <strong>{{ record[entity.pk] }}</strong></p></div><a class="button" href="{{ url_for('clinic.edit', slug=entity.slug, record_id=record[entity.pk]) }}">Sửa hồ sơ</a></div>
 {% if form_error %}<div class="notice error" role="alert"><strong>Chưa xóa được hồ sơ</strong><p>{{ form_error }}</p><p>Hồ sơ và dữ liệu liên quan vẫn được giữ nguyên.</p></div>{% endif %}
 <h2>Thông tin {{ entity.title|lower }}</h2>
-<dl class="details">{% for field in entity.fields %}<div><dt>{{ field.label }}</dt><dd{% if field.kind in ['code', 'cmt', 'phone'] %} class="identifier"{% endif %}>{{ display_value(record[field.name], field.kind) }}</dd></div>{% endfor %}</dl>
+<dl class="details">{% for field in entity.fields %}<div><dt>{{ field.label }}</dt><dd{% if field.kind in ['code', 'cccd', 'phone'] %} class="identifier"{% endif %}>{{ display_value(record[field.name], field.kind) }}</dd></div>{% endfor %}</dl>
 {% if entity.slug == 'patients' %}<div class="actions"><a class="button button-secondary" href="{{ url_for('clinic.history', record_id=record[entity.pk]) }}">Xem lịch sử khám</a></div>{% endif %}
 <details class="delete">
   <summary>Xóa hồ sơ chưa phát sinh nghiệp vụ</summary>

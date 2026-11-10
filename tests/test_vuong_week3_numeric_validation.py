@@ -35,7 +35,7 @@ def test_numeric_validation_vietnamese_in_english_browser(app, clinical_data, ki
                 page.on('request', lambda req: posts.append(req.url) if req.method == 'POST' else None)
                 if kind in ('doctor', 'nurse'):
                     page.goto(base + ('/doctors/new' if kind == 'doctor' else '/nurses/new'))
-                    values = dict(cmt='999004000001', ho_ten='Nhân viên giả kiểm tra số',
+                    values = dict(cccd='999004000001', ho_ten='Nhân viên giả kiểm tra số',
                                   ngay_sinh='1980-01-01', dia_chi='Địa chỉ giả', tham_nien='5')
                     if kind == 'doctor':
                         values.update(ma_bac_si='U4BS', bac_nghe='Bậc 1', chuyen_mon='Nội', trinh_do_dao_tao='Đại học')

@@ -60,10 +60,16 @@ jobs:
           python-version: '3.11'
       - uses: actions/checkout@v4
         with:
-          ref: 26bc627b5bd8943f275d369a0d86f2d640aaf06f
+          ref: 9e912fa808a93f54129dc730d72738772e01c492
           path: compatibility
-      - run: python -m pip install -r compatibility/requirements-dev.txt
-      - run: python -m tools.quyen_db
-      - name: Backend Trung against Quyen schema and triggers
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Import the pinned pre-rename cmt database
         working-directory: compatibility
-        run: python -m pytest -v --ignore=tests/test_browser_week2.py
+        run: python -m tools.quyen_db
+      - name: Verify the pre-rename backend before upgrading
+        working-directory: compatibility
+        run: python -m pytest tests/test_backend.py tests/test_week2.py -v
+      - name: Migrate the same populated database to cccd
+        run: python -m tools.migrate_cccd --apply
+      - name: Verify the new backend, constraints and resumable migration
+        run: python -m pytest tests/test_backend.py tests/test_week2.py tests/test_cccd_migration.py -v

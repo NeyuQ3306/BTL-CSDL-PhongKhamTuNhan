@@ -22,7 +22,7 @@
       <input id="{{ field.name }}" name="{{ field.name }}" value="{{ record_id if editing and field.name == entity.pk else values.get(field.name, '') }}"
         type="{{ 'date' if field.kind == 'date' else 'number' if field.kind == 'integer' else 'tel' if field.kind == 'phone' else 'text' }}"
         {% if field.kind == 'integer' %}min="0" max="100" step="1"{% elif field.kind == 'date' %}min="1900-01-01"{% else %}maxlength="{{ field.max_length }}"{% endif %}
-        {% if field.kind == 'cmt' %}inputmode="numeric" spellcheck="false"{% elif field.kind == 'code' %}spellcheck="false" autocapitalize="off"{% endif %}
+        {% if field.kind == 'cccd' %}inputmode="numeric" spellcheck="false"{% elif field.kind == 'code' %}spellcheck="false" autocapitalize="off"{% endif %}
         {% if editing and field.name == entity.pk %}readonly{% endif %}
         required aria-describedby="{{ field.name }}-hint{% if field.name in errors %} {{ field.name }}-error{% endif %}"{% if field.name in errors %} aria-invalid="true"{% endif %}>
       <small class="field-hint" id="{{ field.name }}-hint">{{ field_hint(field, editing) }}</small>

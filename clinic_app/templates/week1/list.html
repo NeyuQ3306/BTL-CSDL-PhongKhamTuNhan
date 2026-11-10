@@ -25,7 +25,7 @@
       <th scope="col">Thao tác</th></tr></thead>
     <tbody>
     {% for row in rows %}
-      <tr><th scope="row" class="record-code">{{ row[entity.pk] }}</th><td>{{ row.ho_ten }}</td><td class="identifier">{{ row.cmt }}</td><td class="identifier">{{ display_value(row.ngay_sinh, 'date') }}</td>
+      <tr><th scope="row" class="record-code">{{ row[entity.pk] }}</th><td>{{ row.ho_ten }}</td><td class="identifier">{{ row.cccd }}</td><td class="identifier">{{ display_value(row.ngay_sinh, 'date') }}</td>
         <td>{{ display_value(row.chuyen_mon if entity.slug == 'doctors' else row.trinh_do if entity.slug == 'nurses' else row.so_dien_thoai) }}</td>
         <td><div class="row-actions"><a href="{{ url_for('clinic.detail', slug=entity.slug, record_id=row[entity.pk]) }}" aria-label="Xem hồ sơ {{ row.ho_ten }} ({{ row[entity.pk] }})">Xem hồ sơ</a><a href="{{ url_for('clinic.edit', slug=entity.slug, record_id=row[entity.pk]) }}" aria-label="Sửa hồ sơ {{ row.ho_ten }} ({{ row[entity.pk] }})">Sửa</a></div></td></tr>
     {% endfor %}

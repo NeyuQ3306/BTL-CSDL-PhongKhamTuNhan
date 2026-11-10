@@ -165,13 +165,13 @@ def rehearse(app, base, db, out, report):
         get('/health/db')
         mark('01-introduction', 'Private MySQL health OK; no group presentation')
         # CRUD all three groups; retain only the main demo patient.
-        for slug, key, cmt in [('patients', 'DM6TMPBN', '999000006001'),
+        for slug, key, cccd in [('patients', 'DM6TMPBN', '999000006001'),
                                ('doctors', 'DM6TMPBS', '999000006002'),
                                ('nurses', 'DM6TMPYT', '999000006003')]:
             get(f'/{slug}/new')
             entity = ENTITIES[slug]
             fields = {f.name: 'Dữ liệu giả demo' for f in entity.fields}
-            fields.update({entity.pk:key, 'cmt':cmt, 'ngay_sinh':'1980-01-01',
+            fields.update({entity.pk:key, 'cccd':cccd, 'ngay_sinh':'1980-01-01',
                            'so_dien_thoai':'0900000006', 'tham_nien':'4'})
             fill({f.name:fields[f.name] for f in entity.fields})
             page.get_by_role('button', name='Thêm hồ sơ', exact=True).click()
@@ -188,7 +188,7 @@ def rehearse(app, base, db, out, report):
             expect(page).to_have_url(base + '/' + slug)
             assert page.request.get(base+f'/{slug}/{key}').status == 404
         get('/patients/new')
-        fill(dict(ma_benh_nhan='DM6BN', cmt='999000006004', ho_ten='Bệnh nhân demo tuần 3',
+        fill(dict(ma_benh_nhan='DM6BN', cccd='999000006004', ho_ten='Bệnh nhân demo tuần 3',
                   ngay_sinh='1980-01-01', dia_chi='Hà Nội', so_dien_thoai='0900000006'))
         page.get_by_role('button', name='Thêm hồ sơ', exact=True).click()
         expect(page).to_have_url(base+'/patients/DM6BN')

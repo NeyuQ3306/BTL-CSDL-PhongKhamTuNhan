@@ -34,3 +34,5 @@ R08–R10 là sửa/xóa hồ sơ, tìm kiếm/phân trang và kê đơn/lưu gi
 - Doanh thu cộng tiền khám và thuốc riêng để tránh nhân tiền khi JOIN. Chi tiết đơn lưu giá bán lịch sử bằng DECIMAL.
 
 `week1/clinic_seed.sql` và `tools/normalize_vuong.py` giữ nguồn chuyển đổi dữ liệu giai đoạn đầu; `tools/import_seed.py` còn cung cấp bộ tách câu SQL cho công cụ kiểm thử. Dùng quy trình SETUP để cài ứng dụng.
+
+CSDL đã tạo với cột `cmt` cần được sao lưu và nâng cấp trước khi chạy ứng dụng mới. Xem [hướng dẫn chuyển sang CCCD](../docs/CCCD_MIGRATION.md).

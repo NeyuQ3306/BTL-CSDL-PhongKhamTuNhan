@@ -127,3 +127,5 @@ Kết thúc phiên chạy, đọc kết quả cleanup và xác minh instance th�
 | Runner exit nhưng cổng còn mở | Kiểm tra log cleanup và đúng PID/executable/datadir theo hướng dẫn runner |
 
 Xem [mục lục tài liệu](README.md) nếu cần thiết kế, hợp đồng báo cáo hoặc hồ sơ kiểm thử.
+
+CSDL đã tạo với cột `cmt` cần được sao lưu và nâng cấp trước khi chạy ứng dụng mới. Xem [hướng dẫn chuyển sang CCCD](CCCD_MIGRATION.md).

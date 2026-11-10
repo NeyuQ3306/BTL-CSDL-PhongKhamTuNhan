@@ -1,13 +1,13 @@
 # Từ điển dữ liệu vật lý — Quyền tuần 1
 
-Bản bàn giao 17/10/2026. Giữ 11 bảng và tên cột tương thích adapter của Trung tại `c442384`. Mã VARCHAR(12), CCCD/điện thoại là chuỗi, tiền VND DECIMAL(12,0), ngày DATE theo Việt Nam. FK đều NOT NULL; chỉ ngày ra viện và ngày khỏi được NULL. Collation utf8mb4_0900_ai_ci không phân biệt hoa/thường và dấu; không dùng mã chỉ khác hoa/thường hoặc dấu. Không lưu tổng tiền suy diễn.
+Cập nhật đổi tên cột định danh thành `cccd` ngày 09/11/2026. Giữ nguyên 11 bảng, kiểu dữ liệu và ràng buộc; database cũ cần chạy migration trước khi dùng backend mới. Mã VARCHAR(12), CCCD/điện thoại là chuỗi, tiền VND DECIMAL(12,0), ngày DATE theo Việt Nam. FK đều NOT NULL; chỉ ngày ra viện và ngày khỏi được NULL. Collation utf8mb4_0900_ai_ci không phân biệt hoa/thường và dấu; không dùng mã chỉ khác hoa/thường hoặc dấu. Không lưu tổng tiền suy diễn.
 
 ## bac_si
 
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_bac_si | VARCHAR(12) | Không | PK |
-| cmt | VARCHAR(20) | Không | UQ |
+| cccd | VARCHAR(20) | Không | UQ |
 | ho_ten | VARCHAR(100) | Không | Họ tên |
 | ngay_sinh | DATE | Không | Ngày sinh |
 | dia_chi | VARCHAR(255) | Không | Địa chỉ |
@@ -26,7 +26,7 @@ tham_nien INT NOT NULL CHECK (tham_nien >= 0), chuyen_mon VARCHAR(100) NOT NULL,
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_y_ta | VARCHAR(12) | Không | PK |
-| cmt | VARCHAR(20) | Không | UQ |
+| cccd | VARCHAR(20) | Không | UQ |
 | ho_ten | VARCHAR(100) | Không | Họ tên |
 | ngay_sinh | DATE | Không | Ngày sinh |
 | dia_chi | VARCHAR(255) | Không | Địa chỉ |
@@ -44,7 +44,7 @@ trinh_do VARCHAR(100) NOT NULL, tham_nien INT NOT NULL CHECK (tham_nien >= 0)
 | Cột | Kiểu | NULL | Khóa / ý nghĩa |
 |---|---|---|---|
 | ma_benh_nhan | VARCHAR(12) | Không | PK |
-| cmt | VARCHAR(20) | Không | UQ |
+| cccd | VARCHAR(20) | Không | UQ |
 | ho_ten | VARCHAR(100) | Không | Họ tên |
 | ngay_sinh | DATE | Không | Ngày sinh |
 | dia_chi | VARCHAR(255) | Không | Địa chỉ |
@@ -181,5 +181,3 @@ PRIMARY KEY (ma_luot,ma_y_ta), FOREIGN KEY (ma_luot) REFERENCES luot_den_kham(ma
 - UNIQUE(ma_luot,ma_dot), UNIQUE(ma_dot,so_thu_tu_trong_dot), UNIQUE(don_thuoc.ma_lan_kham). Chỉ mục hàm uq_dot_active bảo vệ một đợt đang điều trị cho mỗi bệnh nhân/bệnh, không thêm thuộc tính nghiệp vụ.
 - Mỗi bệnh chỉ có một lần khám trong một lượt. Ngày lập đơn bằng ngày khám là quy ước tích hợp bổ sung của backend Trung, không phải yêu cầu nguyên văn của đề.
 - Không ghi thêm lần khám cho lượt đã đóng là quy ước vận hành backend. Chỉnh sửa lịch sử cần quy trình riêng và kiểm tra lại audit, không đổi khóa/ngày tùy ý.
-
-Giao diện và báo cáo dùng tên CCCD. Trong schema hiện tại, `cmt` là tên cột lưu giá trị này dưới dạng chuỗi.
