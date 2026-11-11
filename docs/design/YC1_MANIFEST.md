@@ -10,4 +10,4 @@ Phòng khám lưu hồ sơ bệnh nhân, bác sĩ, y tá; bệnh nhân có nhi�
 
 Trước nộp cuối: đối chiếu tên/khóa và các quy ước trong SQL với hai PDF, kiểm tra đủ trang rõ nét, ghi nguồn tham khảo. Trạng thái thiết kế đã chốt theo nhóm; chưa khẳng định giảng viên đã duyệt hoặc toàn project hoàn tất.
 
-Cập nhật tên vật lý 09/11/2026: thuộc tính CMT trong lược đồ PDF gốc tương ứng cột `cccd` trong SQL hiện hành. Không thay đổi ý nghĩa, kiểu hoặc lực lượng tham gia. Xem [migration](../CCCD_MIGRATION.md); bằng chứng lịch sử vẫn giữ tên cũ.
+Thuộc tính CCCD trong hai sơ đồ tương ứng với cột `cccd` trong SQL hiện hành.

@@ -41,4 +41,4 @@ Dựa trên [scmeyer41/hospital-database-management-system](https://github.com/s
 
 ## Cập nhật cột CCCD
 
-Bản hiện tại dùng `cccd` cho hồ sơ bác sĩ, y tá và bệnh nhân. Database cũ có cột `cmt` phải dừng app, sao lưu và chạy migration trước khi khởi động backend mới. Xem [hướng dẫn đổi cột](docs/CCCD_MIGRATION.md). Không nhập lại seed trên database đang có dữ liệu.
+Bản hiện tại dùng `cccd` cho hồ sơ bác sĩ, y tá và bệnh nhân. Database còn dùng tên cột định danh cũ phải dừng app, sao lưu và chạy migration trước khi khởi động backend mới. Xem [hướng dẫn đổi cột](docs/CCCD_MIGRATION.md). Không nhập lại seed trên database đang có dữ liệu.
