@@ -26,3 +26,6 @@ backups/
 
 # Generated test output; curated evidence belongs in docs/evidence.
 test-artifacts/
+
+# Private reruns and full acceptance bundles
+local-evidence/
