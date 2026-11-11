@@ -2,7 +2,7 @@
 
 Ngày 03/11/2026. Nền: main `98bd2675bfffc64be09c87dd2897148f8b02b440`.
 Theo phạm vi bổ sung của issue #3 và PR #20. Đây là SQL, hợp đồng dữ liệu,
-đáp án độc lập và kiểm thử; chưa phải xác nhận backend, giao diện hay biểu đồ đã xong.
+đáp án độc lập và kiểm thử tại thời điểm bàn giao. Backend/UI đã tích hợp ở PR #22/#23; bằng chứng laptop ở PR #24. Quy ước R01–R10 hiện dùng chung với báo cáo/slide xem [FEATURES](FEATURES.md); tài liệu này chỉ đặc tả R01–R07.
 
 ## Chạy và bộ file nộp
 

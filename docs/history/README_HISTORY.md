@@ -6,7 +6,7 @@ Nhóm: **Minh Quyền · Trung · Vương**. Thời gian: **13/10–03/11/2026**
 
 ## Bắt đầu với bản tích hợp tuần 3
 
-Bản tích hợp gồm #12/#13/#14/#15, tài liệu #18 và phần dọn upstream #16. Xem [trạng thái hiện hành và bộ nộp](WEEK3_FINAL_STATUS.md), [cài/chạy Windows](SETUP.md), [sử dụng](USER_GUIDE.md) và [kịch bản demo](VUONG_WEEK3_DEMO.md). Trạng thái merge/CI mới nhất xem [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17); không dùng các phần lịch sử bên dưới làm hướng dẫn phiên bản hiện tại.
+Bản tích hợp gồm #12/#13/#14/#15, tài liệu #18 và phần dọn upstream #16. Xem [trạng thái hiện hành và bộ nộp](../WEEK3_FINAL_STATUS.md), [cài/chạy Windows](../SETUP.md), [sử dụng](../USER_GUIDE.md) và [kịch bản demo](../VUONG_WEEK3_DEMO.md). Trạng thái merge/CI mới nhất xem [PR #17](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/17); không dùng các phần lịch sử bên dưới làm hướng dẫn phiên bản hiện tại.
 
 Quyền đã kiểm thử source `dd1f41e` trên laptop Windows: **236/236 test đạt**, audit sạch 11 bảng/9 trigger/1.144 dòng và cleanup thành công. Các thay đổi tiếp theo chỉ đồng bộ tài liệu và gỡ 7 file upstream không dùng; CI của bản cuối được xác nhận riêng trước merge. Nguồn và giới hạn bằng chứng được giữ trong hồ sơ.
 
@@ -16,27 +16,27 @@ Quyền đã kiểm thử source `dd1f41e` trên laptop Windows: **236/236 test 
 
 Bản trên nhánh `vuong/week-2` có UI tiếp nhận/khám/tái khám, hỗ trợ y tá, đơn thuốc, đóng lượt/xác nhận khỏi và bốn báo cáo MySQL thật. Phụ thuộc backend [#5](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/5) tại `10c8082` và oracle [#10](https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan/pull/10) tại `1bf9f8b`; hai PR chưa merge lúc đóng gói.
 
-Bắt đầu từ [bàn giao](VUONG_WEEK2_HANDOFF.md), [hướng dẫn sử dụng ngắn](VUONG_WEEK2_USER_GUIDE.md), [nghiệm thu T01–T15](VUONG_WEEK2_ACCEPTANCE.md) và [hợp đồng tuần 2](WEEK2_INTEGRATION.md). Local 168 test đạt/0 skipped trên Python 3.12/MySQL 8.0/Chromium; CI của commit sẽ được ghi riêng, không thay nghiệm thu bản cuối trên laptop Quyền.
+Bắt đầu từ [bàn giao](../VUONG_WEEK2_HANDOFF.md), [hướng dẫn sử dụng ngắn](../VUONG_WEEK2_USER_GUIDE.md), [nghiệm thu T01–T15](../VUONG_WEEK2_ACCEPTANCE.md) và [hợp đồng tuần 2](../WEEK2_INTEGRATION.md). Local 168 test đạt/0 skipped trên Python 3.12/MySQL 8.0/Chromium; CI của commit sẽ được ghi riêng, không thay nghiệm thu bản cuối trên laptop Quyền.
 
 ## Nền tích hợp tuần 1 (lịch sử)
 
-[Hướng dẫn Windows thống nhất](SETUP.md) hiện đã cập nhật cho bản tích hợp. Mốc lịch sử tuần 1: #4/#6/#7/#8/#9 đã merge vào main `20cd47a`. Thứ tự import hiện hành vẫn là schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
+[Hướng dẫn Windows thống nhất](../SETUP.md) hiện đã cập nhật cho bản tích hợp. Mốc lịch sử tuần 1: #4/#6/#7/#8/#9 đã merge vào main `20cd47a`. Thứ tự import hiện hành vẫn là schema → seed → audit → constraints → audit → queries; không chạy chồng adapter cũ.
 
 ## Trạng thái nền tuần 1 (lịch sử)
 
 - Đã chuyển backend sang lược đồ 11 bảng: CRUD bệnh nhân/bác sĩ/y tá, validation, kết nối theo request, transaction và cấu hình `.env`.
 - Có màn hình tra cứu lượt/đợt/lần khám làm nền tuần 2; chưa triển khai ghi nghiệp vụ và bốn báo cáo hoàn chỉnh.
 - `database/week1/clinic_seed.sql` là adapter định danh từ dữ liệu giả lập Vũ Đại Vương bàn giao; cần Quyền review. Schema upstream `hospital_db.sql` được lưu trong lịch sử Git, không nhập cho app mới.
-- Xem [bàn giao tuần 1](TRUNG_WEEK1_HANDOFF.md), [cách chạy](SETUP.md), và [hợp đồng route/form](INTEGRATION.md).
+- Xem [bàn giao tuần 1](../TRUNG_WEEK1_HANDOFF.md), [cách chạy](../SETUP.md), và [hợp đồng route/form](../INTEGRATION.md).
 - Chưa coi nghiệm thu hoàn tất trước khi nhóm review và merge PR theo RULES.md.
 
 ## Tài liệu dự án và lịch sử tuần 1
 
-Tài liệu lịch sử UI tuần 1 của Vương: [bàn giao](VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](VUONG_WEEK1_CHECKLIST.md). Mô tả khung báo cáo tuần 1 chỉ áp dụng bản cũ; bản tích hợp hiện hành dùng đủ bốn báo cáo thật.
+Tài liệu lịch sử UI tuần 1 của Vương: [bàn giao](../VUONG_WEEK1_HANDOFF.md), [hướng dẫn sử dụng](../VUONG_WEEK1_USER_GUIDE.md), [checklist và ảnh kiểm thử](../VUONG_WEEK1_CHECKLIST.md). Mô tả khung báo cáo tuần 1 chỉ áp dụng bản cũ; bản tích hợp hiện hành dùng đủ bốn báo cáo thật.
 
-1. Đọc [phân công 3 tuần](PHAN_CONG_3_TUAN.md) hoặc [bản PDF](Phan_cong_Project1_3_tuan.pdf).
-2. Đọc [RULES.md](../RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.
-3. Xem [cài đặt môi trường](SETUP.md), [hợp đồng tích hợp](INTEGRATION.md) và [kiểm thử nghiệm thu](ACCEPTANCE.md).
+1. Đọc [phân công 3 tuần](../PHAN_CONG_3_TUAN.md) hoặc [bản PDF](../Phan_cong_Project1_3_tuan.pdf).
+2. Đọc [RULES.md](../../RULES.md) trước khi push; mọi thay đổi sau khởi tạo đi qua PR.
+3. Xem [cài đặt môi trường](../SETUP.md), [hợp đồng tích hợp](../INTEGRATION.md) và [kiểm thử nghiệm thu](../ACCEPTANCE.md).
 
 ## Mốc chốt
 
@@ -72,4 +72,4 @@ CODEOWNERS không thay thế bảo vệ nhánh; xem trạng thái cấu hình tr
 
 ## Nguồn tham khảo
 
-Dựa trên [scmeyer41/hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system), commit `711d7b1bdff824901a75e086525d0a9f5ca14701`. Giữ lịch sử upstream và [README gốc](UPSTREAM_README.md). Xem [ghi nhận nguồn](ATTRIBUTION.md). Nhóm tự chịu trách nhiệm giải thích và kiểm thử phần chuyển đổi; không coi tính năng của upstream là phần nhóm đã hoàn thành.
+Dựa trên [scmeyer41/hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system), commit `711d7b1bdff824901a75e086525d0a9f5ca14701`. Giữ lịch sử upstream và [README gốc](../UPSTREAM_README.md). Xem [ghi nhận nguồn](../ATTRIBUTION.md). Nhóm tự chịu trách nhiệm giải thích và kiểm thử phần chuyển đổi; không coi tính năng của upstream là phần nhóm đã hoàn thành.
