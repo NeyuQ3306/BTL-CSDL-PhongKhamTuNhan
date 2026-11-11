@@ -85,4 +85,4 @@ Quy trình gửi thay đổi được mô tả trong [CONTRIBUTING.md](CONTRIBUT
 
 Dự án tham khảo [hospital-database-management-system](https://github.com/scmeyer41/hospital-database-management-system) của scmeyer41 và Richard Tashjian. Phạm vi phát triển của nhóm và thông tin nguồn được ghi tại [ATTRIBUTION.md](docs/ATTRIBUTION.md).
 
-CSDL đã tạo với cột `cmt` cần được sao lưu và nâng cấp trước khi chạy ứng dụng mới. Xem [hướng dẫn chuyển sang CCCD](docs/CCCD_MIGRATION.md).
+CSDL đã tạo với cột định danh cũ cần được sao lưu và nâng cấp trước khi chạy ứng dụng mới. Xem [hướng dẫn chuyển sang CCCD](docs/CCCD_MIGRATION.md).
