@@ -629,7 +629,7 @@
           if (index === 0) cell.scope = 'row';
           if (spec.numericFields.includes(key)) cell.classList.add('numeric-cell');
           if (id === 'R07' && moneyFields.includes(key)) {
-            cell.textContent = moneyText(row[key]);
+            cell.textContent = row[key] === null ? 'Không có mẫu' : String(row[key]);
             cell.dataset.money = row[key] === null ? 'null' : row[key];
           } else {
             cell.textContent = id === 'R06' && key === 'ngay_kham_cuoi' && row[key] === null ? 'Chưa có lần khám' : String(row[key]);
