@@ -1,6 +1,9 @@
 .analytics-panel { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #ccd8d8; min-width: 0; }
-.analytics-panel .report-filters { flex-wrap: wrap; align-items: end; }
-.analytics-panel .filter-field { flex: 1 1 11rem; min-width: 0; }
+.analytics-panel .report-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
+.analytics-panel .filter-field { min-width: 0; max-width: none; }
+.analytics-panel .filter-field:first-child { grid-column: 1 / -1; }
+.analytics-panel .filter-field > input, .analytics-panel .filter-field > select { margin-top: 7px; }
+.analytics-panel .report-filters > button { grid-column: 1 / -1; justify-self: end; margin-top: 0; }
 .analytics-panel select, .analytics-panel input { width: 100%; min-width: 0; box-sizing: border-box; }
 .analytics-panel select { min-height: 44px; padding: 10px 8px; border: 1px solid #b6c8d2; border-radius: 6px; font: inherit; color: inherit; background: white; }
 .analytics-panel select:focus-visible { outline: 3px solid #b9e4e2; outline-offset: 1px; }
@@ -27,7 +30,8 @@
 .analytics-panel .chart-segment { stroke: white; stroke-width: 1; }
 .analytics-panel .chart-segment:focus { outline: none; stroke: #111827; stroke-width: 3; }
 #r01-chart-detail, #r02-chart-detail, #r03-chart-detail, #r04-chart-detail, #r05-chart-detail, #r06-chart-detail, #r07-chart-detail { overflow-wrap: anywhere; min-height: 3em; }
-@media (max-width: 560px) {
-  .analytics-panel .report-filters { display: flex; flex-direction: column; align-items: stretch; }
-  .analytics-panel .filter-field { flex: auto; width: 100%; }
+@media (max-width: 760px) {
+  .analytics-panel .report-filters { grid-template-columns: minmax(0, 1fr); }
+  .analytics-panel .report-filters > button { justify-self: stretch; }
 }
+
