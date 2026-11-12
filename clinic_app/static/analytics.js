@@ -10,18 +10,25 @@
   const body = panel.querySelector('tbody');
   const reports = {
     R01: {title: 'Bệnh theo nhóm tuổi', fields: ['ma_benh', 'ten_benh', 'thu_tu_nhom', 'nhom_tuoi', 'so_dot', 'so_benh_nhan'],
+      numericFields: ['so_dot', 'so_benh_nhan'],
       headers: ['Mã bệnh', 'Tên bệnh', 'Mã nhóm', 'Nhóm tuổi', 'Số đợt', 'Số bệnh nhân']},
     R02: {title: 'Tiếp nhận và khám theo ngày', fields: ['ngay', 'so_luot', 'so_benh_nhan_tiep_nhan', 'so_lan_kham'],
+      numericFields: ['so_luot', 'so_benh_nhan_tiep_nhan', 'so_lan_kham'],
       headers: ['Ngày', 'Lượt tiếp nhận (lượt)', 'Bệnh nhân tiếp nhận (người/ngày)', 'Lần khám (lần)']},
     R03: {title: 'Khối lượng khám theo bác sĩ', fields: ['ma_bac_si', 'ho_ten', 'chuyen_mon', 'so_lan_kham', 'so_dot', 'so_benh_nhan'],
+      numericFields: ['so_lan_kham', 'so_dot', 'so_benh_nhan'],
       headers: ['Mã bác sĩ', 'Họ tên', 'Chuyên môn', 'Lần khám (lần)', 'Đợt điều trị (đợt)', 'Bệnh nhân (người)']},
     R04: {title: 'Thuốc được kê', fields: ['ma_thuoc', 'ten_thuoc', 'don_vi_tinh', 'so_don', 'tong_so_luong'],
+      numericFields: ['so_don', 'tong_so_luong'],
       headers: ['Mã thuốc', 'Tên thuốc', 'Đơn vị tính', 'Số đơn có thuốc (đơn)', 'Tổng lượng kê (theo đơn vị thuốc)']},
     R05: {title: 'Đợt tái mắc có tiền sử ghi nhận', fields: ['ma_dot', 'ma_benh_nhan', 'ho_ten', 'ma_benh', 'ten_benh', 'ngay_bat_dau', 'ngay_khoi_truoc', 'so_ngay_tu_lan_khoi_truoc'],
+      numericFields: ['so_ngay_tu_lan_khoi_truoc'],
       headers: ['Mã đợt', 'Mã bệnh nhân', 'Họ tên', 'Mã bệnh', 'Tên bệnh', 'Ngày bắt đầu đợt mới', 'Ngày khỏi trước', 'Khoảng cách từ lần khỏi trước (ngày)']},
     R06: {title: 'Lâu chưa ghi nhận khám', fields: ['ma_dot', 'ma_benh_nhan', 'ho_ten', 'so_dien_thoai', 'ma_benh', 'ten_benh', 'ma_bac_si', 'ten_bac_si', 'ngay_bat_dau', 'ngay_kham_cuoi', 'chua_co_lan_kham', 'so_ngay_chua_ghi_nhan', 'nhom_ngay'],
+      numericFields: ['chua_co_lan_kham', 'so_ngay_chua_ghi_nhan'],
       headers: ['Mã đợt', 'Mã bệnh nhân', 'Họ tên', 'Số điện thoại', 'Mã bệnh', 'Tên bệnh', 'Mã bác sĩ', 'Tên bác sĩ', 'Ngày bắt đầu', 'Ngày khám cuối', 'Chưa có lần khám (1=chưa khám, 0=đã có khám)', 'Số ngày chưa ghi nhận khám', 'Nhóm ngày']},
     R07: {title: 'Chi phí đợt đã khỏi theo bệnh', fields: ['ma_benh', 'ten_benh', 'so_dot_tinh', 'so_dot_loai', 'tb_tien_kham', 'tb_tien_thuoc', 'tb_tong', 'min_tong', 'max_tong'],
+      numericFields: ['so_dot_tinh', 'so_dot_loai', 'tb_tien_kham', 'tb_tien_thuoc', 'tb_tong', 'min_tong', 'max_tong'],
       headers: ['Mã bệnh', 'Tên bệnh', 'Số đợt tính (mẫu)', 'Số đợt loại', 'TB tiền khám (VND)', 'TB tiền thuốc (VND)', 'TB tổng (VND)', 'Tổng thấp nhất (VND)', 'Tổng cao nhất (VND)']},
   };
   const chart = panel.querySelector('#r01-chart');
@@ -609,8 +616,10 @@
       validate(data, params, id);
       const head = panel.querySelector('#analytics-table thead tr');
       head.replaceChildren();
-      spec.headers.forEach(label => {
-        const cell = document.createElement('th'); cell.scope = 'col'; cell.textContent = label; head.append(cell);
+      spec.headers.forEach((label, index) => {
+        const cell = document.createElement('th'); cell.scope = 'col'; cell.textContent = label;
+        if (spec.numericFields.includes(fields[index])) cell.classList.add('numeric-cell');
+        head.append(cell);
       });
       const fragment = document.createDocumentFragment();
       for (const row of data.rows) {
@@ -618,6 +627,7 @@
         fields.forEach((key, index) => {
           const cell = document.createElement(index === 0 ? 'th' : 'td');
           if (index === 0) cell.scope = 'row';
+          if (spec.numericFields.includes(key)) cell.classList.add('numeric-cell');
           if (id === 'R07' && moneyFields.includes(key)) {
             cell.textContent = moneyText(row[key]);
             cell.dataset.money = row[key] === null ? 'null' : row[key];
@@ -683,3 +693,4 @@
   });
   selectReport();
 })();
+
