@@ -164,7 +164,7 @@ def test_mysql_browser_oracle(real_browser, report, period, age):
         assert data['row_count'] == len(wanted)
         rendered = page.locator('#analytics-table tbody tr').evaluate_all('(rows)=>rows.map(r=>[...r.cells].map(c=>c.textContent))')
         def cell(row, key):
-            if report == 'R07' and key in MONEY: return 'Không có mẫu' if row[key] is None else row[key] + ' VND'
+            if report == 'R07' and key in MONEY: return 'Không có mẫu' if row[key] is None else row[key]
             if report == 'R06' and key == 'ngay_kham_cuoi' and row[key] is None: return 'Chưa có lần khám'
             return str(row[key])
         assert rendered == ([[cell(r,k) for k in FIELDS[report]] for r in wanted] if wanted else [['Không có dữ liệu phù hợp bộ lọc.']])

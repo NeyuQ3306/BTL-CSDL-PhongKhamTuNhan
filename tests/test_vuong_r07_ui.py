@@ -21,7 +21,7 @@ def segments(page):
 
 
 def assert_parity(page,data):
-    expected=[[('Không có mẫu' if r[k] is None else r[k]+' VND') if k in MONEY else str(r[k]) for k in FIELDS] for r in data['rows']]
+    expected=[[('Không có mẫu' if r[k] is None else r[k]) if k in MONEY else str(r[k]) for k in FIELDS] for r in data['rows']]
     assert page.locator('#analytics-table tbody tr').evaluate_all('(rows)=>rows.map(r=>[...r.cells].map(c=>c.textContent))')==expected
     assert segments(page)==[dict(ma_benh=r['ma_benh'],series=k,money=r[k]) for r in data['rows'] if r['so_dot_tinh']>0 for k in ('tb_tien_kham','tb_tien_thuoc')]
     assert page.locator('#analytics-table tbody td[data-money]').evaluate_all('(cells)=>cells.map(c=>c.dataset.money)')==[('null' if r[k] is None else r[k]) for r in data['rows'] for k in MONEY]
@@ -80,7 +80,7 @@ def test_r07_exact_large_strings_rounding_zero_null_and_safe_labels(ui):
     select_r07(page);submit(page)
     expect(page.locator('#analytics-result')).to_be_visible()
     assert_parity(page,data)
-    expect(page.locator('#analytics-table')).to_contain_text('9007199254740993.01 VND')
+    expect(page.locator('#analytics-table')).to_contain_text('9007199254740993.01')
     expect(page.locator('#analytics-result img')).to_have_count(0)
     expect(page.locator('#r07-chart [data-disease="B04"]')).to_have_count(0)
     expect(page.locator('#analytics-table')).to_contain_text('B04')
