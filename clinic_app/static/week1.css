@@ -11,7 +11,7 @@ a:hover { color: #034e50; }
 .header-inner, .main-nav { max-width: 1400px; margin: auto; padding-left: 40px; padding-right: 40px; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 24px; padding-bottom: 24px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #173d45; }
-.brand-mark { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; background: var(--accent); color: white; font-size: 34px; line-height: 1; border-radius: 12px; }
+.brand-mark { display: block; flex-shrink: 0; width: 44px; height: 44px; object-fit: contain; border-radius: 12px; }
 .brand-copy { font-weight: 800; font-size: 17px; letter-spacing: .05em; }
 .brand-copy > span { display: block; color: #657984; font-weight: 400; font-size: 13px; letter-spacing: 0; }
 .demo-badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; background: #edf7f4; border: 1px solid #d0e9e2; border-radius: 30px; color: #31685d; font-size: 12px; white-space: nowrap; }
