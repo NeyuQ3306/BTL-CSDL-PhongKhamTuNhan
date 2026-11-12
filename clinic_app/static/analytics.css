@@ -9,14 +9,11 @@
 .analytics-panel select:focus-visible { outline: 3px solid #b9e4e2; outline-offset: 1px; }
 .analytics-panel [hidden] { display: none !important; }
 .analytics-panel table { min-width: 650px; }
-.analytics-panel td, .analytics-panel th { overflow-wrap: anywhere; }
-.analytics-panel td:nth-last-child(-n+2) { text-align: right; font-variant-numeric: tabular-nums; }
-.analytics-panel table[data-report="R02"] td { text-align: right; font-variant-numeric: tabular-nums; }
-.analytics-panel table[data-report="R03"] td:nth-last-child(-n+3) { text-align: right; font-variant-numeric: tabular-nums; }
+.analytics-panel td, .analytics-panel th { overflow-wrap: anywhere; text-align: center; }
+.analytics-panel td.numeric-cell, .analytics-panel th.numeric-cell { font-variant-numeric: tabular-nums; }
 .analytics-panel table[data-report="R05"] { min-width: 1100px; }
 .analytics-panel table[data-report="R06"] { min-width: 1800px; }
 .analytics-panel table[data-report="R07"] { min-width: 1500px; }
-.analytics-panel table[data-report="R07"] td:nth-last-child(-n+7) { text-align: right; font-variant-numeric: tabular-nums; }
 .analytics-panel table[data-report="R07"] td[data-money] { white-space: nowrap; }
 .analytics-panel [role="alert"] { overflow-wrap: anywhere; }
 .analytics-legend { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 0; list-style: none; }
