@@ -55,6 +55,13 @@
   const dayGroups = ['0–6', '7–13', '14–29', '30+'];
   const moneyFields = ['tb_tien_kham', 'tb_tien_thuoc', 'tb_tong', 'min_tong', 'max_tong'];
 
+  function moneyCellText(value) {
+    if (value === null) return 'Không có mẫu';
+    const [integer, fraction] = String(value).split('.');
+    const grouped = integer.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return fraction && /[1-9]/.test(fraction) ? `${grouped},${fraction}` : grouped;
+  }
+
   function moneyText(value) {
     // Preserve the exact API decimal string: no float or locale formatter round-trip.
     return value === null ? 'Không có mẫu' : `${value} VND`;
@@ -629,7 +636,7 @@
           if (index === 0) cell.scope = 'row';
           if (spec.numericFields.includes(key)) cell.classList.add('numeric-cell');
           if (id === 'R07' && moneyFields.includes(key)) {
-            cell.textContent = row[key] === null ? 'Không có mẫu' : String(row[key]);
+            cell.textContent = moneyCellText(row[key]);
             cell.dataset.money = row[key] === null ? 'null' : row[key];
           } else {
             cell.textContent = id === 'R06' && key === 'ngay_kham_cuoi' && row[key] === null ? 'Chưa có lần khám' : String(row[key]);
@@ -655,7 +662,7 @@
       else if (id === 'R05' || id === 'R06') renderGroupedEpisodes(data, period);
       else if (id === 'R07') renderR07(data, period);
       else renderHorizontal(data, period);
-      panel.querySelector('#analytics-applied').textContent = `Kỳ thực trả về: ${period}. ${group}. Số dòng: ${data.row_count} (${id === 'R04' ? 'số thuốc, không phải tổng đơn hoặc tổng lượng' : id === 'R07' ? 'số bệnh, không phải số mẫu; tiền VND giữ chuỗi gốc' : 'không phải tổng bệnh nhân'}).`;
+      panel.querySelector('#analytics-applied').textContent = `Kỳ thực trả về: ${period}. ${group}. Số dòng: ${data.row_count} (${id === 'R04' ? 'số thuốc, không phải tổng đơn hoặc tổng lượng' : id === 'R07' ? 'số bệnh, không phải số mẫu; tiền VND có dấu phân nhóm' : 'không phải tổng bệnh nhân'}).`;
       panel.querySelector('#analytics-caption').textContent = `${id} — ${spec.title} · ${period} · ${group}`;
       panel.querySelector('.clinical-table').setAttribute('aria-label', `Bảng ${id}`);
       panel.querySelector('#analytics-table').dataset.report = id;
@@ -666,7 +673,7 @@
         'Giữ thứ tự API và lượng kê/đơn vị riêng từng thuốc. Số đơn có thuốc khác tổng lượng kê; không cộng lượng khác đơn vị hoặc suy ra lượng cần nhập. Cuộn ngang để xem đủ cột.' : id === 'R05' ?
         'Giữ đủ hồ sơ và thứ tự API: bệnh/ngày bắt đầu/mã đợt. Mỗi dòng là một đợt tái mắc, không phải một người duy nhất. Thiếu lịch sử không có nghĩa chưa từng mắc. Cuộn ngang để xem đủ cột.' : id === 'R06' ?
         'Giữ thứ tự ưu tiên từ API: số ngày giảm, mã đợt tăng. NULL ngày khám cuối hiển thị “Chưa có lần khám”, không giả tạo ngày khám. Số điện thoại chỉ ở bảng dữ liệu giả lập. Không gọi trễ hẹn hoặc bỏ điều trị. Cuộn ngang để xem đủ 13 cột.' :
-        'Giữ thứ tự API, tiền VND dạng chuỗi gốc hai chữ số thập phân; NULL hiển thị “Không có mẫu”, khác 0.00 VND. Số đợt tính/bị loại giữ riêng; không tính lại tổng. Chọn theo ngày khỏi nhưng chi phí tính toàn đợt. Cuộn ngang để xem đủ 9 cột.';
+        'Giữ thứ tự API; tiền VND dùng dấu chấm tách hàng nghìn, dấu phẩy cho phần lẻ và ẩn phần lẻ bằng 0. NULL hiển thị “Không có mẫu”, khác 0 VND. Số đợt tính/bị loại giữ riêng; không tính lại tổng. Chọn theo ngày khỏi nhưng chi phí tính toàn đợt. Cuộn ngang để xem đủ 9 cột.';
       panel.querySelector('#analytics-data-notice').textContent = data.data_notice;
       result.hidden = false;
       status.textContent = data.rows.length ? `Đã tải ${data.row_count} dòng ${id}.` : `Đã tải ${id}: không có dữ liệu phù hợp.`;
