@@ -1,4 +1,4 @@
-# Đăng nhập và phân quyền — bản thử nghiệm
+# Đăng nhập và phân quyền
 
 Không có đăng ký công khai hoặc mật khẩu mặc định. Admin có thể cấp vai trò Người xem cho lớp dùng chung. Tất cả màn hình nghiệp vụ và API yêu cầu đăng nhập; `/health` chỉ trả trạng thái ứng dụng.
 
@@ -12,7 +12,7 @@ Không có đăng ký công khai hoặc mật khẩu mặc định. Admin có th
 | Bác sĩ | Tra cứu bệnh nhân và lịch sử, xem lượt/đợt/đơn; khám, kê đơn, xác nhận khỏi cho đợt do chính bác sĩ liên kết với tài khoản phụ trách |
 | Y tá | Tra cứu bệnh nhân và lịch sử, xem lượt/đợt/đơn; ghi/cập nhật hỗ trợ dưới mã y tá liên kết với tài khoản |
 
-Hồ sơ và lịch sử bệnh nhân là dữ liệu dùng chung trong đội ngũ khám/chăm sóc. Giới hạn sở hữu bác sĩ áp dụng cho thao tác khám, kê đơn, xác nhận khỏi; không tách lịch sử của một bệnh nhân thành nhiều phần. Bản thử nghiệm chưa có phân công bệnh nhân cho từng nhân viên hoặc giới hạn truy cập theo khoa. Admin và Người xem xem được báo cáo tổng hợp, lương/doanh thu phục vụ demo dữ liệu giả lập. Chỉ admin quản lý hồ sơ nhân sự và tài khoản.
+Hồ sơ và lịch sử bệnh nhân là dữ liệu dùng chung trong đội ngũ khám/chăm sóc. Giới hạn sở hữu bác sĩ áp dụng cho thao tác khám, kê đơn, xác nhận khỏi; không tách lịch sử của một bệnh nhân thành nhiều phần. Hiện tại chưa có phân công bệnh nhân cho từng nhân viên hoặc giới hạn truy cập theo khoa. Admin và Người xem xem được báo cáo tổng hợp, lương/doanh thu phục vụ demo dữ liệu giả lập. Chỉ admin quản lý hồ sơ nhân sự và tài khoản.
 
 Quyền được kiểm tra ở backend, kể cả URL trực tiếp và POST giả mạo. Nút không phù hợp cũng được ẩn. Admin không bỏ qua các ràng buộc nghiệp vụ/FK.
 
@@ -20,12 +20,12 @@ Luồng tiếp nhận mới chỉ tạo lượt đang chờ khám. Bác sĩ thê
 
 ## Cài lần đầu trên máy thử
 
-Dùng nhánh `feat/quyen-login-roles`, không cần cài thêm thư viện. Có thể tạo worktree mới từ PowerShell tại repo gốc:
+Dùng nhánh `main`, không cần cài thêm thư viện. Có thể tạo worktree mới từ PowerShell tại repo gốc:
 
 ```powershell
 Set-Location 'C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan'
 git fetch origin
-git worktree add --detach '..\BTL-CSDL-auth' origin/feat/quyen-login-roles
+git worktree add --detach '..\BTL-CSDL-auth' origin/main
 Copy-Item .env '..\BTL-CSDL-auth\.env'
 Set-Location '..\BTL-CSDL-auth'
 $demoPython = 'C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan\.venv\Scripts\python.exe'
