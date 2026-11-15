@@ -30,6 +30,37 @@ def test_real_mysql_account_lifecycle():
             return client.post('/auth/login',data={'username':username,'password':password,'csrf_token':token()})
         assert login('test_admin').status_code==303
         assert client.get('/auth/users').status_code==200
+        # Upgrade an existing four-role database without changing credentials.
+        with app.app_context():
+            before=fetch_one("SELECT password_hash,version FROM app_user WHERE username='test_admin'")
+            db=get_db()
+            with db.cursor() as cur:
+                cur.execute("""ALTER TABLE app_user DROP CHECK ck_app_user_role,
+                    ADD CONSTRAINT ck_app_user_role CHECK (
+                    (role IN ('admin','reception') AND doctor_id IS NULL AND nurse_id IS NULL) OR
+                    (role='doctor' AND doctor_id IS NOT NULL AND nurse_id IS NULL) OR
+                    (role='nurse' AND nurse_id IS NOT NULL AND doctor_id IS NULL))""")
+            db.commit()
+        for _ in range(2):
+            result=runner.invoke(args=['upgrade-auth'])
+            assert result.exit_code==0, result.output
+        with app.app_context():
+            assert fetch_one("SELECT password_hash,version FROM app_user WHERE username='test_admin'")==before
+        assert client.post('/auth/users',data=dict(username='class_viewer',password=password,role='viewer',active='1',csrf_token=token())).status_code==303
+        readers=[app.test_client(),app.test_client()]
+        for reader in readers:
+            reader.get('/auth/login')
+            with reader.session_transaction() as session: rt=session['_csrf']
+            assert reader.post('/auth/login',data=dict(username='class_viewer',password=password,csrf_token=rt)).status_code==303
+            assert reader.get('/patients').status_code==200
+            assert reader.get('/reports').status_code==200
+            assert reader.get('/reports/salaries?month=2026-10&format=json').status_code==200
+            assert reader.post('/patients/new',data={'csrf_token':rt}).status_code==403
+            assert reader.get('/auth/users').status_code==403
+        readers[0].get('/patients')
+        with readers[0].session_transaction() as session: rt=session['_csrf']
+        assert readers[0].post('/auth/logout',data={'csrf_token':rt}).status_code==303
+        assert readers[1].get('/patients').status_code==200
         for role in ('reception','doctor','nurse'):
             data=dict(username='test_'+role,password=password,role=role,active='1',csrf_token=token(),
                       doctor_id=doctors[0]['ma_bac_si'],nurse_id=nurses[0]['ma_y_ta'])

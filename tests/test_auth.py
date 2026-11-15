@@ -211,3 +211,51 @@ def test_password_length_boundary(length,accepted):
 
 def test_edit_can_keep_existing_password():
     assert auth.checked_account(dict(username='existing',role='reception',password=''),new=False)[-1]==''
+
+
+
+def test_viewer_can_read_but_never_open_write_forms_or_mutate(secured):
+    app,_,writes=secured
+    readable={
+        '/patients': 'clinic.listing', '/patients/BN01':'clinic.detail',
+        '/patients/BN01/history':'clinic.history', '/visits':'clinic.visits',
+        '/visits/L01':'clinical.visit_detail', '/treatments':'clinic.treatments',
+        '/prescriptions/P01':'clinical.prescription_detail', '/reports':'clinic.reports',
+        '/reports/salaries?format=json':'clinic.reports', '/reports/revenue':'clinic.reports',
+        '/api/analytics':'analytics.all_reports', '/api/analytics/R07':'analytics.one_report',
+    }
+    for endpoint in readable.values(): app.view_functions[endpoint]=lambda **kw: 'read-only-result'
+    client=app.test_client();signin(client,5)
+    for path in readable:
+        assert client.get(path).status_code==200, path
+    for path in ['/patients/new','/patients/BN01/edit','/visits/new',
+                 '/visits/L01/examinations/new','/visits/L01/support','/visits/L01/close',
+                 '/treatments/D01/cure','/examinations/K01/prescription','/auth/users']:
+        assert client.get(path).status_code==403, path
+        assert client.post(path,data={'csrf_token':'valid-token'}).status_code==403, path
+    for path in ['/patients/BN01/delete','/auth/users/3/delete']:
+        assert client.post(path,data={'csrf_token':'valid-token'}).status_code==403
+    for path in ['/doctors','/nurses','/doctors/BS01']:
+        assert client.get(path).status_code==403
+    assert not writes
+
+
+def test_shared_viewer_logins_do_not_revoke_other_sessions_or_hit_success_limit(secured):
+    app,_,_=secured
+    app.view_functions['clinic.listing']=lambda **kw: 'viewer-data'
+    first=app.test_client(); second=app.test_client()
+    def login(client):
+        client.get('/auth/login')
+        with client.session_transaction() as s: token=s['_csrf']
+        return client.post('/auth/login',data={'username':'viewer','password':'correct-password-123','csrf_token':token})
+    assert login(first).status_code==303
+    assert login(second).status_code==303
+    # More than the old shared-IP limit; successful logins must not be counted.
+    for _ in range(25):
+        assert login(app.test_client()).status_code==303
+    assert first.get('/patients').status_code==200
+    assert second.get('/patients').status_code==200
+    with first.session_transaction() as s: s['_csrf']='logout-token'
+    assert first.post('/auth/logout',data={'csrf_token':'logout-token'}).status_code==303
+    assert first.get('/patients').status_code==302
+    assert second.get('/patients').status_code==200

@@ -2,6 +2,7 @@
 import re
 import time
 from collections import OrderedDict
+from threading import Lock
 from datetime import timedelta
 import click
 import pymysql
@@ -10,10 +11,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .db import fetch_one, fetch_all, transaction
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
-ROLES = {'admin': 'Quản trị viên', 'reception': 'Tiếp nhận', 'doctor': 'Bác sĩ', 'nurse': 'Y tá'}
+ROLES = {'admin': 'Quản trị viên', 'reception': 'Tiếp nhận', 'doctor': 'Bác sĩ', 'nurse': 'Y tá', 'viewer': 'Người xem'}
 DUMMY_HASH = generate_password_hash('not-a-real-login-password')
 # Per-process IP cap supplements persistent per-account failed-login lockout.
 _attempts = OrderedDict()
+_attempts_lock = Lock()
 SCHEMA = '''CREATE TABLE IF NOT EXISTS app_user (
  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
  username VARCHAR(64) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL UNIQUE,
@@ -28,7 +30,7 @@ SCHEMA = '''CREATE TABLE IF NOT EXISTS app_user (
  CONSTRAINT fk_app_user_doctor FOREIGN KEY (doctor_id) REFERENCES bac_si(ma_bac_si),
  CONSTRAINT fk_app_user_nurse FOREIGN KEY (nurse_id) REFERENCES y_ta(ma_y_ta),
  CONSTRAINT ck_app_user_role CHECK (
-   (role IN ('admin','reception') AND doctor_id IS NULL AND nurse_id IS NULL) OR
+   (role IN ('admin','reception','viewer') AND doctor_id IS NULL AND nurse_id IS NULL) OR
    (role='doctor' AND doctor_id IS NOT NULL AND nurse_id IS NULL) OR
    (role='nurse' AND nurse_id IS NOT NULL AND doctor_id IS NULL))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci'''
@@ -48,6 +50,14 @@ def can(endpoint, **args):
     role = user['role']
     if role == 'admin':
         return True
+    if role == 'viewer':
+        if endpoint in ('clinic.listing', 'clinic.detail'):
+            return args.get('slug') == 'patients'
+        return endpoint in {
+            'clinic.home', 'clinic.visits', 'clinic.treatments', 'clinic.history',
+            'clinical.visit_detail', 'clinical.prescription_detail', 'clinic.reports',
+            'analytics.all_reports', 'analytics.one_report', 'auth.login', 'auth.logout',
+        }
     if endpoint in ('clinic.home', 'clinic.health', 'clinic.health_db'):
         return True
     if endpoint.startswith('auth.'):
@@ -107,6 +117,8 @@ def authorize():
         return redirect(url_for('auth.login'))
     if not can(endpoint, **(request.view_args or {})):
         abort(403, 'Tài khoản không có quyền sử dụng chức năng này.')
+    if g.user['role'] == 'viewer' and request.method not in ('GET', 'HEAD', 'OPTIONS') and endpoint != 'auth.logout':
+        abort(403, 'Tài khoản người xem không được thay đổi dữ liệu.')
     # Reject forged clinical IDs before rendering a form or executing a write.
     args = request.view_args or {}
     if g.user['role'] == 'doctor':
@@ -142,13 +154,11 @@ def login():
         # Do not trust forwarded headers from clients for rate limiting.
         ip = request.remote_addr or 'unknown'
         now = time.monotonic()
-        count, until = _attempts.get(ip, (0, now + 900))
-        if now >= until:
-            count, until = 0, now + 900
-        _attempts[ip] = (count + 1, until)
-        _attempts.move_to_end(ip)
-        while len(_attempts) > 4096:
-            _attempts.popitem(last=False)
+        with _attempts_lock:
+            count, until = _attempts.get(ip, (0, now + 900))
+            if now >= until:
+                count = 0
+                _attempts.pop(ip, None)
         if count >= 20:
             return render_template('auth/login.html', error='Thử quá nhiều lần. Vui lòng đợi 15 phút.'), 429
         try:
@@ -166,6 +176,15 @@ def login():
             session['user_version'] = user['version']
             session.permanent = True
             return redirect(url_for('clinic.home'), code=303)
+        # Successful logins do not consume a shared tunnel IP's failure budget.
+        with _attempts_lock:
+            count, until = _attempts.get(ip, (0, now + 900))
+            if now >= until:
+                count, until = 0, now + 900
+            _attempts[ip] = (count + 1, until)
+            _attempts.move_to_end(ip)
+            while len(_attempts) > 4096:
+                _attempts.popitem(last=False)
         if user and not user['locked']:
             with transaction() as db, db.cursor() as cur:
                 cur.execute('''UPDATE app_user SET failed_logins=IF(locked_until IS NOT NULL AND locked_until<=NOW(),1,failed_logins+1),
@@ -261,6 +280,25 @@ def delete_user(user_id):
     return redirect(url_for('auth.users'), code=303)
 
 
+def upgrade_auth_schema():
+    from .db import get_db
+    db = get_db()
+    with db.cursor() as cur:
+        cur.execute("""SELECT c.CHECK_CLAUSE FROM information_schema.CHECK_CONSTRAINTS c
+            JOIN information_schema.TABLE_CONSTRAINTS t ON t.CONSTRAINT_SCHEMA=c.CONSTRAINT_SCHEMA
+            AND t.CONSTRAINT_NAME=c.CONSTRAINT_NAME WHERE t.TABLE_SCHEMA=DATABASE()
+            AND t.TABLE_NAME='app_user' AND t.CONSTRAINT_NAME='ck_app_user_role'""")
+        row = cur.fetchone()
+        if not row:
+            raise click.ClickException('Chưa có cấu trúc tài khoản hợp lệ. Máy mới chạy init-auth trước.')
+        if "'viewer'" not in row['CHECK_CLAUSE']:
+            cur.execute("""ALTER TABLE app_user DROP CHECK ck_app_user_role,
+                ADD CONSTRAINT ck_app_user_role CHECK (
+                (role IN ('admin','reception','viewer') AND doctor_id IS NULL AND nurse_id IS NULL) OR
+                (role='doctor' AND doctor_id IS NOT NULL AND nurse_id IS NULL) OR
+                (role='nurse' AND nurse_id IS NOT NULL AND doctor_id IS NULL))""")
+
+
 def init_app(app):
     if not app.config.get('AUTH_ENABLED', True) and not app.testing:
         raise RuntimeError('Chỉ được tắt đăng nhập trong cấu hình kiểm thử.')
@@ -269,6 +307,12 @@ def init_app(app):
     app.before_request(authorize)
     app.jinja_env.globals.update(can=can, own_doctor=own_doctor)
     app.context_processor(lambda: {'current_user': g.get('user'), 'can': can, 'own_doctor': own_doctor, 'role_names': ROLES})
+
+    @app.cli.command('upgrade-auth')
+    def upgrade_auth():
+        """Allow viewer accounts without deleting existing users or clinical data."""
+        upgrade_auth_schema()
+        click.echo('Đã cập nhật vai trò Người xem; tài khoản và mật khẩu cũ được giữ nguyên.')
 
     @app.cli.command('init-auth')
     @click.option('--username', prompt='Tên đăng nhập admin')
@@ -295,4 +339,4 @@ def init_app(app):
         finally:
             with db.cursor() as cur:
                 cur.execute("SELECT RELEASE_LOCK(CONCAT('clinic-auth:',DATABASE()))")
-        click.echo('Đã tạo admin. Đăng nhập để tạo tài khoản tiếp nhận, bác sĩ và y tá.')
+        click.echo('Đã tạo admin. Đăng nhập để tạo tài khoản và gán vai trò.')

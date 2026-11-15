@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS app_user (
  CONSTRAINT fk_app_user_doctor FOREIGN KEY (doctor_id) REFERENCES bac_si(ma_bac_si),
  CONSTRAINT fk_app_user_nurse FOREIGN KEY (nurse_id) REFERENCES y_ta(ma_y_ta),
  CONSTRAINT ck_app_user_role CHECK (
-   (role IN ('admin','reception') AND doctor_id IS NULL AND nurse_id IS NULL) OR
+   (role IN ('admin','reception','viewer') AND doctor_id IS NULL AND nurse_id IS NULL) OR
    (role='doctor' AND doctor_id IS NOT NULL AND nurse_id IS NULL) OR
    (role='nurse' AND nurse_id IS NOT NULL AND doctor_id IS NULL))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
