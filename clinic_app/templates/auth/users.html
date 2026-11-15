@@ -10,7 +10,17 @@
 <label for="doctor-{{ u.id }}">Mã bác sĩ (chỉ áp dụng vai trò bác sĩ)</label><select id="doctor-{{ u.id }}" name="doctor_id"><option value="">— Chọn —</option>{% for d in doctors %}<option value="{{ d.ma_bac_si }}" {% if u.doctor_id==d.ma_bac_si %}selected{% endif %}>{{ d.ma_bac_si }} · {{ d.ho_ten }}</option>{% endfor %}</select>
 <label for="nurse-{{ u.id }}">Mã y tá (chỉ áp dụng vai trò y tá)</label><select id="nurse-{{ u.id }}" name="nurse_id"><option value="">— Chọn —</option>{% for n in nurses %}<option value="{{ n.ma_y_ta }}" {% if u.nurse_id==n.ma_y_ta %}selected{% endif %}>{{ n.ma_y_ta }} · {{ n.ho_ten }}</option>{% endfor %}</select>
 <label for="password-{{ u.id }}">Mật khẩu mới (để trống để giữ nguyên)</label><input id="password-{{ u.id }}" name="password" type="password" minlength="12" maxlength="128" autocomplete="new-password">
-<label><input type="checkbox" name="active" value="1" {% if u.active %}checked{% endif %}> Cho phép đăng nhập</label><button type="submit">Lưu tài khoản</button></form></details>
+<label><input type="checkbox" name="active" value="1" {% if u.active %}checked{% endif %}> Cho phép đăng nhập</label><button type="submit">Lưu tài khoản</button></form>
+{% if u.id != current_user.id %}
+<details class="delete"><summary>Xóa tài khoản {{ u.username }}</summary>
+<p>Chỉ xóa quyền đăng nhập. Hồ sơ bác sĩ/y tá và lịch sử khám được giữ nguyên. Thao tác xóa tài khoản không thể hoàn tác.</p>
+<form method="post" action="{{ url_for('auth.delete_user',user_id=u.id) }}" class="auth-form">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label for="confirm-{{ u.id }}">Nhập đúng tên đăng nhập: {{ u.username }}</label>
+<input id="confirm-{{ u.id }}" name="confirm_username" required autocomplete="off" spellcheck="false" maxlength="64">
+<button type="submit" class="danger">Xác nhận xóa tài khoản</button></form></details>
+{% else %}<p class="field-hint">Không thể xóa tài khoản admin đang đăng nhập.</p>{% endif %}
+</details>
 {% endfor %}
 <h2>Tạo tài khoản</h2><form method="post" class="record-form auth-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 <label for="new-username">Tên đăng nhập</label><input id="new-username" name="username" minlength="3" maxlength="64" required autocomplete="off">

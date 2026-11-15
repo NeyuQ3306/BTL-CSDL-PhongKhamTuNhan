@@ -238,6 +238,29 @@ def users():
         nurses=fetch_all('SELECT ma_y_ta,ho_ten FROM y_ta ORDER BY ma_y_ta')), status
 
 
+@bp.post('/users/<int:user_id>/delete')
+def delete_user(user_id):
+    with transaction() as db, db.cursor() as cur:
+        # Match the lock order used by account editing, including concurrent admins.
+        cur.execute('SELECT id FROM app_user ORDER BY id FOR UPDATE')
+        cur.fetchall()
+        cur.execute('SELECT id,username,role,active FROM app_user WHERE id=%s', (user_id,))
+        user = cur.fetchone()
+        if not user:
+            abort(404, 'Tài khoản không còn tồn tại.')
+        if user['id'] == g.user['id']:
+            abort(422, 'Không thể xóa tài khoản admin đang đăng nhập.')
+        if request.form.get('confirm_username', '') != user['username']:
+            abort(422, 'Nhập đúng tên đăng nhập để xác nhận xóa tài khoản.')
+        if user['role'] == 'admin' and user['active']:
+            cur.execute("SELECT COUNT(*) AS n FROM app_user WHERE role='admin' AND active=1 AND id<>%s", (user_id,))
+            if not cur.fetchone()['n']:
+                abort(422, 'Phải giữ ít nhất một admin hoạt động.')
+        cur.execute('DELETE FROM app_user WHERE id=%s', (user_id,))
+    flash('Đã xóa tài khoản. Các phiên của tài khoản này hết hiệu lực; hồ sơ nhân sự và dữ liệu khám được giữ nguyên.', 'success')
+    return redirect(url_for('auth.users'), code=303)
+
+
 def init_app(app):
     if not app.config.get('AUTH_ENABLED', True) and not app.testing:
         raise RuntimeError('Chỉ được tắt đăng nhập trong cấu hình kiểm thử.')

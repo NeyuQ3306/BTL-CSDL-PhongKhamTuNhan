@@ -26,7 +26,16 @@ def secured(monkeypatch):
     class Cursor:
         def __enter__(self): return self
         def __exit__(self, *a): pass
-        def execute(self, sql, args=()): writes.append((sql,args))
+        def execute(self, sql, args=()):
+            self.sql, self.args = sql, args
+            writes.append((sql,args))
+            if sql.startswith('DELETE FROM app_user'):
+                users.pop(args[0], None)
+        def fetchall(self): return list(users.values())
+        def fetchone(self):
+            if 'COUNT(*)' in self.sql:
+                return {'n': sum(u['role']=='admin' and u['active'] and u['id']!=self.args[0] for u in users.values())}
+            return users.get(self.args[0])
     class DB:
         def cursor(self): return Cursor()
     @contextmanager
@@ -150,3 +159,41 @@ def test_role_ui(secured, monkeypatch):
     monkeypatch.setattr(__import__('clinic_app.clinical_routes',fromlist=['patient_choices']), 'patient_choices', lambda: [])
     body=client.get('/visits/new').get_data(as_text=True)
     assert 'Tiếp nhận lượt mới' in body and 'Kết luận' not in body
+
+
+@pytest.mark.parametrize('uid,status', [(1,303),(2,403),(3,403),(4,403)])
+def test_delete_account_requires_admin(secured,uid,status):
+    app,users,writes=secured
+    client=app.test_client();signin(client,uid)
+    response=client.post('/auth/users/3/delete',data={'csrf_token':'valid-token','confirm_username':'doctor'})
+    assert response.status_code==status
+    assert (3 not in users)==(uid==1)
+    assert all('DELETE FROM bac_si' not in sql and 'DELETE FROM y_ta' not in sql for sql,_ in writes)
+
+
+def test_delete_confirmation_csrf_and_current_admin(secured):
+    app,users,_=secured
+    client=app.test_client();signin(client,1)
+    assert client.post('/auth/users/3/delete',data={'confirm_username':'doctor'}).status_code==400
+    assert client.post('/auth/users/3/delete',data={'csrf_token':'valid-token','confirm_username':'wrong'}).status_code==422
+    assert client.post('/auth/users/1/delete',data={'csrf_token':'valid-token','confirm_username':'admin'}).status_code==422
+    assert client.post('/auth/users/999/delete',data={'csrf_token':'valid-token','confirm_username':'missing'}).status_code==404
+    assert 3 in users and 1 in users
+
+
+def test_delete_revokes_existing_session(secured):
+    app,users,_=secured
+    former=app.test_client();signin(former,3)
+    admin=app.test_client();signin(admin,1)
+    assert admin.post('/auth/users/3/delete',data={'csrf_token':'valid-token','confirm_username':'doctor'}).status_code==303
+    assert former.get('/patients').status_code==302
+
+
+def test_delete_keeps_last_active_admin_after_concurrent_change(secured):
+    app,users,_=secured
+    users[5]=dict(users[1],id=5,username='second_admin')
+    @app.before_request
+    def revoked_during_request(): users[1]['active']=0
+    client=app.test_client();signin(client,1)
+    assert client.post('/auth/users/5/delete',data={'csrf_token':'valid-token','confirm_username':'second_admin'}).status_code==422
+    assert 5 in users

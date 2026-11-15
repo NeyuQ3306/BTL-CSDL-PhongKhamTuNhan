@@ -79,6 +79,23 @@ def test_real_mysql_account_lifecycle():
         with app.app_context():
             row=fetch_one("SELECT failed_logins,locked_until FROM app_user WHERE username='test_doctor'")
             assert row['failed_logins']==5 and row['locked_until'] is not None
+        # Delete an account, revoke an existing session, and preserve clinical staff.
+        auth._attempts.clear()
+        assert login('test_admin').status_code==303
+        victim=app.test_client(); victim.get('/auth/login')
+        with victim.session_transaction() as session: vt=session['_csrf']
+        assert victim.post('/auth/login',data=dict(username='test_reception',password=password,csrf_token=vt)).status_code==303
+        with app.app_context():
+            target=fetch_one("SELECT id FROM app_user WHERE username='test_reception'")['id']
+            staff_before=fetch_one('SELECT COUNT(*) AS n FROM y_ta')['n']
+        assert client.post(f'/auth/users/{target}/delete',data=dict(confirm_username='wrong',csrf_token=token())).status_code==422
+        assert client.post(f'/auth/users/{target}/delete',data=dict(confirm_username='test_reception',csrf_token=token())).status_code==303
+        assert victim.get('/patients').status_code==302
+        assert client.post(f"/auth/users/{admin['id']}/delete",data=dict(confirm_username='test_admin',csrf_token=token())).status_code==422
+        assert client.post(f"/auth/users/{nurse['id']}/delete",data=dict(confirm_username='test_nurse',csrf_token=token())).status_code==303
+        with app.app_context():
+            assert fetch_one('SELECT COUNT(*) AS n FROM y_ta')['n']==staff_before
+            assert fetch_one('SELECT id FROM app_user WHERE id=%s',(target,)) is None
     finally:
         with app.app_context():
             db=get_db()

@@ -6,7 +6,7 @@ Không có khách demo, đăng ký công khai hoặc mật khẩu mặc định.
 
 | Vai trò | Chức năng |
 |---|---|
-| Admin | Tất cả chức năng hiện có; quản lý nhân sự, báo cáo Q1–Q4/R01–R07; tạo tài khoản, gán vai trò, đặt lại mật khẩu, khóa/mở tài khoản |
+| Admin | Tất cả chức năng hiện có; quản lý nhân sự, báo cáo Q1–Q4/R01–R07; tạo tài khoản, gán vai trò, đặt lại mật khẩu, khóa/mở hoặc xóa tài khoản tạo nhầm |
 | Tiếp nhận | Xem/thêm/sửa/xóa hồ sơ bệnh nhân theo ràng buộc FK; tiếp nhận lượt chờ khám; xem danh sách/chi tiết lượt và kết thúc lượt khi đủ lần khám/hỗ trợ |
 | Bác sĩ | Tra cứu bệnh nhân và lịch sử, xem lượt/đợt/đơn; khám, kê đơn, xác nhận khỏi cho đợt do chính bác sĩ liên kết với tài khoản phụ trách |
 | Y tá | Tra cứu bệnh nhân và lịch sử, xem lượt/đợt/đơn; ghi/cập nhật hỗ trợ dưới mã y tá liên kết với tài khoản |
@@ -66,3 +66,8 @@ Mở `http://127.0.0.1:5000/auth/login`. Admin đăng nhập rồi mở **Tài k
 
 Kiểm thử auth riêng: `python -m pytest tests/test_auth.py tests/test_auth_mysql.py -v`.
 Kiểm thử MySQL cần `RUN_MYSQL_TESTS=1` và DB riêng kết thúc `_test`, đã import seed. Bài kiểm thử tự tạo/xóa bảng tài khoản của nó; từ chối chạy nếu bảng đó đã tồn tại.
+
+
+### Xóa tài khoản tạo nhầm
+
+Admin vào **Tài khoản**, mở tài khoản cần xóa rồi mở **Xóa tài khoản**, nhập chính xác tên đăng nhập và bấm **Xác nhận xóa tài khoản**. Không thể tự xóa admin đang đăng nhập hoặc xóa admin hoạt động cuối cùng. Tài khoản bị xóa không đăng nhập được, các phiên cũ hết hiệu lực ở request tiếp theo. Không xóa hồ sơ bác sĩ/y tá, bệnh nhân hay lịch sử khám liên quan.
