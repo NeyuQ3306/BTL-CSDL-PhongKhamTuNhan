@@ -1,6 +1,6 @@
 {% extends 'week1/base.html' %}
 {% from 'auth/password_field.html' import password_field %}
-{% block content %}<h1>Quản lý tài khoản</h1><p>Admin có toàn quyền. Bác sĩ và y tá phải liên kết đúng mã nhân sự. Không có tài khoản khách hoặc đăng ký công khai.</p>
+{% block content %}<h1>Quản lý tài khoản</h1><p>Admin có toàn quyền. Bác sĩ và y tá phải liên kết đúng mã nhân sự. Vai trò Người xem dành cho lớp dùng chung: xem hồ sơ bệnh nhân và báo cáo, không thay đổi dữ liệu. Không có đăng ký công khai.</p>
 {% if error %}<p class="notice error" role="alert">{{ error }}</p>{% endif %}
 <h2>Tài khoản hiện có</h2>
 {% for u in users %}

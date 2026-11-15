@@ -1,17 +1,18 @@
 # Đăng nhập và phân quyền — bản thử nghiệm
 
-Không có khách demo, đăng ký công khai hoặc mật khẩu mặc định. Tất cả màn hình nghiệp vụ và API yêu cầu đăng nhập; `/health` chỉ trả trạng thái ứng dụng.
+Không có đăng ký công khai hoặc mật khẩu mặc định. Admin có thể cấp vai trò Người xem cho lớp dùng chung. Tất cả màn hình nghiệp vụ và API yêu cầu đăng nhập; `/health` chỉ trả trạng thái ứng dụng.
 
 ## Phạm vi quyền
 
 | Vai trò | Chức năng |
 |---|---|
 | Admin | Tất cả chức năng hiện có; quản lý nhân sự, báo cáo Q1–Q4/R01–R07; tạo tài khoản, gán vai trò, đặt lại mật khẩu, khóa/mở hoặc xóa tài khoản tạo nhầm |
+| Người xem | Xem hồ sơ bệnh nhân, lịch sử, lượt/đợt/đơn thuốc, Q1–Q4 và R01–R07, sử dụng bộ lọc; không xem trang quản lý nhân sự/tài khoản, không thêm/sửa/xóa |
 | Tiếp nhận | Xem/thêm/sửa/xóa hồ sơ bệnh nhân theo ràng buộc FK; tiếp nhận lượt chờ khám; xem danh sách/chi tiết lượt và kết thúc lượt khi đủ lần khám/hỗ trợ |
 | Bác sĩ | Tra cứu bệnh nhân và lịch sử, xem lượt/đợt/đơn; khám, kê đơn, xác nhận khỏi cho đợt do chính bác sĩ liên kết với tài khoản phụ trách |
 | Y tá | Tra cứu bệnh nhân và lịch sử, xem lượt/đợt/đơn; ghi/cập nhật hỗ trợ dưới mã y tá liên kết với tài khoản |
 
-Hồ sơ và lịch sử bệnh nhân là dữ liệu dùng chung trong đội ngũ khám/chăm sóc. Giới hạn sở hữu bác sĩ áp dụng cho thao tác khám, kê đơn, xác nhận khỏi; không tách lịch sử của một bệnh nhân thành nhiều phần. Bản thử nghiệm chưa có phân công bệnh nhân cho từng nhân viên hoặc giới hạn truy cập theo khoa. Chỉ admin xem báo cáo tổng hợp, lương/doanh thu và hồ sơ nhân sự.
+Hồ sơ và lịch sử bệnh nhân là dữ liệu dùng chung trong đội ngũ khám/chăm sóc. Giới hạn sở hữu bác sĩ áp dụng cho thao tác khám, kê đơn, xác nhận khỏi; không tách lịch sử của một bệnh nhân thành nhiều phần. Bản thử nghiệm chưa có phân công bệnh nhân cho từng nhân viên hoặc giới hạn truy cập theo khoa. Admin và Người xem xem được báo cáo tổng hợp, lương/doanh thu phục vụ demo dữ liệu giả lập. Chỉ admin quản lý hồ sơ nhân sự và tài khoản.
 
 Quyền được kiểm tra ở backend, kể cả URL trực tiếp và POST giả mạo. Nút không phù hợp cũng được ẩn. Admin không bỏ qua các ràng buộc nghiệp vụ/FK.
 
@@ -50,7 +51,7 @@ Mở `http://127.0.0.1:5000/auth/login`. Admin đăng nhập rồi mở **Tài k
 - Bác sĩ/y tá liên kết bằng FK tới hồ sơ nhân sự. Không xóa nhân sự đang liên kết với tài khoản; khóa tài khoản khi ngừng sử dụng.
 - CSRF cho đăng nhập, đăng xuất và mọi thao tác ghi. Đăng nhập xóa phiên cũ. Phiên có thời hạn 8 giờ; đặt `COOKIE_SECURE=true` khi chỉ phục vụ qua HTTPS (bỏ/false khi thử HTTP localhost).
 - Mỗi request tải lại vai trò và trạng thái từ DB. Đổi quyền/mật khẩu hoặc khóa tài khoản sẽ làm phiên cũ hết hiệu lực. Không tự khóa/hạ quyền admin đang dùng và không bỏ admin cuối cùng.
-- Sai mật khẩu 5 lần khóa tài khoản 15 phút; admin có thể lưu lại tài khoản để mở khóa. Có thêm giới hạn theo IP 20 lần/15 phút trong một tiến trình. Khi triển khai nhiều worker/proxy cần rate limiter dùng kho chung và cấu hình proxy tin cậy; chưa có MFA, email khôi phục hoặc audit thao tác người dùng.
+- Sai mật khẩu 5 lần khóa tài khoản 15 phút; admin có thể lưu lại tài khoản để mở khóa. Có thêm giới hạn theo IP 20 lần thất bại/15 phút trong một tiến trình; đăng nhập thành công không tiêu hao hạn mức này, tránh chặn lớp dùng chung qua tunnel. Khi triển khai nhiều worker/proxy cần rate limiter dùng kho chung và cấu hình proxy tin cậy; chưa có MFA, email khôi phục hoặc audit thao tác người dùng.
 - Chỉ được tắt auth bằng `AUTH_ENABLED=False` trong `TESTING=True` của các bộ kiểm thử hồi quy. Không có biến môi trường tắt xác thực ở bản chạy thông thường. Các runner kiểm thử riêng chạy với cấu hình này để giữ kiểm tra nghiệp vụ cũ, không dùng các runner đó làm máy chủ demo công khai.
 
 ## Checklist thử cùng nhóm
@@ -73,3 +74,12 @@ Kiểm thử MySQL cần `RUN_MYSQL_TESTS=1` và DB riêng kết thúc `_test`, 
 Admin vào **Tài khoản**, mở tài khoản cần xóa rồi mở **Xóa tài khoản**, nhập chính xác tên đăng nhập và bấm **Xác nhận xóa tài khoản**. Không thể tự xóa admin đang đăng nhập hoặc xóa admin hoạt động cuối cùng. Tài khoản bị xóa không đăng nhập được, các phiên cũ hết hiệu lực ở request tiếp theo. Không xóa hồ sơ bác sĩ/y tá, bệnh nhân hay lịch sử khám liên quan.
 
 Giới hạn 6–36 ký tự áp dụng khi tạo/đổi mật khẩu (kể cả init-auth). Mật khẩu đã tạo trước đó được giữ nguyên và vẫn đăng nhập được.
+
+
+## Dùng chung tài khoản Người xem qua Cloudflare
+
+Máy đã khởi tạo tài khoản ở bản trước: dừng web, cập nhật code rồi chạy `python -m flask --app app upgrade-auth` một lần bằng tài khoản MySQL có quyền ALTER bảng. Lệnh chạy lại an toàn, chỉ mở rộng CHECK vai trò; không xóa tài khoản/mật khẩu hay dữ liệu nghiệp vụ. Máy mới dùng init-auth như trên; không import lại seed.
+
+Admin vào Tài khoản, tạo tên như `lop_demo`, đặt mật khẩu riêng 6–36 ký tự và chọn **Người xem**. Không chọn mã bác sĩ/y tá cho vai trò này. Chia sẻ link Cloudflare/QR và tài khoản đó; không chia sẻ admin. Mỗi trình duyệt có cookie/phiên riêng, nhiều người đăng nhập đồng thời được; một người đăng xuất không kết thúc phiên người khác. Các bộ lọc nằm trong URL/request, không sửa dữ liệu chung. Đổi mật khẩu/quyền, khóa hoặc xóa tài khoản dùng chung sẽ vô hiệu hóa tất cả phiên của tài khoản đó ở request tiếp theo.
+
+Tài khoản dùng chung vẫn áp dụng khóa 15 phút nếu sai mật khẩu 5 lần; admin có thể lưu lại tài khoản để mở khóa. Chỉ dùng dữ liệu giả lập cho lớp; quyền đọc không ngăn người xem chụp/tải nội dung. Tunnel vẫn cần laptop, Flask, MySQL và Internet hoạt động; số người phục vụ đồng thời phụ thuộc tài nguyên máy, chưa có kiểm thử tải cả lớp.
