@@ -186,8 +186,8 @@ def checked_account(data, new=False):
     password = data.get('password', '')
     if not re.fullmatch(r'[a-z0-9_.-]{3,64}', username) or role not in ROLES:
         raise ValueError('Tên đăng nhập cần 3–64 ký tự a-z, số, _, . hoặc -; chọn vai trò hợp lệ.')
-    if (new or password) and not 12 <= len(password) <= 128:
-        raise ValueError('Mật khẩu cần từ 12 đến 128 ký tự.')
+    if (new or password) and not 6 <= len(password) <= 36:
+        raise ValueError('Mật khẩu cần từ 6 đến 36 ký tự.')
     doctor = data.get('doctor_id', '').strip() if role == 'doctor' else None
     nurse = data.get('nurse_id', '').strip() if role == 'nurse' else None
     for value, table, key in ((doctor, 'bac_si', 'ma_bac_si'), (nurse, 'y_ta', 'ma_y_ta')):
@@ -276,8 +276,8 @@ def init_app(app):
     def init_auth(username, password):
         """Create optional account table and the first admin, without touching clinical data."""
         username = username.strip().lower()
-        if not re.fullmatch(r'[a-z0-9_.-]{3,64}', username) or not 12 <= len(password) <= 128:
-            raise click.ClickException('Tên tài khoản không hợp lệ hoặc mật khẩu không đủ 12–128 ký tự.')
+        if not re.fullmatch(r'[a-z0-9_.-]{3,64}', username) or not 6 <= len(password) <= 36:
+            raise click.ClickException('Tên tài khoản không hợp lệ hoặc mật khẩu không đủ 6–36 ký tự.')
         from .db import get_db
         db = get_db()
         with db.cursor() as cur:

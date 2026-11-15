@@ -33,7 +33,7 @@ $env:FLASK_DEBUG = 'false'
 & $demoPython -m flask --app app init-auth --username admin
 ```
 
-Nhập mật khẩu riêng **12–128 ký tự** hai lần; lúc nhập không hiện ký tự là bình thường. Dùng tài khoản MySQL có quyền tạo bảng cho bước này. Nếu admin đã có, lệnh từ chối tạo lại hoặc ghi đè mật khẩu. Không import lại seed hoặc file SQL nộp bài lên database đang dùng.
+Nhập mật khẩu riêng **6–36 ký tự** hai lần; lúc nhập không hiện ký tự là bình thường. Dùng tài khoản MySQL có quyền tạo bảng cho bước này. Nếu admin đã có, lệnh từ chối tạo lại hoặc ghi đè mật khẩu. Không import lại seed hoặc file SQL nộp bài lên database đang dùng.
 
 ```powershell
 & $demoPython .\app.py
@@ -71,3 +71,5 @@ Kiểm thử MySQL cần `RUN_MYSQL_TESTS=1` và DB riêng kết thúc `_test`, 
 ### Xóa tài khoản tạo nhầm
 
 Admin vào **Tài khoản**, mở tài khoản cần xóa rồi mở **Xóa tài khoản**, nhập chính xác tên đăng nhập và bấm **Xác nhận xóa tài khoản**. Không thể tự xóa admin đang đăng nhập hoặc xóa admin hoạt động cuối cùng. Tài khoản bị xóa không đăng nhập được, các phiên cũ hết hiệu lực ở request tiếp theo. Không xóa hồ sơ bác sĩ/y tá, bệnh nhân hay lịch sử khám liên quan.
+
+Giới hạn 6–36 ký tự áp dụng khi tạo/đổi mật khẩu (kể cả init-auth). Mật khẩu đã tạo trước đó được giữ nguyên và vẫn đăng nhập được.

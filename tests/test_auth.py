@@ -197,3 +197,17 @@ def test_delete_keeps_last_active_admin_after_concurrent_change(secured):
     client=app.test_client();signin(client,1)
     assert client.post('/auth/users/5/delete',data={'csrf_token':'valid-token','confirm_username':'second_admin'}).status_code==422
     assert 5 in users
+
+
+@pytest.mark.parametrize('length,accepted', [(0,False),(5,False),(6,True),(36,True),(37,False)])
+def test_password_length_boundary(length,accepted):
+    data=dict(username='new_account',role='reception',password='x'*length)
+    if accepted:
+        assert auth.checked_account(data,new=True)[-1]=='x'*length
+    else:
+        with pytest.raises(ValueError,match='6 đến 36'):
+            auth.checked_account(data,new=True)
+
+
+def test_edit_can_keep_existing_password():
+    assert auth.checked_account(dict(username='existing',role='reception',password=''),new=False)[-1]==''

@@ -15,7 +15,7 @@ def test_real_mysql_account_lifecycle():
             pytest.skip('Refuse to overwrite existing authentication table')
         doctors=fetch_all('SELECT ma_bac_si FROM bac_si ORDER BY ma_bac_si LIMIT 2')
         nurses=fetch_all('SELECT ma_y_ta FROM y_ta ORDER BY ma_y_ta LIMIT 2')
-    password='disposable-auth-password-123'
+    password='six123'
     runner=app.test_cli_runner()
     try:
         result=runner.invoke(args=['init-auth','--username','test_admin'],input=password+'\n'+password+'\n')
