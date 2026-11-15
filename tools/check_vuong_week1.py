@@ -48,7 +48,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     env_hash = hashlib.sha256((ROOT / '.env').read_bytes()).hexdigest()
     os.environ['DB_NAME'] = DEMO_DB
-    app = create_app({'TESTING': True})
+    app = create_app({'TESTING': True, 'AUTH_ENABLED': False})
     require(app.config['DB_NAME'] == DEMO_DB, 'Refusing database other than the dedicated demo')
     before = snapshot(app)
     results = []
@@ -257,3 +257,4 @@ def main():
 
 if __name__ == '__main__':
     raise SystemExit(main())
+

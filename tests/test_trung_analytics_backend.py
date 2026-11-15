@@ -13,7 +13,7 @@ from tools.analytics_oracle import expected, seed_rows
 
 @pytest.fixture
 def api():
-    return create_app({'TESTING': True, 'SECRET_KEY': 'analytics-test', 'CSRF_ENABLED': False}).test_client()
+    return create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'analytics-test', 'CSRF_ENABLED': False}).test_client()
 
 
 @pytest.mark.parametrize('path', [
@@ -82,7 +82,7 @@ def test_single_snapshot_and_rollback_on_success_or_query_failure(monkeypatch, f
             raise pymysql.OperationalError(2013, 'private-host-secret')
     cursor.execute.side_effect = execute
     monkeypatch.setattr(analytics, 'get_db', lambda: db)
-    app = create_app({'TESTING':True,'SECRET_KEY':'test'})
+    app = create_app({'TESTING':True, 'AUTH_ENABLED':False,'SECRET_KEY':'test'})
     with app.app_context():
         if failed:
             with pytest.raises(pymysql.OperationalError):
@@ -103,7 +103,7 @@ def test_single_snapshot_and_rollback_on_success_or_query_failure(monkeypatch, f
 
 def test_no_nested_write_transaction(monkeypatch):
     from flask import g
-    app = create_app({'TESTING':True,'SECRET_KEY':'test'})
+    app = create_app({'TESTING':True, 'AUTH_ENABLED':False,'SECRET_KEY':'test'})
     with app.app_context():
         g.in_transaction = True
         with pytest.raises(RuntimeError):
@@ -225,3 +225,4 @@ def test_bound_service_sql_matches_contract_with_adversarial_data(edge_db,start,
             actual = analytics.payload(name,list(cursor.fetchall()),values)
             assert actual['rows'] == analytics.serialize(wanted[name])
     # Read snapshot lifecycle is tested independently; this fixture remains uncommitted.
+

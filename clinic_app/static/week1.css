@@ -147,3 +147,50 @@ tbody th.record-code { background: transparent; font-weight: 600; color: #365965
   .actions { gap: 12px; }
   .site-footer { padding: 20px; }
 }
+
+
+/* Account and session controls use the existing clinic palette. */
+.session-bar { max-width: 1200px; margin: 0 auto; padding: .5rem 1rem; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; flex-wrap: wrap; }
+.session-bar form { margin: 0; }
+.auth-card { max-width: 30rem; margin: 2rem auto; padding: 2rem; background: white; border: 1px solid var(--border, #dbe5e8); border-radius: 16px; }
+.auth-form { display: grid; gap: .75rem; max-width: 42rem; }
+.auth-form input:not([type=checkbox]), .auth-form select { width: 100%; min-width: 0; box-sizing: border-box; }
+.auth-form input[type=checkbox] { width: auto; }
+.account-editor { padding: 1rem; margin: 1rem 0; border: 1px solid #dbe5e8; border-radius: 12px; background: white; }
+.account-editor summary { cursor: pointer; font-weight: 600; margin-bottom: 1rem; }
+@media(max-width: 600px) { .auth-card { padding: 1rem; margin: 1rem 0; } .session-bar { justify-content: space-between; } }
+
+/* Keep account dropdowns the same size and visual weight as text inputs. */
+.auth-form select {
+  appearance: none;
+  min-height: 48px;
+  padding: 10px 42px 10px 14px;
+  border: 1px solid #b6c8d2;
+  border-radius: 8px;
+  font: inherit;
+  line-height: 1.6;
+  color: #243746;
+  background-color: #fff;
+  background-image: linear-gradient(45deg, transparent 50%, #526875 50%), linear-gradient(135deg, #526875 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+}
+.auth-form select:hover { border-color: var(--accent); }
+.auth-form select:focus { outline: 3px solid #b9e4e2; outline-offset: 1px; border-color: var(--accent); }
+.auth-form select option { color: #243746; background: #fff; }
+.auth-form .auth-check { display: flex; align-items: center; gap: 10px; margin: 8px 0; cursor: pointer; }
+.auth-form .auth-check input[type=checkbox] { flex: 0 0 18px; width: 18px; height: 18px; min-height: 18px; margin: 0; accent-color: var(--accent); }
+@media (forced-colors: active) { .auth-form select { appearance: auto; background-image: none; } }
+
+/* Reveal controls remain present with autofill, focus changes and empty input. */
+.password-field { position: relative; min-width: 0; }
+.auth-form .password-field.is-enhanced input { padding-right: 94px; }
+.password-field .password-toggle { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 5px; min-height: 36px; padding: 4px 9px; border: 0; border-radius: 5px; background: transparent; color: var(--accent); font-size: 13px; line-height: 1.4; }
+.password-field .password-toggle:hover { background: #e3f1ef; color: #034e50; }
+.password-field .password-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+.password-field .password-toggle[hidden] { display: none; }
+.password-field.is-enhanced input::-ms-reveal, .password-field.is-enhanced input::-ms-clear { display: none; }
+@media (pointer: coarse) { .password-field .password-toggle { min-height: 44px; } .auth-form .password-field input { min-height: 54px; } }

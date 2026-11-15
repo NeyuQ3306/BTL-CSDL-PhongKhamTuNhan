@@ -118,7 +118,7 @@ def main():
             report['import'].append(dict(file=name, result_sets=len(rows)))
         from clinic_app import create_app
         from tools.audit_seed import audit, EXPECTED
-        app = create_app()
+        app = create_app({'TESTING': True, 'AUTH_ENABLED': False})
         assert app.config['DB_PORT'] == port and app.config['DB_NAME'] == database
 
         def snapshot():
@@ -244,3 +244,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

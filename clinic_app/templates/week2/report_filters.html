@@ -5,5 +5,6 @@
 <datalist id="report-patients">{% for p in patients %}<option value="{{ p.ma_benh_nhan }}">{{ p.ho_ten }}</option>{% endfor %}</datalist>
 <small id="patient-hint" class="field-hint">Gõ mã và chọn gợi ý, hoặc tìm theo tên trong danh sách bệnh nhân. Lịch sử bao gồm mọi tháng.</small>
 {% if filter_error %}<p id="patient-error" class="error-text" role="alert">{{ filter_error }}</p>{% endif %}</div>
-<button type="submit">Xem lịch sử</button><a href="{{ url_for('clinic.listing',slug='patients') }}">Tìm bệnh nhân</a></form>
+<button type="submit">Xem lịch sử</button>{% if can('clinic.listing',slug='patients') %}<a href="{{ url_for('clinic.listing',slug='patients') }}">Tìm bệnh nhân</a>{% endif %}</form>
 {% endmacro %}
+

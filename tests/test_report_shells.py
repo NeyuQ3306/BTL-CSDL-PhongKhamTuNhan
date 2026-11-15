@@ -5,7 +5,7 @@ from clinic_app import create_app, reports
 
 @pytest.fixture
 def report_client():
-    return create_app({'TESTING': True, 'SECRET_KEY': 'report-test-session'}).test_client()
+    return create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'report-test-session'}).test_client()
 
 @pytest.mark.parametrize('kind',['diseases','salaries','revenue'])
 def test_integrated_report_dispatch(monkeypatch,report_client,kind):
@@ -33,3 +33,4 @@ def test_hub_and_single_report_url(report_client):
     rules=[r for r in report_client.application.url_map.iter_rules() if r.rule.startswith('/reports/<')]
     assert len(rules)==1
     assert report_client.get('/reports/unknown').status_code==404
+

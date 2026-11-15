@@ -66,6 +66,10 @@ def examination(cur, visit, data):
     elif mode != 'existing':
         v.invalid('Chọn đợt mới hoặc tái khám.')
     episode = one(cur, 'SELECT * FROM dot_dieu_tri WHERE ma_dot=%s FOR UPDATE', (episode_id,))
+    from .auth import require_doctor
+    from flask import g
+    if g.get('user'):
+        require_doctor(episode['ma_bac_si'])
     episode_id = episode['ma_dot']
     if episode['ma_benh_nhan'] != visit['ma_benh_nhan']:
         v.invalid('Lượt và đợt phải thuộc cùng bệnh nhân.')
@@ -92,6 +96,9 @@ def examination(cur, visit, data):
 
 def support(cur, visit, data):
     nurse = v.code(data.get('ma_y_ta'), 'Mã y tá')
+    from flask import g, abort
+    if g.get('user') and g.user['role'] == 'nurse' and nurse.casefold() != g.user['nurse_id'].casefold():
+        abort(403, 'Chỉ được ghi hỗ trợ dưới mã y tá của mình.')
     day = v.day(data.get('ngay_ho_tro'), 'Ngày hỗ trợ')
     content = v.text(data.get('noi_dung_ho_tro'), 'Nội dung hỗ trợ')
     within_visit(visit, day)
@@ -155,6 +162,10 @@ def cure(episode_id, data):
     end = v.day(data.get('ngay_khoi'), 'Ngày khỏi')
     with transaction() as db, db.cursor() as cur:
         episode = episode_lock(cur, episode_id)
+        from .auth import require_doctor
+        from flask import g
+        if g.get('user'):
+            require_doctor(episode['ma_bac_si'])
         if episode['trang_thai'] != 'Đang điều trị':
             raise Conflict('Đợt đã được xác nhận khỏi.')
         cur.execute('SELECT ngay_kham FROM lan_kham_benh WHERE ma_dot=%s FOR UPDATE', (episode_id,))
@@ -179,6 +190,11 @@ def prescribe(exam_id, data, lines):
             WHERE k.ma_lan_kham=%s''', (exam_id,))
         patient_lock(cur, owner['ma_benh_nhan'])
         exam = one(cur, 'SELECT * FROM lan_kham_benh WHERE ma_lan_kham=%s FOR UPDATE', (exam_id,))
+        from .auth import require_doctor
+        from flask import g
+        if g.get('user'):
+            episode = one(cur, 'SELECT ma_bac_si FROM dot_dieu_tri WHERE ma_dot=%s FOR SHARE', (exam['ma_dot'],))
+            require_doctor(episode['ma_bac_si'])
         if order_day != exam['ngay_kham']:
             v.invalid('Ngày lập đơn phải bằng ngày khám (quy ước tích hợp).')
         cur.execute('SELECT ma_don FROM don_thuoc WHERE ma_lan_kham=%s FOR UPDATE', (exam_id,))
@@ -191,3 +207,15 @@ def prescribe(exam_id, data, lines):
             cur.execute('''INSERT INTO chi_tiet_don_thuoc (ma_don,ma_thuoc,so_luong,lieu_dung,don_gia_ban)
                 VALUES (%s,%s,%s,%s,%s)''', (order_id, medicine['ma_thuoc'], count, usage, medicine['gia_hien_tai']))
     return order_id
+
+
+
+def intake_visit(data):
+    """Reception opens a pending visit; medical findings are entered by the doctor."""
+    patient = v.code(data.get('ma_benh_nhan'), 'Mã bệnh nhân')
+    visit_id = v.code(data.get('ma_luot'), 'Mã lượt')
+    start = v.day(data.get('ngay_vao_vien'), 'Ngày vào viện')
+    with transaction() as db, db.cursor() as cur:
+        patient = patient_lock(cur, patient)['ma_benh_nhan']
+        cur.execute('INSERT INTO luot_den_kham (ma_luot,ngay_vao_vien,ma_benh_nhan) VALUES (%s,%s,%s)', (visit_id, start, patient))
+    return visit_id

@@ -28,7 +28,7 @@ def test_start_without_database(monkeypatch):
     def disconnected(**kwargs):
         raise pymysql.OperationalError(2003, 'private connection information')
     monkeypatch.setattr(pymysql, 'connect', disconnected)
-    app = create_app({'TESTING':True, 'SECRET_KEY':'unit-test'})
+    app = create_app({'TESTING':True, 'AUTH_ENABLED':False, 'SECRET_KEY':'unit-test'})
     c = app.test_client()
     assert c.get('/health').json == {'status':'ok'}
     assert c.get('/health/db').status_code == 503
@@ -119,7 +119,7 @@ def test_read_foundation_and_seed_counts(client, app):
 
 @pytest.mark.parametrize('invalid_token', ['không hợp lệ', '😀'])
 def test_unicode_csrf_is_bad_request(invalid_token):
-    app = create_app({'TESTING': True, 'SECRET_KEY': 'unit-test'})
+    app = create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'unit-test'})
     client = app.test_client()
     client.get('/patients/new')
     assert client.post('/patients/new', data={'csrf_token': invalid_token}).status_code == 400
@@ -164,3 +164,4 @@ def test_case_variant_url_keeps_stored_primary_key(client, token, app, slug, sto
         with app.app_context():
             with transaction() as db, db.cursor() as cur:
                 cur.execute(f'DELETE FROM {entity.table} WHERE {entity.pk}=%s', (stored_id,))
+
