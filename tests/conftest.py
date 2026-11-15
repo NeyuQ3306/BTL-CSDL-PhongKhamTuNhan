@@ -9,7 +9,7 @@ def app():
         pytest.skip('Set RUN_MYSQL_TESTS=1 and point DB_NAME to a disposable *_test database')
     if not os.getenv('DB_NAME', '').endswith('_test'):
         pytest.fail('Refusing integration tests: DB_NAME must end with _test')
-    return create_app({'TESTING': True, 'SECRET_KEY': 'disposable-test-session-key'})
+    return create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'disposable-test-session-key'})
 
 
 @pytest.fixture
@@ -22,3 +22,4 @@ def token(client):
     client.get('/patients/new')
     with client.session_transaction() as session:
         return session['_csrf']
+

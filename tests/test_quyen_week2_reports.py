@@ -90,7 +90,7 @@ def test_q3_all_seed_patients(patient_id):
     reports = backend()
     if reports is not None:
         from clinic_app import create_app
-        with create_app({'TESTING':True, 'SECRET_KEY':'oracle-test-key'}).app_context():
+        with create_app({'TESTING':True, 'AUTH_ENABLED':False, 'SECRET_KEY':'oracle-test-key'}).app_context():
             history = reports.history(patient_id)
         actual = [[history['patient']],history['visits'],history['treatments'],
                   history['current'],history['examinations'],history['medicines'],history['support']]
@@ -120,7 +120,7 @@ def test_monthly_seed_oracle_and_backend(month):
     if reports is None:
         return
     from clinic_app import create_app
-    with create_app({'TESTING':True, 'SECRET_KEY':'oracle-test-key'}).app_context():
+    with create_app({'TESTING':True, 'AUTH_ENABLED':False, 'SECRET_KEY':'oracle-test-key'}).app_context():
         report = reports.diseases(month)
         assert {x['ma_benh']:x['so_dot_mac'] for x in report['rows']} == expected_disease
         assert report['total'] == sum(expected_disease.values())
@@ -204,7 +204,7 @@ def test_period_boundaries(boundary_db, monkeypatch, month, as_of, episodes, fee
         from clinic_app import create_app
         monkeypatch.setattr('clinic_app.db.get_db', lambda: boundary_db)
         monkeypatch.setattr(reports,'today_vn',lambda:date.fromisoformat(as_of))
-        with create_app({'TESTING':True,'SECRET_KEY':'boundary-test'}).app_context():
+        with create_app({'TESTING':True, 'AUTH_ENABLED':False,'SECRET_KEY':'boundary-test'}).app_context():
             assert reports.revenue(month)['total'] == fees+medicines
             assert {x['ma_benh']:x['so_dot_mac'] for x in reports.diseases(month)['rows']} == ({'QW2B':episodes} if episodes else {})
             salary = reports.salaries(month)
@@ -230,7 +230,7 @@ def test_new_history_and_empty_patient(boundary_db, monkeypatch):
         from clinic_app import create_app
         from werkzeug.exceptions import NotFound
         monkeypatch.setattr('clinic_app.db.get_db',lambda:boundary_db)
-        with create_app({'TESTING':True,'SECRET_KEY':'boundary-test'}).app_context():
+        with create_app({'TESTING':True, 'AUTH_ENABLED':False,'SECRET_KEY':'boundary-test'}).app_context():
             history = reports.history('QW2P')
             assert {x['ma_dot']:x['lan_kham_hien_tai'] for x in history['treatments']} == {'QW2D1':3,'QW2D2':1}
             assert [x['ma_dot'] for x in history['current']] == ['QW2D2']
@@ -242,3 +242,4 @@ def test_new_history_and_empty_patient(boundary_db, monkeypatch):
             assert all(not empty[key] for key in ('visits','treatments','current','examinations','medicines','support'))
             with pytest.raises(NotFound):
                 reports.history('QW2MISSING')
+

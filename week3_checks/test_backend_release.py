@@ -13,7 +13,7 @@ from clinic_app import db as database
 
 @pytest.fixture
 def unit_app():
-    return create_app({'TESTING': True, 'SECRET_KEY': 'week3-disposable-session'})
+    return create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'week3-disposable-session'})
 
 
 @pytest.mark.parametrize('value', ['0', '0.00', '999999999999', '999999999999.00'])
@@ -65,7 +65,7 @@ def test_teardown_never_commits_and_closes_after_rollback_failure(unit_app):
 def live_app():
     if os.getenv('RUN_MYSQL_TESTS') != '1':
         pytest.skip('Real MySQL checks require RUN_MYSQL_TESTS=1')
-    app = create_app({'TESTING': True, 'SECRET_KEY': 'week3-live-session'})
+    app = create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'week3-live-session'})
     if not app.config['DB_NAME'].endswith('_test'):
         pytest.fail('Use an isolated database ending in _test')
     return app
@@ -159,3 +159,4 @@ def test_missing_data_returns_404(live_app, path):
     assert response.status_code == 404
     if 'format=json' in path:
         assert response.is_json and set(response.json) == {'error'}
+

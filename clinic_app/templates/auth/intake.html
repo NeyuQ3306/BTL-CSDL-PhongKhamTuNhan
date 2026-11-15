@@ -1,0 +1,8 @@
+{% extends 'week1/base.html' %}
+{% block content %}<h1>Tiếp nhận lượt mới</h1><p>Ghi nhận bệnh nhân đến khám. Bác sĩ nhập lần khám, y tá nhập hỗ trợ sau khi tiếp nhận.</p>
+{% if error %}<p class="notice error" role="alert">{{ error }}</p>{% endif %}
+<form method="post" class="record-form auth-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label for="ma_luot">Mã lượt mới</label><input id="ma_luot" name="ma_luot" value="{{ values.get('ma_luot','') }}" maxlength="12" required>
+<label for="ma_benh_nhan">Bệnh nhân</label><select id="ma_benh_nhan" name="ma_benh_nhan" required><option value="">— Chọn —</option>{% for p in patients %}<option value="{{ p.ma_benh_nhan }}" {% if values.get('ma_benh_nhan')==p.ma_benh_nhan %}selected{% endif %}>{{ p.ma_benh_nhan }} · {{ p.ho_ten }}</option>{% endfor %}</select>
+<label for="ngay_vao_vien">Ngày đến khám</label><input id="ngay_vao_vien" name="ngay_vao_vien" type="date" min="1900-01-01" max="{{ today }}" value="{{ values.get('ngay_vao_vien',today) }}" required>
+<div class="actions"><button type="submit">Tiếp nhận</button><a href="{{ url_for('clinic.visits') }}">Hủy</a></div></form>{% endblock %}

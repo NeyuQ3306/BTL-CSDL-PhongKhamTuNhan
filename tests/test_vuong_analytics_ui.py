@@ -43,7 +43,7 @@ def ui(monkeypatch):
         return analytics.payload(report_id, rows, values)
 
     monkeypatch.setattr(analytics, 'build', build)
-    app = create_app({'TESTING': True, 'SECRET_KEY': 'disposable-ui-check'})
+    app = create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'disposable-ui-check'})
     server = make_server('127.0.0.1', 0, app, threaded=True)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
@@ -301,3 +301,4 @@ def test_rows_must_match_selected_age(ui):
     expect(page.locator('#analytics-error')).to_contain_text('không đúng hợp đồng')
     expect(page.locator('#analytics-result')).to_be_hidden()
     expect(page.locator('#r01-chart .chart-segment')).to_have_count(0)
+

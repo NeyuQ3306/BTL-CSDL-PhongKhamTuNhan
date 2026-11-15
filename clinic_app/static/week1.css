@@ -147,3 +147,15 @@ tbody th.record-code { background: transparent; font-weight: 600; color: #365965
   .actions { gap: 12px; }
   .site-footer { padding: 20px; }
 }
+
+
+/* Account and session controls use the existing clinic palette. */
+.session-bar { max-width: 1200px; margin: 0 auto; padding: .5rem 1rem; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; flex-wrap: wrap; }
+.session-bar form { margin: 0; }
+.auth-card { max-width: 30rem; margin: 2rem auto; padding: 2rem; background: white; border: 1px solid var(--border, #dbe5e8); border-radius: 16px; }
+.auth-form { display: grid; gap: .75rem; max-width: 42rem; }
+.auth-form input:not([type=checkbox]), .auth-form select { width: 100%; min-width: 0; box-sizing: border-box; }
+.auth-form input[type=checkbox] { width: auto; }
+.account-editor { padding: 1rem; margin: 1rem 0; border: 1px solid #dbe5e8; border-radius: 12px; background: white; }
+.account-editor summary { cursor: pointer; font-weight: 600; margin-bottom: 1rem; }
+@media(max-width: 600px) { .auth-card { padding: 1rem; margin: 1rem 0; } .session-bar { justify-content: space-between; } }

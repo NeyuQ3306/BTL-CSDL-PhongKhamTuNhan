@@ -13,22 +13,27 @@
   <a class="skip-link" href="#main-content">Chuyển đến nội dung</a>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="{{ url_for('clinic.home') }}">
+      {% if can('clinic.home') %}<a class="brand" href="{{ url_for('clinic.home') }}">
         <img class="brand-mark" src="{{ url_for('static', filename='logo.png') }}" alt="" aria-hidden="true">
         <span class="brand-copy">PHÒNG KHÁM<span>Quản lý phòng khám tư nhân</span></span>
-      </a>
+      </a>{% endif %}
       <span class="demo-badge"><span aria-hidden="true"></span>Dữ liệu giả lập</span>
     </div>
     {% set active_slug = request.view_args.get('slug', '') if request.view_args else '' %}
+    {% if current_user or not config.get('AUTH_ENABLED', True) %}
     <nav class="main-nav" aria-label="Điều hướng chính">
       {% for slug, label in [('patients', 'Bệnh nhân'), ('doctors', 'Bác sĩ'), ('nurses', 'Y tá')] %}
-      <a href="{{ url_for('clinic.listing', slug=slug) }}" {% if active_slug == slug or (slug == 'patients' and request.endpoint == 'clinic.history') %}aria-current="page"{% endif %}>{{ label }}</a>
+      {% if can('clinic.listing', slug=slug) %}<a href="{{ url_for('clinic.listing', slug=slug) }}" {% if active_slug == slug or (slug == 'patients' and request.endpoint == 'clinic.history') %}aria-current="page"{% endif %}>{{ label }}</a>{% endif %}
       {% endfor %}
-      <a href="{{ url_for('clinical.new_visit') }}" {% if request.endpoint == 'clinical.new_visit' %}aria-current="page"{% endif %}>Tiếp nhận / khám</a>
-      <a href="{{ url_for('clinic.visits') }}" {% if request.endpoint == 'clinic.visits' %}aria-current="page"{% endif %}>Lượt khám</a>
-      <a href="{{ url_for('clinic.treatments') }}" {% if request.endpoint == 'clinic.treatments' %}aria-current="page"{% endif %}>Đợt điều trị</a>
-      <a href="{{ url_for('clinic.reports') }}" {% if request.endpoint == 'clinic.reports' %}aria-current="page"{% endif %}>Báo cáo</a>
+      {% if can('clinical.new_visit') %}<a href="{{ url_for('clinical.new_visit') }}" {% if request.endpoint == 'clinical.new_visit' %}aria-current="page"{% endif %}>Tiếp nhận / khám</a>{% endif %}
+      {% if can('clinic.visits') %}<a href="{{ url_for('clinic.visits') }}" {% if request.endpoint == 'clinic.visits' %}aria-current="page"{% endif %}>Lượt khám</a>{% endif %}
+      {% if can('clinic.treatments') %}<a href="{{ url_for('clinic.treatments') }}" {% if request.endpoint == 'clinic.treatments' %}aria-current="page"{% endif %}>Đợt điều trị</a>{% endif %}
+      {% if can('clinic.reports') %}<a href="{{ url_for('clinic.reports') }}" {% if request.endpoint == 'clinic.reports' %}aria-current="page"{% endif %}>Báo cáo</a>{% endif %}
+      {% if can('auth.users') %}<a href="{{ url_for('auth.users') }}">Tài khoản</a>{% endif %}
     </nav>
+    {% endif %}
+    {% if current_user %}<div class="session-bar"><span>{{ current_user.username }} · {{ role_names[current_user.role] }}</span>
+      <form method="post" action="{{ url_for('auth.logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="button-secondary">Đăng xuất</button></form></div>{% endif %}
   </header>
   <main id="main-content" tabindex="-1">
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -41,3 +46,4 @@
   <footer class="site-footer"><span>Phòng khám tư nhân · Project 1</span><span>Dữ liệu giả lập phục vụ học tập</span></footer>
 </body>
 </html>
+

@@ -18,6 +18,8 @@ def create_app(test_config=None):
     if not app.config.get('SECRET_KEY'):
         raise RuntimeError('Cần đặt FLASK_SECRET_KEY trong .env trước khi chạy ứng dụng.')
     app.teardown_appcontext(close_db)
+    from .auth import init_app as init_auth
+    init_auth(app)
     app.before_request(check_csrf)
     app.jinja_env.globals['csrf_token'] = csrf_token
     app.jinja_env.filters['money'] = lambda v: f'{Decimal(v or 0):,.0f}'.replace(',', '.') + ' đ'
@@ -51,3 +53,4 @@ def create_app(test_config=None):
                                message='Có lỗi xử lý. Thao tác ghi chưa hoàn tất đã được hủy.'), 500
 
     return app
+

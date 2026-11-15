@@ -12,7 +12,7 @@ from clinic_app import create_app, reports, clinical_routes
 
 @pytest.fixture
 def review_app():
-    return create_app({'TESTING': True, 'SECRET_KEY': 'review-regression-session'})
+    return create_app({'TESTING': True, 'AUTH_ENABLED': False, 'SECRET_KEY': 'review-regression-session'})
 
 
 @pytest.mark.parametrize('kind', ['diseases', 'salaries', 'revenue'])
@@ -90,3 +90,4 @@ def test_prescription_controls_fit_mobile(review_app, monkeypatch):
                 page.screenshot(path=str(output / f'review-prescription-{width}.png'), full_page=True)
         finally:
             browser.close()
+

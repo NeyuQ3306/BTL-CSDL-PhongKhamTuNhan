@@ -2,7 +2,7 @@
 from datetime import date
 from decimal import Decimal
 import pymysql
-from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify, g
 from werkzeug.exceptions import HTTPException, NotFound
 from . import workflows, reports
 from .db import fetch_all, fetch_one
@@ -12,7 +12,7 @@ bp = Blueprint('clinical', __name__)
 
 
 def choices():
-    return dict(patients=fetch_all('SELECT ma_benh_nhan,ho_ten FROM benh_nhan ORDER BY ma_benh_nhan'),
+    result = dict(patients=fetch_all('SELECT ma_benh_nhan,ho_ten FROM benh_nhan ORDER BY ma_benh_nhan'),
         doctors=fetch_all('SELECT ma_bac_si,ho_ten FROM bac_si ORDER BY ma_bac_si'),
         nurses=fetch_all('SELECT ma_y_ta,ho_ten FROM y_ta ORDER BY ma_y_ta'),
         diseases=fetch_all('SELECT ma_benh,ten_benh FROM benh ORDER BY ma_benh'),
@@ -21,6 +21,13 @@ def choices():
             JOIN benh b ON b.ma_benh=d.ma_benh JOIN bac_si s ON s.ma_bac_si=d.ma_bac_si
             WHERE d.trang_thai='Đang điều trị' ORDER BY d.ma_dot'''),
         medicines=fetch_all('SELECT ma_thuoc,ten_thuoc,gia_hien_tai FROM thuoc ORDER BY ma_thuoc'))
+    user = g.get('user')
+    if user and user['role'] == 'doctor':
+        result['doctors'] = [r for r in result['doctors'] if r['ma_bac_si'].casefold() == user['doctor_id'].casefold()]
+        result['episodes'] = [r for r in result['episodes'] if r['ma_bac_si'].casefold() == user['doctor_id'].casefold()]
+    if user and user['role'] == 'nurse':
+        result['nurses'] = [r for r in result['nurses'] if r['ma_y_ta'].casefold() == user['nurse_id'].casefold()]
+    return result
 
 
 def form_response(action, title, execute, success_endpoint, success_args=None, extra=None):
@@ -79,6 +86,21 @@ def form_response(action, title, execute, success_endpoint, success_args=None, e
 
 @bp.route('/visits/new', methods=['GET','POST'])
 def new_visit():
+    if g.get('user') and g.user['role'] == 'reception':
+        error, status = '', 200
+        if request.method == 'POST':
+            try:
+                visit_id = workflows.intake_visit(request.form)
+                flash('Đã tiếp nhận. Bác sĩ sẽ bổ sung lần khám và y tá ghi hỗ trợ.', 'success')
+                return redirect(url_for('clinical.visit_detail', visit_id=visit_id), code=303)
+            except HTTPException as exc:
+                if exc.code not in (404, 409, 422):
+                    raise
+                error, status = exc.description, exc.code
+            except pymysql.IntegrityError:
+                error, status = 'Mã lượt đã tồn tại hoặc dữ liệu không hợp lệ.', 409
+        return render_template('auth/intake.html', error=error, values=request.form,
+                               patients=patient_choices(), today=today_vn().isoformat()), status
     return form_response('visit', 'Tiếp nhận và khám bệnh', lambda: workflows.create_visit(request.form),
                          'clinical.visit_detail', lambda result: dict(visit_id=result))
 
@@ -192,3 +214,4 @@ def report(kind):
 
 def patient_choices():
     return fetch_all('SELECT ma_benh_nhan,ho_ten FROM benh_nhan ORDER BY ma_benh_nhan')
+
