@@ -1,4 +1,5 @@
 {% extends 'week1/base.html' %}
+{% from 'auth/password_field.html' import password_field %}
 {% block title %}Đăng nhập · Phòng khám{% endblock %}
 {% block content %}
 <section class="auth-card"><p class="eyebrow">PHÒNG KHÁM TƯ NHÂN</p><h1>Đăng nhập</h1>
@@ -7,6 +8,6 @@
 <form method="post" class="auth-form">
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 <label for="username">Tên đăng nhập</label><input id="username" name="username" autocomplete="username" maxlength="64" required autofocus>
-<label for="password">Mật khẩu</label><input id="password" name="password" type="password" autocomplete="current-password" maxlength="128" required>
+<label for="password">Mật khẩu</label>{{ password_field('password', required=True, maxlength=128, autocomplete='current-password') }}
 <button type="submit">Đăng nhập</button></form></section>
 {% endblock %}

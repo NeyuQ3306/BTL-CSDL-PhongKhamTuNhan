@@ -1,4 +1,5 @@
 {% extends 'week1/base.html' %}
+{% from 'auth/password_field.html' import password_field %}
 {% block content %}<h1>Quản lý tài khoản</h1><p>Admin có toàn quyền. Bác sĩ và y tá phải liên kết đúng mã nhân sự. Không có tài khoản khách hoặc đăng ký công khai.</p>
 {% if error %}<p class="notice error" role="alert">{{ error }}</p>{% endif %}
 <h2>Tài khoản hiện có</h2>
@@ -9,7 +10,7 @@
 <label for="role-{{ u.id }}">Vai trò</label><select id="role-{{ u.id }}" name="role">{% for key,label in roles.items() %}<option value="{{ key }}" {% if u.role==key %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
 <label for="doctor-{{ u.id }}">Mã bác sĩ (chỉ áp dụng vai trò bác sĩ)</label><select id="doctor-{{ u.id }}" name="doctor_id"><option value="">— Chọn —</option>{% for d in doctors %}<option value="{{ d.ma_bac_si }}" {% if u.doctor_id==d.ma_bac_si %}selected{% endif %}>{{ d.ma_bac_si }} · {{ d.ho_ten }}</option>{% endfor %}</select>
 <label for="nurse-{{ u.id }}">Mã y tá (chỉ áp dụng vai trò y tá)</label><select id="nurse-{{ u.id }}" name="nurse_id"><option value="">— Chọn —</option>{% for n in nurses %}<option value="{{ n.ma_y_ta }}" {% if u.nurse_id==n.ma_y_ta %}selected{% endif %}>{{ n.ma_y_ta }} · {{ n.ho_ten }}</option>{% endfor %}</select>
-<label for="password-{{ u.id }}">Mật khẩu mới (để trống để giữ nguyên)</label><input id="password-{{ u.id }}" name="password" type="password" minlength="6" maxlength="36" autocomplete="new-password">
+<label for="password-{{ u.id }}">Mật khẩu mới (để trống để giữ nguyên)</label>{{ password_field('password-' ~ u.id, minlength=6) }}
 <label class="auth-check"><input type="checkbox" name="active" value="1" {% if u.active %}checked{% endif %}> Cho phép đăng nhập</label><button type="submit">Lưu tài khoản</button></form>
 {% if u.id != current_user.id %}
 <details class="delete"><summary>Xóa tài khoản {{ u.username }}</summary>
@@ -24,7 +25,7 @@
 {% endfor %}
 <h2>Tạo tài khoản</h2><form method="post" class="record-form auth-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 <label for="new-username">Tên đăng nhập</label><input id="new-username" name="username" minlength="3" maxlength="64" required autocomplete="off">
-<label for="new-password">Mật khẩu (6–36 ký tự)</label><input id="new-password" name="password" type="password" minlength="6" maxlength="36" autocomplete="new-password" required>
+<label for="new-password">Mật khẩu (6–36 ký tự)</label>{{ password_field('new-password', required=True, minlength=6) }}
 <label for="new-role">Vai trò</label><select id="new-role" name="role">{% for key,label in roles.items() %}<option value="{{ key }}">{{ label }}</option>{% endfor %}</select>
 <label for="new-doctor">Mã bác sĩ (chỉ chọn khi tạo bác sĩ)</label><select id="new-doctor" name="doctor_id"><option value="">— Chọn —</option>{% for d in doctors %}<option value="{{ d.ma_bac_si }}">{{ d.ma_bac_si }} · {{ d.ho_ten }}</option>{% endfor %}</select>
 <label for="new-nurse">Mã y tá (chỉ chọn khi tạo y tá)</label><select id="new-nurse" name="nurse_id"><option value="">— Chọn —</option>{% for n in nurses %}<option value="{{ n.ma_y_ta }}">{{ n.ma_y_ta }} · {{ n.ho_ten }}</option>{% endfor %}</select>

@@ -184,3 +184,13 @@ tbody th.record-code { background: transparent; font-weight: 600; color: #365965
 .auth-form .auth-check { display: flex; align-items: center; gap: 10px; margin: 8px 0; cursor: pointer; }
 .auth-form .auth-check input[type=checkbox] { flex: 0 0 18px; width: 18px; height: 18px; min-height: 18px; margin: 0; accent-color: var(--accent); }
 @media (forced-colors: active) { .auth-form select { appearance: auto; background-image: none; } }
+
+/* Reveal controls remain present with autofill, focus changes and empty input. */
+.password-field { position: relative; min-width: 0; }
+.auth-form .password-field.is-enhanced input { padding-right: 94px; }
+.password-field .password-toggle { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 5px; min-height: 36px; padding: 4px 9px; border: 0; border-radius: 5px; background: transparent; color: var(--accent); font-size: 13px; line-height: 1.4; }
+.password-field .password-toggle:hover { background: #e3f1ef; color: #034e50; }
+.password-field .password-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+.password-field .password-toggle[hidden] { display: none; }
+.password-field.is-enhanced input::-ms-reveal, .password-field.is-enhanced input::-ms-clear { display: none; }
+@media (pointer: coarse) { .password-field .password-toggle { min-height: 44px; } .auth-form .password-field input { min-height: 54px; } }
