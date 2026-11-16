@@ -21,6 +21,10 @@ Bốn nhóm truy vấn bắt buộc của yêu cầu 2 tiếp tục mang mã **Q
 
 Các diễn giải chi tiết về dữ liệu giả, đơn vị đếm, phạm vi ngày và giới hạn kết luận của R01–R07 ở [ANALYTICS_HANDOFF](ANALYTICS_HANDOFF.md). Danh mục chức năng là cách tổ chức nội dung báo cáo; việc chấm điểm tuân theo tiêu chí giảng viên, không tự quy đổi mỗi mã thành điểm chắc chắn.
 
+## Đăng nhập và phân quyền bổ sung
+
+Website có năm vai trò: Admin, Người xem, Tiếp nhận, Bác sĩ và Y tá. Đây là lớp kiểm soát truy cập áp dụng cho các chức năng trên, không đổi mã R01–R10. Bảng kỹ thuật `app_user` bổ sung vào 11 bảng nghiệp vụ. Chi tiết quyền và CLI: [AUTHENTICATION](AUTHENTICATION.md); phương án trình chiếu và QR: [DEMO_TWO_MACHINES](DEMO_TWO_MACHINES.md).
+
 ## Mở code khi hỏi đáp
 
 | Phạm vi | File và điểm bắt đầu |

@@ -15,7 +15,7 @@
 
 - Hai PDF trong docs/design là chuẩn thiết kế. Thay đổi bảng, khóa, công thức hay ý nghĩa thuộc tính phải có PR ghi lý do và cập nhật cả tài liệu, SQL, backend, UI liên quan.
 - SQL vật lý dùng tên chữ thường snake_case tương ứng tên trong PDF: `benh_nhan`, `dot_dieu_tri`, `lan_kham_benh`... để thống nhất Windows/Linux.
-- Tiền dùng DECIMAL, ngày dùng DATE/DATETIME, số điện thoại/CMT dùng chuỗi. Tham số người dùng đi qua placeholder SQL, không nối chuỗi vào câu truy vấn.
+- Tiền dùng DECIMAL, ngày dùng DATE/DATETIME, số điện thoại/CCCD dùng chuỗi. Tham số người dùng đi qua placeholder SQL, không nối chuỗi vào câu truy vấn.
 - Không commit .env, mật khẩu, token, dữ liệu bệnh nhân thật, thư mục venv/cache hoặc database dump cá nhân.
 - Tạo lượt/đợt/lần khám/đơn nhiều bước phải có transaction và rollback khi lỗi. Không tắt kiểm tra FK để né lỗi dữ liệu.
 - Tính thưởng và báo cáo đúng quy ước đã chốt; số tiền từ giao diện phải được server kiểm tra/tính lại.
@@ -37,5 +37,7 @@ Cập nhật tiến độ sau mỗi buổi vào issue: đã làm / việc tiếp
 Code chạy được theo hướng dẫn; test đúng/sai và ca biên; không lộ secrets; có bằng chứng; đã review và merge; cập nhật tài liệu. CI cú pháp xanh KHÔNG đồng nghĩa nghiệp vụ hay MySQL đã được kiểm thử.
 
 ## Trạng thái bảo vệ nhánh
+
+Repo hiện public để giảng viên xem theo quyết định của nhóm. Trạng thái giới hạn gói/private bên dưới là ghi nhận lịch sử, không phản ánh quyền xem repo hiện tại.
 
 Đã chọn chỉ squash merge, gợi ý cập nhật nhánh PR và giữ nhánh sau merge. GitHub thông báo bảo vệ nhánh không được thực thi với repo private/gói hiện tại; bước lưu rule còn yêu cầu xác thực lại (sudo). Vì vậy CHƯA có bảo vệ main được xác nhận lưu/thực thi. CODEOWNERS là tệp quy ước reviewer, không tự chặn push và tính năng thực thi cũng bị giới hạn gói. Nhóm phải tuân thủ PR/review thủ công; không đổi repo public để né giới hạn. Khi có gói hỗ trợ, bật PR + 1 approval + dismiss stale reviews + resolve conversations + không bypass/force-push/delete.

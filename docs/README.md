@@ -4,6 +4,8 @@
 
 - [SETUP](SETUP.md): chuẩn bị môi trường, nhập CSDL và chạy website.
 - [USER_GUIDE](USER_GUIDE.md): hồ sơ, tiếp nhận, điều trị, kê đơn và báo cáo.
+- [Đăng nhập và phân quyền](AUTHENTICATION.md).
+- [Demo hai máy và QR cho lớp](DEMO_TWO_MACHINES.md).
 - [Hướng dẫn kiểm thử](../tests/README.md).
 
 ## Thiết kế và truy vấn
