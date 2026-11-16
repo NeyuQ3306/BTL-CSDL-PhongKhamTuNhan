@@ -2,9 +2,15 @@
 
 Cài đặt và khởi chạy theo [SETUP](SETUP.md). Mở website trên trình duyệt; dữ liệu mẫu phục vụ thực hành. Các thao tác thêm/sửa làm thay đổi dữ liệu, vì vậy dùng DB thử riêng khi cần đối chiếu lại kết quả mẫu. Mã chức năng trong báo cáo/slide xem [danh mục R01–R10](FEATURES.md).
 
+## Đăng nhập và chọn đúng vai trò
+
+Mở `/auth/login`, dùng tài khoản do admin của máy đang phục vụ website cấp. Không có đăng ký công khai hoặc mật khẩu mặc định. Admin có toàn bộ chức năng và mục **Tài khoản** để tạo/sửa/khóa/xóa tài khoản; chỉ admin xem và quản lý hồ sơ bác sĩ/y tá. Người xem chỉ đọc hồ sơ bệnh nhân, lịch sử, lượt/đợt/đơn và báo cáo Q1–Q4/R01–R07, không thêm/sửa/xóa. Tiếp nhận quản lý bệnh nhân/lượt chờ; bác sĩ khám/kê đơn/xác nhận khỏi trong đợt phụ trách; y tá ghi hỗ trợ dưới mã của mình. Xem [bảng quyền đầy đủ](AUTHENTICATION.md).
+
+Các bước dưới mô tả luồng đầy đủ bằng admin; khi dùng vai trò khác chỉ thao tác các chức năng được cấp. Đăng xuất chỉ kết thúc phiên trình duyệt hiện tại. Khóa/xóa tài khoản hoặc đổi mật khẩu/quyền làm các phiên cũ của tài khoản đó mất hiệu lực.
+
 ## 1. Hồ sơ, tìm kiếm và phân trang — R08/R09
 
-Mở `/health` và `/health/db`, cả hai phải HTTP 200/status ok; sau đó vào **Bệnh nhân**, **Bác sĩ**, **Y tá** trên menu. Mỗi nhóm có danh sách/tìm kiếm, thêm, chi tiết, sửa và xóa. Dùng mã giả chưa tồn tại (tối đa 12 ký tự: chữ không dấu, số, `_`, `-`; tránh `new`), CCCD không trùng và ngày sinh hợp lệ.
+Đăng nhập admin rồi mở `/health` và `/health/db`, cả hai phải HTTP 200/status ok; sau đó vào **Bệnh nhân**, **Bác sĩ**, **Y tá** trên menu. Mỗi nhóm có danh sách/tìm kiếm, thêm, chi tiết, sửa và xóa. Dùng mã giả chưa tồn tại (tối đa 12 ký tự: chữ không dấu, số, `_`, `-`; tránh `new`), CCCD không trùng và ngày sinh hợp lệ.
 
 Ví dụ CRUD bệnh nhân trên DB thử: mã `W3GUIDEBN`, tên “Bệnh nhân thử hướng dẫn”, CCCD `999000005001`, ngày sinh `2000-01-01`, địa chỉ “Hà Nội”, điện thoại `0900000001`. Nếu mã/CCCD đã có thì chọn bộ mới. Thêm → mở chi tiết → sửa địa chỉ → tải lại xác nhận đã lưu. Thử mã trùng/ngày sinh tương lai phải bị từ chối; kiểm tra giữ dữ liệu form. Bác sĩ/y tá: điền các trường bắt buộc trên form, thâm niên là số nguyên trong giới hạn hiển thị.
 
@@ -18,6 +24,8 @@ Chỉ xóa hồ sơ giả không có lịch sử do bạn vừa tạo. Hồ sơ 
 2. Đợt mới: mã đợt mới, bệnh và bác sĩ. Tái khám: chọn đợt **đang điều trị của đúng bệnh nhân**; bệnh/bác sĩ giữ nguyên, STT lần khám do hệ thống cấp liên tiếp.
 3. Nhập mã lần khám mới, ngày khám, phí nguyên đồng chưa gồm thuốc, kết luận và y tá hỗ trợ rồi **Lưu**. Kiểm tra trang chi tiết lượt sau lưu.
 4. Một lượt có thể khám nhiều bệnh: chọn **Khám thêm bệnh** trong chi tiết lượt; đợt/lần khám phải thuộc đúng bệnh nhân. Không tạo đợt đang điều trị thứ hai cho cùng bệnh nhân/bệnh.
+
+Với tài khoản Tiếp nhận, form chỉ tạo lượt chờ khám; bác sĩ thêm lần khám tại chi tiết lượt, y tá ghi hỗ trợ, tiếp nhận kết thúc lượt khi đủ dữ liệu. Tài khoản bác sĩ/y tá phải liên kết đúng mã nhân sự.
 
 Ngày khám phải nằm trong thời gian lượt và đợt. Dùng mã chưa tồn tại, không lấy mã seed làm mã ghi mới. Nếu lưu lỗi, đọc thông báo đầu form, sửa nguyên nhân rồi gửi lại; không thay mã chỉ để né lỗi nghiệp vụ.
 

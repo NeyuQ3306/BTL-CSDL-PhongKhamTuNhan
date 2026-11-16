@@ -20,29 +20,18 @@ Luồng tiếp nhận mới chỉ tạo lượt đang chờ khám. Bác sĩ thê
 
 ## Cài lần đầu trên máy thử
 
-Dùng nhánh `main`, không cần cài thêm thư viện. Có thể tạo worktree mới từ PowerShell tại repo gốc:
+Sau khi cấu hình `.env` và nhập CSDL mới theo [SETUP](SETUP.md), chạy từ gốc repo bằng PowerShell:
 
 ```powershell
-Set-Location 'C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan'
-git fetch origin
-git worktree add --detach '..\BTL-CSDL-auth' origin/main
-Copy-Item .env '..\BTL-CSDL-auth\.env'
-Set-Location '..\BTL-CSDL-auth'
-$demoPython = 'C:\Users\LENOVO\OneDrive\Desktop\BTL-CSDL-PhongKhamTuNhan\.venv\Scripts\python.exe'
-$env:FLASK_SECRET_KEY = & $demoPython -c 'import secrets; print(secrets.token_hex(32))'
-$env:FLASK_DEBUG = 'false'
-& $demoPython -m flask --app app init-auth --username admin
+.\.venv\Scripts\python.exe -m flask --app app init-auth --username admin
+.\.venv\Scripts\python.exe app.py
 ```
 
-Nhập mật khẩu riêng **6–36 ký tự** hai lần; lúc nhập không hiện ký tự là bình thường. Dùng tài khoản MySQL có quyền tạo bảng cho bước này. Nếu admin đã có, lệnh từ chối tạo lại hoặc ghi đè mật khẩu. Không import lại seed hoặc file SQL nộp bài lên database đang dùng.
+Nhập mật khẩu riêng **6–36 ký tự** hai lần; lúc nhập không hiện ký tự là bình thường. Bước khởi tạo cần tài khoản MySQL có quyền CREATE bảng. Nếu admin đã có, lệnh từ chối tạo lại hoặc ghi đè mật khẩu. Máy đã có bảng tài khoản bản cũ dùng `upgrade-auth` ở phần bên dưới; không import lại seed hoặc bộ SQL nộp bài.
 
-```powershell
-& $demoPython .\app.py
-```
+Mở `http://127.0.0.1:5000/auth/login`. Admin mở **Tài khoản** để tạo Tiếp nhận, Bác sĩ, Y tá hoặc Người xem; chọn mã nhân sự có thật cho bác sĩ/y tá. Thử nhiều tài khoản bằng các trình duyệt/profile riêng. Tab ẩn danh trong cùng một phiên có thể dùng chung cookie. Mật khẩu và phiên đăng nhập không đưa vào repo hoặc ảnh/log bằng chứng.
 
-Mở `http://127.0.0.1:5000/auth/login`. Admin đăng nhập rồi mở **Tài khoản** để tạo tiếp nhận, bác sĩ và y tá; chọn mã nhân sự đang có trong DB, không tự đoán mã. Có thể cấp thêm admin. Muốn đổi người dùng, bấm Đăng xuất. Thử nhiều tài khoản đồng thời bằng các trình duyệt/profile riêng; tab ẩn danh trong cùng một phiên thường dùng chung cookie.
-
-Để dừng thử, Ctrl+C; chạy lại worktree `BTL-CSDL-demo` nếu muốn quay về bản cũ. Bảng tài khoản bổ sung không làm bản cũ ngừng hoạt động. Mật khẩu/phiên đăng nhập không được ghi vào repo hoặc ảnh/log bằng chứng.
+Phương án Trung trình chiếu, Vương mở QR và điều kiện hai database độc lập: [DEMO_TWO_MACHINES](DEMO_TWO_MACHINES.md).
 
 ## Dữ liệu và bảo mật
 

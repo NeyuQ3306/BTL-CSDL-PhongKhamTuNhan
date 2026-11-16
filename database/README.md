@@ -13,6 +13,7 @@ Bộ SQL MySQL 8.4 gồm 11 bảng, 9 trigger và 1.144 dòng dữ liệu giả.
 | `queries.sql` | Q1 thống kê bệnh, Q2 lương, Q3 lịch sử bệnh nhân, Q4 doanh thu |
 | `expected_results.md` | Tham số và kết quả mẫu Q1–Q4 |
 | `analytics_queries.sql` | Bảy báo cáo phân tích R01–R07 |
+| `auth.sql` | DDL tham chiếu cho bảng kỹ thuật `app_user`; khởi tạo bằng CLI `init-auth`, nâng cấp vai trò bằng `upgrade-auth` |
 | `analytics_expected.json` | Đáp án độc lập dùng đối chiếu seed trong kiểm thử |
 
 ## Nhập và chạy truy vấn
@@ -24,6 +25,8 @@ Nếu dùng bộ file rời, chạy đúng thứ tự **schema → seed → audi
 Sau khi nhập CSDL, có thể chạy `analytics_queries.sql` trên cùng schema. Phạm vi mặc định: từ 01/07 đến hết 14/10/2026; R06 đối chiếu 14/10, ngưỡng 14 ngày. Quy ước cột, bộ lọc, đơn vị và NULL ở [ANALYTICS_HANDOFF](../docs/ANALYTICS_HANDOFF.md).
 
 R08–R10 là sửa/xóa hồ sơ, tìm kiếm/phân trang và kê đơn/lưu giá lịch sử, dùng SQL trong ứng dụng. Xem [danh mục và vị trí code](../docs/FEATURES.md) để đối chiếu Phụ lục C; `analytics_queries.sql` chỉ trả bảy báo cáo R01–R07. SQL có `%s` phải đi qua PyMySQL cùng tham số, không chạy nguyên dạng đó trong Workbench.
+
+Bộ SQL nộp giữ 11 bảng nghiệp vụ. Để chạy website hiện tại, sau import thực hiện [bước khởi tạo đăng nhập](../docs/SETUP.md#4-audit-khởi-tạo-tài-khoản-và-chạy-app): thêm `app_user`, tổng 12 bảng. Tài khoản được tạo riêng tại từng database; SQL không chứa tài khoản/mật khẩu mặc định.
 
 ## Quy tắc dữ liệu
 

@@ -6,6 +6,8 @@ Dự án được thực hiện trong học phần **Cơ sở dữ liệu — Pr
 
 ## Chức năng
 
+- **Đăng nhập và phân quyền:** Admin, Người xem, Tiếp nhận, Bác sĩ và Y tá; quyền được kiểm tra ở giao diện và backend. Admin quản lý tài khoản, Người xem chỉ đọc dữ liệu phục vụ demo.
+
 - **Quản lý hồ sơ:** tìm kiếm, thêm, sửa và xóa hồ sơ bệnh nhân, bác sĩ, y tá theo các ràng buộc dữ liệu.
 - **Khám và điều trị:** tiếp nhận lượt khám, mở đợt điều trị, tái khám, ghi hỗ trợ y tá, kê đơn nhiều thuốc, kết thúc lượt và xác nhận khỏi.
 - **Báo cáo nghiệp vụ:** thống kê bệnh theo tháng, tính lương bác sĩ/y tá, tra cứu lịch sử bệnh nhân và thống kê doanh thu khám/thuốc.
@@ -37,7 +39,7 @@ Bảng và biểu đồ dùng cùng kết quả truy vấn. Biểu đồ đượ
 
 - **Backend:** Python, Flask, PyMySQL.
 - **Giao diện:** Jinja, HTML, CSS, JavaScript và SVG.
-- **Cơ sở dữ liệu:** MySQL 8.4; 11 bảng, khóa và ràng buộc nghiệp vụ, 9 trigger.
+- **Cơ sở dữ liệu:** MySQL 8.4; 11 bảng nghiệp vụ và 9 trigger; thêm bảng kỹ thuật `app_user` khi khởi tạo đăng nhập (tổng 12 bảng).
 - **Kiểm thử:** pytest và Playwright.
 
 Dữ liệu mẫu gồm 1.144 dòng, với hoạt động khám từ tháng 7 đến ngày 14/10/2026. Các báo cáo mô tả dữ liệu đã lưu; kết quả được dùng để minh họa phân tích, không suy ra mùa vụ hoặc dự báo.
@@ -47,7 +49,8 @@ Dữ liệu mẫu gồm 1.144 dòng, với hoạt động khám từ tháng 7 đ
 1. Chuẩn bị Git, Python 3.11 hoặc 3.12 và MySQL Server 8.4.
 2. Clone repo, tạo môi trường Python và cấu hình kết nối theo [hướng dẫn cài đặt](docs/SETUP.md).
 3. Nhập [bộ SQL](database/project1_submission.sql) vào một schema mới trống.
-4. Chạy ứng dụng và mở `http://127.0.0.1:5000`.
+4. Khởi tạo admin bằng `python -m flask --app app init-auth --username admin` trong môi trường Python đã cài; tự đặt mật khẩu 6–36 ký tự. Máy đã có bảng tài khoản từ bản trước chạy `upgrade-auth` theo hướng dẫn.
+5. Chạy ứng dụng và mở `http://127.0.0.1:5000/auth/login`.
 
 [Hướng dẫn sử dụng](docs/USER_GUIDE.md) mô tả các thao tác hồ sơ, khám, kê đơn và báo cáo. Chi tiết file SQL và cách chạy truy vấn xem [database/README.md](database/README.md).
 
@@ -63,6 +66,9 @@ Dữ liệu mẫu gồm 1.144 dòng, với hoạt động khám từ tháng 7 đ
 | `docs/` | Thiết kế CSDL và hướng dẫn kỹ thuật |
 
 ## Tài liệu
+
+- [Đăng nhập và quyền từng vai trò](docs/AUTHENTICATION.md).
+- [Demo hai máy và chia sẻ QR cho lớp](docs/DEMO_TWO_MACHINES.md).
 
 - [Mô hình ER](docs/design/ER_Phong_kham_Ban_chot.pdf), [lược đồ quan hệ](docs/design/Luoc_do_quan_he_Phong_kham_Ban_chot.pdf) và [từ điển dữ liệu](docs/design/DATA_DICTIONARY.md).
 - [Bốn nhóm truy vấn nghiệp vụ](database/queries.sql) và [kết quả mẫu](database/expected_results.md).

@@ -4,7 +4,7 @@ Chuẩn bị Git, Python 3.11 hoặc 3.12, MySQL Server 8.4 và MySQL Workbench.
 
 ## 1. Lấy mã nguồn
 
-Repo private: tài khoản clone phải được cấp quyền. Chọn thư mục mới, chạy PowerShell:
+Repo public, có thể clone để xem mã nguồn. Tài khoản đăng nhập website được tạo riêng trong MySQL của máy chạy ứng dụng; tài khoản GitHub không dùng để đăng nhập website. Chọn thư mục mới, chạy PowerShell:
 
 ```powershell
 git clone --branch main https://github.com/NeyuQ3306/BTL-CSDL-PhongKhamTuNhan.git clinic-project1
@@ -78,21 +78,27 @@ Kỳ vọng 11 bảng, 9 trigger. Có lỗi thì dừng; DDL implicit commit có
 
 Sau khi nhập, mở `database/analytics_queries.sql` và chọn cùng schema nếu muốn đối chiếu R01–R07 bằng SQL. Website sử dụng các truy vấn này cho báo cáo phân tích; không cần tạo thêm bảng hoặc trigger.
 
-## 4. Audit và chạy app
+## 4. Audit, khởi tạo tài khoản và chạy app
 
 Từ gốc clone:
 
 ```powershell
 .\.venv\Scripts\python.exe -m tools.audit_seed
+.\.venv\Scripts\python.exe -m flask --app app init-auth --username admin
 .\.venv\Scripts\python.exe app.py
 ```
 
 Ngay sau import, đọc JSON audit: `total=1144`, `matches_expected_counts=true`, cả 9 nhóm `findings` đều `[]`. Exit 0 của audit chưa đủ chứng minh sạch. `audit.sql` có thêm kiểm tra lượt không y tá. Sau ghi dữ liệu giả, count thay đổi là bình thường, không import lại để ép số lượng.
 
+Lệnh `init-auth` dành cho máy mới, tự tạo bảng `app_user` và yêu cầu đặt mật khẩu riêng 6–36 ký tự hai lần. Không có mật khẩu mặc định. Cần quyền CREATE bảng; không chạy lại để ghi đè admin đã có. Sau bước này có 12 bảng (11 nghiệp vụ + 1 tài khoản), số dòng seed nghiệp vụ vẫn là 1.144.
+
+Máy đã có tài khoản từ bản bốn vai trò: dừng web, cập nhật code, chạy `.\.venv\Scripts\python.exe -m flask --app app upgrade-auth` bằng tài khoản MySQL có quyền ALTER rồi khởi chạy lại. Lệnh mở rộng vai trò Người xem và giữ nguyên tài khoản/mật khẩu. Không import lại SQL/seed. Chi tiết: [AUTHENTICATION](AUTHENTICATION.md).
+
 Giữ terminal mở, truy cập:
 
 - `http://127.0.0.1:5000/health`: HTTP 200, `status=ok`.
-- `http://127.0.0.1:5000/health/db`: HTTP 200, `status=ok`, `database=mysql`.
+- `http://127.0.0.1:5000/auth/login`: đăng nhập admin vừa tạo.
+- `http://127.0.0.1:5000/health/db`: sau đăng nhập admin, HTTP 200, `status=ok`, `database=mysql`.
 - `http://127.0.0.1:5000/patients`: danh sách bệnh nhân.
 - `http://127.0.0.1:5000/visits/new`: tiếp nhận/khám.
 - `http://127.0.0.1:5000/reports`: bốn báo cáo nghiệp vụ và bộ lọc/bảng/biểu đồ R01–R07.
@@ -117,6 +123,9 @@ Kết thúc phiên chạy, đọc kết quả cleanup và xác minh instance th�
 | 1046 / No database selected | Chọn default schema hoặc `USE` đúng DB ở mỗi tab |
 | 1050 / duplicate khi import | Dừng, dùng DB thử trống mới; không nhập chồng |
 | 1064 khi tạo trigger | Kiểm tra log/client và cách chạy toàn khối `DELIMITER`, xác minh đủ 9 trigger |
+| Chưa khởi tạo tài khoản | Máy mới chạy `init-auth`; DB đã có tài khoản cũ dùng `upgrade-auth`, không nhập lại seed |
+| Bị chuyển tới đăng nhập / HTTP 401 | Đăng nhập bằng tài khoản do admin của đúng máy cấp |
+| HTTP 403 | Kiểm tra vai trò và mã bác sĩ/y tá được liên kết; xem AUTHENTICATION |
 | Thiếu secret | Sinh khóa, điền `FLASK_SECRET_KEY`, kiểm tra môi trường ghi đè |
 | `/health` đạt, `/health/db` 503 | Flask đã lên nhưng DB chưa kết nối; kiểm tra cấu hình/server |
 | Cổng 5000 bận | Dừng đúng app của bạn bằng Ctrl+C. Có thể chạy `.\.venv\Scripts\python.exe -m flask --app app run --host 127.0.0.1 --port 5001` rồi đổi URL tương ứng |
