@@ -1,8 +1,83 @@
 """Optional authentication migration and actual account operations on disposable MySQL."""
 import os
+from itertools import islice
+from pathlib import Path
+from uuid import uuid4
+
+import pymysql
 import pytest
+from werkzeug.security import check_password_hash
+
 from clinic_app import create_app, auth
 from clinic_app.db import fetch_one, fetch_all, get_db
+from tools.import_seed import statements
+
+
+@pytest.mark.parametrize('layout', ['week1', 'mixed_staff_keys'])
+@pytest.mark.parametrize('import_sql', [False, True], ids=['cli', 'sql_then_cli'])
+def test_init_auth_matches_staff_keys(layout, import_sql):
+    if os.getenv('RUN_MYSQL_TESTS') != '1':
+        pytest.skip('Requires disposable MySQL')
+    database_dir = Path(__file__).resolve().parents[1] / 'database'
+    config = {'TESTING': True, 'SECRET_KEY': 'disposable-auth-integration'}
+    app = create_app(config)
+    assert app.config['DB_NAME'].endswith('_test')
+    database = f'clinic_auth_{uuid4().hex}_test'
+    isolated_app = create_app(dict(config, DB_NAME=database))
+    with app.app_context(), get_db().cursor() as admin_cursor:
+        admin_cursor.execute(f'CREATE DATABASE `{database}` COLLATE utf8mb4_general_ci')
+    try:
+        with isolated_app.app_context(), get_db().cursor() as cur:
+            if layout == 'week1':
+                seed = (database_dir / 'week1' / 'clinic_seed.sql').read_text(encoding='utf-8')
+                for ddl in islice(statements(seed), 2):
+                    cur.execute(ddl)
+            else:
+                cur.execute('''CREATE TABLE bac_si (ma_bac_si CHAR(9) CHARACTER SET latin1
+                    COLLATE latin1_bin PRIMARY KEY) ENGINE=InnoDB''')
+                cur.execute('''CREATE TABLE y_ta (ma_y_ta VARCHAR(18) CHARACTER SET utf8mb4
+                    COLLATE utf8mb4_bin PRIMARY KEY) ENGINE=InnoDB''')
+            # Changing the database default leaves existing staff column metadata intact.
+            cur.execute(f'ALTER DATABASE `{database}` COLLATE utf8mb4_0900_ai_ci')
+            if import_sql:
+                for ddl in statements((database_dir / 'auth.sql').read_text(encoding='utf-8')):
+                    cur.execute(ddl)
+                assert fetch_all('SELECT id FROM app_user') == []
+
+        runner = isolated_app.test_cli_runner()
+        password = 'six123'
+        result = runner.invoke(args=['init-auth', '--username', 'admin'], input=f'{password}\n{password}\n')
+        assert result.exit_code == 0, (result.output, result.exception)
+        with isolated_app.app_context():
+            account = fetch_one('SELECT * FROM app_user')
+            assert account['username'] == 'admin' and account['role'] == 'admin' and account['active']
+            assert check_password_hash(account['password_hash'], password)
+            keys = fetch_all('''SELECT COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
+                FROM information_schema.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA=DATABASE()
+                AND TABLE_NAME='app_user' AND REFERENCED_TABLE_SCHEMA=DATABASE()
+                ORDER BY COLUMN_NAME''')
+            links = [('doctor_id', 'bac_si', 'ma_bac_si'), ('nurse_id', 'y_ta', 'ma_y_ta')]
+            assert [(r['COLUMN_NAME'], r['REFERENCED_TABLE_NAME'], r['REFERENCED_COLUMN_NAME']) for r in keys] == links
+            rows = fetch_all('''SELECT TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, CHARACTER_SET_NAME, COLLATION_NAME
+                FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE()''')
+            types = {(r['TABLE_NAME'], r['COLUMN_NAME']): (r['COLUMN_TYPE'], r['CHARACTER_SET_NAME'], r['COLLATION_NAME'])
+                     for r in rows}
+            for child, parent, key in links:
+                assert types['app_user', child] == types[parent, key]
+            with get_db().cursor() as cur:
+                for role, child in [('doctor', 'doctor_id'), ('nurse', 'nurse_id')]:
+                    with pytest.raises(pymysql.IntegrityError) as exc:
+                        cur.execute(f'''INSERT INTO app_user (username,password_hash,role,{child})
+                            VALUES (%s,%s,%s,%s)''', (role, account['password_hash'], role, 'missing'))
+                    assert exc.value.args[0] == 1452
+
+        result = runner.invoke(args=['init-auth', '--username', 'admin'], input='new123\nnew123\n')
+        assert result.exit_code == 1 and 'Admin đã tồn tại' in result.output
+        with isolated_app.app_context():
+            assert fetch_all('SELECT * FROM app_user') == [account]
+    finally:
+        with app.app_context(), get_db().cursor() as admin_cursor:
+            admin_cursor.execute(f'DROP DATABASE `{database}`')
 
 
 def test_real_mysql_account_lifecycle():

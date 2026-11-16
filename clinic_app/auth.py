@@ -4,11 +4,12 @@ import time
 from collections import OrderedDict
 from threading import Lock
 from datetime import timedelta
+from pathlib import Path
 import click
 import pymysql
 from flask import Blueprint, current_app, g, session, request, redirect, url_for, render_template, flash, abort
 from werkzeug.security import generate_password_hash, check_password_hash
-from .db import fetch_one, fetch_all, transaction
+from .db import fetch_one, fetch_all, get_db, transaction
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 ROLES = {'admin': 'Quản trị viên', 'reception': 'Tiếp nhận', 'doctor': 'Bác sĩ', 'nurse': 'Y tá', 'viewer': 'Người xem'}
@@ -16,24 +17,7 @@ DUMMY_HASH = generate_password_hash('not-a-real-login-password')
 # Per-process IP cap supplements persistent per-account failed-login lockout.
 _attempts = OrderedDict()
 _attempts_lock = Lock()
-SCHEMA = '''CREATE TABLE IF NOT EXISTS app_user (
- id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
- username VARCHAR(64) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL UNIQUE,
- password_hash VARCHAR(255) NOT NULL,
- role VARCHAR(16) NOT NULL,
- doctor_id VARCHAR(12) NULL,
- nurse_id VARCHAR(12) NULL,
- active BOOLEAN NOT NULL DEFAULT TRUE,
- version INT UNSIGNED NOT NULL DEFAULT 1,
- failed_logins INT UNSIGNED NOT NULL DEFAULT 0,
- locked_until DATETIME NULL,
- CONSTRAINT fk_app_user_doctor FOREIGN KEY (doctor_id) REFERENCES bac_si(ma_bac_si),
- CONSTRAINT fk_app_user_nurse FOREIGN KEY (nurse_id) REFERENCES y_ta(ma_y_ta),
- CONSTRAINT ck_app_user_role CHECK (
-   (role IN ('admin','reception','viewer') AND doctor_id IS NULL AND nurse_id IS NULL) OR
-   (role='doctor' AND doctor_id IS NOT NULL AND nurse_id IS NULL) OR
-   (role='nurse' AND nurse_id IS NOT NULL AND doctor_id IS NULL))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci'''
+SCHEMA_FILE = Path(__file__).resolve().parents[1] / 'database' / 'auth.sql'
 
 
 def enabled():
@@ -281,7 +265,6 @@ def delete_user(user_id):
 
 
 def upgrade_auth_schema():
-    from .db import get_db
     db = get_db()
     with db.cursor() as cur:
         cur.execute("""SELECT c.CHECK_CLAUSE FROM information_schema.CHECK_CONSTRAINTS c
@@ -322,10 +305,11 @@ def init_app(app):
         username = username.strip().lower()
         if not re.fullmatch(r'[a-z0-9_.-]{3,64}', username) or not 6 <= len(password) <= 36:
             raise click.ClickException('Tên tài khoản không hợp lệ hoặc mật khẩu không đủ 6–36 ký tự.')
-        from .db import get_db
         db = get_db()
         with db.cursor() as cur:
-            cur.execute(SCHEMA)
+            for statement in SCHEMA_FILE.read_text(encoding='utf-8').split(';'):
+                if statement.strip():
+                    cur.execute(statement)
         with db.cursor() as cur:
             cur.execute("SELECT GET_LOCK(CONCAT('clinic-auth:',DATABASE()),10) AS acquired")
             if not cur.fetchone()['acquired']:
