@@ -15,7 +15,7 @@ Chạy `python -m pytest tests -q` sẽ chạy các ca không cần DB; các ca 
 
 Fixture trong `conftest.py` yêu cầu `RUN_MYSQL_TESTS=1` và `DB_NAME` kết thúc bằng `_test`. Các test cần canonical seed và có fixture ghi dữ liệu, vì vậy chuẩn bị DB thử riêng. `RUN_BROWSER_TESTS=1` bật browser.
 
-Kiểm thử `test_init_auth_matches_staff_keys` dùng tài khoản MySQL có quyền tạo và xóa schema thử riêng `clinic_auth_*_test`, để kiểm tra cả schema tuần 1 lẫn các cột nhân sự có charset và collation khác nhau.
+Các ca `init-auth` trong `test_auth_mysql.py` dùng tài khoản MySQL có quyền tạo và xóa schema thử riêng `clinic_auth_*_test`. Các ca này bao gồm schema tuần 1, cột nhân sự có charset và collation khác nhau, và bảng tài khoản có cấu trúc sai.
 
 Trên Windows, [runner nghiệm thu](../docs/evidence/quyen_laptop_acceptance_20261106/README.md) tạo instance MySQL với datadir/cổng riêng, nạp seed, chạy SQL/oracle, hồi quy, browser và cleanup. Dùng output mới và đường dẫn mysqld thực tế; giữ log để kiểm tra sau chạy.
 

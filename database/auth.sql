@@ -1,6 +1,6 @@
--- Optional login extension. Import after the 11 clinical tables. No default credentials.
+-- Optional login extension; import after the 11 clinical tables. No default credentials.
 -- Prefer: python -m flask --app app init-auth --username admin
--- Flask executes this script statement by statement. Keep semicolons at statement boundaries.
+-- This script creates the table if absent. The Flask command also validates existing tables.
 -- Read each staff key separately because older tables inherit the database defaults at import time.
 SET @clinic_auth_doctor_type = (
  SELECT CONCAT(COLUMN_TYPE, ' CHARACTER SET ', CHARACTER_SET_NAME, ' COLLATE ', COLLATION_NAME)

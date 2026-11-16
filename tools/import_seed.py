@@ -4,25 +4,7 @@ from pathlib import Path
 import pymysql
 from dotenv import load_dotenv
 from clinic_app.config import settings
-
-
-def statements(source):
-    # Supports this seed's comments, quoted strings and escaped/doubled quotes.
-    import re
-    tokens = re.finditer(r"'(?:''|\\.|[^'\\])*'|\"(?:\"\"|\\.|[^\"\\])*\"|--[^\n]*|/\*[\s\S]*?\*/|;|[^;'\"/-]+|.", source)
-    parts = []
-    for match in tokens:
-        token = match.group()
-        if token.startswith(('--', '/*')):
-            parts.append('\n')
-        elif token == ';':
-            if ''.join(parts).strip():
-                yield ''.join(parts).strip()
-            parts = []
-        else:
-            parts.append(token)
-    if ''.join(parts).strip():
-        yield ''.join(parts).strip()
+from clinic_app.sql import statements
 
 
 def import_seed(db):

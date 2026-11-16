@@ -10,6 +10,7 @@ import pymysql
 from flask import Blueprint, current_app, g, session, request, redirect, url_for, render_template, flash, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from .db import fetch_one, fetch_all, get_db, transaction
+from .sql import statements
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 ROLES = {'admin': 'Quản trị viên', 'reception': 'Tiếp nhận', 'doctor': 'Bác sĩ', 'nurse': 'Y tá', 'viewer': 'Người xem'}
@@ -264,6 +265,53 @@ def delete_user(user_id):
     return redirect(url_for('auth.users'), code=303)
 
 
+def validate_auth_schema(cur):
+    def invalid(detail):
+        raise click.ClickException(f'Cấu trúc app_user không hợp lệ: {detail}. Kiểm tra schema hiện có trước khi chạy lại.')
+
+    cur.execute("""SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, EXTRA
+        FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='app_user'""")
+    columns = {row['COLUMN_NAME']: row for row in cur.fetchall()}
+    required = {
+        'id': 'bigint', 'username': 'varchar', 'password_hash': 'varchar', 'role': 'varchar',
+        'active': 'tinyint', 'version': 'int', 'failed_logins': 'int', 'locked_until': 'datetime',
+    }
+    for name, data_type in required.items():
+        column = columns.get(name)
+        nullable = 'YES' if name == 'locked_until' else 'NO'
+        if not column or (column['DATA_TYPE'], column['IS_NULLABLE']) != (data_type, nullable):
+            invalid(f'cột {name} bị thiếu hoặc không tương thích')
+    if columns['id']['EXTRA'] != 'auto_increment':
+        invalid('cột id cần AUTO_INCREMENT')
+
+    cur.execute("""SELECT k.CONSTRAINT_NAME, MAX(k.COLUMN_NAME) AS column_name,
+            MAX(k.REFERENCED_TABLE_NAME) AS parent_table, MAX(k.REFERENCED_COLUMN_NAME) AS parent_column
+        FROM information_schema.KEY_COLUMN_USAGE k
+        WHERE k.TABLE_SCHEMA=DATABASE() AND k.TABLE_NAME='app_user'
+        GROUP BY k.CONSTRAINT_NAME
+        HAVING COUNT(*)=1 AND (MAX(k.REFERENCED_TABLE_SCHEMA)=DATABASE()
+            OR MAX(k.REFERENCED_TABLE_SCHEMA) IS NULL)""")
+    keys = cur.fetchall()
+    if not any(row['CONSTRAINT_NAME'] == 'PRIMARY' and row['column_name'] == 'id' for row in keys):
+        invalid('thiếu khóa chính trên id')
+    if not any(row['column_name'] == 'username' and row['parent_table'] is None for row in keys):
+        invalid('thiếu ràng buộc duy nhất trên username')
+
+    links = {(row['column_name'], row['parent_table'], row['parent_column']) for row in keys}
+    for child, parent, key in [('doctor_id', 'bac_si', 'ma_bac_si'), ('nurse_id', 'y_ta', 'ma_y_ta')]:
+        column = columns.get(child)
+        if not column or column['DATA_TYPE'] not in ('char', 'varchar') or column['IS_NULLABLE'] != 'YES':
+            invalid(f'cột {child} bị thiếu hoặc không tương thích')
+        if (child, parent, key) not in links:
+            invalid(f'thiếu khóa ngoại {child} → {parent}.{key}')
+
+    cur.execute("""SELECT 1 FROM information_schema.TABLE_CONSTRAINTS
+        WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='app_user' AND CONSTRAINT_TYPE='CHECK'
+        AND CONSTRAINT_NAME='ck_app_user_role' AND ENFORCED='YES'""")
+    if not cur.fetchone():
+        invalid('thiếu ràng buộc vai trò ck_app_user_role đang được áp dụng')
+
+
 def upgrade_auth_schema():
     db = get_db()
     with db.cursor() as cur:
@@ -307,15 +355,21 @@ def init_app(app):
             raise click.ClickException('Tên tài khoản không hợp lệ hoặc mật khẩu không đủ 6–36 ký tự.')
         db = get_db()
         with db.cursor() as cur:
-            for statement in SCHEMA_FILE.read_text(encoding='utf-8').split(';'):
-                if statement.strip():
-                    cur.execute(statement)
-        with db.cursor() as cur:
             cur.execute("SELECT GET_LOCK(CONCAT('clinic-auth:',DATABASE()),10) AS acquired")
             if not cur.fetchone()['acquired']:
                 raise click.ClickException('Một tiến trình khác đang khởi tạo tài khoản.')
         try:
+            with db.cursor() as cur:
+                cur.execute("""SELECT TABLE_TYPE, ENGINE FROM information_schema.TABLES
+                    WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='app_user'""")
+                table = cur.fetchone()
+                if table and (table['TABLE_TYPE'], table['ENGINE']) != ('BASE TABLE', 'InnoDB'):
+                    raise click.ClickException('Cấu trúc app_user không hợp lệ: cần bảng InnoDB.')
+                if not table:
+                    for statement in statements(SCHEMA_FILE.read_text(encoding='utf-8')):
+                        cur.execute(statement)
             with transaction() as db, db.cursor() as cur:
+                validate_auth_schema(cur)
                 cur.execute("SELECT id FROM app_user WHERE role='admin' AND active=1 FOR UPDATE")
                 if cur.fetchone():
                     raise click.ClickException('Admin đã tồn tại. Dùng trang quản lý tài khoản; không ghi đè mật khẩu.')
