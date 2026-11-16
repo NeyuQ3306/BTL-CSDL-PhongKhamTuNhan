@@ -10,6 +10,8 @@ import os
 from pathlib import Path
 import secrets
 import threading
+from io import BytesIO
+from PIL import Image
 
 from playwright.sync_api import sync_playwright
 from werkzeug.security import generate_password_hash
@@ -65,6 +67,22 @@ def main():
                 if nth is not None:
                     locator = locator.nth(nth)
                 locator.screenshot(path=str(out/name))
+            def panorama(selector, name):
+                # Stitch real horizontal scroll positions; never modify UI styles/data.
+                region=page.locator(selector)
+                metrics=region.evaluate('(e)=>({visible:e.clientWidth,total:e.scrollWidth})')
+                visible,total=metrics['visible'],metrics['total']
+                tiles=[]
+                for left in range(0,total,visible):
+                    actual=region.evaluate('(e,x)=>{e.scrollLeft=x;return e.scrollLeft}',left)
+                    tile=Image.open(BytesIO(region.screenshot())).convert('RGB')
+                    tiles.append((actual,tile))
+                    if actual+visible>=total:break
+                canvas=Image.new('RGB',(total+2,tiles[0][1].height),'white')
+                for left,tile in tiles:
+                    canvas.paste(tile.crop((1,0,1+visible,tile.height)),(left+1,0))
+                canvas.save(out/name,optimize=True)
+                region.evaluate('(e)=>e.scrollLeft=0')
             def login(username):
                 goto('/auth/login')
                 page.locator('#username').fill(username)
@@ -106,9 +124,9 @@ def main():
                 page.wait_for_function("() => document.querySelector('#analytics-status').textContent.includes('Đã tải') || document.querySelector('#analytics-status').getAttribute('role') === 'alert'")
                 assert f'dòng {rid}' in page.locator('#analytics-status').inner_text(), page.locator('#analytics-status').inner_text()
                 page.locator(f'#r{i:02}-chart').wait_for(state='visible')
-                shot(f'#r{i:02}-chart-section', rid.lower()+'-chart.png')
+                panorama(f'#r{i:02}-chart-scroll', rid.lower()+'-chart.png')
                 table=page.locator('#analytics-table')
-                table.screenshot(path=str(out/(rid.lower()+'-table.png')))
+                panorama('#analytics-table >> xpath=..', rid.lower()+'-table.png')
                 cells=table.locator('thead th').all()
                 assert all(c.evaluate('(e)=>getComputedStyle(e).textAlign')=='center' for c in cells)
                 if i == 7:
@@ -135,7 +153,7 @@ def main():
     images=sorted(out.glob('*.png'))
     manifest=dict(source_sha=os.getenv('SOURCE_SHA', os.getenv('GITHUB_SHA')),
                   mysql_version=mysql_version,auth_enabled=True,sql_stubs=False,
-                  clinical_seed_rows=1144,images={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in images})
+                  clinical_seed_rows=1144,horizontal_scroll_images='stitched real scroll positions without style changes',images={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in images})
     (out/'capture.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
     print(f'Captured {len(images)} images with authenticated app and MySQL {mysql_version}.')
 
