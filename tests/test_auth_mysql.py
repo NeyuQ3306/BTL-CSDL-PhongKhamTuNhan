@@ -139,6 +139,14 @@ def test_real_mysql_account_lifecycle():
         def login(username):
             return client.post('/auth/login',data={'username':username,'password':password,'csrf_token':token()})
         assert login('test_admin').status_code==303
+        # Auth SELECT opens a read transaction; analytics must start a new snapshot.
+        for report_id in ('R01','R02','R03','R04','R05','R06','R07'):
+            response=client.get('/api/analytics/'+report_id)
+            assert response.status_code==200, (report_id,response.get_json())
+            assert response.get_json()['report_id']==report_id
+        response=client.get('/api/analytics')
+        assert response.status_code==200
+        assert set(response.get_json()['reports'])=={f'R{i:02}' for i in range(1,8)}
         assert client.get('/auth/users').status_code==200
         # Upgrade an existing four-role database without changing credentials.
         with app.app_context():
@@ -250,3 +258,4 @@ def test_real_mysql_account_lifecycle():
                 cur.execute("DELETE FROM benh_nhan WHERE ma_benh_nhan='AUTHP1'")
                 cur.execute('DROP TABLE IF EXISTS app_user')
             db.commit()
+

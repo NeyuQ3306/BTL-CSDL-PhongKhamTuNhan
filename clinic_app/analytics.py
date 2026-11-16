@@ -144,6 +144,10 @@ def build(values, report_id=None):
     names = (report_id,) if report_id else tuple(REPORTS)
     source = sql_queries()  # fail before starting a transaction if dependency is missing
     db = get_db()
+    # Authentication reads app_user on this connection with autocommit=False.
+    # End that read transaction before setting the report snapshot characteristics.
+    # The in_transaction guard above forbids discarding an active write workflow.
+    db.rollback()
     try:
         with db.cursor() as cursor:
             cursor.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
@@ -156,3 +160,4 @@ def build(values, report_id=None):
         return result[report_id] if report_id else dict(reports=result, filters=values)
     finally:
         db.rollback()  # finish read snapshot on success and failure; never commit
+

@@ -94,7 +94,7 @@ def test_single_snapshot_and_rollback_on_success_or_query_failure(monkeypatch, f
     calls = cursor.execute.call_args_list
     assert calls[0].args[0] == 'SET TRANSACTION ISOLATION LEVEL REPEATABLE READ'
     assert calls[1].args[0] == 'START TRANSACTION WITH CONSISTENT SNAPSHOT, READ ONLY'
-    db.rollback.assert_called_once()
+    assert db.rollback.call_count == 2  # end authentication read, then report snapshot
     db.commit.assert_not_called()
     for call in calls[2:]:
         assert '@tu' not in call.args[0] and '@den' not in call.args[0]
@@ -225,4 +225,5 @@ def test_bound_service_sql_matches_contract_with_adversarial_data(edge_db,start,
             actual = analytics.payload(name,list(cursor.fetchall()),values)
             assert actual['rows'] == analytics.serialize(wanted[name])
     # Read snapshot lifecycle is tested independently; this fixture remains uncommitted.
+
 

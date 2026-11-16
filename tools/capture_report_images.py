@@ -103,7 +103,8 @@ def main():
                 rid=f'R{i:02}'
                 page.locator('#analytics-report').select_option(rid)
                 page.locator('#analytics-filters button').click()
-                page.wait_for_function("rid => document.querySelector('#analytics-status').textContent.includes('dòng ' + rid)", arg=rid)
+                page.wait_for_function("() => document.querySelector('#analytics-status').textContent.includes('Đã tải') || document.querySelector('#analytics-status').getAttribute('role') === 'alert'")
+                assert f'dòng {rid}' in page.locator('#analytics-status').inner_text(), page.locator('#analytics-status').inner_text()
                 page.locator(f'#r{i:02}-chart').wait_for(state='visible')
                 shot(f'#r{i:02}-chart-section', rid.lower()+'-chart.png')
                 table=page.locator('#analytics-table')
